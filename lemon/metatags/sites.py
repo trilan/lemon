@@ -2,6 +2,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.db.models import ForeignKey, ManyToManyField
 from django.db.models.base import ModelBase
 from django.db.models.signals import post_save, pre_delete, m2m_changed
+from django.utils.translation import ugettext_lazy as _
 
 from lemon import extradmin
 from lemon.metatags.admin import PageInline
@@ -41,7 +42,7 @@ class MetatagsSite(object):
                 admin_object.inline_instances = \
                     admin_object.inline_instances + [inline_instance]
                 if isinstance(admin_object.tabs, (list, tuple)):
-                    tab = {'title': inline_instance.verbose_name_plural,
+                    tab = {'title': _(u'Meta tags'),
                            'contents': [inline_instance]}
                     admin_object.tabs = admin_object.tabs + [tab]
 
