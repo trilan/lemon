@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lemon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-01 13:34+0400\n"
+"POT-Creation-Date: 2011-04-01 13:41+0400\n"
 "PO-Revision-Date: 2011-03-31 18:55+0400\n"
 "Last-Translator: Mike Yumatov <mike@yumatov.org>\n"
 "Language-Team: Russian <lemon@trilandev.com>\n"
@@ -16,28 +16,28 @@ msgstr ""
 "10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2\n"
 
 #: admin.py:31 admin.py:35
-msgid "Add meta tags"
-msgstr "Добавить мета-теги"
+msgid "Add page"
+msgstr "Добавить страницу"
 
 #: admin.py:32
-msgid "Change meta tags"
-msgstr "Изменить мета-теги"
+msgid "Change page"
+msgstr "Изменить страницу"
 
 #: admin.py:33
-msgid "Choose meta tags to change"
-msgstr "Выберите мета-теги для изменения"
+msgid "Choose page to change"
+msgstr "Выберите страницу для изменения"
 
 #: admin.py:34
-msgid "Choose meta tags"
-msgstr "Выберите мета-теги"
+msgid "Choose page"
+msgstr "Выберите страницу"
 
 #: admin.py:37
 #, python-format
-msgid "%(count)d meta tags entry"
-msgid_plural "%(count)d meta tags entries"
-msgstr[0] "%(count)d запись о мета-тегах"
-msgstr[1] "%(count)d записи о мета-тегах"
-msgstr[2] "%(count)d записей о мета-тегах"
+msgid "%(count)d page"
+msgid_plural "%(count)d pages"
+msgstr[0] "%(count)d страница"
+msgstr[1] "%(count)d страницы"
+msgstr[2] "%(count)d страниц"
 
 #: models.py:12
 msgid "URL path"
