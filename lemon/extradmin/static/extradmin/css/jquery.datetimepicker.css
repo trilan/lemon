@@ -1,0 +1,141 @@
+.module {
+	margin-bottom: 5px;
+}
+
+.module p, .module ul, .module h3, .module h4, .module dl, .module pre {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.module blockquote {
+	margin-left: 12px;
+}
+
+.module ul, .module ol {
+	margin-left: 1.5em;
+}
+
+.module h3 {
+	margin-top: .6em;
+}
+
+.module h2, .module caption {
+	padding: 2px 5px 3px 5px;
+}
+
+.module table {
+	border-collapse: collapse;
+}
+
+/*****/
+
+.calendarbox, .clockbox {
+	margin: 5px auto;
+	font-size: 11px;
+	width: 16em;
+	text-align: center;
+	position: relative;
+}
+
+.clockbox {
+	width: auto;
+}
+
+.calendar {
+	margin: 0;
+	padding: 0;
+}
+
+.calendar table {
+	margin: 0;
+	padding: 0;
+	border-collapse: collapse;
+	width: 100%;
+	border: 1px solid #ddd; /* like .ui-widget-content border */
+}
+
+.calendar caption, .calendarbox h2 {
+	margin: 0 !important;
+	font-size: 11px;
+	text-align: center;
+}
+
+.calendar th {
+	font-size: 10px;
+	padding: 2px 3px !important;
+	text-align: center;
+}
+
+.calendar td {
+	font-size: 11px;
+	text-align: center;
+	padding: 0 !important;
+}
+
+.calendar td a, .timelist a {
+	display: block;
+	font-weight: bold;
+	padding: 4px;
+	text-decoration: none;
+}
+
+.calendarnav {
+	font-size: 10px;
+	text-align: center;
+	margin: 0;
+	padding: 1px 3px;
+}
+
+.calendar-shortcuts {
+	font-size: 10px;
+	line-height: 11px;
+	padding: 3px 0 4px;
+}
+
+.calendarbox .calendarnav-previous, .calendarbox .calendarnav-next {
+	display: block;
+	position: absolute;
+	font-weight: bold;
+	font-size: 12px;
+	text-decoration: none;
+	top: 3px;
+}
+
+.calendarnav-previous:hover, .calendarnav-next:hover {
+}
+
+.calendarnav-previous {
+	left: 3px;
+}
+
+.calendarnav-next {
+	right: 3px;
+}
+
+.calendar-cancel {
+	margin: 4px 0 6px !important;
+	padding: 0;
+	font-size: 10px;
+}
+
+.calendar-cancel a {
+	padding: 2px;
+}
+
+ul.timelist, .timelist li {
+	list-style-type: none;
+	margin: 0 !important; /* temporary */
+	padding: 0;
+}
+
+.timelist a {
+	padding: 2px;
+}
+
+.module h2 { /* temporary */
+	height: 13px !important;
+	line-height: 13px !important;
+	border-bottom: none;
+	margin: 0;
+	font-size: 11px;
+}

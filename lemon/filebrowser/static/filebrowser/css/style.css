@@ -1,0 +1,60 @@
+#filebrowser-breadcrumbs {
+    display: block;
+    background: url('../../images/changelist-right.png') top right repeat-y;
+    border-top: #97A9B1 solid 1px;
+    padding: 10px 20px;
+}
+
+#filebrowser-breadcrumbs li {
+    display: block;
+    float: left;
+    padding: 0;
+    font-size: 15px;
+}
+
+#fb_file_delete_dialog,
+#fb_folder_delete_dialog {
+    display: none;
+}
+
+.filebrowser td.fb_icon {
+	width: 30px;
+	text-align: center;
+}
+
+table a.fb_file_delete_link,
+table a.fb_folder_delete_link,
+table a.fb_renamelink {
+    cursor: pointer;
+    display: block;
+	padding: 0;
+	margin: 0;
+    width: 23px;
+	height: 17px;
+    background-color: transparent;
+    background-position: 0 center;
+    background-repeat: no-repeat;
+}
+
+table a.fb_file_delete_link:link,
+table a.fb_folder_delete_link:link,
+table a.fb_file_delete_link:visited,
+table a.fb_folder_delete_link:visited {
+    width: 15px;
+    background-image: url('../images/icons/delete.gif');
+}
+table a.fb_file_delete_link:hover,
+table a.fb_folder_delete_link:hover,
+table a.fb_file_delete_link:active,
+table a.fb_folder_delete_link:active {
+    background-image: url('../images/icons/delete_hover.gif');
+}
+table .fb_renamelink:link,
+table .fb_renamelink:visited {
+    width: 14px;
+    background-image: url('../images/icons/rename.gif');
+}
+table .fb_renamelink:hover,
+table .fb_renamelink:active {
+    background-image: url('../images/icons/rename_hover.gif');
+}

@@ -1,0 +1,28 @@
+{% load i18n filebrowser_extras %}
+
+{% for file in page.object_list %}
+<tr class="{% cycle 'row1' 'row2' %}">
+    <td class="fb_icon"><img src="{{ STATIC_URL }}filebrowser/images/types/{% firstof file.filetype|lower "unknown" %}.gif" /></td>
+    {% ifequal file.filetype 'Folder' %}
+    <td><b><a href="{% url admin:filebrowser:browse %}{% query_string 'q,dir,p' %}&amp;dir={{ file.path_relative_directory|urlencode }}">{{ file.filename }}</a></b></td>
+    {% else %}
+    <td><b><a href="{% if is_popup%}javascript:FileBrowserDialogue.fileSubmit('{{ file.url_full|escapejs }}');{% else %}{{ file.url_full }}{% endif %}">{{ file.filename }}</a></b></td>
+    {% endifequal %}
+    <td class="fb_icon"><a href="{% url admin:filebrowser:rename %}{% query_string %}&amp;filename={{ file.filename }}" class="fb_renamelink" title="{% trans 'Rename' %}"></a></td>
+    <td>{{ file.filesize|filesizeformat }}</td>
+    <td>{{ file.formatted_datetime }}</td>
+    {% if results_var.delete_total %}
+    <td class="fb_icon">
+        {% ifnotequal file.filetype 'Folder' %}
+        <a href="{% url admin:filebrowser:delete %}{% query_string %}&amp;filename={{ file.filename }}&amp;filetype={{ file.filetype }}" class="fb_file_delete_link" title="{% trans 'Delete File' %}"></a>
+        {% else %}
+        {% if file.is_empty %}
+        <a href="{% url admin:filebrowser:delete %}{% query_string %}&amp;filename={{ file.filename }}&amp;filetype={{ file.filetype }}" class="fb_folder_delete_link" title="{% trans 'Delete Folder' %}"></a>
+        {% endif %}
+        {% endifnotequal %}
+    </td>
+    {% endif %}
+</tr>
+{% endfor %}
+
+ 

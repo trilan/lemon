@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}">
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Lemon CMF">
+	<link rel="shortcut icon" href="{{ STATIC_URL }}extradmin/favicon.ico" type="image/x-icon" />
+	<link rel="icon" href="{{ STATIC_URL }}extradmin/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/default.css" />
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/base.css" />
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/jquery.ui.css" />
+	{% block extrastyle %}{% endblock %}
+	<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/ie.css" /><![endif]-->
+	<script src="{{ STATIC_URL }}extradmin/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="{{ STATIC_URL }}extradmin/js/jquery.ui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="{{ STATIC_URL }}extradmin/js/script.js" type="text/javascript" charset="utf-8"></script>
+	{% block extrahead %}{% endblock %}
+	{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+</head>
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
+	<div id="container" class="{% block containerclass %}{% endblock %}">
+		{% block container %}
+			{% if not is_popup %}{% block header %}{% endblock %}{% endif %}
+			<div id="main">
+				{% if messages %}<ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>{% endif %}
+				{% block content %}{% endblock %}
+			</div>
+			{% if not is_popup %}<div id="footer">
+				{% block footer %}
+					<a id="footer-logo" href="http://www.trilan.ru/" class="external"></a>
+					<div id="copyright">CMF <strong>Lemon</strong> разработана в компании <a href="http://www.trilan.ru/" class="external">«ТриЛан»</a> с использованием <a href="http://djangoproject.com/" class="external">Django</a>.</div>
+				{% endblock %}
+			</div>{% endif %}
+		{% endblock %}
+	</div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+#dashboard {
+    margin-top: -10px;
+    padding: 0 20px;
+}
+
+#dashboard_column_1 {
+    width: 60%;
+    float: left;
+    min-height: 300px;
+}
+
+#dashboard_column_2 {
+    width: 39%;
+    float: right;
+    min-height: 300px;
+}
+
+#dashboard .widget_container {
+    margin: 20px 0;
+    color: #486A77;
+    border: 1px solid #98ABB2;
+    background: #E5EAEC url('../images/dashboard-widget-bg.png') repeat-x;
+    -webkit-border-top-left-radius: 2px;
+    -webkit-border-top-right-radius: 2px;
+    -moz-border-radius-topleft: 2px;
+    -moz-border-radius-topright: 2px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+#dashboard .widget_container_header {
+    padding: 7px 10px 6px;
+}
+
+#dashboard .widget_container_header span {
+    font-weight: bold;
+    text-shadow: #fff 0px 1px 1px;
+    cursor: default;
+}
+
+#dashboard .widget_container_content {
+    border: 1px solid #98ABB2;
+    margin: 0 3px 3px;
+    background: #fff;
+}
+
+#dashboard .widget_placeholder {
+    margin: 20px 0;
+    border: 1px dashed #98ABB2;
+    background: #E5EAEC;
+}
+
+.available_widgets {
+    margin-top: 10px;
+    width: 47%;
+}
+
+.available_widgets li {
+    position: relative;
+    padding: 10px 0;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.available_widgets h2 {
+    font-size: 16px;
+    padding-right: 60px;
+}
+
+.available_widgets p {
+    line-height: 1.4em;
+    margin-top: 1em;
+    padding-right: 60px;
+}
+
+#available_widgets_left {
+    float: left;
+    padding-left: 20px;
+}
+
+#available_widgets_right {
+    float: right;
+    padding-right: 20px;
+}
+
+a.add_widget {
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    display: block;
+    width: 55px;
+    border: #e89e00 solid 1px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    background: url('../images/button-bg.png') top left repeat-x;
+    text-shadow: #FFFFFF 0 1px 1px;
+    height: 19px;
+    line-height: 19px;
+    padding: 0 7px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.widget_container_header {
+    position: relative;
+}
+
+.widget_container_menu {
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 15px;
+    height: 15px;
+    background: url('../images/dashboard-widget-menu.png') 0 -32px no-repeat;
+}

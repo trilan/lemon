@@ -1,0 +1,11 @@
+{% load i18n filebrowser_extras %}
+
+<h2>{% trans "Filter" %}</h2>
+<dl>
+	<dt>{% trans "Date" %}</dt>
+	<dd{% if not query.filter_date %} class="active"{% endif %}><a href="{% query_string 'filter_date,p' %}">{% trans "Any Date" %}</a></dd>
+    <dd{% ifequal query.filter_date 'today' %} class="active"{% endifequal %}><a href="{% query_string 'filter_date,p' %}&amp;filter_date=today">{% trans "Today" %}</a></dd>
+    <dd{% ifequal query.filter_date 'past7days' %} class="active"{% endifequal %}><a href="{% query_string 'filter_date,p' %}&amp;filter_date=past7days">{% trans "Past 7 days" %}</a></dd>
+    <dd{% ifequal query.filter_date 'thismonth' %} class="active"{% endifequal %}><a href="{% query_string 'filter_date,p' %}&amp;filter_date=thismonth">{% trans "Past 30 days" %}</a></dd>
+    <dd{% ifequal query.filter_date 'thisyear' %} class="active"{% endifequal %}><a href="{% query_string 'filter_date,p' %}&amp;filter_date=thisyear">{% trans "This year" %}</a></dd>
+</dl>

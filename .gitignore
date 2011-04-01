@@ -1,0 +1,7 @@
+*.egg-info
+*.pyc
+*.pyo
+build/
+dist/
+test_project/public/
+test_project/sqlite.db

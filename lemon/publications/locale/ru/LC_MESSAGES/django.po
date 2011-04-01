@@ -1,0 +1,60 @@
+# This file is distributed under the same license as the Lemon package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Lemon\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-31 18:58+0400\n"
+"PO-Revision-Date: 2011-03-31 18:58+0400\n"
+"Last-Translator: Mike Yumatov <mike@yumatov.org>\n"
+"Language-Team: Russian <lemon@trilandev.com>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: admin.py:15
+msgid "Publication parameters"
+msgstr "Параметры публикации"
+
+#: admin.py:34
+msgid "author name"
+msgstr "автор"
+
+#: admin.py:43
+#, python-format
+msgid "Enable selected %(verbose_name_plural)s"
+msgstr "Включить выбранные %(verbose_name_plural)s"
+
+#: admin.py:51
+#, python-format
+msgid "Disable selected %(verbose_name_plural)s"
+msgstr "Выключить выбранные %(verbose_name_plural)s"
+
+#: models.py:17
+msgid "author"
+msgstr "автор"
+
+#: models.py:20
+msgid "enabled"
+msgstr "включено"
+
+#: models.py:21
+msgid "If not set, publication is hidden from visitors anyway."
+msgstr "Если выключено, публикация будет скрыта от посетителей в любом случае."
+
+#: models.py:23
+msgid "publication start date"
+msgstr "дата начала показа"
+
+#: models.py:24
+msgid "Publication will be visible to visitors starting from this date."
+msgstr "Публикация будет видна посетителям, начиная с этой даты."
+
+#: models.py:27
+msgid "publication end date"
+msgstr "дата окончания показа"
+
+#: models.py:28
+msgid "Publication will be visible to visitors due to this date if set."
+msgstr "Публикация будет видна посетителям до этой даты."

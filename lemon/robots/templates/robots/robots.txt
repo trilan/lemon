@@ -1,0 +1,2 @@
+{% load url from future %}{% if object %}{{ object.contents }}{% else %}User-agent: *{% url 'sitemap_xml' as sitemap_xml_url %}{% if sitemap_xml_url %}
+Sitemap: http://{{ site.domain }}/sitemap.xml{% endif %}{% endif %}

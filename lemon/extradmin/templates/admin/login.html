@@ -1,0 +1,36 @@
+{% extends "admin/base.html" %}
+
+{% block extrahead %}
+<script src="{{ STATIC_URL }}extradmin/js/jquery.login.js" type="text/javascript" charset="utf-8"></script>
+{% endblock %}
+
+{% block containerclass %}login{% endblock %}
+{% block content %}
+	<div id="login">
+		<div id="login-logo"></div>
+		<div id="login-header"><div>
+			<p>Хотите такую же систему?</p>
+			<p><a href="http://www.trilan.ru/order/" class="external">Закажите прямо сейчас!</a></p>
+		</div></div>
+		<form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+			<div class="fields">
+				{% if error_message %}<p class="errornote">{{ error_message }}</p>{% endif %}
+				<div class="field">
+					<label for="id_username">Имя:</label>
+					<input type="text" name="username" id="id_username" />
+				</div>
+				<div class="field">
+					<label for="id_password">Пароль:</label>
+					<input type="password" name="password" id="id_password" />
+					<input type="hidden" name="this_is_the_login_form" value="1" />
+				</div>
+				<div class="submit">
+					<input type="hidden" name="this_is_the_login_form" value="1" />
+					<input type="hidden" name="next" value="{{ next }}" />
+					<input type="submit" value="Войти" />
+				</div>
+				<img id="company-logo" src="{{ STATIC_URL }}extradmin/images/company-logo.png" alt="ТриЛан" />
+			</div>
+		</form>
+	</div>
+{% endblock %}

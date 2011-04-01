@@ -1,0 +1,18 @@
+{% load i18n %}
+<style type="text/css">
+	#{{ id }} ul { padding: 10px 15px; }
+	#{{ id }} li { padding: 5px 0; }
+</style>
+<ul>
+	{% for entry in log %}
+		<li class="{% if entry.is_addition %}addlink{% endif %}{% if entry.is_change %}changelink{% endif %}{% if entry.is_deletion %}deletelink{% endif %}">
+			{% if entry.is_deletion %}
+				{{ entry.object_repr }}
+			{% else %}
+				<a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
+			{% endif %}
+			<span>({% trans entry.content_type.name %})</span>
+			- {{ entry.action_time|date:"d.m.Y H:i:s" }}
+		</li>
+	{% endfor %}
+</ul>
