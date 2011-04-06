@@ -22,7 +22,11 @@
 										{% if inline_admin_form.has_auto_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
 										{{ inline_admin_form.fk_field.field }}
 									{% endif %}
-									{{ field.field }}{{ field.field.errors.as_ul }}
+									{% if field.is_readonly %}
+										<p>{{ field.contents }}</p>
+									{% else %}
+										{{ field.field }}{{ field.field.errors.as_ul }}
+									{% endif %}
 								{% endspaceless %}</td>
 							{% endfor %}
 						{% endfor %}
