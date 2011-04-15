@@ -34,6 +34,11 @@ class PageAdmin(PublicationAdmin):
 
 
 extradmin.site.register(Page, PageAdmin)
+
 if 'lemon.metatags' in settings.INSTALLED_APPS:
     from lemon import metatags
     metatags.site.register(Page, sites_field_name='site')
+
+if 'lemon.sitemaps' in settings.INSTALLED_APPS:
+    from lemon import sitemaps
+    sitemaps.site.register(Page, sites_field_name='site')
