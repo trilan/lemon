@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext
 
@@ -33,3 +34,6 @@ class PageAdmin(PublicationAdmin):
 
 
 extradmin.site.register(Page, PageAdmin)
+if 'lemon.metatags' in settings.INSTALLED_APPS:
+    from lemon import metatags
+    metatags.site.register(Page, sites_field_name='site')
