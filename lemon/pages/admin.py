@@ -13,6 +13,7 @@ class PageAdmin(PublicationAdmin):
     form = PageAdminForm
     date_hierarchy = None
     search_fields = ['title', 'content']
+    markup_fields = ('content',)
     fieldsets = (
         (None, {
             'fields': ('slug', 'site', 'title', 'content', 'template')
