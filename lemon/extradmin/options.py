@@ -31,6 +31,9 @@ class InlineInstanseNotFound(Exception):
 
 class BaseModelAdmin(options.BaseModelAdmin):
 
+    markup_fields = ()
+    markup_widget = None
+
     def __init__(self):
         self.filter_vertical = ()
         self.filter_horizontal = ()
@@ -69,6 +72,8 @@ class BaseModelAdmin(options.BaseModelAdmin):
                 formfield.widget = widgets.RelatedFieldWidgetWrapper(
                     formfield.widget, db_field.rel, self.admin_site)
             return formfield
+        if self.markup_widget and db_field.name in self.markup_fields:
+            return db_field.formfield(widget=self.markup_widget)
         for klass in db_field.__class__.mro():
             if klass in self.formfield_overrides:
                 kwargs = dict(self.formfield_overrides[klass], **kwargs)
@@ -236,6 +241,10 @@ class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
                 ungettext('%(count)d element', '%(count)d elements', n)
         return super(ModelAdmin, self).changelist_view(request, extra_context)
 
+    @property
+    def markup_widget(self):
+        return self.admin_site.markup_widget
+
 
 class InlineModelAdmin(options.InlineModelAdmin, BaseModelAdmin):
 
@@ -249,6 +258,10 @@ class InlineModelAdmin(options.InlineModelAdmin, BaseModelAdmin):
             js.append(settings.STATIC_URL + 'extradmin/js/jquery.prepopulate.js')
         return forms.Media(js=js)
     media = property(_media)
+
+    @property
+    def markup_widget(self):
+        return self.admin_site.markup_widget
 
 
 class StackedInline(InlineModelAdmin):
