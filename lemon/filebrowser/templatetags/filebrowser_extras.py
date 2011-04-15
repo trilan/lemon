@@ -1,5 +1,7 @@
 import os
+import re
 from django import template
+from django.template.loader import render_to_string
 from lemon.filebrowser.utils import get_query_string, string_to_list, string_to_dict
 
 
@@ -77,3 +79,29 @@ def pagination(context):
         'results_var': context['results_var'],
         'query': context['query'],
     }
+
+
+class IncludeEditorStuffNode(template.Node):
+
+    def __init__(self, editor):
+        self.editor = editor
+
+    def render(self, context):
+        editor = self.editor.resolve(context)
+        if not isinstance(editor, basestring) or not re.match(r'^\w+$', editor):
+            return ''
+        template_name = 'filebrowser/editors/%s.html' % editor
+        try:
+            return render_to_string(template_name, context_instance=context)
+        except template.TemplateDoesNotExist:
+            return ''
+
+
+@register.tag
+def include_editor_stuff(parser, token):
+    bits = token.split_contents()
+    if len(bits) != 2:
+        raise TemplateSyntaxError('%r tag takes only one argument: the editor '
+                                  'identifier.' % bits[0])
+    editor = parser.compile_filter(bits[1])
+    return IncludeEditorStuffNode(editor)
