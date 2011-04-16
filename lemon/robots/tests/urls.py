@@ -1,5 +1,6 @@
-from django.conf.urls.defaults import *
-from lemon.robots.urls import urls
+from django.conf.urls.defaults import patterns, include, url
 
 
-urlpatterns = patterns('', *urls)
+urlpatterns = patterns('',
+    url(r'^robots\.txt', include('lemon.robots.urls')),
+)

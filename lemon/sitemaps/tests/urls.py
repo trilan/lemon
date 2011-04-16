@@ -1,5 +1,6 @@
-from django.conf.urls.defaults import *
-from lemon.sitemaps.urls import urls
+from django.conf.urls.defaults import patterns, include, url
 
 
-urlpatterns = patterns('', *urls)
+urlpatterns = patterns('',
+    url(r'^sitemap\.xml', include('lemon.sitemaps.urls')),
+)
