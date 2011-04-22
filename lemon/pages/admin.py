@@ -16,12 +16,12 @@ class PageAdmin(PublicationAdmin):
     markup_fields = ('content',)
     fieldsets = (
         (None, {
-            'fields': ('slug', 'site', 'title', 'content', 'template')
+            'fields': ('slug', 'title', 'content', 'template', 'sites')
         }),
     ) + PublicationAdmin.fieldsets
-    list_display = ('slug', 'title', 'site', 'author_name', 'enabled')
+    list_display = ('slug', 'title', 'author_name', 'enabled')
     list_display_links = ('title',)
-    list_filter = ('enabled', 'site')
+    list_filter = ('enabled', 'sites')
     string_overrides = {
         'add_title': _(u'Add page'),
         'change_title': _(u'Change page'),
@@ -38,8 +38,8 @@ extradmin.site.register(Page, PageAdmin)
 
 if 'lemon.metatags' in settings.INSTALLED_APPS:
     from lemon import metatags
-    metatags.site.register(Page, sites_field_name='site')
+    metatags.site.register(Page, sites_field_name='sites')
 
 if 'lemon.sitemaps' in settings.INSTALLED_APPS:
     from lemon import sitemaps
-    sitemaps.site.register(Page, sites_field_name='site')
+    sitemaps.site.register(Page, sites_field_name='sites')

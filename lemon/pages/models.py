@@ -26,7 +26,7 @@ class URLPathField(models.CharField):
 class Page(Publication):
 
     slug = URLPathField(_(u'URL'), max_length=255)
-    site = models.ForeignKey(Site, verbose_name=_(u'site'))
+    sites = models.ManyToManyField(Site, verbose_name=_(u'sites'))
     title = models.CharField(_(u'title'), max_length=255)
     content = models.TextField(_(u'content'))
     template = models.CharField(_(u'template'), max_length=255)
@@ -35,7 +35,6 @@ class Page(Publication):
         ordering = ['slug']
         verbose_name = _(u'text page')
         verbose_name_plural = _(u'text pages')
-        unique_together = ('slug', 'site')
 
     def __unicode__(self):
         return u'%s (%s)' % (self.title, self.slug)
