@@ -9,6 +9,16 @@ from lemon.pages.widgets import SelectPageTemplate
 
 class PageAdminForm(forms.ModelForm):
 
+    slug = forms.RegexField(
+        label = _(u'URL'),
+        max_length = 255,
+        regex = r'^/[\.\-/\w]*$',
+        error_messages = {
+            'invalid': _(u"Enter a valid 'slug' beginning with slash and "
+                         u"consisting of letters, numbers, underscores, "
+                         u"slashes or hyphens.")
+        },
+    )
     template = forms.CharField(
         label = _(u'Template'),
         max_length = 255,
