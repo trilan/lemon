@@ -72,14 +72,14 @@ class MetatagsSite(object):
 
     def check_metatag_url_path(self, sender, **kwargs):
         instance = kwargs['instance']
-        model_meta_tags = self._registry.get(sender)
-        if model_meta_tags:
+        model_metatags = self._registry.get(sender)
+        if model_metatags:
             try:
-                meta_tags = Page.objects.get_for_content_object(instance)
+                page = Page.objects.get_for_content_object(instance)
             except Page.DoesNotExist:
                 pass
             else:
-                meta_tags.update_url_path()
+                page.update_url_path()
 
     def check_metatag_language(self, sender, **kwargs):
         instance = kwargs['instance']
@@ -94,26 +94,26 @@ class MetatagsSite(object):
 
     def check_metatag_site(self, sender, **kwargs):
         instance = kwargs['instance']
-        model_meta_tags = self._registry.get(sender)
-        if model_meta_tags:
+        model_metatags = self._registry.get(sender)
+        if model_metatags:
             try:
-                meta_tags = Page.objects.get_for_content_object(instance)
+                page = Page.objects.get_for_content_object(instance)
             except Page.DoesNotExist:
                 pass
             else:
-                meta_tags.update_sites()
+                page.update_sites()
 
     def check_metatag_sites(self, sender, **kwargs):
         instance = kwargs['instance']
         action = kwargs['action']
-        model_meta_tags = self._registry.get(instance.__class__)
-        if model_meta_tags and action in ('post_add', 'post_remove', 'post_clear'):
+        model_metatags = self._registry.get(instance.__class__)
+        if model_metatags and action in ('post_add', 'post_remove', 'post_clear'):
             try:
-                meta_tags = Page.objects.get_for_content_object(instance)
+                page = Page.objects.get_for_content_object(instance)
             except Page.DoesNotExist:
                 pass
             else:
-                meta_tags.update_sites()
+                page.update_sites()
 
 
 site = MetatagsSite()

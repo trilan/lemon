@@ -2,7 +2,7 @@ from django import forms
 
 
 class AdminSmallTextareaWidget(forms.Textarea):
-    
+
     def __init__(self, attrs=None):
         final_attrs = {'class': 'vSmallTextField'}
         if attrs is not None:

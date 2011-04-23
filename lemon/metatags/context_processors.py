@@ -37,9 +37,14 @@ class MetaContextObject(object):
         titles = [metatags.title]
         if metatags.title_extend:
             titles.append(site.name)
-        titles.reverse() if settings.TITLE_REVERSED else titles
+        if settings.TITLE_REVERSED:
+            titles.reverse()
         return mark_safe(settings.TITLE_SEPARATOR.join(titles))
 
 
 def metatags(request):
-    return {'metatags': SimpleLazyObject(lambda: MetaContextObject(request.path, request.site))}
+    return {
+        'metatags': SimpleLazyObject(
+            lambda: MetaContextObject(request.path, request.site)
+        )
+    }

@@ -73,7 +73,6 @@ class Page(models.Model):
             from lemon.metatags import site
             model_metatags = site._registry.get(obj.__class__)
             language = model_metatags.language(obj)
-            print obj, language
             if language:
                 self.language = language
                 if commit:
