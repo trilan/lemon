@@ -83,8 +83,8 @@ class Item(models.Model):
         obj = self.content_object
         if obj:
             from lemon.sitemaps import site
-            model_site_map = site._registry.get(obj.__class__)
-            url_path = model_site_map.url_path(obj)
+            model_sitemap = site._registry.get(obj.__class__)
+            url_path = model_sitemap.url_path(obj)
             if url_path:
                 self.url_path = url_path
                 if commit:
@@ -105,8 +105,8 @@ class Item(models.Model):
         obj = self.content_object
         if obj:
             from lemon.sitemaps import site
-            model_site_map = site._registry.get(obj.__class__)
-            sites = model_site_map.sites(obj)
+            model_sitemap = site._registry.get(obj.__class__)
+            sites = model_sitemap.sites(obj)
             self.sites.clear()
             if sites:
                 self.sites.add(*sites)
