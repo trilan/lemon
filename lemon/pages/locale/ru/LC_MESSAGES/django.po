@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lemon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-23 11:59+0400\n"
+"POT-Creation-Date: 2011-04-23 13:54+0400\n"
 "PO-Revision-Date: 2011-03-31 18:56+0400\n"
 "Last-Translator: Mike Yumatov <mike@yumatov.org>\n"
 "Language-Team: Russian <lemon@trilandev.com>\n"
@@ -39,55 +39,55 @@ msgstr[0] "%(count)d текстовая страница"
 msgstr[1] "%(count)d текстовые страницы"
 msgstr[2] "%(count)d текстовых страниц"
 
-#: fields.py:11
+#: forms.py:13 models.py:17
+msgid "URL path"
+msgstr "URL-путь"
+
+#: forms.py:17
 msgid ""
-"Enter a valid 'slug' beginning with slash and consisting of letters, "
+"Enter a valid URL path beginning with slash and consisting of letters, "
 "numbers, underscores, slashes or hyphens."
 msgstr ""
-"Введите корректный путь, начинающийся со слеша и состоящий из букв, цифр, "
+"Введите корректный URL-путь, начинающийся со слеша и состоящий из букв, цифр, "
 "символов подчеркивания, слешей и тире."
 
-#: forms.py:13
+#: forms.py:23
 msgid "Template"
 msgstr "Шаблон"
 
-#: forms.py:17
+#: forms.py:27
 msgid "Please create template for pages"
 msgstr "Создайте шаблон для отображения текстовых страниц"
 
-#: forms.py:38
+#: forms.py:48
 #, python-format
 msgid "Page %s already exists for some of selected sites and language"
 msgstr "Страница %s уже существует для ряда выбранных сайтов и языка"
 
-#: models.py:32
+#: models.py:14
 msgid "sites"
 msgstr "сайты"
 
-#: models.py:33
+#: models.py:15
 msgid "language"
 msgstr "язык"
 
-#: models.py:35
-msgid "URL"
-msgstr "URL"
-
-#: models.py:36
+#: models.py:18
 msgid "title"
 msgstr "заголовок"
 
-#: models.py:37
+#: models.py:19
 msgid "content"
 msgstr "содержимое"
 
-#: models.py:38
+#: models.py:20
 msgid "template"
 msgstr "шаблон"
 
-#: models.py:42
+#: models.py:24
 msgid "text page"
 msgstr "текстовая страница"
 
-#: models.py:43
+#: models.py:25
 msgid "text pages"
 msgstr "текстовые страницы"

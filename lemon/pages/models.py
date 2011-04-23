@@ -14,18 +14,18 @@ class Page(Publication):
     sites = models.ManyToManyField(Site, verbose_name=_(u'sites'))
     language = models.CharField(_(u'language'), max_length=10, db_index=True,
                                 choices=LANGUAGES, default=get_language)
-    slug = models.SlugField(_(u'URL'), max_length=255)
+    url_path = models.SlugField(_(u'URL path'), max_length=255)
     title = models.CharField(_(u'title'), max_length=255)
     content = models.TextField(_(u'content'))
     template = models.CharField(_(u'template'), max_length=255)
 
     class Meta:
-        ordering = ['slug']
+        ordering = ['url_path']
         verbose_name = _(u'text page')
         verbose_name_plural = _(u'text pages')
 
     def __unicode__(self):
-        return u'%s (%s)' % (self.title, self.slug)
+        return u'%s (%s)' % (self.title, self.url_path)
 
     def get_absolute_url(self):
-        return self.slug
+        return self.url_path

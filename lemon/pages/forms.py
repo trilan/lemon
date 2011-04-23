@@ -9,14 +9,14 @@ from lemon.pages.widgets import SelectPageTemplate
 
 class PageAdminForm(forms.ModelForm):
 
-    slug = forms.RegexField(
-        label = _(u'URL'),
+    url_path = forms.RegexField(
+        label = _(u'URL path'),
         max_length = 255,
         regex = r'^/[\.\-/\w]*$',
         error_messages = {
-            'invalid': _(u"Enter a valid 'slug' beginning with slash and "
-                         u"consisting of letters, numbers, underscores, "
-                         u"slashes or hyphens.")
+            'invalid': _(u'Enter a valid URL path beginning with slash and '
+                         u'consisting of letters, numbers, underscores, '
+                         u'slashes or hyphens.')
         },
     )
     template = forms.CharField(
@@ -28,10 +28,10 @@ class PageAdminForm(forms.ModelForm):
         },
     )
 
-    def is_slug_unique(self):
+    def is_url_path_unique(self):
         qs = Site.objects.all()
         qs = qs.filter(pk__in=self.cleaned_data['sites'],
-                       page__slug=self.cleaned_data['slug'],
+                       page__url_path=self.cleaned_data['url_path'],
                        page__language=self.cleaned_data['language'])
         if self.instance and self.instance.pk:
             qs = qs.exclude(page__pk=self.instance.pk)
@@ -41,12 +41,12 @@ class PageAdminForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = self.cleaned_data
-        slug = cleaned_data.get('slug')
+        url_path = cleaned_data.get('url_path')
         sites = cleaned_data.get('sites')
         language = cleaned_data.get('language')
-        if slug and sites and language and not self.is_slug_unique():
+        if url_path and sites and language and not self.is_url_path_unique():
             msg = _(u'Page %s already exists for some of selected sites and language')
-            raise forms.ValidationError(msg % cleaned_data['slug'])
+            raise forms.ValidationError(msg % url_path)
         return cleaned_data
 
     class Meta:
