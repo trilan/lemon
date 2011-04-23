@@ -42,11 +42,21 @@ class Dashboard(object):
 
     def get_urls(self):
         return patterns('',
-            url(r'^$', self.available_widgets_view, name='available_widgets'),
-            url(r'^add$', self.add_widget_view, name='add_widget'),
-            url(r'^delete$', self.delete_widget_view, name='delete_widget'),
-            url(r'^store$', self.store_view, name='store'),
-            url(r'^(\w+)/(\w+)/(.*)$', self.widget_view, name='widget'),
+            url(r'^$',
+                self.admin_site.admin_view(self.available_widgets_view),
+                name='available_widgets'),
+            url(r'^add$',
+                self.admin_site.admin_view(self.add_widget_view),
+                name='add_widget'),
+            url(r'^delete$',
+                self.admin_site.admin_view(self.delete_widget_view),
+                name='delete_widget'),
+            url(r'^store$',
+                self.admin_site.admin_view(self.store_view),
+                name='store'),
+            url(r'^(\w+)/(\w+)/(.*)$',
+                self.admin_site.admin_view(self.widget_view),
+                name='widget'),
         )
 
     @property
