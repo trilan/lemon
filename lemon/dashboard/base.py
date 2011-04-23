@@ -7,7 +7,9 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.template.loader import render_to_string
 from django.utils import simplejson as json
+from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext_lazy as _
+from django.views.decorators.http import require_POST
 
 from lemon.dashboard.models import DashboardState
 
@@ -64,9 +66,8 @@ class Dashboard(object):
             {'object_list': available_widgets},
             context_instance=RequestContext(request))
 
+    @method_decorator(require_POST)
     def add_widget_view(self, request):
-        if request.method != 'POST':
-            raise Http404
         name = json.loads(request.raw_post_data)
         if name not in self._registry:
             raise Http404
@@ -75,9 +76,8 @@ class Dashboard(object):
             state.add_widget(0, name)
         return HttpResponse('[]', mimetype='application/json')
 
+    @method_decorator(require_POST)
     def delete_widget_view(self, request):
-        if request.method != 'POST':
-            raise Http404
         name = json.loads(request.raw_post_data)
         if name not in self._registry:
             raise Http404
@@ -85,9 +85,8 @@ class Dashboard(object):
         state.delete_widget(name)
         return HttpResponse('[]', mimetype='application/json')
 
+    @method_decorator(require_POST)
     def store_view(self, request):
-        if request.method != 'POST':
-            raise Http404
         new_data = json.loads(request.raw_post_data)
         state = DashboardState.objects.get_for_user(request.user)
         data = json.loads(state.data)
