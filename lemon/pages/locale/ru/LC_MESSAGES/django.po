@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lemon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-22 16:38+0400\n"
+"POT-Creation-Date: 2011-04-23 11:59+0400\n"
 "PO-Revision-Date: 2011-03-31 18:56+0400\n"
 "Last-Translator: Mike Yumatov <mike@yumatov.org>\n"
 "Language-Team: Russian <lemon@trilandev.com>\n"
@@ -55,35 +55,39 @@ msgstr "Шаблон"
 msgid "Please create template for pages"
 msgstr "Создайте шаблон для отображения текстовых страниц"
 
-#: forms.py:33
+#: forms.py:38
 #, python-format
-msgid "Page %s already exists for some of selected sites"
-msgstr "Страница %s уже существует для ряда выбранных сайтов"
+msgid "Page %s already exists for some of selected sites and language"
+msgstr "Страница %s уже существует для ряда выбранных сайтов и языка"
 
-#: models.py:28
-msgid "URL"
-msgstr "URL"
-
-#: models.py:29
+#: models.py:32
 msgid "sites"
 msgstr "сайты"
 
-#: models.py:30
+#: models.py:33
+msgid "language"
+msgstr "язык"
+
+#: models.py:35
+msgid "URL"
+msgstr "URL"
+
+#: models.py:36
 msgid "title"
 msgstr "заголовок"
 
-#: models.py:31
+#: models.py:37
 msgid "content"
 msgstr "содержимое"
 
-#: models.py:32
+#: models.py:38
 msgid "template"
 msgstr "шаблон"
 
-#: models.py:36
+#: models.py:42
 msgid "text page"
 msgstr "текстовая страница"
 
-#: models.py:37
+#: models.py:43
 msgid "text pages"
 msgstr "текстовые страницы"

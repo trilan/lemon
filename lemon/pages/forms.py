@@ -20,8 +20,9 @@ class PageAdminForm(forms.ModelForm):
 
     def is_slug_unique(self):
         qs = Site.objects.all()
-        qs = qs.filter(pk__in=self.cleaned_data['sites'])
-        qs = qs.filter(page__slug=self.cleaned_data['slug'])
+        qs = qs.filter(pk__in=self.cleaned_data['sites'],
+                       page__slug=self.cleaned_data['slug'],
+                       page__language=self.cleaned_data['language'])
         if self.instance and self.instance.pk:
             qs = qs.exclude(page__pk=self.instance.pk)
         qs = qs.annotate(page_count=Count('page'))
@@ -29,11 +30,14 @@ class PageAdminForm(forms.ModelForm):
         return not result['page_count_max']
 
     def clean(self):
-        data = self.cleaned_data
-        if 'slug' in data and 'sites' in data and not self.is_slug_unique():
-            msg = u'Page %s already exists for some of selected sites'
-            raise forms.ValidationError(_(msg) % data['slug'])
-        return data
+        cleaned_data = self.cleaned_data
+        slug = cleaned_data.get('slug')
+        sites = cleaned_data.get('sites')
+        language = cleaned_data.get('language')
+        if slug and sites and language and not self.is_slug_unique():
+            msg = _(u'Page %s already exists for some of selected sites and language')
+            raise forms.ValidationError(msg % cleaned_data['slug'])
+        return cleaned_data
 
     class Meta:
         model = Page

@@ -1,9 +1,13 @@
+from django.conf import settings
 from django.db import models
 from django.contrib.sites.models import Site
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import get_language, ugettext_lazy as _
 
 from lemon.pages import fields as pages_fields
 from lemon.publications.models import Publication
+
+
+LANGUAGES = tuple((code, _(name)) for code, name in settings.LANGUAGES)
 
 
 class URLPathField(models.CharField):
@@ -25,8 +29,10 @@ class URLPathField(models.CharField):
 
 class Page(Publication):
 
-    slug = URLPathField(_(u'URL'), max_length=255)
     sites = models.ManyToManyField(Site, verbose_name=_(u'sites'))
+    language = models.CharField(_(u'language'), max_length=10,
+                                choices=LANGUAGES, default=get_language)
+    slug = URLPathField(_(u'URL'), max_length=255)
     title = models.CharField(_(u'title'), max_length=255)
     content = models.TextField(_(u'content'))
     template = models.CharField(_(u'template'), max_length=255)

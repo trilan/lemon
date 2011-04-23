@@ -16,12 +16,12 @@ class PageAdmin(PublicationAdmin):
     markup_fields = ('content',)
     fieldsets = (
         (None, {
-            'fields': ('slug', 'title', 'content', 'template', 'sites')
+            'fields': ('slug', 'title', 'content', 'template', 'language', 'sites')
         }),
     ) + PublicationAdmin.fieldsets
-    list_display = ('slug', 'title', 'author_name', 'enabled')
+    list_display = ('slug', 'title', 'author_name', 'language', 'enabled')
     list_display_links = ('title',)
-    list_filter = ('enabled', 'sites')
+    list_filter = ('enabled', 'language', 'sites')
     string_overrides = {
         'add_title': _(u'Add page'),
         'change_title': _(u'Change page'),
