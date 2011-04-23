@@ -21,5 +21,5 @@ def dashboard(parser, token):
     bits = token.split_contents()[1:]
     if len(bits) != 2:
         raise TemplateSyntaxError("'dashboard' tag requires two arguments")
-    return DashboardNode(
-        parser.compile_filter(bits[0]), parser.compile_filter(bits[1]))
+    return DashboardNode(parser.compile_filter(bits[0]),
+                         parser.compile_filter(bits[1]))

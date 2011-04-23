@@ -39,13 +39,13 @@ class Dashboard(object):
             del self._registry[name]
 
     def get_urls(self):
-        return patterns(
-            '',
+        return patterns('',
             url(r'^$', self.available_widgets_view, name='available_widgets'),
             url(r'^add$', self.add_widget_view, name='add_widget'),
             url(r'^delete$', self.delete_widget_view, name='delete_widget'),
             url(r'^store$', self.store_view, name='store'),
-            url(r'^(\w+)/(\w+)/(.*)$', self.widget_view, name='widget'))
+            url(r'^(\w+)/(\w+)/(.*)$', self.widget_view, name='widget'),
+        )
 
     @property
     def urls(self):
