@@ -14,7 +14,7 @@ from lemon.metatags.widgets import AdminSmallTextareaWidget
 class PageInline(generic.GenericStackedInline):
 
     model = Page
-    exclude = ('url_path', 'sites')
+    exclude = ('url_path', 'language', 'sites')
     extra = 1
     max_num = 1
     formfield_overrides = {
@@ -23,7 +23,7 @@ class PageInline(generic.GenericStackedInline):
 
 class PageAdmin(extradmin.ModelAdmin):
 
-    list_display = ['url_path', 'title', 'title_extend', 'enabled']
+    list_display = ['url_path', 'title', 'title_extend', 'language', 'enabled']
     list_display_links = ('title',)
     formfield_overrides = {
         models.TextField: {'widget': AdminSmallTextareaWidget}}

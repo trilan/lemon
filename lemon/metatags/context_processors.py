@@ -2,6 +2,7 @@ import re
 
 from django.utils.functional import SimpleLazyObject
 from django.utils.safestring import mark_safe
+from django.utils.translation import get_language
 
 from lemon.metatags import settings
 from lemon.metatags.models import Page
@@ -21,8 +22,12 @@ class MetaContextObject(object):
             self.enabled = False
 
     def _get_metatags(self, url_path, site):
-        queryset = Page.objects.all()
-        queryset = queryset.filter(url_path=url_path, sites=site, enabled=True)
+        queryset = Page.objects.filter(
+            url_path = url_path,
+            language = get_language(),
+            sites = site,
+            enabled = True,
+        )
         try:
             return queryset[0]
         except IndexError:

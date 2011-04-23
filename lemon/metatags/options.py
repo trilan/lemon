@@ -1,9 +1,11 @@
 from django.contrib.sites.models import Site
 from django.db.models import FieldDoesNotExist, ForeignKey, ManyToManyField
+from django.utils.translation import get_language
 
 
 class ModelMetatags(object):
 
+    language_field_name = None
     sites_field_name = None
 
     def sites_field_class(self, model):
@@ -12,6 +14,11 @@ class ModelMetatags(object):
                 self.sites_field_name)[0].__class__
         except FieldDoesNotExist:
             return None
+
+    def language(self, obj):
+        if not self.language_field_name:
+            return get_language()
+        return getattr(obj, self.language_field_name)
 
     def sites(self, obj):
         if not self.sites_field_name:

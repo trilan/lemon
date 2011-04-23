@@ -56,6 +56,7 @@ class MetatagsSite(object):
 
             pre_delete.connect(self.delete_metatag, sender=model)
             post_save.connect(self.check_metatag_url_path, sender=model)
+            post_save.connect(self.check_metatag_language, sender=model)
 
             sites_field_class = model_meta_tags.sites_field_class(model)
             if sites_field_class is ManyToManyField:
@@ -79,6 +80,17 @@ class MetatagsSite(object):
                 pass
             else:
                 meta_tags.update_url_path()
+
+    def check_metatag_language(self, sender, **kwargs):
+        instance = kwargs['instance']
+        model_metatags = self._registry.get(sender)
+        if model_metatags:
+            try:
+                page = Page.objects.get_for_content_object(instance)
+            except Page.DoesNotExist:
+                pass
+            else:
+                page.update_language()
 
     def check_metatag_site(self, sender, **kwargs):
         instance = kwargs['instance']
