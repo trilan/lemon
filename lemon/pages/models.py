@@ -30,7 +30,7 @@ class URLPathField(models.CharField):
 class Page(Publication):
 
     sites = models.ManyToManyField(Site, verbose_name=_(u'sites'))
-    language = models.CharField(_(u'language'), max_length=10,
+    language = models.CharField(_(u'language'), max_length=10, db_index=True,
                                 choices=LANGUAGES, default=get_language)
     slug = URLPathField(_(u'URL'), max_length=255)
     title = models.CharField(_(u'title'), max_length=255)
