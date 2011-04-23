@@ -25,9 +25,9 @@ class MetatagsSite(object):
     def __init__(self):
         self._registry = {}
 
-    def register(self, model_or_iterable, model_meta_tags_class=None, **options):
-        if not model_meta_tags_class:
-            model_meta_tags_class = ModelMetatags
+    def register(self, model_or_iterable, model_metatags_class=None, **options):
+        if not model_metatags_class:
+            model_metatags_class = ModelMetatags
 
         if isinstance(model_or_iterable, ModelBase):
             model_or_iterable = [model_or_iterable]
@@ -48,20 +48,20 @@ class MetatagsSite(object):
 
             if options:
                 options['__module__'] = __name__
-                model_meta_tags_class = type(
+                model_metatags_class = type(
                     '%sMetatags' % model.__name__,
-                    (model_meta_tags_class,), options)
-            model_meta_tags = model_meta_tags_class()
-            self._registry[model] = model_meta_tags
+                    (model_metatags_class,), options)
+            model_metatags = model_metatags_class()
+            self._registry[model] = model_metatags
 
             pre_delete.connect(self.delete_metatag, sender=model)
             post_save.connect(self.check_metatag_url_path, sender=model)
             post_save.connect(self.check_metatag_language, sender=model)
 
-            sites_field_class = model_meta_tags.sites_field_class(model)
+            sites_field_class = model_metatags.sites_field_class(model)
             if sites_field_class is ManyToManyField:
                 through_model = getattr(
-                    model, model_meta_tags.sites_field_name).through
+                    model, model_metatags.sites_field_name).through
                 m2m_changed.connect(
                     self.check_metatag_sites, sender=through_model)
             else:

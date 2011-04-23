@@ -60,8 +60,8 @@ class Page(models.Model):
         obj = self.content_object
         if obj:
             from lemon.metatags import site
-            model_meta_tags = site._registry.get(obj.__class__)
-            url_path = model_meta_tags.url_path(obj)
+            model_metatags = site._registry.get(obj.__class__)
+            url_path = model_metatags.url_path(obj)
             if url_path:
                 self.url_path = url_path
                 if commit:
@@ -82,8 +82,8 @@ class Page(models.Model):
         obj = self.content_object
         if obj:
             from lemon.metatags.sites import site
-            model_meta_tags = site._registry.get(obj.__class__)
-            sites = model_meta_tags.sites(obj)
+            model_metatags = site._registry.get(obj.__class__)
+            sites = model_metatags.sites(obj)
             self.sites.clear()
             if sites:
                 self.sites.add(*sites)
