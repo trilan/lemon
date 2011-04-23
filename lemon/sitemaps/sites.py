@@ -55,6 +55,7 @@ class SitemapSite(object):
 
             pre_delete.connect(self.delete_sitemap_item, sender=model)
             post_save.connect(self.check_sitemap_item_url_path, sender=model)
+            post_save.connect(self.check_sitemap_item_language, sender=model)
 
             sites_field_class = model_sitemap.sites_field_class(model)
             if sites_field_class is ManyToManyField:
@@ -78,6 +79,17 @@ class SitemapSite(object):
                 pass
             else:
                 item.update_url_path()
+
+    def check_sitemap_item_language(self, sender, **kwargs):
+        instance = kwargs['instance']
+        model_sitemap = self._registry.get(sender)
+        if model_sitemap:
+            try:
+                item = Item.objects.get_for_content_object(instance)
+            except Item.DoesNotExist:
+                pass
+            else:
+                item.update_language()
 
     def check_sitemap_item_site(self, sender, **kwargs):
         instance = kwargs['instance']

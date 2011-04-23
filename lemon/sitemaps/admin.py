@@ -17,14 +17,14 @@ class ItemInline(generic.GenericStackedInline):
 
     form = ItemForm
     model = Item
-    exclude = ('url_path', 'sites')
+    exclude = ('url_path', 'language', 'sites')
     extra = 1
     max_num = 1
 
 
 class ItemAdmin(extradmin.ModelAdmin):
 
-    list_display = ('url_path', 'changefreq', 'enabled')
+    list_display = ('url_path', 'changefreq', 'language', 'enabled')
     string_overrides = {
         'add_title': _(u'Add sitemap.xml item'),
         'change_title': _(u'Change sitemap.xml item'),

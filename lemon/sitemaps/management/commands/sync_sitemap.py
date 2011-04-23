@@ -35,6 +35,7 @@ class Command(NoArgsCommand):
                     print '  sitemap.xml item for %s (%s) was created.' % (item.url_path, sites)
             else:
                 item.update_url_path()
+                item.update_language()
                 item.update_sites()
                 sites = ', '.join([s.domain for s in item.sites.all()])
                 print '  sitemap.xml item for %s (%s) was updated.' % (item.url_path, sites)

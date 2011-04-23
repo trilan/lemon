@@ -1,13 +1,16 @@
 from datetime import datetime
 
+from django.conf import settings
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import get_language, ugettext_lazy as _
 
 from lemon.sitemaps.managers import ItemManager
 
+
+LANGUAGES = tuple((code, _(name)) for code, name in settings.LANGUAGES)
 
 CHANGEFREQ_CHOCES = (
     ('N', _(u'never')),
@@ -52,6 +55,9 @@ class Item(models.Model):
     enabled = models.BooleanField(
         _(u'enabled'), default=True,
         help_text=_(u'If disabled, this item will not shown in sitemap.xml.'))
+    language = models.CharField(
+        _(u'language'), max_length=10, db_index=True,
+        choices=LANGUAGES, default=get_language)
     sites = models.ManyToManyField(
         Site, null=True, blank=True, verbose_name=_(u'sites'))
     content_type = models.ForeignKey(ContentType, null=True, editable=False)
@@ -69,6 +75,7 @@ class Item(models.Model):
 
     def save(self, *args, **kwargs):
         self.update_url_path(commit=False)
+        self.update_language(commit=False)
         super(Item, self).save(*args, **kwargs)
         self.update_sites()
 
@@ -80,6 +87,17 @@ class Item(models.Model):
             url_path = model_site_map.url_path(obj)
             if url_path:
                 self.url_path = url_path
+                if commit:
+                    super(Item, self).save(False, False)
+
+    def update_language(self, commit=True):
+        obj = self.content_object
+        if obj:
+            from lemon.sitemaps import site
+            model_sitemap = site._registry.get(obj.__class__)
+            language = model_sitemap.language(obj)
+            if language:
+                self.language = language
                 if commit:
                     super(Item, self).save(False, False)
 
