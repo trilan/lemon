@@ -1,13 +1,19 @@
+import os
 from setuptools import setup, find_packages
+
+
+def read(filename):
+    return open(os.path.join(os.path.dirname(__file__), filename)).read()
 
 
 setup(
     name = 'Lemon',
     version = '0.5.dev',
-    url = 'http://lemoncmf.ru/',
+    url = 'https://github.com/trilan/lemon',
+    description = 'A CMF based on Django.',
+    long_description = read('README.rst') + '\n\n' + read('HISTORY.rst'),
     author = 'TriLan Co.',
     author_email = 'lemon@trilandev.com',
-    description = 'A CMF based on Django.',
     packages = find_packages(exclude=['test_project', 'test_project.*']),
     include_package_data = True,
     zip_safe = False,

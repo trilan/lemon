@@ -1,4 +1,6 @@
+include HISTORY.rst
 include LICENSE
+include README.rst
 include lemon/filebrowser/LICENSE
 include setup.py
 recursive-include lemon/dashboard/locale *
