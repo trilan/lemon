@@ -16,6 +16,7 @@ class Migration(SchemaMigration):
             ('changefreq', self.gf('django.db.models.fields.CharField')(default='M', max_length=1)),
             ('lastmod', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, null=True, blank=True)),
             ('enabled', self.gf('django.db.models.fields.BooleanField')(default=True)),
+            ('language', self.gf('django.db.models.fields.CharField')(default='en-us', max_length=10, db_index=True)),
             ('content_type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['contenttypes.ContentType'], null=True)),
             ('object_id', self.gf('django.db.models.fields.PositiveIntegerField')(null=True)),
         ))
@@ -53,6 +54,7 @@ class Migration(SchemaMigration):
             'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['contenttypes.ContentType']", 'null': 'True'}),
             'enabled': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'language': ('django.db.models.fields.CharField', [], {'default': "'en-us'", 'max_length': '10', 'db_index': 'True'}),
             'lastmod': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'null': 'True', 'blank': 'True'}),
             'object_id': ('django.db.models.fields.PositiveIntegerField', [], {'null': 'True'}),
             'priority': ('django.db.models.fields.FloatField', [], {'default': '0.5', 'null': 'True', 'blank': 'True'}),

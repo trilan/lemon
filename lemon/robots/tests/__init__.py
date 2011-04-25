@@ -20,7 +20,7 @@ class RobotsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
         robots_txt_file = response.context.get('object')
-        self.assertEqual(robots_txt_file.contents, 'second.example.com')
+        self.assertEqual(robots_txt_file.content, 'second.example.com')
 
     def test_default_template(self):
         response = self.client.get('/robots.txt', HTTP_HOST='third.example.com')

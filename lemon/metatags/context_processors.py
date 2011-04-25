@@ -2,9 +2,10 @@ import re
 
 from django.utils.functional import SimpleLazyObject
 from django.utils.safestring import mark_safe
+from django.utils.translation import get_language
 
-from lemon.metatags import settings
 from lemon.metatags.models import Page
+from lemon.metatags.settings import CONFIG
 
 
 class MetaContextObject(object):
@@ -21,8 +22,12 @@ class MetaContextObject(object):
             self.enabled = False
 
     def _get_metatags(self, url_path, site):
-        queryset = Page.objects.all()
-        queryset = queryset.filter(url_path=url_path, sites=site, enabled=True)
+        queryset = Page.objects.filter(
+            url_path = url_path,
+            language = get_language(),
+            sites = site,
+            enabled = True,
+        )
         try:
             return queryset[0]
         except IndexError:
@@ -32,9 +37,14 @@ class MetaContextObject(object):
         titles = [metatags.title]
         if metatags.title_extend:
             titles.append(site.name)
-        titles.reverse() if settings.TITLE_REVERSED else titles
-        return mark_safe(settings.TITLE_SEPARATOR.join(titles))
+        if CONFIG['TITLE_REVERSED']:
+            titles.reverse()
+        return mark_safe(CONFIG['TITLE_SEPARATOR'].join(titles))
 
 
 def metatags(request):
-    return {'metatags': SimpleLazyObject(lambda: MetaContextObject(request.path, request.site))}
+    return {
+        'metatags': SimpleLazyObject(
+            lambda: MetaContextObject(request.path, request.site)
+        )
+    }

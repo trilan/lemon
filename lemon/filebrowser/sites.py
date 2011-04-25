@@ -207,7 +207,8 @@ class FileBrowserSite(object):
              'title': _(u'File Browser'),
              'breadcrumbs': self.get_breadcrumbs(query, path),
              'breadcrumbs_title': '',
-             'is_popup': request.GET.get('pop', False)},
+             'is_popup': request.GET.get('pop', False),
+             'editor': request.GET.get('editor', None)},
             context_instance=RequestContext(request))
 
     def mkdir_view(self, request):

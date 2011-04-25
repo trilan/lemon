@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext
 
@@ -12,14 +13,15 @@ class PageAdmin(PublicationAdmin):
     form = PageAdminForm
     date_hierarchy = None
     search_fields = ['title', 'content']
+    markup_fields = ('content',)
     fieldsets = (
         (None, {
-            'fields': ('slug', 'site', 'title', 'content', 'template')
+            'fields': ('url_path', 'title', 'content', 'template', 'language', 'sites')
         }),
     ) + PublicationAdmin.fieldsets
-    list_display = ('slug', 'title', 'site', 'author_name', 'enabled')
+    list_display = ('url_path', 'title', 'author_name', 'language', 'enabled')
     list_display_links = ('title',)
-    list_filter = ('enabled', 'site')
+    list_filter = ('enabled', 'language', 'sites')
     string_overrides = {
         'add_title': _(u'Add page'),
         'change_title': _(u'Change page'),
@@ -33,3 +35,17 @@ class PageAdmin(PublicationAdmin):
 
 
 extradmin.site.register(Page, PageAdmin)
+
+if 'lemon.metatags' in settings.INSTALLED_APPS:
+    from lemon import metatags
+    metatags.site.register(Page,
+        language_field_name = 'language',
+        sites_field_name = 'sites'
+    )
+
+if 'lemon.sitemaps' in settings.INSTALLED_APPS:
+    from lemon import sitemaps
+    sitemaps.site.register(Page,
+        language_field_name = 'language',
+        sites_field_name='sites',
+    )

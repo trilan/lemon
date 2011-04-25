@@ -1,7 +1,7 @@
 from django.conf import settings
 
 
-DASHBOARD = {
-    'STATE': (('dashboard.helpwidget',), ()),
+CONFIG = {
+    'STATE': ((), ()),
 }
-DASHBOARD.update(getattr(settings, 'DASHBOARD', {}))
+CONFIG.update(getattr(settings, 'DASHBOARD_CONFIG', {}))

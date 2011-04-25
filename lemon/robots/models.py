@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 class File(models.Model):
 
     site = models.OneToOneField(Site, verbose_name=_(u'site'))
-    contents = models.TextField(_(u'file contents'))
+    content = models.TextField(_(u'file content'))
 
     objects = models.Manager()
 

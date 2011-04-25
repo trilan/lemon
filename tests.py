@@ -17,7 +17,6 @@ if not settings.configured:
             'django.contrib.messages',
             'django.contrib.admin',
 
-            'lemon.extradmin',
             'lemon.pages',
             'lemon.metatags',
             'lemon.filebrowser',
@@ -48,6 +47,7 @@ if not settings.configured:
     )
 
 TEST_APPS = (
+    'lemon.extradmin',
     'lemon.robots',
     'lemon.sitemaps',
 )

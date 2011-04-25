@@ -2,12 +2,12 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils import simplejson as json
 
-from lemon.dashboard import settings
+from lemon.dashboard.settings import CONFIG
 
 
 def _get_default_data():
     columns = []
-    for column in settings.DASHBOARD['STATE']:
+    for column in CONFIG['STATE']:
         cells = []
         for cell in column:
             cells.append({'name': cell, 'state': {}})

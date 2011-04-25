@@ -1,7 +1,7 @@
-from django.conf.urls.defaults import url
+from django.conf.urls.defaults import patterns, url
 from lemon.sitemaps.views import sitemap_xml
 
 
-urls = [
-    url(r'^sitemap\.xml$', sitemap_xml, name='sitemap_xml'),
-]
+urlpatterns = patterns('',
+    url(r'^$', sitemap_xml, name='sitemap_xml'),
+)

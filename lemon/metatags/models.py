@@ -1,10 +1,14 @@
+from django.conf import settings
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import get_language, ugettext_lazy as _
 
 from lemon.metatags.managers import PageManager
+
+
+LANGUAGES = tuple((code, _(name)) for code, name in settings.LANGUAGES)
 
 
 class Page(models.Model):
@@ -28,6 +32,9 @@ class Page(models.Model):
     enabled = models.BooleanField(
         _(u'enabled'), default=False,
         help_text=_(u'If not set, meta tags will not be used on page.'))
+    language = models.CharField(
+        _(u'language'), max_length=10, db_index=True,
+        choices=LANGUAGES, default=get_language)
     sites = models.ManyToManyField(
         Site, null=True, blank=True, related_name='+', verbose_name=_(u'sites'))
     content_type = models.ForeignKey(ContentType, null=True, editable=False)
@@ -45,6 +52,7 @@ class Page(models.Model):
 
     def save(self, *args, **kwargs):
         self.update_url_path(commit=False)
+        self.update_language(commit=False)
         super(Page, self).save(*args, **kwargs)
         self.update_sites()
 
@@ -52,10 +60,21 @@ class Page(models.Model):
         obj = self.content_object
         if obj:
             from lemon.metatags import site
-            model_meta_tags = site._registry.get(obj.__class__)
-            url_path = model_meta_tags.url_path(obj)
+            model_metatags = site._registry.get(obj.__class__)
+            url_path = model_metatags.url_path(obj)
             if url_path:
                 self.url_path = url_path
+                if commit:
+                    super(Page, self).save(False, False)
+
+    def update_language(self, commit=True):
+        obj = self.content_object
+        if obj:
+            from lemon.metatags import site
+            model_metatags = site._registry.get(obj.__class__)
+            language = model_metatags.language(obj)
+            if language:
+                self.language = language
                 if commit:
                     super(Page, self).save(False, False)
 
@@ -63,8 +82,8 @@ class Page(models.Model):
         obj = self.content_object
         if obj:
             from lemon.metatags.sites import site
-            model_meta_tags = site._registry.get(obj.__class__)
-            sites = model_meta_tags.sites(obj)
+            model_metatags = site._registry.get(obj.__class__)
+            sites = model_metatags.sites(obj)
             self.sites.clear()
             if sites:
                 self.sites.add(*sites)

@@ -31,6 +31,7 @@ class Command(NoArgsCommand):
                 pass
             else:
                 page.update_url_path()
+                page.update_language()
                 page.update_sites()
                 sites = ', '.join([s.domain for s in page.sites.all()])
                 print '  Metatags for %s (%s) was updated.' % (page.url_path, sites)
