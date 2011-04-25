@@ -28,7 +28,7 @@
 		"model": "robots.File",
 		"fields": {
 			"site": 1,
-			"contents": "first.example.com"
+			"content": "first.example.com"
 		}
 	},
 	{
@@ -36,7 +36,7 @@
 		"model": "robots.File",
 		"fields": {
 			"site": 2,
-			"contents": "second.example.com"
+			"content": "second.example.com"
 		}
 	}
 ]
