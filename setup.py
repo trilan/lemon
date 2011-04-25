@@ -10,7 +10,7 @@ setup(
     name = 'Lemon',
     version = '0.5.dev',
     url = 'https://github.com/trilan/lemon',
-    description = 'A CMF based on Django.',
+    description = 'A collection of some must have Django apps',
     long_description = read('README.rst') + '\n\n' + read('HISTORY.rst'),
     author = 'TriLan Co.',
     author_email = 'lemon@trilandev.com',
