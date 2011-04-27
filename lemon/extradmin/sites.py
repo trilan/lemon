@@ -10,7 +10,8 @@ from django.utils.importlib import import_module
 from django.utils.translation import ugettext as _
 from django.views.decorators.cache import never_cache
 
-from lemon.extradmin import widgets, ModelAdmin, AppAdmin
+from lemon.extradmin import widgets
+from lemon.extradmin.options import ModelAdmin, AppAdmin
 from lemon.extradmin.settings import CONFIG
 from lemon.dashboard import Dashboard
 from lemon.filebrowser.sites import FileBrowserSite
