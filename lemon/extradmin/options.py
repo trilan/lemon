@@ -1,12 +1,16 @@
 import inspect
 
 from django import forms
+from django import http
 from django.contrib.admin import options
 from django.contrib.admin.views.main import IS_POPUP_VAR
 from django.contrib.admin.widgets import AdminRadioSelect
 from django.conf import settings
 from django.db import models
+from django.template.response import TemplateResponse
 from django.utils.datastructures import SortedDict
+from django.utils.functional import update_wrapper
+from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext
 
@@ -272,3 +276,62 @@ class StackedInline(InlineModelAdmin):
 class TabularInline(InlineModelAdmin):
 
     template = 'admin/edit_inline/tabular.html'
+
+
+class AppAdmin(object):
+
+    app_index_template = None
+
+    def __init__(self, app_name, admin_site):
+        self.app_name = app_name
+        self.admin_site = admin_site
+
+    def get_urls(self):
+        from django.conf.urls.defaults import patterns, url
+
+        def wrap(view):
+            def wrapper(*args, **kwargs):
+                return self.admin_site.admin_view(view)(*args, **kwargs)
+            return update_wrapper(wrapper, view)
+
+        urlpatterns = patterns('',
+            url(r'^$',
+                wrap(self.index),
+                name='%s_index' % self.app_name),
+        )
+        return urlpatterns
+
+    @property
+    def urls(self):
+        return self.get_urls()
+
+    @property
+    def title(self):
+        return _(u'%s administration') % capfirst(self.app_name)
+
+    def index(self, request, extra_context=None):
+        models = []
+        if not request.user.has_module_perms(self.app_name):
+            raise http.Http404('The requested admin page does not exist.')
+        for model, model_admin in self.admin_site._registry.items():
+            if self.app_name != model._meta.app_label:
+                continue
+            perms = model_admin.get_model_perms(request)
+            if not any(perms.values()):
+                continue
+            models.append({
+                'name': capfirst(model._meta.verbose_name_plural),
+                'path': '%s/' % model._meta.module_name,
+                'perms': perms,
+            })
+        models.sort(key=lambda x: x['name'])
+        context = {
+            'title': self.title,
+            'models': models,
+            'root_path': self.admin_site.root_path,
+        }
+        context.update(extra_context or {})
+        return TemplateResponse(request, self.app_index_template or [
+            'admin/%s/app_index.html' % self.app_name,
+            'admin/app_index.html',
+        ], context, current_app=self.admin_site.name)

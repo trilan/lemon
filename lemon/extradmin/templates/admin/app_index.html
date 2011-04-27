@@ -1,4 +1,23 @@
-{% extends "admin/index.html" %} 
-{% load i18n %} 
+{% extends "admin/base_site.html" %} 
+{% load i18n %}
 
-{% block sidebar %}{% endblock %}
+{% block content %}
+  <h1>{{ title }}</h1>
+  <div id="content-main">
+    {% if models %}
+      <div class="module">
+        <table cellspacing="0">
+          {% for model in models %}
+            <tr{% if forloop.last %} class="last"{% endif %}>
+              <th scope="row">{% if model.perms.change %}<a href="{{ model.admin_url }}">{{ model.name }}</a>{% else %}{{ model.admin_url }}{% endif %}</th>
+              <td>{% if model.perms.add %}<a href="{{ model.admin_url }}add/" class="addlink">{% trans 'Add' %}</a>{% else %}&nbsp;{% endif %}</td>
+              <td>{% if model.perms.change %}<a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a>{% else %}&nbsp;{% endif %}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    {% else %}
+      <p>{% trans "You don't have permission to edit anything." %}</p>
+    {% endif %}
+  </div>
+{% endblock %}
