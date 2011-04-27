@@ -380,7 +380,7 @@ td img {
 }
 
 #content-main {
-    padding: 30px 30px 0;
+    margin: 10px 20px;
 }
 
 #content-related {
@@ -406,6 +406,11 @@ td img {
     padding: 10px;
     border-bottom: 1px solid #CCD5D9;
     background: #F4F7F7;
+}
+
+#content-main div.module tr.last td,
+#content-main div.module tr.last th {
+    border-bottom: none;
 }
 
 #content-main div.module table td {
