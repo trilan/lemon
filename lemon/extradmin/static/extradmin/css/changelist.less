@@ -14,9 +14,17 @@
   background: linear-gradient(center bottom, @color1 @stop1, @color2 @stop2, @color1 @stop3);
 }
 
+.box-shadow(@horizontal: 0px, @vertical: 1px, @blur: 2px, @color: #CCC) {
+  -webkit-box-shadow: @horizontal @vertical @blur @color;
+  -moz-box-shadow: @horizontal @vertical @blur @color;
+  box-shadow: @horizontal @vertical @blur @color;
+}
+
 .changelist {
   background: #e4e9eb;
   margin: 10px 20px;
+  .border-top-radius(3px);
+  .box-shadow;
 }
 
 .changelist-header {
