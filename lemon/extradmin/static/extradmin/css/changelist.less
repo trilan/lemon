@@ -1,0 +1,214 @@
+.changelist {
+  background: #E4E9EB url('../images/changelist-left.png') top left repeat-y;
+  margin: 10px 20px;
+}
+
+.changelist-header {
+  background: url('../images/changelist-header-bg.png') top left repeat-x;
+  height: 35px;
+}
+
+.changelist-actions {
+  background: url('../images/changelist-header-left.png') top left no-repeat;
+  float: left;
+  width: 45%;
+  height: 35px;
+  line-height: 35px;
+  .button {
+    line-height: normal;
+  }
+  label {
+    padding-left: 15px;
+  }
+  select, button {
+    vertical-align: baseline;
+  }
+  select {
+    width: 170px;
+  }
+}
+
+.changelist-search {
+  background: url('../images/changelist-header-right.png') top right no-repeat;
+  float: right;
+  width: 50%;
+  height: 35px;
+  text-align: right;
+  form {
+    line-height: 35px;
+    padding-right: 15px;
+  }
+  #searchbar {
+    width: 200px;
+  }
+  input {
+    vertical-align: middle;
+  }
+}
+
+.changelist-dates {
+  display: block;
+  background: url('../images/changelist-right.png') top right repeat-y;
+  border-top: #97A9B1 solid 1px;
+  padding: 10px;
+  li {
+    display: block;
+    float: left;
+    padding: 0 10px;
+    font-size: 15px;
+  }
+  a {
+    text-decoration: none;
+    text-shadow: #FFFFFF 0 1px 1px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.changelist-body {
+  background: url('../images/changelist-right.png') top right repeat-y;
+}
+
+.changelist-main {
+  padding-left: 3px;
+  padding-right: 3px;
+  border: #97A9B1 solid 1px;
+  border-bottom: none;
+  input {
+    vertical-align: middle;
+  }
+  table {
+    width: 100%;
+    border-bottom: #97A9B1 solid 1px;
+    line-height: 15px;
+  }
+  thead {
+    th {
+      font-weight: bold;
+      text-shadow: #FFFFFF 0 1px 1px;
+      padding: 7px 7px 4px;
+      border-left: #E4E9EB solid 1px;
+      border-bottom: #97A9B1 solid 1px;
+      &.sorted { padding-right: 23px; }
+      &.ascending { background: url('../images/asc.png') bottom right no-repeat; }
+      &.descending { background: url('../images/desc.png') bottom right no-repeat; }
+      &.narrow { width: 1%; }
+      a {
+        text-decoration: none;
+        &:hover { text-decoration: underline; }
+      }
+    }
+  }
+  tbody {
+    th, td {
+      padding: 5px 7px 7px;
+      background: #FFFFFF;
+      border-left: #CCD5D9 solid 1px;
+      border-bottom: #CCD5D9 solid 1px; 
+      &.bool { text-align: center; }
+      &.first { border-left: #97A9B1 solid 1px; }
+      &.last { border-right: #97A9B1 solid 1px; }
+    }
+    tr.row2 {
+      th, td { background: #F4F7F7; }
+    }
+    tr.last {
+      th, td { border-bottom: none; }
+    }
+  }
+  ul.errorlist {
+    display: block;
+    font-weight: bold;
+    font-size: 10px;
+    color: #A00;
+  }
+}
+
+.filtered .changelist-main {
+  margin-right: 200px;
+  padding-right: 0;
+  tbody td {
+    .last { border-right: none; }
+  }
+}
+
+.changelist-filters {
+  float: right;
+  width: 200px;
+}
+
+.changelist-filters h2 {
+  margin: 5px 30px 2px;
+  font-size: 16px;
+  text-shadow: #FFFFFF 0 1px 1px;
+  dl {
+    margin: 0 5px 0 30px;
+    text-shadow: #FFFFFF 0 1px 1px;
+  }
+  dt {
+    font-weight: bold;
+    margin: 15px 0 5px;
+  }
+  dd {
+    padding-left: 15px;
+    margin-bottom: 2px;
+    &.active {
+      background: url('../images/filter-selected-item.png') 6px 50% no-repeat;
+      a { color: #D88900; }
+    }
+  }
+  a {
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+  }
+}
+
+.changelist-footer {
+  background: url('../images/changelist-footer-bg.png') bottom left repeat-x;
+  height: 28px;
+}
+
+.changelist-pager {
+  background: url('../images/changelist-footer-left.png') top left no-repeat;
+  float: left;
+  width: 40%;
+  height: 28px;
+  div {
+    padding-left: 4px;
+    padding-top: 3px;
+  }
+  a, span {
+    display: block;
+    float: left;
+    border: #8A9EA7 solid 1px;
+    background: url('../images/pager-bg.png') bottom left repeat-x;
+    line-height: 18px;
+    padding: 1px 5px 0;
+    margin-right: -1px;
+    text-decoration: none;
+  }
+  a.active, span {
+    margin-left: 1px;
+    border: #E4E9EB solid 1px;
+    border-left: none;
+    background: #E4E9EB;
+  }
+  span.showall {
+    border: none;
+    padding-top: 0;
+  }
+}
+
+.changelist-links {
+  background: url('../images/changelist-footer-right.png') top right no-repeat;
+  float: right;
+  width: 40%;
+  height: 28px;
+  line-height: 27px;
+  text-align: right;
+  a {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+}
