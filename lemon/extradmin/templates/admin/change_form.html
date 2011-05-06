@@ -1,11 +1,6 @@
 {% extends "admin/base_site.html" %}
 {% load i18n admin_modify %}
 
-{% block extrastyle %}
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/changeform.css" />
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/jquery.datetimepicker.css" />
-{% endblock %}
-
 {% block extrahead %}{{ block.super }}
 	<script src="{{ STATIC_URL }}extradmin/js/jquery.changeform.js" type="text/javascript" charset="utf-8"></script>
 	<script src="{% url admin:jsi18n %}" type="text/javascript" charset="utf-8"></script>
