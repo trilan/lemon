@@ -1,17 +1,18 @@
-<!DOCTYPE html>
+<!DOCTYPE html>{% load compress %}
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
   <title>{% block title %}{% endblock %}</title>
   <meta charset="utf-8">
   <meta name="generator" content="Lemon CMF">
   <link rel="shortcut icon" href="{{ STATIC_URL }}extradmin/favicon.ico">
-  <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/reset.css">
-  <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/default.css">
-  <link rel="stylesheet/less" href="{{ STATIC_URL }}extradmin/css/base.less">
-  <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/jquery.ui.css">
+  {% compress css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/reset.css" type="text/css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/default.css" type="text/css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/base.less" type="text/less">
+    <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/jquery.ui.css" type="text/css">
+  {% endcompress %}
   {% block extrastyle %}{% endblock %}
   <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/ie.css" /><![endif]-->
-  <script src="{{ STATIC_URL }}extradmin/js/less.js"></script>
   <script src="{{ STATIC_URL }}extradmin/js/jquery.js"></script>
   <script src="{{ STATIC_URL }}extradmin/js/jquery.ui.js"></script>
   <script src="{{ STATIC_URL }}extradmin/js/script.js"></script>
