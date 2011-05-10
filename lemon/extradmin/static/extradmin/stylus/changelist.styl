@@ -1,3 +1,4 @@
+@import "mixins/helpers"
 @import "mixins/variables"
 
 border-top-radius(radius)
@@ -7,12 +8,6 @@ border-top-radius(radius)
   -moz-border-radius-topright radius
   border-top-left-radius radius
   border-top-right-radius radius
-
-simple-linear-gradient(stop1, color1, stop2, color2, stop3, color3)
-  background -webkit-gradient(linear, left bottom, left top, color-stop(stop1, color1), color-stop(stop2, color2), color-stop(stop3, color3))
-  background -moz-linear-gradient(center bottom, color1 stop1, color2 stop2, color3, stop3)
-  background -o-linear-gradient(center bottom, color1 stop1, color2 stop2, color3 stop3)
-  background linear-gradient(center bottom, color1 stop1, color2 stop2, color3 stop3)
 
 box-shadow(horizontal = 0px, vertical = 1px, blur = 2px, color = #ccc)
   -webkit-box-shadow horizontal vertical blur color
@@ -29,7 +24,7 @@ box-shadow(horizontal = 0px, vertical = 1px, blur = 2px, color = #ccc)
   border 1px solid $border-color
   border-bottom none
   border-top-radius 3px
-  simple-linear-gradient 0 $background-color 50% lighten($background-color, 5%) 100% lighten($background-color, 10%)
+  gradient $background-color #fff
   height 35px
   padding 0 15px
 
