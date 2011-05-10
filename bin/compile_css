@@ -2,30 +2,11 @@
 
 var stylus = require('stylus'),
     fs = require('fs'),
-    path = require('path'),
-    extradmin_static_path = path.join(__dirname, '../lemon/extradmin/static/extradmin');
+    source = process.argv[2],
+    target = process.argv[3];
 
-var paths = {
-  extradmin: {
-    css: extradmin_static_path + '/css',
-    stylus: extradmin_static_path + '/stylus'
-  }
-}
-
-fs.readdir(paths.extradmin.stylus, function(err, files) {
-  files.forEach(function(basename) {
-    var filename = path.join(paths.extradmin.stylus, basename);
-    var stat = fs.statSync(filename);
-    if (stat.isFile() && path.extname(filename) == '.styl' ) {
-      var str = fs.readFileSync(filename, 'utf8');
-      stylus(str)
-        .set('filename', filename)
-        .render(function(err, css) {
-          if (err) throw err;
-          var css_basename = path.basename(basename, '.styl') + '.css';
-          var css_filename = path.join(paths.extradmin.css, css_basename);
-          fs.writeFileSync(css_filename, css);
-        });
-    }
+var str = fs.readFileSync(source, 'utf8');
+stylus.render(str, { filename: source }, function(err, css) {
+    if (err) throw err;
+    fs.writeFileSync(target, css);
   });
-});
