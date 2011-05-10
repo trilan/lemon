@@ -140,7 +140,6 @@ INSTALLED_APPS = (
 
     'south',
     'intellipages',
-    'compressor',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -165,14 +164,3 @@ LOGGING = {
         },
     }
 }
-
-COMPRESS = True
-COMPRESS_CSS_FILTERS = [
-    'compressor.filters.css_default.CssAbsoluteFilter',
-    'compressor.filters.cssmin.CSSMinFilter',
-]
-COMPRESS_PRECOMPILERS = (
-    ('text/coffeescript', 'coffee --compile --stdio'),
-    ('text/stylus', 'stylus'),
-    ('text/less', 'lessc {infile} {outfile}'),
-)

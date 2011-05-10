@@ -1,4 +1,3 @@
 Django
 South
--e git+https://github.com/yumike/django_compressor@feature/fix_urls_in_css#egg=django_compressor
 -e .

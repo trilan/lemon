@@ -1,4 +1,4 @@
-<!DOCTYPE html>{% load compress %}
+<!DOCTYPE html>
 <!--[if lt IE 7 ]> <html class="no-js ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]>    <html class="no-js ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]>    <html class="no-js ie8" lang="en"> <![endif]-->
@@ -8,22 +8,18 @@
   <meta charset="utf-8">
   <meta name="generator" content="Lemon CMF">
   <link rel="shortcut icon" href="{{ STATIC_URL }}extradmin/favicon.ico">
-  {% compress css %}
-    <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/reset.css" type="text/css">
-    <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/default.styl" type="text/stylus">
-    <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/base.styl" type="text/stylus">
-    <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/jquery.ui.css" type="text/css">
-    <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/changelist.styl" type="text/stylus">
-    <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/changeform.styl" type="text/stylus">
-    <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/jquery.datetimepicker.css" type="text/css">
-  {% endcompress %}
+  <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/reset.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/default.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/base.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/jquery.ui.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/changelist.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/changeform.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/jquery.datetimepicker.css">
   {% block extrastyle %}{% endblock %}
-  {% compress js %}
-    <script src="{{ STATIC_URL }}extradmin/js/libs/modernizr-1.7.js"></script>
-    <script src="{{ STATIC_URL }}extradmin/js/libs/jquery-1.4.4.js"></script>
-    <script src="{{ STATIC_URL }}extradmin/js/libs/jquery-ui-1.8.6.js"></script>
-    <script src="{{ STATIC_URL }}extradmin/js/script.js"></script>
-  {% endcompress %}
+  <script src="{{ STATIC_URL }}extradmin/js/libs/modernizr-1.7.js"></script>
+  <script src="{{ STATIC_URL }}extradmin/js/libs/jquery-1.4.4.js"></script>
+  <script src="{{ STATIC_URL }}extradmin/js/libs/jquery-ui-1.8.6.js"></script>
+  <script src="{{ STATIC_URL }}extradmin/js/script.js"></script>
   {% block extrahead %}{% endblock %}
   {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
 </head>
