@@ -1,3 +1,6 @@
+@import "mixins/helpers"
+@import "mixins/variables"
+
 .clearfix:before, .clearfix:after
   content ""
   display table
@@ -34,3 +37,14 @@ input[type=text], input[type=password], input.text, input.title, textarea
   border-top 1px solid #6a787d
   &:focus
     background #faf8ec
+
+.button
+  padding 6px 12px
+  color #444
+  font-weight bold
+  background #d8d8d8
+  gradient darken($background-color, 10%) $background-color
+  border 1px solid darken($border-color, 10%)
+  border-radius 3px
+  -webkit-box-shadow 0 1px 2px #e5e5e5, #fff 0 1px 1px inset
+  text-shadow #fff 0 1px 1px

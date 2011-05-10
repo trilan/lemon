@@ -51,3 +51,19 @@ input.title:focus,
 textarea:focus {
   background: #faf8ec;
 }
+.button {
+  padding: 6px 12px;
+  color: #444;
+  font-weight: bold;
+  background: #d8d8d8;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0%, #ddd), color-stop(100%, #f5f5f5));
+  background: -moz-linear-gradient(center bottom, #ddd 0%, #f5f5f5 100%);
+  background: -o-linear-gradient(center bottom, #ddd 0%, #f5f5f5 100%);
+  background: linear-gradient(center bottom, #ddd 0%, #f5f5f5 100%);
+  border: 1px solid #b6b6b6;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 2px #e5e5e5, #fff 0 1px 1px inset;
+  text-shadow: #fff 0 1px 1px;
+}

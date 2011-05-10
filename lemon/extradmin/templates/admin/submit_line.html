@@ -1,9 +1,9 @@
 {% load i18n %}
 <div id="main-buttons" class="main-buttons clearfix">
-{% if show_save %}<input type="submit" value="{% trans 'Save' %}" class="default" name="_save" {{ onclick_attrib }}/>{% endif %}
-{% if show_save_as_new %}<input type="submit" value="{% trans 'Save as new' %}" name="_saveasnew" {{ onclick_attrib }}/>{%endif%}
-{% if show_save_and_add_another %}<input type="submit" value="{% trans 'Save and add another' %}" name="_addanother" {{ onclick_attrib }} />{% endif %}
-{% if show_save_and_continue %}<input type="submit" value="{% trans 'Save and continue editing' %}" name="_continue" {{ onclick_attrib }}/>{% endif %}
+{% if show_save %}<input type="submit" value="{% trans 'Save' %}" class="button default" name="_save" {{ onclick_attrib }}/>{% endif %}
+{% if show_save_as_new %}<input type="submit" value="{% trans 'Save as new' %}" class="button" name="_saveasnew" {{ onclick_attrib }}/>{%endif%}
+{% if show_save_and_add_another %}<input type="submit" value="{% trans 'Save and add another' %}" class="button" name="_addanother" {{ onclick_attrib }} />{% endif %}
+{% if show_save_and_continue %}<input type="submit" value="{% trans 'Save and continue editing' %}" class="button" name="_continue" {{ onclick_attrib }}/>{% endif %}
 <div id="second-buttons" class="second-buttons">
 {% if show_delete_link %}<button class="deletelink">{% trans "Delete" %}</button>{% endif %}
 </div>
