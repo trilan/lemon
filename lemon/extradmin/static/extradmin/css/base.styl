@@ -1,0 +1,298 @@
+box-shadow(horizontal = 0px, vertical = 1px, blur = 2px, color = #ccc)
+  -webkit-box-shadow horizontal vertical blur color
+  -moz-box-shadow horizontal vertical blur color
+  box-shadow horizontal vertical blur color
+
+border-radius(radius)
+  -webkit-border-radius radius
+  -moz-border-radius radius
+  border-radius radius
+
+html, body
+  height 100%
+
+body
+  font-family "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif
+  font-size 12px
+  color #486a77
+
+input, textarea, button, select
+  font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif
+  font-size 12px
+  vertical-align middle
+
+a
+  color #486a77
+  text-decoration underline
+  &:hover, &:focus
+    text-decoration none
+
+p, h1, h2, h3, h4, td
+  img
+    vertical-align middle
+
+#container
+  min-height 100%
+  position relative
+
+#container.login, #container.logout
+  background #eee
+
+#header
+  position relative
+  height 42px
+  background url('../images/header-bg.png') bottom left repeat-x
+  border-bottom 1px solid #e89e00
+  box-shadow 0 1px 8px
+
+#logo
+  display block
+  position absolute
+  top 7px
+  left 20px
+  width 110px
+  height 39px
+  background url('../images/logo.png') no-repeat
+
+#user-menu
+  text-align right
+  padding 2px 0 0
+  color #bf7900
+  font-weight bold
+  text-shadow #fff 0 1px 1px
+  ul
+    margin-top 0.5em
+    overflow hidden
+    float right
+  li
+    display block
+    float left
+    padding 0 15px
+    height 34px
+    line-height 34px
+    background url('../images/menu-sep.png') bottom right no-repeat
+    margin-right -1px
+  a
+    text-decoration none
+    &:hover, &:focus
+      text-decoration underline
+
+#main-menu
+  position absolute
+  left 145px
+  bottom 0
+  li
+    float left
+    height 34px
+    background url('../images/menu-sep.png') bottom left no-repeat
+    .empty a
+      font-style italic
+    a, dt
+      display block
+      padding 7px 15px
+      line-height 20px
+      text-shadow #fff 0 1px 1px
+      font-weight bold
+      text-decoration none
+      cursor pointer
+      color #486a77
+      &.first
+        border-top 0
+      &.last
+        border-bottom 0
+    dt
+      z-index 1
+    dd
+      display none
+      white-space nowrap
+      background #ffde8b
+      cursor pointer
+      padding-left 9px
+      padding-right 11px
+      &.open, &.hover
+        background #ffecbe
+      a, dt
+        padding-left 4px
+        padding-right 16px
+        border-top 1px solid #ffecbc
+        border-bottom 1px solid #f5b236
+      dt
+        background url('../images/menu-open-right.png') right center no-repeat
+    dl
+      display block
+      z-index 2
+
+#main-menu
+  dd, li
+    &.open>dt, &.hover>a, &.hover>dl>dt
+      color #af5f00
+  dd.open>a
+    color #af5f00
+
+#main
+  padding-bottom 74px
+  h1
+    font-size 20px
+    margin 20px 30px 0
+  ul.tools
+    position absolute
+    display block
+    right 20px
+    margin-top -19px
+    li
+      display block
+      border 1px solid #e89e00
+      float left
+      margin-left 10px
+      border-radius 2px
+    a
+      display inline-block
+      background url('../images/button-bg.png') top left repeat-x
+      text-shadow #fff 0 1px 1px
+      height 19px
+      line-height 19px
+      padding 0 7px
+      text-decoration none
+  p.success, div.errornotem ul.messagelist
+    margin 10px 20px 0
+    padding 10px 15px
+    border 1px solid #97a9b1
+    background #e4e9eb
+    font-weight bold
+    color #007042
+  ul.messagelist, ul.messagelist li
+    display block
+  div.errornote
+    color: #a00
+
+#login, #logout
+  position absolute
+  top 50%
+  left 50%
+  background #ffd56d url('../images/login-bg.png') top left repeat-y
+  width 336px
+  height 250px
+  margin-left -168px
+  margin-top -144px
+
+#login-logo, #logout-logo
+  float left
+  width 170px
+  height 55px
+  background url('../images/login-logo.png') top left no-repeat
+
+#login-header, #logout-header
+  float left
+  width 166px
+  height 55px
+  background url('../images/login-header.png') top left no-repeat
+  text-align center
+  div
+    padding-top 11px
+    text-shadow #fff 0 1px 1px
+  p
+    line-height 14px
+  a
+    font-weight bold
+
+#login form, #logout-message
+  clear both
+  height 195px
+  background url('../images/login-footer.png') bottom left no-repeat
+
+#login form .fields
+  clear both
+  padding-top 25px
+  position relative
+
+#login form
+  &.field, &.submit
+    clear both
+    margin-top 10px
+    margin-left 30px
+
+#login form
+  &.field, &.submit
+    label
+      display block
+      margin-bottom 5px
+
+#login form .field input
+  width 170px
+  vertical-align middle
+
+#login form .submit input
+  vertical-align middle
+
+#login .errornote
+  margin -20px 20px 5px
+  text-align center
+  color #a00
+
+#company-logo
+  display block
+  position absolute
+  bottom 32px
+  right 28px
+
+#logout-message p
+  padding 50px 30px 0
+  text-align center
+
+.delete-confirmation
+  margin 10px 20px 20px
+  padding 15px
+  border 1px solid #97a9b1
+  background #e4e9eb
+  ul
+    margin 5px 20px
+
+.main-buttons
+  margin 0 20px
+  input
+    margin-left 5px
+    float right
+
+.second-buttons button
+  float left
+  margin-right 5px
+
+#footer
+  position absolute
+  bottom 0
+  width 100%
+  height 44px
+
+#copyright
+  margin 0 100px
+  border-top 1px solid #f0f0f0
+  font-style italic
+  text-align center
+  color #ccc
+  line-height 43px
+  a
+    color #ccc
+
+#content-main
+  margin 1px 20px
+
+#content-main div.module
+  margin 5px 0 0
+  width 50%
+  table
+    width 100%
+    border 1px solid #97a9b1
+    caption
+      display none
+    td, th
+      padding 10px
+      border-bottom 1px solid #ccd5d9
+      background #f4f7f7
+    td
+      width 1%
+    th a
+      font-weight bold
+      text-decoration none
+    tr.last
+      td, th
+        border-bottom none

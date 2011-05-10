@@ -173,5 +173,6 @@ COMPRESS_CSS_FILTERS = [
 ]
 COMPRESS_PRECOMPILERS = (
     ('text/coffeescript', 'coffee --compile --stdio'),
+    ('text/stylus', 'stylus'),
     ('text/less', 'lessc {infile} {outfile}'),
 )

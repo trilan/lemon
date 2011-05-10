@@ -1,0 +1,202 @@
+border-radius-bottom(radius)
+  -moz-border-radius-bottomleft: radius;
+  -webkit-border-bottom-left-radius: radius;
+  border-bottom-left-radius: radius;
+  -moz-border-radius-bottomright: radius;
+  -webkit-border-bottom-right-radius: radius;
+  border-bottom-right-radius: radius;
+
+fieldset
+  border none
+  padding 30px 0 0
+  h2
+    font-size 16px
+    line-height 1.4em
+    margin 0 0 0 15px
+    border-bottom 2px solid #97a9b1
+    text-shadow #fff 0 1px 1px
+    margin-bottom 10px
+  h3
+    font-size 14px
+    line-height 1.4em
+    margin-left 30px
+    padding-top 10px
+    border-bottom 1px solid #97a9b1
+    text-shadow #fff 0 1px 1px
+  label
+    font-weight normal
+    color #000
+    display block
+    float left
+    padding-top 3px
+    width 160px
+    &.required
+      font-weight bold
+  .clearable-file-input
+    label
+      display inline
+      float none
+      padding none
+    input
+      vertical-align: baseline
+  .description
+    margin 0 60px
+    padding 10px 0
+    border-bottom 1px solid #becacf
+    font-style italic
+    text-shadow #fff 0 1px 1px
+  .content
+    margin 0 60px
+    p, ul
+      margin-left 165px
+    input, select, textarea
+      margin-left 5px
+    ul.errorlist, p.help
+      display block
+      font-weight bold
+      font-size 10px
+      padding-top 5px
+      color #a00
+    p.help
+      color #007042
+      a
+        color #007042
+  td
+    ul.errorlist, p.help
+      display block
+      font-weight bold
+      font-size 10px
+      padding-top 2px
+      padding-left 0
+      color #a00
+    p.help
+      color #007042
+      a
+        color #007042
+  .field
+    padding 10px 0
+    border-bottom 1px solid #becacf
+    img
+      vertical-align middle
+  .last
+    border-bottom none
+  input[type=text], input[type=password]
+    width 400px
+  input.vDateField, input.vTimeField
+    width auto
+  textarea
+    .vLargeTextField
+      width 400px
+      height 200px
+    .vSmallTextField
+      width 400px
+      height 40px
+  table
+    input[type=text], input[type=password]
+      width auto
+  &.inline
+    table
+      width 100%
+    th
+      border-bottom 2px solid #97a9b1
+      font-weight bold
+      text-shadow #fff 0 1px 1px
+      padding 10px 0
+    td
+      border-bottom 1px solid #becacf
+      vertical-align top
+      padding 10px 0
+      ul.errorlist
+        margin-left 0
+        padding-left 10px
+    tr.last-related, tr.add-row
+      td
+        border-bottom none
+
+.inline-group
+  padding 30px 0 0
+  fieldset
+    padding 0
+    .content, .description
+      margin 0 60px 0 30px
+  h2
+    font-size 16px
+    line-height 1.4em
+    margin 0 0 0 15px
+    border-bottom 2px solid #97a9b1
+    text-shadow #fff 0 1px 1px
+    margin-bottom 10px
+
+.inline-content
+  margin-left 30px
+
+.inline-related
+  border-bottom 1px solid #97a9b1
+  padding-bottom 10px
+  margin-bottom 10px
+  position relative
+
+.empty-form
+  display none
+
+.last-related
+  border-bottom none
+  padding-bottom 0
+  margin-bottom 0
+
+.add-another
+  text-decoration none
+
+#tabs
+  margin 10px 20px 8px
+  padding 0 0 30px
+  background #e4e9eb
+  border 1px solid #97a9b1
+  border-radius-bottom 2px
+  ul.ui-tabs-nav
+    padding 3px 4px 0
+    background url('../images/changelist-header-bg.png') 0 -1px repeat-x
+    border none
+    border-bottom 1px solid #97a9b1
+    border-radius-bottom 0
+    li
+      margin 0 2px 0 0
+      color #486a77
+      border 1px solid #97a9b1
+      a
+        color #486a77
+        padding 0 10px
+        line-height 29px
+      &.ui-state-hover
+        border 1px solid #f5b236
+        color #bf7900
+        text-shadow #fff 0 1px 1px
+        a
+          color #bf7900
+          text-shadow #fff 0 1px 1px
+      &.ui-state-active
+        background #e4e9eb
+        border 1px solid #97a9b1
+        color #486a77
+        text-shadow #fff 0 1px 1px
+        a
+          color #486a77
+          text-shadow #fff 0 1px 1px
+  div.ui-tabs-panel
+    padding 0
+
+a.related-lookup
+  text-decoration none
+
+p.datetime
+  position relative
+
+.add-row a
+  color #486a77
+  text-shadow #fff 0 1px 1px
+  text-decoration underline
+  &:hover
+    text-decoration none
+
+a.inline-deletelink
+  display none
