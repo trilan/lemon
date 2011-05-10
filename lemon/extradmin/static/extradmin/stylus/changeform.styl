@@ -1,3 +1,5 @@
+@import "mixins/variables"
+
 border-radius-bottom(radius)
   -moz-border-radius-bottomleft: radius;
   -webkit-border-bottom-left-radius: radius;
@@ -13,7 +15,7 @@ fieldset
     font-size 16px
     line-height 1.4em
     margin 0 0 0 15px
-    border-bottom 2px solid #97a9b1
+    border-bottom 2px solid $border-color
     text-shadow #fff 0 1px 1px
     margin-bottom 10px
   h3
@@ -21,7 +23,7 @@ fieldset
     line-height 1.4em
     margin-left 30px
     padding-top 10px
-    border-bottom 1px solid #97a9b1
+    border-bottom 1px solid $border-color
     text-shadow #fff 0 1px 1px
   label
     font-weight normal
@@ -98,7 +100,7 @@ fieldset
     table
       width 100%
     th
-      border-bottom 2px solid #97a9b1
+      border-bottom 2px solid $border-color
       font-weight bold
       text-shadow #fff 0 1px 1px
       padding 10px 0
@@ -123,7 +125,7 @@ fieldset
     font-size 16px
     line-height 1.4em
     margin 0 0 0 15px
-    border-bottom 2px solid #97a9b1
+    border-bottom 2px solid $border-color
     text-shadow #fff 0 1px 1px
     margin-bottom 10px
 
@@ -131,7 +133,7 @@ fieldset
   margin-left 30px
 
 .inline-related
-  border-bottom 1px solid #97a9b1
+  border-bottom 1px solid $border-color
   padding-bottom 10px
   margin-bottom 10px
   position relative
@@ -150,21 +152,21 @@ fieldset
 #tabs
   margin 10px 20px 8px
   padding 0 0 30px
-  background #e4e9eb
-  border 1px solid #97a9b1
+  background $background-color
+  border 1px solid $border-color
   border-radius-bottom 2px
   ul.ui-tabs-nav
     padding 3px 4px 0
     background url('../images/changelist-header-bg.png') 0 -1px repeat-x
     border none
-    border-bottom 1px solid #97a9b1
+    border-bottom 1px solid $border-color
     border-radius-bottom 0
     li
       margin 0 2px 0 0
-      color #486a77
-      border 1px solid #97a9b1
+      color $text-color
+      border 1px solid $border-color
       a
-        color #486a77
+        color $text-color
         padding 0 10px
         line-height 29px
       &.ui-state-hover
@@ -175,12 +177,12 @@ fieldset
           color #bf7900
           text-shadow #fff 0 1px 1px
       &.ui-state-active
-        background #e4e9eb
-        border 1px solid #97a9b1
-        color #486a77
+        background $background-color
+        border 1px solid $border-color
+        color $text-color
         text-shadow #fff 0 1px 1px
         a
-          color #486a77
+          color $text-color
           text-shadow #fff 0 1px 1px
   div.ui-tabs-panel
     padding 0
@@ -192,7 +194,7 @@ p.datetime
   position relative
 
 .add-row a
-  color #486a77
+  color $text-color
   text-shadow #fff 0 1px 1px
   text-decoration underline
   &:hover

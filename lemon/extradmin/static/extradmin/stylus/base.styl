@@ -1,4 +1,5 @@
 @import "mixins/helpers"
+@import "mixins/variables"
 
 html, body
   height 100%
@@ -6,7 +7,7 @@ html, body
 body
   font-family "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif
   font-size 12px
-  color #486a77
+  color $text-color
 
 input, textarea, button, select
   font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif
@@ -14,7 +15,7 @@ input, textarea, button, select
   vertical-align middle
 
 a
-  color #486a77
+  color $text-color
   text-decoration underline
   &:hover, &:focus
     text-decoration none
@@ -87,7 +88,7 @@ p, h1, h2, h3, h4, td
       font-weight bold
       text-decoration none
       cursor pointer
-      color #486a77
+      color $text-color
       &.first
         border-top 0
       &.last
@@ -148,8 +149,8 @@ p, h1, h2, h3, h4, td
   p.success, div.errornotem ul.messagelist
     margin 10px 20px 0
     padding 10px 15px
-    border 1px solid #97a9b1
-    background #e4e9eb
+    border 1px solid $border-color
+    background $background-color
     font-weight bold
     color #007042
   ul.messagelist, ul.messagelist li
@@ -234,8 +235,8 @@ p, h1, h2, h3, h4, td
 .delete-confirmation
   margin 10px 20px 20px
   padding 15px
-  border 1px solid #97a9b1
-  background #e4e9eb
+  border 1px solid $border-color
+  background $background-color
   ul
     margin 5px 20px
 
@@ -273,13 +274,13 @@ p, h1, h2, h3, h4, td
   width 50%
   table
     width 100%
-    border 1px solid #97a9b1
+    border 1px solid $border-color
     caption
       display none
     td, th
       padding 10px
-      border-bottom 1px solid #ccd5d9
-      background #f4f7f7
+      border-bottom 1px solid $changelist-border-color
+      background $changelist-background-color
     td
       width 1%
     th a
