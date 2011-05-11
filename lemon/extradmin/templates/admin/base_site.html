@@ -3,21 +3,15 @@
 
 {% block title %}{{ title }} | Lemon CMF{% endblock %}
 
-{% block extrahead %}
-<script src="{{ STATIC_URL }}extradmin/js/jquery.mainmenu.js" type="text/javascript" charset="utf-8"></script>
-{% endblock %}
-
 {% block header %}
-    <div id="header">
-        <a href="{% url admin:index %}" id="logo"></a>
-        <div id="user-menu">
-            <ul>
-                <li>{% firstof user.first_name user.username %}</li>
-                <li><a href="{% url admin:logout %}">Выйти</a></li>
-            </ul>
-        </div>
-        <ul id="main-menu">
-            {% main_menu %}
-        </ul>
+  <div id="header">
+    <a href="{% url admin:index %}" class="logo"></a>
+    <div id="user-menu">
+      <ul>
+        <li>{% firstof user.first_name user.username %}</li>
+        <li><a href="{% url admin:logout %}">Выйти</a></li>
+      </ul>
     </div>
+    {% main_menu %}
+  </div>
 {% endblock %}

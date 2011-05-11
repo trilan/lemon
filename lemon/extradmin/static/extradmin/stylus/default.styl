@@ -40,7 +40,7 @@ input[type=text], input[type=password], input.text, input.title, textarea
 
 .button
   padding 6px 12px
-  color #444
+  color #486A77
   font-weight bold
   background #d8d8d8
   gradient darken($background-color, 10%) $background-color
@@ -48,3 +48,11 @@ input[type=text], input[type=password], input.text, input.title, textarea
   border-radius 3px
   -webkit-box-shadow 0 1px 2px #e5e5e5, #fff 0 1px 1px inset
   text-shadow #fff 0 1px 1px
+  &:hover
+    background lighten(#d8d8d8, 10%)
+    gradient darken($background-color, 5%), lighten($background-color, 5%)
+
+.delete
+  color #a01
+  gradient darken(#f3bcbe, 20%), #f3bcbe
+  border 1px solid #e4595d

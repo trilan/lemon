@@ -1,16 +1,14 @@
 {% load i18n main_menu %}
 {% regroup menu_items by section as sections %}
-{% for section in sections %}
-<li>
-    <dl>
-        <dt>{{ section.grouper.name }}</dt>
+<ul class="main-menu" id="main-menu">
+  {% for section in sections %}
+    <li>
+      <span>{{ section.grouper.name }}</span>
+      <ul>
         {% for item in section.list %}
-        <dd><a href="{% main_menu_item_url item.content_type %}">{{ item.name }}</a></dd>
+          <li><a href="{% main_menu_item_url item.content_type %}">{{ item.name }}</a></li>
         {% endfor %}
-    </dl>
-</li>
-{% empty %}
-<li class="empty">
-	<a href="{% url admin:extradmin_menusection_changelist %}">{% trans "Fill main menu..." %}</a>
-</li>
-{% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>

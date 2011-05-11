@@ -1,5 +1,5 @@
 .changelist {
-  background: #f5f5f5;
+  background: #e4e9eb;
   margin: 10px 20px;
   -webkit-border-top-left-radius: 3px;
   -webkit-border-top-right-radius: 3px;
@@ -9,7 +9,7 @@
   border-top-right-radius: 3px;
 }
 .changelist-header {
-  border: 1px solid #cacaca;
+  border: 1px solid #97a9b1;
   border-bottom: none;
   -webkit-border-top-left-radius: 3px;
   -webkit-border-top-right-radius: 3px;
@@ -17,10 +17,10 @@
   -moz-border-radius-topright: 3px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0%, #f5f5f5), color-stop(100%, #fff));
-  background: -moz-linear-gradient(center bottom, #f5f5f5 0%, #fff 100%);
-  background: -o-linear-gradient(center bottom, #f5f5f5 0%, #fff 100%);
-  background: linear-gradient(center bottom, #f5f5f5 0%, #fff 100%);
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0%, #e4e9eb), color-stop(100%, #fff));
+  background: -moz-linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
+  background: -o-linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
+  background: linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
   height: 35px;
   padding: 0 15px;
 }
@@ -56,7 +56,7 @@
 }
 .changelist-dates {
   display: block;
-  border: 1px solid #cacaca;
+  border: 1px solid #97a9b1;
   border-bottom: none;
   padding: 10px;
 }
@@ -74,12 +74,12 @@
   text-decoration: underline;
 }
 .changelist-body {
-  border: 1px solid #cacaca;
+  border: 1px solid #97a9b1;
   border-top: none;
   border-bottom: none;
 }
 .changelist-main {
-  border: 1px solid #cacaca;
+  border: 1px solid #97a9b1;
   border-bottom: none;
   border-left: none;
   padding-left: 3px;
@@ -90,15 +90,15 @@
 }
 .changelist-main table {
   width: 100%;
-  border-bottom: 1px solid #cacaca;
+  border-bottom: 1px solid #97a9b1;
   line-height: 15px;
 }
 .changelist-main thead th {
   font-weight: bold;
   text-shadow: #fff 0 1px 1px;
   padding: 7px 7px 4px;
-  border-left: 1px solid #f5f5f5;
-  border-bottom: 1px solid #cacaca;
+  border-left: 1px solid #e4e9eb;
+  border-bottom: 1px solid #97a9b1;
 }
 .changelist-main thead th.sorted {
   padding-right: 23px;
@@ -131,11 +131,11 @@
 }
 .changelist-main tbody th.first,
 .changelist-main tbody td.first {
-  border-left: 1px solid #cacaca;
+  border-left: 1px solid #97a9b1;
 }
 .changelist-main tbody th.last,
 .changelist-main tbody td.last {
-  border-right: 1px solid #cacaca;
+  border-right: 1px solid #97a9b1;
 }
 .changelist-main tbody tr.row2 th,
 .changelist-main tbody tr.row2 td {
@@ -193,7 +193,7 @@
 }
 .changelist-footer {
   height: 28px;
-  border: 1px solid #cacaca;
+  border: 1px solid #97a9b1;
   border-top: none;
 }
 .changelist-pager {
@@ -219,9 +219,9 @@
 .changelist-pager a.active,
 .changelist-pager span {
   margin-left: 1px;
-  border: 1px solid #f5f5f5;
+  border: 1px solid #e4e9eb;
   border-left: none;
-  background: #f5f5f5;
+  background: #e4e9eb;
 }
 .changelist-pager span.showall {
   border: none;
