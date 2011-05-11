@@ -1,3 +1,4 @@
+@import "mixins/helpers"
 @import "mixins/variables"
 
 border-radius-bottom(radius)
@@ -9,15 +10,19 @@ border-radius-bottom(radius)
   border-bottom-right-radius: radius;
 
 fieldset
-  border none
-  padding 30px 0 0
+  background $background-color
+  border 1px solid $border-color
+  border-radius 3px
+  margin-bottom 20px
   h2
     font-size 16px
-    line-height 1.4em
-    margin 0 0 0 15px
-    border-bottom 2px solid $border-color
+    line-height 35px
+    font-weight normal
+    padding 0 15px
+    gradient $background-color #fff
+    border-top-radius 3px
+    border-bottom 1px solid $border-color
     text-shadow #fff 0 1px 1px
-    margin-bottom 10px
   h3
     font-size 14px
     line-height 1.4em
@@ -27,7 +32,8 @@ fieldset
     text-shadow #fff 0 1px 1px
   label
     font-weight normal
-    color #000
+    color #486A77
+    text-shadow #fff 0 1px 1px
     display block
     float left
     padding-top 3px
@@ -48,7 +54,6 @@ fieldset
     font-style italic
     text-shadow #fff 0 1px 1px
   .content
-    margin 0 60px
     p, ul
       margin-left 165px
     input, select, textarea
@@ -76,7 +81,7 @@ fieldset
       a
         color #007042
   .field
-    padding 10px 0
+    padding 20px 30px
     border-bottom 1px solid #becacf
     img
       vertical-align middle
@@ -150,11 +155,7 @@ fieldset
   text-decoration none
 
 #tabs
-  margin 10px 20px 8px
-  padding 0 0 30px
-  background $background-color
-  border 1px solid $border-color
-  border-radius-bottom 2px
+  margin 10px 30px
   ul.ui-tabs-nav
     padding 3px 4px 0
     background url('../images/changelist-header-bg.png') 0 -1px repeat-x

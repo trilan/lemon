@@ -65,8 +65,10 @@ p, h1, h2, h3, h4, td
     background url('../images/menu-sep.png') bottom right no-repeat
     margin-right -1px
   a
+    color #587373
     text-decoration none
     &:hover, &:focus
+      color #587373
       text-decoration underline
 
 .main-menu
@@ -127,26 +129,35 @@ p, h1, h2, h3, h4, td
   padding-bottom 74px
   h1
     font-size 20px
+    font-weight normal
     margin 20px 30px 0
   ul.tools
     position absolute
     display block
-    right 20px
-    margin-top -19px
+    right 30px
+    margin-top -26px
+    margin-left 0
+    list-style-type none
     li
       display block
-      border 1px solid #e89e00
       float left
       margin-left 10px
-      border-radius 2px
     a
-      display inline-block
-      background url('../images/button-bg.png') top left repeat-x
+      color #587373
+      padding 0 12px
+      display block
+      border 1px solid #e89e00
+      border-radius 3px
+      gradient #ffd152 #ffedbd
+      -webkit-box-shadow 0 1px 2px #e5e5e5, #fff 0 1px 1px inset
       text-shadow #fff 0 1px 1px
-      height 19px
-      line-height 19px
-      padding 0 7px
       text-decoration none
+      font-weight bold
+      height 24px
+      line-height 24px
+      &:hover
+        color #587373
+        gradient lighten(#ffd152, 10%) lighten(#ffedbd, 10%)
   p.success, div.errornotem ul.messagelist
     margin 10px 20px 0
     padding 10px 15px
@@ -242,7 +253,7 @@ p, h1, h2, h3, h4, td
     margin 5px 20px
 
 .main-buttons
-  margin 0 20px
+  margin 0 30px
   input
     margin-left 5px
     float right

@@ -78,10 +78,12 @@ td img {
   margin-right: -1px;
 }
 #user-menu a {
+  color: #587373;
   text-decoration: none;
 }
 #user-menu a:hover,
 #user-menu a:focus {
+  color: #587373;
   text-decoration: underline;
 }
 .main-menu {
@@ -155,31 +157,47 @@ td img {
 }
 #main h1 {
   font-size: 20px;
+  font-weight: normal;
   margin: 20px 30px 0;
 }
 #main ul.tools {
   position: absolute;
   display: block;
-  right: 20px;
-  margin-top: -19px;
+  right: 30px;
+  margin-top: -26px;
+  margin-left: 0;
+  list-style-type: none;
 }
 #main ul.tools li {
   display: block;
-  border: 1px solid #e89e00;
   float: left;
   margin-left: 10px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
 }
 #main ul.tools a {
-  display: inline-block;
-  background: url("../images/button-bg.png") top left repeat-x;
+  color: #587373;
+  padding: 0 12px;
+  display: block;
+  border: 1px solid #e89e00;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0%, #ffd152), color-stop(100%, #ffedbd));
+  background: -moz-linear-gradient(center bottom, #ffd152 0%, #ffedbd 100%);
+  background: -o-linear-gradient(center bottom, #ffd152 0%, #ffedbd 100%);
+  background: linear-gradient(center bottom, #ffd152 0%, #ffedbd 100%);
+  -webkit-box-shadow: 0 1px 2px #e5e5e5, #fff 0 1px 1px inset;
   text-shadow: #fff 0 1px 1px;
-  height: 19px;
-  line-height: 19px;
-  padding: 0 7px;
   text-decoration: none;
+  font-weight: bold;
+  height: 24px;
+  line-height: 24px;
+}
+#main ul.tools a:hover {
+  color: #587373;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0%, #ffda74), color-stop(100%, #fff9e9));
+  background: -moz-linear-gradient(center bottom, #ffda74 0%, #fff9e9 100%);
+  background: -o-linear-gradient(center bottom, #ffda74 0%, #fff9e9 100%);
+  background: linear-gradient(center bottom, #ffda74 0%, #fff9e9 100%);
 }
 #main p.success,
 #main div.errornotem ul.messagelist {
@@ -290,7 +308,7 @@ td img {
   margin: 5px 20px;
 }
 .main-buttons {
-  margin: 0 20px;
+  margin: 0 30px;
 }
 .main-buttons input {
   margin-left: 5px;

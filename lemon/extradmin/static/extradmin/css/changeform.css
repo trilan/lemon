@@ -1,14 +1,28 @@
 fieldset {
-  border: none;
-  padding: 30px 0 0;
+  background: #e4e9eb;
+  border: 1px solid #97a9b1;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin-bottom: 20px;
 }
 fieldset h2 {
   font-size: 16px;
-  line-height: 1.4em;
-  margin: 0 0 0 15px;
-  border-bottom: 2px solid #97a9b1;
+  line-height: 35px;
+  font-weight: normal;
+  padding: 0 15px;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0%, #e4e9eb), color-stop(100%, #fff));
+  background: -moz-linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
+  background: -o-linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
+  background: linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
+  -webkit-border-top-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom: 1px solid #97a9b1;
   text-shadow: #fff 0 1px 1px;
-  margin-bottom: 10px;
 }
 fieldset h3 {
   font-size: 14px;
@@ -20,7 +34,8 @@ fieldset h3 {
 }
 fieldset label {
   font-weight: normal;
-  color: #000;
+  color: #486a77;
+  text-shadow: #fff 0 1px 1px;
   display: block;
   float: left;
   padding-top: 3px;
@@ -43,9 +58,6 @@ fieldset .description {
   border-bottom: 1px solid #becacf;
   font-style: italic;
   text-shadow: #fff 0 1px 1px;
-}
-fieldset .content {
-  margin: 0 60px;
 }
 fieldset .content p,
 fieldset .content ul {
@@ -86,7 +98,7 @@ fieldset td p.help a {
   color: #007042;
 }
 fieldset .field {
-  padding: 10px 0;
+  padding: 20px 30px;
   border-bottom: 1px solid #becacf;
 }
 fieldset .field img {
@@ -176,16 +188,7 @@ fieldset.inline tr.add-row td {
   text-decoration: none;
 }
 #tabs {
-  margin: 10px 20px 8px;
-  padding: 0 0 30px;
-  background: #e4e9eb;
-  border: 1px solid #97a9b1;
-  -moz-border-radius-bottomleft: 2px;
-  -webkit-border-bottom-left-radius: 2px;
-  border-bottom-left-radius: 2px;
-  -moz-border-radius-bottomright: 2px;
-  -webkit-border-bottom-right-radius: 2px;
-  border-bottom-right-radius: 2px;
+  margin: 10px 30px;
 }
 #tabs ul.ui-tabs-nav {
   padding: 3px 4px 0;
@@ -194,9 +197,13 @@ fieldset.inline tr.add-row td {
   border-bottom: 1px solid #97a9b1;
   -moz-border-radius-bottomleft: 0;
   -webkit-border-bottom-left-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  -moz-border-radius-bottomleft: 0;
   border-bottom-left-radius: 0;
   -moz-border-radius-bottomright: 0;
   -webkit-border-bottom-right-radius: 0;
+  -webkit-border-bottom-right-radius: 0;
+  -moz-border-radius-bottomright: 0;
   border-bottom-right-radius: 0;
 }
 #tabs ul.ui-tabs-nav li {
