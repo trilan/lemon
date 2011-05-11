@@ -22,7 +22,7 @@ input[type=text],
 input[type=password],
 textarea {
   margin: 0;
-  padding: 2px 3px;
+  padding: 4px 8px;
 }
 input[type=submit],
 input[type=button],
@@ -43,13 +43,10 @@ textarea {
   background: #fff;
   border: 1px solid #96aab1;
   border-top: 1px solid #6a787d;
-}
-input[type=text]:focus,
-input[type=password]:focus,
-input.text:focus,
-input.title:focus,
-textarea:focus {
-  background: #faf8ec;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: #e0e0e0 0 1px 2px inset;
 }
 .button {
   padding: 6px 12px;
