@@ -140,6 +140,7 @@ INSTALLED_APPS = (
 
     'south',
     'intellipages',
+    'articles',
 )
 
 # A sample logging configuration. The only tangible logging
