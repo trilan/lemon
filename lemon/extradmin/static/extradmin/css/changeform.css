@@ -228,55 +228,71 @@ fieldset.inline tr.add-row td {
 .empty-form {
   display: none;
 }
-.last-related {
-  border-bottom: none;
-}
 .add-another {
   text-decoration: none;
 }
 #tabs {
-  margin: 10px 30px;
+  margin: 10px 30px 0;
+  padding: 0;
+}
+#tabs.ui-widget-content {
+  background: none;
+  border: none;
 }
 #tabs ul.ui-tabs-nav {
-  padding: 3px 4px 0;
-  background: url("../images/changelist-header-bg.png") 0 -1px repeat-x;
-  border: none;
-  border-bottom: 1px solid #97a9b1;
-  -webkit-border-bottom-left-radius: 0;
-  -moz-border-radius-bottomleft: 0;
-  border-bottom-left-radius: 0;
-  -webkit-border-bottom-right-radius: 0;
-  -moz-border-radius-bottomright: 0;
-  border-bottom-right-radius: 0;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0%, #e4e9eb), color-stop(100%, #fff));
+  background: -moz-linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
+  background: -o-linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
+  background: linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
+  -webkit-box-shadow: 0 1px 2px #e5e5e5;
+  -moz-box-shadow: 0 1px 2px #e5e5e5;
+  box-shadow: 0 1px 2px #e5e5e5;
+  border: 1px solid #97a9b1;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  padding: 8px 20px;
 }
 #tabs ul.ui-tabs-nav li {
-  margin: 0 2px 0 0;
+  font-size: 14px;
+  font-weight: normal;
+  margin: -1px 8px 0 0;
   color: #486a77;
-  border: 1px solid #97a9b1;
+  background: none;
+  border: none;
 }
 #tabs ul.ui-tabs-nav li a {
   color: #486a77;
   padding: 0 10px;
-  line-height: 29px;
+  line-height: 28px;
+  text-shadow: #fff 0 1px 1px;
 }
 #tabs ul.ui-tabs-nav li.ui-state-hover {
-  border: 1px solid #f5b236;
-  color: #bf7900;
-  text-shadow: #fff 0 1px 1px;
+  border: none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background: #d7dee1;
 }
 #tabs ul.ui-tabs-nav li.ui-state-hover a {
-  color: #bf7900;
-  text-shadow: #fff 0 1px 1px;
+  color: #486a77;
 }
 #tabs ul.ui-tabs-nav li.ui-state-active {
-  background: #e4e9eb;
-  border: 1px solid #97a9b1;
-  color: #486a77;
-  text-shadow: #fff 0 1px 1px;
+  background: #567f8f;
+  border: none;
+  -webkit-box-shadow: 0 1px 1px #fff;
+  -moz-box-shadow: 0 1px 1px #fff;
+  box-shadow: 0 1px 1px #fff;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin-top: -1px;
+  padding-bottom: 0;
 }
 #tabs ul.ui-tabs-nav li.ui-state-active a {
-  color: #486a77;
-  text-shadow: #fff 0 1px 1px;
+  color: #fff;
+  text-shadow: #415f6b 0 1px 1px;
 }
 #tabs div.ui-tabs-panel {
   padding: 0;

@@ -167,43 +167,50 @@ fieldset
 .empty-form
   display none
 
-.last-related
-  border-bottom none
-
 .add-another
   text-decoration none
 
 #tabs
-  margin 10px 30px
-  ul.ui-tabs-nav
-    padding 3px 4px 0
-    background url('../images/changelist-header-bg.png') 0 -1px repeat-x
+  margin 10px 30px 0
+  padding 0
+  &.ui-widget-content
+    background none
     border none
-    border-bottom 1px solid $border-color
-    border-bottom-radius 0
+  ul.ui-tabs-nav
+    gradient $background-color #fff
+    box-shadow 0 1px 2px #e5e5e5
+    border 1px solid $border-color
+    border-radius 3px
+    margin-bottom 20px
+    padding 8px 20px
     li
-      margin 0 2px 0 0
+      font-size 14px
+      font-weight: normal
+      margin -1px 8px 0 0
       color $text-color
-      border 1px solid $border-color
+      background none
+      border none
       a
         color $text-color
         padding 0 10px
-        line-height 29px
+        line-height 28px
+        text-shadow #fff 0 1px 1px
       &.ui-state-hover
-        border 1px solid #f5b236
-        color #bf7900
-        text-shadow #fff 0 1px 1px
-        a
-          color #bf7900
-          text-shadow #fff 0 1px 1px
-      &.ui-state-active
-        background $background-color
-        border 1px solid $border-color
-        color $text-color
-        text-shadow #fff 0 1px 1px
+        border none
+        border-radius 3px
+        background darken($background-color, 5%)
         a
           color $text-color
-          text-shadow #fff 0 1px 1px
+      &.ui-state-active
+        background lighten($text-color, 20%)
+        border none
+        box-shadow 0 1px 1px #fff
+        border-radius 3px
+        margin-top -1px
+        padding-bottom 0
+        a
+          color #fff
+          text-shadow darken($text-color, 10%) 0 1px 1px
   div.ui-tabs-panel
     padding 0
 

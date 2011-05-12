@@ -23,6 +23,7 @@ class ImageInline(admin.TabularInline):
 class ArticleAdmin(admin.ModelAdmin):
 
     inlines = [NoteInline, ImageInline]
+    tabs = True
 
 
 admin.site.register(Article, ArticleAdmin)
