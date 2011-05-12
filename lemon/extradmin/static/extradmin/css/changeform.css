@@ -84,11 +84,11 @@ fieldset input.vDateField,
 fieldset input.vTimeField {
   width: auto;
 }
-fieldset textarea .vLargeTextField {
+fieldset textarea.vLargeTextField {
   width: 400px;
   height: 200px;
 }
-fieldset textarea .vSmallTextField {
+fieldset textarea.vSmallTextField {
   width: 400px;
   height: 40px;
 }
