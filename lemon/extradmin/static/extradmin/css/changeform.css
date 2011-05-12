@@ -1,37 +1,5 @@
 fieldset {
-  background: #e4e9eb;
-  -webkit-box-shadow: 0 1px 2px #e5e5e5, #fff 0 0px 3px inset;
-  border: 1px solid #97a9b1;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  margin-bottom: 20px;
-}
-fieldset h2 {
-  font-size: 16px;
-  line-height: 35px;
-  font-weight: normal;
-  padding: 0 15px;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0%, #e4e9eb), color-stop(100%, #fff));
-  background: -moz-linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
-  background: -o-linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
-  background: linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
-  -webkit-border-top-left-radius: 3px;
-  -moz-border-radius-topleft: 3px;
-  border-top-left-radius: 3px;
-  -webkit-border-top-right-radius: 3px;
-  -moz-border-radius-topright: 3px;
-  border-top-right-radius: 3px;
-  border-bottom: 1px solid #97a9b1;
-  text-shadow: #fff 0 1px 1px;
-}
-fieldset h3 {
-  font-size: 14px;
-  line-height: 1.4em;
-  margin-left: 30px;
-  padding-top: 10px;
-  border-bottom: 1px solid #97a9b1;
-  text-shadow: #fff 0 1px 1px;
+  border: none;
 }
 fieldset label {
   font-weight: normal;
@@ -146,44 +114,97 @@ fieldset.inline td ul.errorlist {
   margin-left: 0;
   padding-left: 10px;
 }
+fieldset.inline tr.add-row td {
+  padding: 0 15px;
+}
 fieldset.inline tr.last-related td,
 fieldset.inline tr.add-row td {
   border-bottom: none;
 }
+.main_group fieldset,
+.tabular_group fieldset {
+  background: #e4e9eb;
+  -webkit-box-shadow: 0 1px 2px #e5e5e5, #fff 0 0px 3px inset;
+  border: 1px solid #97a9b1;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+.main_group fieldset h2,
+.tabular_group fieldset h2 {
+  font-size: 16px;
+  line-height: 35px;
+  font-weight: normal;
+  padding: 0 15px;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0%, #e4e9eb), color-stop(100%, #fff));
+  background: -moz-linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
+  background: -o-linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
+  background: linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
+  -webkit-border-top-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom: 1px solid #97a9b1;
+  text-shadow: #fff 0 1px 1px;
+}
 .inline-group {
-  padding: 30px 0 0;
+  background: #e4e9eb;
+  -webkit-box-shadow: 0 1px 2px #e5e5e5, #fff 0 0px 3px inset;
+  border: 1px solid #97a9b1;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin-bottom: 20px;
 }
-.inline-group fieldset {
-  padding: 0;
-}
-.inline-group fieldset .content,
 .inline-group fieldset .description {
   margin: 0 60px 0 30px;
 }
+.inline-group fieldset h2 {
+  border-top: 1px solid #becacf;
+  border-bottom: 1px solid #becacf;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  background: #f3f5f6;
+}
 .inline-group h2 {
   font-size: 16px;
-  line-height: 1.4em;
-  margin: 0 0 0 15px;
-  border-bottom: 2px solid #97a9b1;
+  line-height: 35px;
+  font-weight: normal;
+  padding: 0 15px;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0%, #e4e9eb), color-stop(100%, #fff));
+  background: -moz-linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
+  background: -o-linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
+  background: linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
+  -webkit-border-top-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom: 1px solid #97a9b1;
   text-shadow: #fff 0 1px 1px;
-  margin-bottom: 10px;
 }
-.inline-content {
-  margin-left: 30px;
+.inline-group h3 {
+  font-size: 16px;
+  line-height: 35px;
+  font-weight: normal;
+  text-shadow: #fff 0 1px 1px;
+  padding: 0 15px;
+  background: #d7dee1;
+  border-bottom: 1px solid #becacf;
 }
 .inline-related {
   border-bottom: 1px solid #97a9b1;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  position: relative;
 }
 .empty-form {
   display: none;
 }
 .last-related {
   border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0;
 }
 .add-another {
   text-decoration: none;
@@ -240,6 +261,11 @@ a.related-lookup {
 }
 p.datetime {
   position: relative;
+}
+.add-row {
+  font-size: 14px;
+  line-height: 35px;
+  padding: 0 15px;
 }
 .add-row a {
   color: #486a77;

@@ -35,14 +35,22 @@
           </ul>
           {% for tab in tabs %}
             <div id="tabs-{{ forloop.counter0 }}">
-              {% if forloop.first %}{% for fieldset in adminform %}{% include "admin/includes/fieldset.html" %}{% endfor %}{% endif %}
-              {% for inline_admin_formset in tab.contents %}{% include inline_admin_formset.opts.template %}{% endfor %}
+              {% if forloop.first %}
+                <div class="main_group">
+                  {% for fieldset in adminform %}{% include "admin/includes/fieldset.html" %}{% endfor %}
+                </div>
+              {% endif %}
+              {% for inline_admin_formset in tab.contents %}
+                {% include inline_admin_formset.opts.template %}
+              {% endfor %}
             </div>
           {% endfor %}
         {% else %}
-          {% for fieldset in adminform %}{% include "admin/includes/fieldset.html" %}{% endfor %}
+          <div class="main_group">
+            {% for fieldset in adminform %}{% include "admin/includes/fieldset.html" %}{% endfor %}
+          </div>
           {% for inline_admin_formset in inline_admin_formsets %}
-            {% if not inline_admin_formset.opts.tabulate %}{% include inline_admin_formset.opts.template %}{% endif %}
+            {% include inline_admin_formset.opts.template %}
           {% endfor %}
         {% endif %}
         {% block after_field_sets %}{% endblock %}
