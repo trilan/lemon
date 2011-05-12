@@ -150,7 +150,11 @@ fieldset.inline tr.add-row td {
   border-bottom: 1px solid #97a9b1;
   text-shadow: #fff 0 1px 1px;
 }
-.inline-group {
+#main .inline-group h1 {
+  margin: 0 0 20px;
+  padding: 0;
+}
+#main .inline-group .add-row {
   background: #e4e9eb;
   -webkit-box-shadow: 0 1px 2px #e5e5e5, #fff 0 0px 3px inset;
   border: 1px solid #97a9b1;
@@ -159,19 +163,29 @@ fieldset.inline tr.add-row td {
   border-radius: 3px;
   margin-bottom: 20px;
 }
-.inline-group fieldset .description {
+.inline-related {
+  background: #e4e9eb;
+  -webkit-box-shadow: 0 1px 2px #e5e5e5, #fff 0 0px 3px inset;
+  border: 1px solid #97a9b1;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+.inline-related fieldset .description {
   margin: 0 60px 0 30px;
 }
-.inline-group fieldset h2 {
+.inline-related fieldset h2 {
   font-size: 14px;
+  font-weight: normal;
+  line-height: 35px;
+  text-shadow: #fff 0 1px 1px;
+  padding: 0 15px;
   border-top: 1px solid #becacf;
   border-bottom: 1px solid #becacf;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
   background: #f3f5f6;
 }
-.inline-group h2 {
+.inline-related h3 {
   font-size: 16px;
   line-height: 35px;
   font-weight: normal;
@@ -188,15 +202,6 @@ fieldset.inline tr.add-row td {
   border-top-right-radius: 3px;
   border-bottom: 1px solid #97a9b1;
   text-shadow: #fff 0 1px 1px;
-}
-.inline-group h3 {
-  font-size: 16px;
-  line-height: 35px;
-  font-weight: normal;
-  text-shadow: #fff 0 1px 1px;
-  padding: 0 15px;
-  background: #d7dee1;
-  border-bottom: 1px solid #becacf;
 }
 .inline-related {
   border-bottom: 1px solid #97a9b1;

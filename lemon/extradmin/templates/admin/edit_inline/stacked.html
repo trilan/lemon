@@ -1,7 +1,7 @@
 {% load i18n %}
 
 <div class="inline-group" id="{{ inline_admin_formset.formset.prefix }}-group">
-  {% if not tabs or not tab.contents|length_is:"1" or forloop.parentloop.first %}<h2>{{ inline_admin_formset.opts.verbose_name_plural|title }}</h2>{% endif %}
+  {% if not tabs or not tab.contents|length_is:"1" or forloop.parentloop.first %}<h1>{{ inline_admin_formset.opts.verbose_name_plural|title }}</h1>{% endif %}
   <div class="inline-content">
     {{ inline_admin_formset.formset.management_form }}
     {{ inline_admin_formset.formset.non_form_errors }}
