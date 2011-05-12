@@ -199,21 +199,35 @@ td img {
   background: -o-linear-gradient(center bottom, #ffda74 0%, #fff9e9 100%);
   background: linear-gradient(center bottom, #ffda74 0%, #fff9e9 100%);
 }
-#main p.success,
-#main div.errornotem ul.messagelist {
-  margin: 10px 20px 0;
-  padding: 10px 15px;
+#main p.success {
   border: 1px solid #97a9b1;
   background: #e4e9eb;
   font-weight: bold;
   color: #007042;
 }
-#main ul.messagelist,
-#main ul.messagelist li {
+#main ul.messagelist {
   display: block;
+  margin: 20px 30px 0;
+  padding: 10px 15px;
+  color: #486a77;
+  background: #f3f5f6;
+  border: 1px solid #bbc6cc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+#main ul.messagelist li {
+  margin-left: 15px;
 }
 #main div.errornote {
+  margin: 20px 30px 0;
+  padding: 10px 15px;
   color: #a00;
+  border: 1px solid #e67773;
+  background: #f3bcbe;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
 #login,
 #logout {

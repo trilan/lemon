@@ -158,17 +158,28 @@ p, h1, h2, h3, h4, td
       &:hover
         color #587373
         gradient lighten(#ffd152, 10%) lighten(#ffedbd, 10%)
-  p.success, div.errornotem ul.messagelist
-    margin 10px 20px 0
-    padding 10px 15px
+  p.success
     border 1px solid $border-color
     background $background-color
     font-weight bold
     color #007042
-  ul.messagelist, ul.messagelist li
+  ul.messagelist
     display block
+    margin 20px 30px 0
+    padding 10px 15px
+    color $text-color
+    background $background-lighter-color
+    border 1px solid darken($background-lighter-color, 20%)
+    border-radius 3px
+    li
+      margin-left 15px
   div.errornote
+    margin 20px 30px 0
+    padding 10px 15px
     color: #a00
+    border 1px solid darken(#f3bcbe, 20%)
+    background #f3bcbe
+    border-radius 3px
 
 #login, #logout
   position absolute
