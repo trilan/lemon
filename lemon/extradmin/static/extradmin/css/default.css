@@ -71,7 +71,7 @@ textarea {
   background: -o-linear-gradient(center bottom, #d7dee1 0%, #f1f4f5 100%);
   background: linear-gradient(center bottom, #d7dee1 0%, #f1f4f5 100%);
 }
-.delete {
+.delete_button {
   color: #a01;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0%, #e67773), color-stop(100%, #f3bcbe));
   background: -moz-linear-gradient(center bottom, #e67773 0%, #f3bcbe 100%);
