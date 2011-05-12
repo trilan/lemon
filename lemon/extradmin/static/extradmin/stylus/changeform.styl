@@ -78,14 +78,20 @@ fieldset
     table
       width 100%
     th
-      border-bottom 2px solid $border-color
+      gradient $background-color #fff
+      border-bottom 1px solid $border-color
       font-weight bold
       text-shadow #fff 0 1px 1px
-      padding 10px 0
+      text-align left
+      padding 10px 15px
+      &.first
+        border-top-left-radius 3px
+      &.last
+        border-top-right-radius 3px
     td
       border-bottom 1px solid #becacf
       vertical-align top
-      padding 10px 0
+      padding 10px 15px
       ul.errorlist
         margin-left 0
         padding-left 10px
@@ -111,6 +117,10 @@ fieldset
       border-top-radius 3px
       border-bottom 1px solid $border-color
       text-shadow #fff 0 1px 1px
+
+#main .tabular_group h1
+  margin 0 0 20px
+  padding 0
 
 #main .inline-group
   h1

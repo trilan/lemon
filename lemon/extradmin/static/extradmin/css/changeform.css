@@ -100,15 +100,30 @@ fieldset.inline table {
   width: 100%;
 }
 fieldset.inline th {
-  border-bottom: 2px solid #97a9b1;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0%, #e4e9eb), color-stop(100%, #fff));
+  background: -moz-linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
+  background: -o-linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
+  background: linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
+  border-bottom: 1px solid #97a9b1;
   font-weight: bold;
   text-shadow: #fff 0 1px 1px;
-  padding: 10px 0;
+  text-align: left;
+  padding: 10px 15px;
+}
+fieldset.inline th.first {
+  -webkit-border-top-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  border-top-left-radius: 3px;
+}
+fieldset.inline th.last {
+  -webkit-border-top-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  border-top-right-radius: 3px;
 }
 fieldset.inline td {
   border-bottom: 1px solid #becacf;
   vertical-align: top;
-  padding: 10px 0;
+  padding: 10px 15px;
 }
 fieldset.inline td ul.errorlist {
   margin-left: 0;
@@ -149,6 +164,10 @@ fieldset.inline tr.add-row td {
   border-top-right-radius: 3px;
   border-bottom: 1px solid #97a9b1;
   text-shadow: #fff 0 1px 1px;
+}
+#main .tabular_group h1 {
+  margin: 0 0 20px;
+  padding: 0;
 }
 #main .inline-group h1 {
   margin: 0 0 20px;

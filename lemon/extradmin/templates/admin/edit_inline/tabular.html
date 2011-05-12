@@ -1,15 +1,15 @@
 {% load i18n %}
 
 <div class="tabular_group">
+  {% if not tabs or not tab.contents|length_is:"1" or forloop.parentloop.first %}<h1>{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}</h1>{% endif %}
   {{ inline_admin_formset.formset.management_form }}
   <fieldset id="{{ inline_admin_formset.formset.prefix }}-group" class="inline">
-    {% if not tabs or not tab.contents|length_is:"1" or forloop.parentloop.first %}<h2><span><span>{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}</span></span></h2>{% endif %}
     {{ inline_admin_formset.formset.non_form_errors }}
     <div class="content">
       <table cellspacing="0">
         <thead><tr>
           {% for field in inline_admin_formset.fields %}
-            {% if not field.is_hidden %}<th{% if forloop.first %} class="first"{% endif %}>{{ field.label|capfirst }}</th>{% endif %}
+            {% if not field.is_hidden %}<th>{{ field.label|capfirst }}</th>{% endif %}
           {% endfor %}
           {% if inline_admin_formset.formset.can_delete %}<th>{% trans "Delete?" %}</th>{% endif %}
         </tr></thead>
