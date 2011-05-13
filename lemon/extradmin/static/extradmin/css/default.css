@@ -40,6 +40,7 @@ input[type=password],
 input.text,
 input.title,
 textarea {
+  vertical-align: baseline;
   background: #fff;
   border: 1px solid #96aab1;
   border-top: 1px solid #6a787d;
@@ -79,4 +80,14 @@ textarea {
   background: linear-gradient(center bottom, #e67773 0%, #f3bcbe 100%);
   text-shadow: #fae1e1 0 1px 1px;
   border: 1px solid #e4595d;
+}
+div.datetime {
+  margin-left: 160px;
+}
+div.datetime span.date {
+  margin-bottom: 5px;
+}
+div.datetime span.date,
+div.datetime span.time {
+  display: block;
 }

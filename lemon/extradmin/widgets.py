@@ -26,6 +26,14 @@ class AdminSplitDateTime(widgets.AdminSplitDateTime):
         widgets = [AdminDateWidget, AdminTimeWidget]
         forms.MultiWidget.__init__(self, widgets, attrs)
 
+    def format_output(self, rendered_widgets):
+        print rendered_widgets
+        return mark_safe(
+            u'<div class="datetime"><span class="date">%s %s</span>'
+            u'<span class="time">%s %s</span></div>' % (
+                _(u'Date:'), rendered_widgets[0], _(u'Time:'), rendered_widgets[1])
+        )
+
 
 class ForeignKeyRawIdWidget(widgets.ForeignKeyRawIdWidget):
 
