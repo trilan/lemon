@@ -45,6 +45,9 @@ fieldset .content p.help {
   padding-top: 5px;
   color: #a00;
 }
+fieldset .content ul.errorlist {
+  list-style-type: none;
+}
 fieldset .content p.help {
   color: #007042;
 }
