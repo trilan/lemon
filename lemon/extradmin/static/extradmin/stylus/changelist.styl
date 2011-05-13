@@ -1,0 +1,199 @@
+@import "mixins/helpers"
+@import "mixins/variables"
+
+border-top-radius(radius)
+  -webkit-border-top-left-radius radius
+  -webkit-border-top-right-radius radius
+  -moz-border-radius-topleft radius
+  -moz-border-radius-topright radius
+  border-top-left-radius radius
+  border-top-right-radius radius
+
+box-shadow(horizontal = 0px, vertical = 1px, blur = 2px, color = #ccc)
+  -webkit-box-shadow horizontal vertical blur color
+  -moz-box-shadow horizontal vertical blur color
+  box-shadow horizontal vertical blur color
+
+.changelist
+  background $background-color
+  margin 10px 30px
+  border-top-radius 3px
+  box-shadow
+
+.changelist-header
+  border 1px solid $border-color
+  border-bottom none
+  border-top-radius 3px
+  gradient $background-color #fff
+  height 35px
+  padding 0 15px
+
+.changelist-actions
+  float left
+  width 45%
+  height 35px
+  line-height 35px
+  button
+    line-height normal
+  select, button
+    vertical-align baseline
+  select
+    width 170px
+
+.changelist-search
+  float right
+  width 50%
+  text-align right
+  #searchbar
+    width 200px
+  form
+    line-height 35px
+  input
+    vertical-align baseline
+
+.changelist-dates
+  display block
+  border 1px solid $border-color
+  border-bottom none
+  padding 10px
+  li
+    display block
+    float left
+    padding 0 10px
+    font-size 15px
+  a
+    text-decoration none
+    text-shadow #fff 0 1px 1px
+    &:hover
+      text-decoration underline
+
+.changelist-body
+  border 1px solid $border-color
+  border-top none
+  border-bottom none
+
+.changelist-main
+  border 1px solid $border-color
+  border-bottom none
+  border-left none
+  padding-left 3px
+  padding-right 3px
+  input
+    vertical-align baseline
+  table
+    width 100%
+    border-bottom 1px solid $border-color
+    line-height 15px
+  thead
+    th
+      font-weight bold
+      text-shadow #fff 0 1px 1px
+      padding 7px 7px 4px
+      border-left 1px solid $background-color
+      border-bottom 1px solid $border-color
+      &.sorted
+        padding-right 23px
+      &.ascending
+        background url('../images/asc.png') bottom right no-repeat
+      &.descending
+        background url('../images/desc.png') bottom right no-repeat
+      &.narrow
+        width 1%
+      a
+        text-decoration none
+        &:hover
+          text-decoration underline
+  tbody
+    th, td
+      padding 5px 7px 7px
+      background #fff
+      border-left 1px solid $changelist-border-color
+      border-bottom 1px solid $changelist-border-color
+      &.bool
+        text-align center
+      &.first
+        border-left 1px solid $border-color
+      &.last
+        border-right 1px solid $border-color
+    tr.row2
+      th, td
+        background $changelist-background-color
+    tr.last
+      th, td
+        border-bottom none
+  ul.errorlist
+    display block
+    font-weight bold
+    font-size 10px
+    color #a00
+
+.filtered .changelist-main
+  margin-right 200px
+  padding-right 0
+  tbody td.last
+    border-right none
+
+.changelist-filters
+  float right
+  width 200px
+  h2
+    margin 5px 30px 2px
+    font-size 16px
+    text-shadow #fff 0 1px 1px
+  dl
+    margin 0 5px 0 30px
+    text-shadow #fff 0 1px 1px
+  dt
+    font-weight bold
+    margin 15px 0 5px
+  dd
+    padding-left 15px
+    margin-bottom 2px
+    &.active
+      background url('../images/filter-selected-item.png') 6px 50% no-repeat
+      a
+        color #d88900
+  a
+    text-decoration none
+    &:hover
+      text-decoration underline
+
+.changelist-footer
+  height 28px
+  border 1px solid $border-color
+  border-top none
+
+.changelist-pager
+  float left
+  width 40%
+  height 28px
+  div
+    padding-left 4px
+    padding-top 3px
+  a, span
+    display block
+    float left
+    border 1px solid #8a9ea7
+    background url('../images/pager-bg.png') bottom left repeat-x
+    line-height 18px
+    padding 1px 5px 0
+    margin-right -1px
+    text-decoration none
+  a.active, span
+    margin-left 1px
+    border 1px solid $background-color
+    border-left none
+    background $background-color
+  span.showall
+    border none
+    padding-top 0
+
+.changelist-links
+  float right
+  width: 40%
+  height 28px
+  line-height 27px
+  text-align right
+  a
+    margin-right 10px
+    font-weight bold

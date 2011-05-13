@@ -1,10 +1,6 @@
 {% extends "admin/base_site.html" %}
 {% load intellipages lemon_list admin_list i18n %}
 
-
-{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/changelist.css" />{% endblock %}
-
-
 {% block extrahead %}{{ block.super }}
 <script src="{{ STATIC_URL }}extradmin/js/jquery.actions.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">

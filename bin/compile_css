@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+var stylus = require('stylus'),
+    fs = require('fs'),
+    source = process.argv[2],
+    target = process.argv[3];
+
+var str = fs.readFileSync(source, 'utf8');
+stylus.render(str, { filename: source }, function(err, css) {
+    if (err) throw err;
+    fs.writeFileSync(target, css);
+  });

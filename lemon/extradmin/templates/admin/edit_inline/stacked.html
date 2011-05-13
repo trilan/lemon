@@ -1,56 +1,67 @@
 {% load i18n %}
+
 <div class="inline-group" id="{{ inline_admin_formset.formset.prefix }}-group">
-	{% if not tabs or not tab.contents|length_is:"1" or forloop.parentloop.first %}<h2>{{ inline_admin_formset.opts.verbose_name_plural|title }}</h2>{% endif %}
-	<div class="inline-content">
-		{{ inline_admin_formset.formset.management_form }}
-		{{ inline_admin_formset.formset.non_form_errors }}	
-		{% for inline_admin_form in inline_admin_formset %}
-			<div id="{{ inline_admin_formset.formset.prefix }}-{% if not forloop.last %}{{ forloop.counter0 }}{% else %}empty{% endif %}" class="inline-related{% if forloop.last %} empty-form{% endif %}">
-				{% if inline_admin_formset.formset.can_delete and inline_admin_form.original %}<div class="delete">{{ inline_admin_form.deletion_field.field }} {{ inline_admin_form.deletion_field.label_tag }}</div>{% endif %}
-				{% if inline_admin_form.show_url %}<p><a href="../../../r/{{ inline_admin_form.original_content_type_id }}/{{ inline_admin_form.original.id }}/">{% trans "View on site" %}</a></p>{% endif %}
-				{% if inline_admin_form.form.non_field_errors %}{{ inline_admin_form.form.non_field_errors }}{% endif %}
-				{% for fieldset in inline_admin_form %}{% include "admin/includes/inline_fieldset.html" %}{% endfor %}
-				{% if inline_admin_form.has_auto_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
-				{{ inline_admin_form.fk_field.field }}
-			</div>
-		{% endfor %}
-	</div>
+  {% if not tabs or not tab.contents|length_is:"1" or forloop.parentloop.first %}<h1>{{ inline_admin_formset.opts.verbose_name_plural|title }}</h1>{% endif %}
+  <div class="inline-content">
+    {{ inline_admin_formset.formset.management_form }}
+    {{ inline_admin_formset.formset.non_form_errors }}
+    {% for inline_admin_form in inline_admin_formset %}
+      <div id="{{ inline_admin_formset.formset.prefix }}-{% if not forloop.last %}{{ forloop.counter0 }}{% else %}empty{% endif %}" class="inline-related{% if forloop.last %} empty-form{% endif %}">
+        <h3>
+          <b>{{ inline_admin_formset.opts.verbose_name|title }}:</b>
+          <span class="inline_label">
+            {% if inline_admin_form.original %}{{ inline_admin_form.original }}{% else %}#{{ forloop.counter }}{% endif %}
+          </span>
+          {% if inline_admin_form.show_url %}
+            <a href="../../../r/{{ inline_admin_form.original_content_type_id }}/{{ inline_admin_form.original.id }}/">{% trans "View on site" %}</a>
+          {% endif %}
+          {% if inline_admin_formset.formset.can_delete and inline_admin_form.original %}
+            <span class="delete">{{ inline_admin_form.deletion_field.field }} {{ inline_admin_form.deletion_field.label_tag }}</span>
+          {% endif %}
+        </h3>
+        {% if inline_admin_form.form.non_field_errors %}{{ inline_admin_form.form.non_field_errors }}{% endif %}
+        {% for fieldset in inline_admin_form %}{% include "admin/includes/fieldset.html" %}{% endfor %}
+        {% if inline_admin_form.has_auto_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
+        {{ inline_admin_form.fk_field.field }}
+      </div>
+    {% endfor %}
+  </div>
 </div>
 
 <script type="text/javascript">
-(function($) {
-	$(document).ready(function() {
-		var rows = "#{{ inline_admin_formset.formset.prefix }}-group .inline-related";
-		var reinitDateTimeShortCuts = function() {
-			// Reinitialize the calendar and clock widgets by force, yuck.
-			if (typeof DateTimeShortcuts != "undefined") {
-				$(".datetimeshortcuts").remove();
-				DateTimeShortcuts.init();
-			}
-		};
-		var initPrepopulatedFields = function(row) {
-			row.find('.prepopulated_field').each(function() {
-				var field = $(this);
-				var input = field.find('input, select, textarea');
-				var dependency_list = input.data('dependency_list') || [];
-				var dependencies = row.find(dependency_list.join(',')).find('input, select, textarea');
-				if (dependencies.length) {
-					input.prepopulate(dependencies, input.attr('maxlength'));
-				}
-			});
-		};
-		$(rows).formset({
-			prefix: "{{ inline_admin_formset.formset.prefix }}",
-			addText: "{% blocktrans with inline_admin_formset.opts.verbose_name|title as verbose_name %}Add another {{ verbose_name }}{% endblocktrans %}",
-			formCssClass: "dynamic-{{ inline_admin_formset.formset.prefix }}",
-			deleteCssClass: "inline-deletelink",
-			deleteText: "{% trans "Remove" %}",
-			emptyCssClass: "empty-form",
-			added: (function(row) {
-				initPrepopulatedFields(row);
-				reinitDateTimeShortCuts();
-			})
-		});
-	});
-})(jQuery);
+  (function($) {
+    $(document).ready(function() {
+      var rows = "#{{ inline_admin_formset.formset.prefix }}-group .inline-related";
+      var reinitDateTimeShortCuts = function() {
+        // Reinitialize the calendar and clock widgets by force, yuck.
+        if (typeof DateTimeShortcuts != "undefined") {
+          $(".datetimeshortcuts").remove();
+          DateTimeShortcuts.init();
+        }
+      };
+      var initPrepopulatedFields = function(row) {
+        row.find('.prepopulated_field').each(function() {
+          var field = $(this);
+          var input = field.find('input, select, textarea');
+          var dependency_list = input.data('dependency_list') || [];
+          var dependencies = row.find(dependency_list.join(',')).find('input, select, textarea');
+          if (dependencies.length) {
+            input.prepopulate(dependencies, input.attr('maxlength'));
+          }
+        });
+      };
+      $(rows).formset({
+        prefix: "{{ inline_admin_formset.formset.prefix }}",
+        addText: "{% blocktrans with inline_admin_formset.opts.verbose_name|title as verbose_name %}Add another {{ verbose_name }}{% endblocktrans %}",
+        formCssClass: "dynamic-{{ inline_admin_formset.formset.prefix }}",
+        deleteCssClass: "inline-deletelink",
+        deleteText: "{% trans "Remove" %}",
+        emptyCssClass: "empty-form",
+        added: (function(row) {
+          initPrepopulatedFields(row);
+          reinitDateTimeShortCuts();
+        })
+      });
+    });
+  })(jQuery);
 </script>
