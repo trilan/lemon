@@ -1,0 +1,57 @@
+@import "mixins/helpers"
+@import "mixins/variables"
+
+.auth_permissions
+  background $background-color
+  -webkit-box-shadow 0 1px 2px #e5e5e5, #fff 0 0px 3px inset
+  border 1px solid $border-color
+  border-radius 3px
+  margin 10px 30px 20px
+  table
+    width 100%
+    thead th
+      line-height 35px
+      font-size 14px
+      font-weight normal
+      text-shadow #fff 0 1px 1px
+      gradient $background-color #fff
+      border-bottom 1px solid $border-color
+      &.first
+        border-top-left-radius 3px
+      &.last
+        border-top-right-radius 3px
+    tbody
+      td
+        text-align center
+        padding: 8px
+        border 1px solid $changelist-border-color
+        background #fff
+        &.first
+          text-align left
+          text-shadow #fff 0 1px 1px
+          border-left none
+          padding-left 15px
+        &.last
+          border-right none
+        input
+          vertical-align baseline
+      tr.first td
+        border-top none
+      tr.last td
+        border-bottom none
+        &.first
+          border-bottom-left-radius 3px
+        &.last
+          border-bottom-right-radius 3px
+      tr.even td
+        background $changelist-background-color
+      tr.model td
+        font-size 14px
+        border-left none
+        border-right none
+      tr.permission td.first
+        padding-left 30px
+        font-weight normal
+
+.floatHeader table
+  -webkit-box-shadow 0 1px 2px #e5e5e5

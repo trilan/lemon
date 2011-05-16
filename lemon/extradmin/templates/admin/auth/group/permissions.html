@@ -1,0 +1,59 @@
+{% extends "admin/base_site.html" %}
+{% load i18n extradmin %}
+{% load url from future %}
+
+{% block extrastyle %}{{ super }}
+  <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/auth_permissions.css">
+{% endblock %}
+
+{% block extrahead %}{{ super }}
+  <script src="{{ STATIC_URL }}extradmin/js/libs/jquery.floatheader.js"></script>
+  <script src="{{ STATIC_URL }}extradmin/js/auth_permissions.js"></script>
+{% endblock %}
+
+{% block content %}
+  <h1>{% trans "Groups permissions" %}</h1>
+  <ul class="tools">
+    <li><a href="{% url 'admin:auth_group_changelist' %}">{% trans 'Groups' %}</a></li>
+    <li><a href="{% url 'admin:auth_group_add' %}">{% trans 'Add group' %}</a></li>
+  </ul>
+  <form action="" method="post">{% csrf_token %}
+    <div id="auth_permissions" class="auth_permissions">
+      <table>
+        <thead>
+          <tr>
+            <th class="first">&nbsp;</th>
+            {% with width=form.groups|length|group_column_width %}
+              {% for group in form.groups %}<th width="{{ width }}%"{% if forloop.last %} class="last"{% endif %}>{{ group.name }}</th>{% endfor %}
+            {% endwith %}
+          </tr>
+        </thead>
+        <tbody>
+          {% cycle 'even' 'odd' as row_type silent %}
+          {% regroup rows by name as models %}
+          {% for model in models %}
+            {% cycle row_type %}
+            <tr class="{{ row_type }} model{% if forloop.first %} first{% endif %}">
+              <td class="first">{{ model.grouper|capfirst }}</td>
+              {% for group in form.groups %}<td{% if forloop.last %} class="last"{% endif %}>&nbsp;</td>{% endfor %}
+            </tr>
+            {% for row in model.list %}
+              {% cycle row_type %}
+              <tr class="{{ row_type }} permission{% if forloop.parentloop.last and forloop.last %} last{% endif %}">
+                <td class="first">{{ row.permission.name }}</td>
+                {% for group in form.groups %}
+                  <td{% if forloop.last %} class="last"{% endif %}>
+                    {% permissions_form_field form row.permission.pk group.pk %}
+                  </td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div id="main-buttons" class="main-buttons clearfix">
+      <input type="submit" value="{% trans 'Save' %}" class="button default">
+    </div>
+  </form>
+{% endblock %}

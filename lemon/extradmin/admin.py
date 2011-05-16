@@ -1,13 +1,17 @@
+from django.conf.urls.defaults import patterns, url
 from django.contrib import admin
 from django.contrib.auth.admin import User, UserAdmin, Group, GroupAdmin
+from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.admin import Site, SiteAdmin
+from django.shortcuts import redirect
+from django.template.response import TemplateResponse
 from django.utils.functional import curry
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext
 
 from lemon import extradmin
 from lemon.extradmin.dashboard import AppsWidget, LogWidget
-from lemon.extradmin.forms import MenuItemForm
+from lemon.extradmin.forms import MenuItemForm, GroupPermissionsForm
 from lemon.extradmin.forms import contenttype_inlineformset_factory
 from lemon.extradmin.models import MenuSection, MenuItem
 
@@ -77,6 +81,31 @@ class GroupExtrAdmin(extradmin.ModelAdmin, GroupAdmin):
         'changelist_paginator_description': lambda n: \
             ungettext('%(count)d user group', '%(count)d user groups', n)
     }
+
+    def get_urls(self):
+        return patterns('',
+            url(r'^permissions/$',
+                self.admin_site.admin_view(self.permissions_view),
+                name='auth_group_permissions'),
+        ) + super(GroupAdmin, self).get_urls()
+
+    def permissions_view(self, request):
+        form = GroupPermissionsForm(data=request.POST or None)
+        if form.is_valid():
+            form.save()
+            self.message_user(request, _(u'Permissions was successfully saved.'))
+            return redirect(request.path)
+        rows = []
+        for permission in form.permissions:
+            model_class = permission.content_type.model_class()
+            model_name_plural = model_class._meta.verbose_name_plural
+            rows.append({'name': model_name_plural, 'permission': permission})
+        rows.sort(key=lambda x: x['name'])
+        return TemplateResponse(request,
+            template = 'admin/auth/group/permissions.html',
+            context = {'rows': rows, 'form': form},
+            current_app = self.admin_site.name
+        )
 
 
 class SiteExtrAdmin(extradmin.ModelAdmin, SiteAdmin):
