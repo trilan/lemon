@@ -4,6 +4,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.forms.formsets import formset_factory
 from django.forms.models import ModelForm, BaseInlineFormSet
 from django.forms.models import ModelFormMetaclass, _get_foreign_key
+from django.forms.models import ModelChoiceIterator
 from django.utils.translation import ugettext_lazy as _
 
 from lemon.extradmin.fields import ContentTypeChoiceField
@@ -80,3 +81,26 @@ class GroupPermissionsForm(forms.Form):
         for group in self.groups:
             permission_ids = group_ids.get(str(group.pk), [])
             permissions_field.save_form_data(group, permission_ids)
+
+
+class PermissionChoiceIterator(ModelChoiceIterator):
+
+    def __iter__(self):
+        permissions = []
+        for permission in self.queryset.all():
+            model_class = permission.content_type.model_class()
+            model_name_plural = model_class._meta.verbose_name_plural
+            setattr(permission, 'model_name_plural', model_name_plural)
+            permissions.append(permission)
+        permissions.sort(key=lambda x: x.model_name_plural)
+        for permission in permissions:
+            yield permission
+
+
+class PermissionMultipleChoiceField(forms.ModelMultipleChoiceField):
+
+    def _get_choices(self):
+        if hasattr(self, '_choices'):
+            return self._choices
+        return PermissionChoiceIterator(self)
+    choices = property(_get_choices, forms.ChoiceField._set_choices)

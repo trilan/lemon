@@ -322,3 +322,22 @@ p.datetime {
 a.inline-deletelink {
   display: none;
 }
+.permissions_select_multiple {
+  margin-left: 165px;
+  margin-bottom: -10px;
+}
+.permissions_select_multiple span {
+  font-weight: bold;
+}
+.permissions_select_multiple td {
+  padding: 5px 20px 15px 0;
+}
+.permissions_select_multiple label {
+  width: auto;
+  white-space: nowrap;
+  float: none;
+}
+.permissions_select_multiple label input {
+  vertical-align: baseline;
+  margin-left: 0;
+}

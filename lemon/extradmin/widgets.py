@@ -2,6 +2,8 @@ from django import forms
 from django.conf import settings
 from django.contrib.admin import widgets
 from django.core.urlresolvers import reverse, NoReverseMatch
+from django.utils.encoding import force_unicode
+from django.utils.html import conditional_escape
 from django.utils.translation import ugettext as _
 from django.utils.safestring import mark_safe
 
@@ -87,3 +89,43 @@ class RelatedFieldWidgetWrapper(widgets.RelatedFieldWidgetWrapper):
                 u' height="10" alt="%s"/></a>' % \
                     (settings.ADMIN_MEDIA_PREFIX, _('Add Another')))
         return mark_safe(u''.join(output))
+
+
+class PermissionSelectMultiple(forms.CheckboxSelectMultiple):
+
+    def render(self, name, value, attrs=None):
+        if value is None:
+            value = []
+        has_id = attrs and 'id' in attrs
+        final_attrs = self.build_attrs(attrs, name=name)
+        str_values = set(force_unicode(v) for v in value)
+        print str_values
+        check_test = lambda value: value in str_values
+        output = [u'<table class="permissions_select_multiple"><tr><td>']
+        model_name_plural, j = '', 0
+        for i, permission in enumerate(self.choices):
+            if permission.model_name_plural != model_name_plural:
+                if j != 0 and not (j % 3):
+                    output.append(u'</tr><tr>')
+                j += 1
+                model_name_plural = permission.model_name_plural
+                if i != 0:
+                    output.append(u'</td><td>')
+                output.append(u'<span>%s</span>' % model_name_plural.capitalize())
+            if has_id:
+                final_attrs = dict(final_attrs, id='%s_%s' % (attrs['id'], i))
+                label_for = u' for="%s"' % final_attrs['id']
+            else:
+                label_for = u''
+            checkbox = forms.CheckboxInput(final_attrs, check_test=check_test)
+            checkbox = checkbox.render(name, self.get_option_value(permission))
+            output.append(u'<label%s>%s %s</label>' %
+                          (label_for, checkbox, self.get_option_label(permission)))
+        output.append(u'</tr></table>')
+        return mark_safe(u'\n'.join(output))
+
+    def get_option_value(self, permission):
+        return force_unicode(self.choices.field.prepare_value(permission))
+
+    def get_option_label(self, permission):
+        return conditional_escape(_(permission.name).lower())

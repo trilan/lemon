@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import User, UserAdmin, Group, GroupAdmin
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.admin import Site, SiteAdmin
+from django.db import models
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from django.utils.functional import curry
@@ -12,8 +13,10 @@ from django.utils.translation import ungettext
 from lemon import extradmin
 from lemon.extradmin.dashboard import AppsWidget, LogWidget
 from lemon.extradmin.forms import MenuItemForm, GroupPermissionsForm
+from lemon.extradmin.forms import PermissionMultipleChoiceField
 from lemon.extradmin.forms import contenttype_inlineformset_factory
 from lemon.extradmin.models import MenuSection, MenuItem
+from lemon.extradmin.widgets import PermissionSelectMultiple
 
 
 class MenuItemInline(extradmin.TabularInline):
@@ -69,6 +72,14 @@ class UserExtrAdmin(extradmin.ModelAdmin, UserAdmin):
             ungettext('%(count)d user', '%(count)d users', n)
     }
 
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == 'user_permissions':
+            kwargs['form_class'] = PermissionMultipleChoiceField
+            kwargs['widget'] = PermissionSelectMultiple
+            kwargs['help_text'] = u''
+        return super(UserExtrAdmin, self).formfield_for_manytomany(
+            db_field, request, **kwargs)
+
 
 class GroupExtrAdmin(extradmin.ModelAdmin, GroupAdmin):
 
@@ -81,6 +92,14 @@ class GroupExtrAdmin(extradmin.ModelAdmin, GroupAdmin):
         'changelist_paginator_description': lambda n: \
             ungettext('%(count)d user group', '%(count)d user groups', n)
     }
+
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == 'permissions':
+            kwargs['form_class'] = PermissionMultipleChoiceField
+            kwargs['widget'] = PermissionSelectMultiple
+            kwargs['help_text'] = u''
+        return super(GroupExtrAdmin, self).formfield_for_manytomany(
+            db_field, request, **kwargs)
 
     def get_urls(self):
         return patterns('',
