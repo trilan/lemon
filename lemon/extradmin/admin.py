@@ -103,7 +103,11 @@ class GroupExtrAdmin(extradmin.ModelAdmin, GroupAdmin):
         rows.sort(key=lambda x: x['name'])
         return TemplateResponse(request,
             template = 'admin/auth/group/permissions.html',
-            context = {'rows': rows, 'form': form},
+            context = {
+                'title': _(u'Groups permissions'),
+                'rows': rows,
+                'form': form
+            },
             current_app = self.admin_site.name
         )
 
