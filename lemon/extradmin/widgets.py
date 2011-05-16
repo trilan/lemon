@@ -128,4 +128,13 @@ class PermissionSelectMultiple(forms.CheckboxSelectMultiple):
         return force_unicode(self.choices.field.prepare_value(permission))
 
     def get_option_label(self, permission):
-        return conditional_escape(_(permission.name).lower())
+        opts = permission.content_type.model_class()._meta
+        if permission.codename == opts.get_add_permission():
+            permission_name = _(u'can add')
+        elif permission.codename == opts.get_change_permission():
+            permission_name = _(u'can change')
+        elif permission.codename == opts.get_delete_permission():
+            permission_name = _(u'can delete')
+        else:
+            permission_name = _(permission.name).lower()
+        return conditional_escape(permission_name)

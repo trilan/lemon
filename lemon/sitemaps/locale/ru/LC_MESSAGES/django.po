@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lemon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-16 13:40+0400\n"
+"POT-Creation-Date: 2011-05-16 21:31+0400\n"
 "PO-Revision-Date: 2011-03-31 19:02+0400\n"
 "Last-Translator: Mike Yumatov <mike@yumatov.org>\n"
 "Language-Team: Russian <lemon@trilandev.com>\n"
@@ -138,15 +138,3 @@ msgstr "Запись в файле sitemap.xml"
 #: models.py:71
 msgid "sitemap.xml items"
 msgstr "Записи в файле sitemap.xml"
-
-#: models.py:115
-msgid "Can add sitemap.xml item"
-msgstr "Можно добавлять записи в файл sitemap.xml"
-
-#: models.py:116
-msgid "Can change sitemap.xml item"
-msgstr "Можно изменять записи в файле sitemap.xml"
-
-#: models.py:117
-msgid "Can delete sitemap.xml item"
-msgstr "Можно удалять записи из файла sitemap.xml"

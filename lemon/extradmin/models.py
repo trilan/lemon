@@ -34,24 +34,3 @@ class MenuItem(models.Model):
 
     def __unicode__(self):
         return self.name
-
-
-_(u'Can add menu section')
-_(u'Can change menu section')
-_(u'Can delete menu section')
-
-_(u'Can add menu item')
-_(u'Can change menu item')
-_(u'Can delete menu item')
-
-_(u'Can add group')
-_(u'Can change group')
-_(u'Can delete group')
-
-_(u'Can add user')
-_(u'Can change user')
-_(u'Can delete user')
-
-_(u'Can add site')
-_(u'Can change site')
-_(u'Can delete site')

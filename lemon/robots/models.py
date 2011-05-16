@@ -17,8 +17,3 @@ class File(models.Model):
 
     def __unicode__(self):
         return u'/'.join([self.site.domain, u'robots.txt'])
-
-
-_(u'Can add robots.txt file')
-_(u'Can change robots.txt file')
-_(u'Can delete robots.txt file')

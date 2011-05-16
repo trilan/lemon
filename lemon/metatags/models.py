@@ -87,8 +87,3 @@ class Page(models.Model):
             self.sites.clear()
             if sites:
                 self.sites.add(*sites)
-
-
-_(u'Can add page')
-_(u'Can change page')
-_(u'Can delete page')

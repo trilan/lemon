@@ -40,7 +40,7 @@
             {% for row in model.list %}
               {% cycle row_type %}
               <tr class="{{ row_type }} permission{% if forloop.parentloop.last and forloop.last %} last{% endif %}">
-                <td class="first">{% trans row.permission.name %}</td>
+                <td class="first">{% permission_name row.permission %}</td>
                 {% for group in form.groups %}
                   <td{% if forloop.last %} class="last"{% endif %}>
                     {% permissions_form_field form row.permission.pk group.pk %}
