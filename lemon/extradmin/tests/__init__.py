@@ -10,11 +10,11 @@ from lemon.extradmin.tests.models import Article
 class DefaultMarkupWidgetTestCase(TestCase):
 
     def setUp(self):
-        self.old_CONFIG = settings.CONFIG
-        settings.CONFIG = {'MARKUP_WIDGET': None}
+        self.old_MARKUP_WIDGET = settings.CONFIG['MARKUP_WIDGET']
+        settings.CONFIG['MARKUP_WIDGET'] = None
 
     def tearDown(self):
-        settings.CONFIG = self.old_CONFIG
+        settings.CONFIG['MARKUP_WIDGET'] = self.old_MARKUP_WIDGET
 
     def test_admin_site_markup_widget(self):
         self.assertIsNone(extradmin.AdminSite().markup_widget)
@@ -27,11 +27,11 @@ class DefaultMarkupWidgetTestCase(TestCase):
 class CustomMarkupWidgetTestCase(TestCase):
 
     def setUp(self):
-        self.old_CONFIG = settings.CONFIG
-        settings.CONFIG = {'MARKUP_WIDGET': 'django.forms.Textarea'}
+        self.old_MARKUP_WIDGET = settings.CONFIG['MARKUP_WIDGET']
+        settings.CONFIG['MARKUP_WIDGET'] = 'django.forms.Textarea'
 
     def tearDown(self):
-        settings.CONFIG = self.old_CONFIG
+        settings.CONFIG['MARKUP_WIDGET'] = self.old_MARKUP_WIDGET
 
     def test_admin_site_markup_widget(self):
         self.assertIs(extradmin.AdminSite().markup_widget, forms.Textarea)
