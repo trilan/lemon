@@ -29,7 +29,6 @@ class AdminSplitDateTime(widgets.AdminSplitDateTime):
         forms.MultiWidget.__init__(self, widgets, attrs)
 
     def format_output(self, rendered_widgets):
-        print rendered_widgets
         return mark_safe(
             u'<div class="datetime"><span class="date">%s %s</span>'
             u'<span class="time">%s %s</span></div>' % (
@@ -99,7 +98,6 @@ class PermissionSelectMultiple(forms.CheckboxSelectMultiple):
         has_id = attrs and 'id' in attrs
         final_attrs = self.build_attrs(attrs, name=name)
         str_values = set(force_unicode(v) for v in value)
-        print str_values
         check_test = lambda value: value in str_values
         output = [u'<table class="permissions_select_multiple"><tr><td>']
         model_name_plural, j = '', 0
