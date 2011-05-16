@@ -25,4 +25,4 @@ def permissions_form_field(form, permission_id, group_id):
 
 @register.filter
 def group_column_width(count):
-    return int(round(100.0 / (count + 2)))
+    return int(round(100.0 / (count + 1)))
