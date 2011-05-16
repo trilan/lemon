@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lemon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-16 11:48+0400\n"
+"POT-Creation-Date: 2011-05-16 13:51+0400\n"
 "PO-Revision-Date: 2011-03-31 17:34+0400\n"
 "Last-Translator: Mike Yumatov <mike@yumatov.org>\n"
 "Language-Team: Russian <lemon@trilandev.com>\n"
@@ -174,6 +174,66 @@ msgstr "пункт меню"
 #: models.py:33
 msgid "menu items"
 msgstr "пункты меню"
+
+#: models.py:39
+msgid "Can add menu section"
+msgstr "Можно добавлять разделы меню"
+
+#: models.py:40
+msgid "Can change menu section"
+msgstr "Можно изменять разделы меню"
+
+#: models.py:41
+msgid "Can delete menu section"
+msgstr "Можно удалять разделы меню"
+
+#: models.py:43
+msgid "Can add menu item"
+msgstr "Можно добавлять пункты меню"
+
+#: models.py:44
+msgid "Can change menu item"
+msgstr "Можно изменять пункты меню"
+
+#: models.py:45
+msgid "Can delete menu item"
+msgstr "Можно удалять пункты меню"
+
+#: models.py:47
+msgid "Can add group"
+msgstr "Можно добавлять группы"
+
+#: models.py:48
+msgid "Can change group"
+msgstr "Можно изменять группы"
+
+#: models.py:49
+msgid "Can delete group"
+msgstr "Можно удалять группы"
+
+#: models.py:51
+msgid "Can add user"
+msgstr "Можно добавлять пользователя"
+
+#: models.py:52
+msgid "Can change user"
+msgstr "Можно изменить пользователей"
+
+#: models.py:53
+msgid "Can delete user"
+msgstr "Можно удалять пользователей"
+
+#: models.py:55
+msgid "Can add site"
+msgstr "Можно добавлять сайты"
+
+#: models.py:56
+msgid "Can change site"
+msgstr "Можно изменять сайты"
+
+#: models.py:57
+msgid "Can delete site"
+msgstr "Можно удалять сайты"
 
 #: options.py:94
 msgid "None"

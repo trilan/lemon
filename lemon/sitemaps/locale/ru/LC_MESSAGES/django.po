@@ -4,16 +4,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lemon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-31 19:02+0400\n"
+"POT-Creation-Date: 2011-05-16 13:40+0400\n"
 "PO-Revision-Date: 2011-03-31 19:02+0400\n"
 "Last-Translator: Mike Yumatov <mike@yumatov.org>\n"
 "Language-Team: Russian <lemon@trilandev.com>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: admin.py:29 admin.py:33
 msgid "Add sitemap.xml item"
@@ -39,43 +39,43 @@ msgstr[0] "%(count)d запись в файле sitemap.xml"
 msgstr[1] "%(count)d записи в файле sitemap.xml"
 msgstr[2] "%(count)d записей в файле sitemap.xml"
 
-#: models.py:13
+#: models.py:16
 msgid "never"
 msgstr "никогда"
 
-#: models.py:14
+#: models.py:17
 msgid "always"
 msgstr "всегда"
 
-#: models.py:15
+#: models.py:18
 msgid "hourly"
 msgstr "ежечасно"
 
-#: models.py:16
+#: models.py:19
 msgid "daily"
 msgstr "ежедневно"
 
-#: models.py:17
+#: models.py:20
 msgid "weekly"
 msgstr "еженедельно"
 
-#: models.py:18
+#: models.py:21
 msgid "monthly"
 msgstr "ежемесячно"
 
-#: models.py:19
+#: models.py:22
 msgid "yearly"
 msgstr "ежегодно"
 
-#: models.py:25
+#: models.py:28
 msgid "URL path"
 msgstr "URL-путь"
 
-#: models.py:27
+#: models.py:30
 msgid "page priority"
 msgstr "приоритет страницы"
 
-#: models.py:28
+#: models.py:31
 msgid ""
 "The priority of this URL relative to other URLs on your site. Valid values "
 "range from 0.0 to 1.0. This value does not affect how your pages are "
@@ -92,11 +92,11 @@ msgstr ""
 "<a href=\"http://www.sitemaps.org/ru/protocol.php\" target=\"_blank"
 "\">описании протокола Sitemap</a>."
 
-#: models.py:37
+#: models.py:40
 msgid "page change frequency"
 msgstr "частота изменения страницы"
 
-#: models.py:39
+#: models.py:42
 msgid ""
 "How frequently the page is likely to change. This value provides general "
 "information to search engines and may not correlate exactly to how often "
@@ -115,26 +115,38 @@ msgstr ""
 "информацию можно прочитать в <a href=\"http://www.sitemaps.org/ru/protocol."
 "php\" target=\"_blank\">описании протокола Sitemap</a>."
 
-#: models.py:50
+#: models.py:53
 msgid "last modification date"
 msgstr "дата последнего изменения"
 
-#: models.py:53
+#: models.py:56
 msgid "enabled"
 msgstr "включено"
 
-#: models.py:54
+#: models.py:57
 msgid "If disabled, this item will not shown in sitemap.xml."
 msgstr "Если выключено, эта запись не будет показана в файле sitemap.xml."
 
-#: models.py:56
+#: models.py:62
 msgid "sites"
 msgstr "сайты"
 
-#: models.py:64
+#: models.py:70
 msgid "sitemap.xml item"
 msgstr "Запись в файле sitemap.xml"
 
-#: models.py:65
+#: models.py:71
 msgid "sitemap.xml items"
 msgstr "Записи в файле sitemap.xml"
+
+#: models.py:115
+msgid "Can add sitemap.xml item"
+msgstr "Можно добавлять записи в файл sitemap.xml"
+
+#: models.py:116
+msgid "Can change sitemap.xml item"
+msgstr "Можно изменять записи в файле sitemap.xml"
+
+#: models.py:117
+msgid "Can delete sitemap.xml item"
+msgstr "Можно удалять записи из файла sitemap.xml"

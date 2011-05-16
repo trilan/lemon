@@ -29,3 +29,8 @@ class Page(Publication):
 
     def get_absolute_url(self):
         return self.url_path
+
+
+_(u'Can add text page')
+_(u'Can change text page')
+_(u'Can delete text page')

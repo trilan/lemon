@@ -110,3 +110,8 @@ class Item(models.Model):
             self.sites.clear()
             if sites:
                 self.sites.add(*sites)
+
+
+_(u'Can add sitemap.xml item')
+_(u'Can change sitemap.xml item')
+_(u'Can delete sitemap.xml item')
