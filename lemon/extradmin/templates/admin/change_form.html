@@ -9,6 +9,11 @@
   {{ media }}
 {% endblock %}
 
+{% block breadcrumbs %}
+  <li>&rsaquo;<a href="../">{{ model_name_plural|capfirst }}</a></li>
+  <li>&rsaquo;<span>{{ title }}</span></li>
+{% endblock %}
+
 {% block content %}
   {% if errors %}
     <div class="errornote">

@@ -1,17 +1,24 @@
 {% extends "admin/base.html" %}
-{% load main_menu %}
+{% load i18n main_menu %}
+{% load url from future %}
 
 {% block title %}{{ title }} | Lemon CMF{% endblock %}
 
 {% block header %}
   <div id="header">
-    <a href="{% url admin:index %}" class="logo"></a>
+    <a href="{% url 'admin:index' %}" class="logo"></a>
     <div id="user-menu">
       <ul>
         <li>{% firstof user.first_name user.username %}</li>
-        <li><a href="{% url admin:logout %}">Выйти</a></li>
+        <li><a href="{% url 'admin:logout' %}">Выйти</a></li>
       </ul>
     </div>
     {% main_menu %}
   </div>
+  {% block breadcrumbs_block %}
+    <ul id="breadcrumbs" class="breadcrumbs clearfix">
+      <li><a href="{% url 'admin:index' %}">{% trans "Home" %}</a></li>
+      {% block breadcrumbs %}{% endblock %}
+    </ul>
+  {% endblock %}
 {% endblock %}

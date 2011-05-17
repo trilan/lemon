@@ -380,3 +380,26 @@ td img {
 #content-main div.module table tr.last th {
   border-bottom: none;
 }
+.breadcrumbs {
+  display: block;
+  margin: 10px 30px -10px 20px;
+  list-style-type: none;
+  color: #aaa;
+  font-size: 11px;
+}
+.breadcrumbs li {
+  margin-left: 5px;
+  display: block;
+  float: left;
+}
+.breadcrumbs span {
+  margin-left: 5px;
+}
+.breadcrumbs a {
+  margin-left: 5px;
+  color: #aaa;
+}
+.breadcrumbs a:hover {
+  color: #aaa;
+  text-decoration: underline;
+}
