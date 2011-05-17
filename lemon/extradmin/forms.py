@@ -9,6 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from lemon.extradmin.fields import ContentTypeChoiceField
 from lemon.extradmin.models import MenuItem
+from lemon.extradmin.settings import CONFIG
 
 
 class MenuItemForm(forms.ModelForm):
@@ -65,6 +66,11 @@ class GroupPermissionsForm(forms.Form):
         super(GroupPermissionsForm, self).__init__(*args, **kwargs)
         self.groups = Group.objects.all()
         self.permissions = Permission.objects.select_related('content_type')
+        for app_label, model in CONFIG['EXCLUDE_FROM_PERMISSIONS']:
+            self.permissions = self.permissions.exclude(
+                content_type__app_label = app_label,
+                content_type__model = model,
+            )
         for permission in self.permissions:
             for group in self.groups:
                 name = 'value_%s_%s' % (permission.pk, group.pk)
@@ -98,6 +104,14 @@ class PermissionChoiceIterator(ModelChoiceIterator):
 
 
 class PermissionMultipleChoiceField(forms.ModelMultipleChoiceField):
+
+    def __init__(self, queryset, *args, **kwargs):
+        for app_label, model in CONFIG['EXCLUDE_FROM_PERMISSIONS']:
+            queryset = queryset.exclude(
+                content_type__app_label = app_label,
+                content_type__model = model,
+            )
+        super(PermissionMultipleChoiceField, self).__init__(queryset, *args, **kwargs)
 
     def _get_choices(self):
         if hasattr(self, '_choices'):

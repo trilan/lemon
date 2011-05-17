@@ -5,9 +5,14 @@ from django.test import TestCase
 
 from lemon import extradmin
 from lemon.extradmin import settings
-from lemon.extradmin.forms import GroupPermissionsForm
+from lemon.extradmin.admin import GroupExtrAdmin
+from lemon.extradmin.forms import GroupPermissionsForm, PermissionMultipleChoiceField
 from lemon.extradmin.tests.admin import ArticleAdmin, CustomTextarea
 from lemon.extradmin.tests.models import Article
+from lemon.extradmin.widgets import PermissionSelectMultiple
+
+
+extradmin.autodiscover()
 
 
 class DefaultMarkupWidgetTestCase(TestCase):
@@ -109,5 +114,42 @@ class GroupPermissionsFormTestCase(TestCase):
         self.assertQuerysetEqual(
             self.managers.permissions.all(),
             [permission.pk],
+            lambda x: x.pk,
+        )
+
+
+class GroupAdminTestCase(TestCase):
+
+    def setUp(self):
+        self.old_EXCLUDE_FROM_PERMISSIONS = settings.CONFIG['EXCLUDE_FROM_PERMISSIONS']
+        settings.CONFIG['EXCLUDE_FROM_PERMISSIONS'] = (
+            ('contenttypes', 'contenttype'),
+        )
+
+        self.editors = Group.objects.create(pk=1, name='Editors')
+        self.managers = Group.objects.create(pk=2, name='Managers')
+
+        content_type = ContentType.objects.get_for_model(Group)
+        self.permissions = Permission.objects.filter(content_type=content_type)
+        self.managers.permissions.add(*self.permissions)
+
+        self.group_admin = GroupExtrAdmin(Group, extradmin.AdminSite())
+
+    def tearDown(self):
+        settings.CONFIG['EXCLUDE_FROM_PERMISSIONS'] = self.old_EXCLUDE_FROM_PERMISSIONS
+
+    def test_permissions_field(self):
+        form_class = self.group_admin.get_form(None)
+        field = form_class.base_fields['permissions']
+        self.assertIsInstance(field, PermissionMultipleChoiceField)
+        self.assertIsInstance(field.widget.widget, PermissionSelectMultiple)
+
+        queryset = Permission.objects.exclude(
+            content_type__app_label = 'contenttypes',
+            content_type__model = 'contenttype',
+        )
+        self.assertQuerysetEqual(
+            field.queryset.order_by('pk'),
+            [p.pk for p in queryset.order_by('pk')],
             lambda x: x.pk,
         )
