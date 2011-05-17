@@ -165,3 +165,15 @@ LOGGING = {
         },
     }
 }
+
+EXTRADMIN_CONFIG = {
+    'EXCLUDE_FROM_PERMISSIONS': (
+        ('admin', 'logentry'),
+        ('auth', 'message'),
+        ('auth', 'permission'),
+        ('contenttypes', 'contenttype'),
+        ('dashboard', 'dashboardstate'),
+        ('sessions', 'session'),
+        ('south', 'migrationhistory'),
+    ),
+}

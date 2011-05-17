@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lemon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-27 18:33+0400\n"
+"POT-Creation-Date: 2011-05-16 18:45+0400\n"
 "PO-Revision-Date: 2011-03-31 17:34+0400\n"
 "Last-Translator: Mike Yumatov <mike@yumatov.org>\n"
 "Language-Team: Russian <lemon@trilandev.com>\n"
@@ -15,23 +15,23 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: admin.py:35 admin.py:39
+#: admin.py:42 admin.py:46
 msgid "Add menu section"
 msgstr "Добавить раздел меню"
 
-#: admin.py:36
+#: admin.py:43
 msgid "Change menu section"
 msgstr "Изменить раздел меню"
 
-#: admin.py:37
+#: admin.py:44
 msgid "Choose menu section to change"
 msgstr "Выберите раздел меню для изменения"
 
-#: admin.py:38
+#: admin.py:45
 msgid "Choose menu section"
 msgstr "Выберите раздел меню"
 
-#: admin.py:41
+#: admin.py:48
 #, python-format
 msgid "%(count)d menu section"
 msgid_plural "%(count)d menu sections"
@@ -39,7 +39,7 @@ msgstr[0] "%(count)d раздел меню"
 msgstr[1] "%(count)d раздела меню"
 msgstr[2] "%(count)d разделов меню"
 
-#: admin.py:54
+#: admin.py:61
 msgid ""
 "First, enter a username and password. Then, you'll be able to edit more user "
 "options."
@@ -47,23 +47,23 @@ msgstr ""
 "Сначала введите имя пользователя и пароль. Затем вы сможете отредактировать "
 "больше информации о пользователе."
 
-#: admin.py:59 admin.py:63
+#: admin.py:66 admin.py:70
 msgid "Add user"
 msgstr "Добавить пользователя"
 
-#: admin.py:60
+#: admin.py:67
 msgid "Change user"
 msgstr "Изменить пользователя"
 
-#: admin.py:61
+#: admin.py:68
 msgid "Choose user to change"
 msgstr "Выберите пользователя для изменения"
 
-#: admin.py:62
+#: admin.py:69
 msgid "Choose user"
 msgstr "Выберите пользователя"
 
-#: admin.py:65
+#: admin.py:72
 #, python-format
 msgid "%(count)d user"
 msgid_plural "%(count)d users"
@@ -71,23 +71,23 @@ msgstr[0] "%(count)d пользователь"
 msgstr[1] "%(count)d пользователя"
 msgstr[2] "%(count)d пользователей"
 
-#: admin.py:72 admin.py:76
+#: admin.py:87 admin.py:91
 msgid "Add user group"
 msgstr "Добавить группу пользователей"
 
-#: admin.py:73
+#: admin.py:88
 msgid "Change user group"
 msgstr "Изменить группу пользователей"
 
-#: admin.py:74
+#: admin.py:89
 msgid "Choose user group to change"
 msgstr "Выберите группу пользователей для изменения"
 
-#: admin.py:75
+#: admin.py:90
 msgid "Choose user group"
 msgstr "Выберите группу пользователей"
 
-#: admin.py:78
+#: admin.py:93
 #, python-format
 msgid "%(count)d user group"
 msgid_plural "%(count)d user groups"
@@ -95,23 +95,31 @@ msgstr[0] "%(count)d группа пользователей"
 msgstr[1] "%(count)d группы пользователей"
 msgstr[2] "%(count)d групп пользоваталей"
 
-#: admin.py:85 admin.py:89
+#: admin.py:115
+msgid "Permissions was successfully saved."
+msgstr "Права успешно сохранены."
+
+#: admin.py:126 templates/admin/auth/group/permissions.html:15
+msgid "Groups permissions"
+msgstr "Права групп"
+
+#: admin.py:137 admin.py:141
 msgid "Add site"
 msgstr "Добавить сайт"
 
-#: admin.py:86
+#: admin.py:138
 msgid "Change site"
 msgstr "Изменить сайт"
 
-#: admin.py:87
+#: admin.py:139
 msgid "Choose site to change"
 msgstr "Выберите сайт для изменения"
 
-#: admin.py:88
+#: admin.py:140
 msgid "Choose site"
 msgstr "Выберите сайт"
 
-#: admin.py:91
+#: admin.py:143
 #, python-format
 msgid "%(count)d site"
 msgid_plural "%(count)d sites"
@@ -135,7 +143,7 @@ msgstr "Приложения"
 msgid "Simple navigation in admin through apps' models."
 msgstr "Простая навигация в панели управления по моделям приложений."
 
-#: forms.py:25 models.py:25
+#: forms.py:27 models.py:25
 msgid "content type"
 msgstr "тип содержимого"
 
@@ -192,17 +200,37 @@ msgstr[2] "%(count)d элементов"
 msgid "%s administration"
 msgstr "%s администрирование"
 
-#: sites.py:96
+#: sites.py:97
 msgid "Site administration"
 msgstr "Администрирование сайта"
 
-#: widgets.py:53
+#: widgets.py:36
+msgid "Date:"
+msgstr "Дата:"
+
+#: widgets.py:36
+msgid "Time:"
+msgstr "Время:"
+
+#: widgets.py:63
 msgid "Lookup"
 msgstr "Поиск"
 
-#: widgets.py:80
+#: widgets.py:90
 msgid "Add Another"
 msgstr "Добавить ещё"
+
+#: widgets.py:133 templatetags/extradmin.py:13
+msgid "can add"
+msgstr "можно добавлять"
+
+#: widgets.py:135 templatetags/extradmin.py:15
+msgid "can change"
+msgstr "можно изменять"
+
+#: widgets.py:137 templatetags/extradmin.py:17
+msgid "can delete"
+msgstr "можно удалять"
 
 #: templates/admin/404.html:4 templates/admin/404.html.py:8
 msgid "Page not found"
@@ -248,7 +276,7 @@ msgstr "Изменить"
 msgid "You don't have permission to edit anything."
 msgstr "У вас недостаточно прав для редактирования."
 
-#: templates/admin/change_form.html:19
+#: templates/admin/change_form.html:15
 #: templates/admin/auth/user/change_password.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
@@ -256,25 +284,27 @@ msgstr[0] "Пожалуйста, исправьте ошибку ниже."
 msgstr[1] "Пожалуйста, исправьте ошибку ниже."
 msgstr[2] "Пожалуйста, исправьте ошибку ниже."
 
-#: templates/admin/change_form.html:27
-#: templates/admin/edit_inline/stacked.html:10
+#: templates/admin/change_form.html:23
+#: templates/admin/edit_inline/stacked.html:16
 msgid "View on site"
 msgstr "Смотреть на сайте"
 
-#: templates/admin/change_list.html:26
+#: templates/admin/change_list.html:22
+#: templates/admin/auth/group/change_list.html:11
 #, python-format
 msgid "Add %(name)s"
 msgstr "Добавить %(name)s"
 
-#: templates/admin/change_list.html:44
+#: templates/admin/change_list.html:40
 msgid "Filter"
 msgstr "Фильтр"
 
-#: templates/admin/change_list.html:79 templates/admin/pagination.html:8
+#: templates/admin/change_list.html:75 templates/admin/pagination.html:8
 msgid "Show all"
 msgstr "Показать все"
 
-#: templates/admin/change_list.html:89 templates/admin/submit_line.html:3
+#: templates/admin/change_list.html:85 templates/admin/submit_line.html:3
+#: templates/admin/auth/group/permissions.html:56
 msgid "Save"
 msgstr "Сохранить"
 
@@ -382,6 +412,18 @@ msgstr "Сохранить и продолжить редактирование"
 msgid "Delete"
 msgstr "Удалить"
 
+#: templates/admin/auth/group/change_list.html:8
+msgid "Permissions"
+msgstr "Права"
+
+#: templates/admin/auth/group/permissions.html:17
+msgid "Groups"
+msgstr "Группы"
+
+#: templates/admin/auth/group/permissions.html:18
+msgid "Add group"
+msgstr "Добавить группу"
+
 #: templates/admin/auth/user/change_password.html:24
 #, python-format
 msgid "Enter a new password for the user <strong>%(username)s</strong>."
@@ -403,24 +445,20 @@ msgstr "Введите тот же пароль, что и выше, для по
 msgid "Change password"
 msgstr "Изменить пользователя"
 
-#: templates/admin/edit_inline/stacked.html:44
-#: templates/admin/edit_inline/tabular.html:73
+#: templates/admin/edit_inline/stacked.html:55
+#: templates/admin/edit_inline/tabular.html:76
 #, python-format
 msgid "Add another %(verbose_name)s"
 msgstr "Добавить еще один %(verbose_name)s"
 
-#: templates/admin/edit_inline/stacked.html:47
-#: templates/admin/edit_inline/tabular.html:76
+#: templates/admin/edit_inline/stacked.html:58
+#: templates/admin/edit_inline/tabular.html:79
 msgid "Remove"
 msgstr "Удалить"
 
-#: templates/admin/edit_inline/tabular.html:12
+#: templates/admin/edit_inline/tabular.html:14
 msgid "Delete?"
 msgstr "Удалить?"
-
-#: templates/extradmin/main_menu.html:14
-msgid "Fill main menu..."
-msgstr "Заполнить главное меню..."
 
 #: templates/extradmin/dashboard/apps.html:14
 #, python-format
