@@ -4,8 +4,8 @@
 {% block main-menu-status %}{% endblock %}
 {% block breadcrumbs_block %}{% endblock %}
 
+{% block content_title %}<h1>{% trans "Control Panel" %}</h1>{% endblock %}
 {% block content %}
-<h1>{% trans "Control Panel" %}</h1>
 	<ul class="tools">
 		<li><a href="{% url admin:dashboard:available_widgets %}">{% trans "Available Widgets" %}</a></li>
 	</ul>

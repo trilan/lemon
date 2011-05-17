@@ -21,7 +21,6 @@
       <ul class="errorlist">{% for error in adminform.form.non_field_errors %}<li>{{ error }}</li>{% endfor %}</ul>
     </div>
   {% endif %}
-  <h1>{{ title }}</h1>
   {% block tools %}
     {% if change %}{% if not is_popup %}{% if has_absolute_url %}
       <ul class="tools">
