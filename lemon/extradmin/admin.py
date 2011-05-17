@@ -1,8 +1,11 @@
 from django.conf.urls.defaults import patterns, url
 from django.contrib import admin
-from django.contrib.auth.admin import User, UserAdmin, Group, GroupAdmin
+from django.contrib.auth.admin import (
+    GroupAdmin as DjangoGroupAdmin, UserAdmin as DjangoUserAdmin)
+from django.contrib.auth.models import Group, User
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.sites.admin import Site, SiteAdmin
+from django.contrib.sites.admin import SiteAdmin as DjangoSiteAdmin
+from django.contrib.sites.models import Site
 from django.db import models
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
@@ -51,7 +54,7 @@ class MenuSectionAdmin(extradmin.ModelAdmin):
     inlines = [MenuItemInline]
 
 
-class UserExtrAdmin(extradmin.ModelAdmin, UserAdmin):
+class UserAdmin(extradmin.ModelAdmin, DjangoUserAdmin):
 
     add_fieldsets = (
         (None, {
@@ -77,11 +80,11 @@ class UserExtrAdmin(extradmin.ModelAdmin, UserAdmin):
             kwargs['form_class'] = PermissionMultipleChoiceField
             kwargs['widget'] = PermissionSelectMultiple
             kwargs['help_text'] = u''
-        return super(UserExtrAdmin, self).formfield_for_manytomany(
+        return super(UserAdmin, self).formfield_for_manytomany(
             db_field, request, **kwargs)
 
 
-class GroupExtrAdmin(extradmin.ModelAdmin, GroupAdmin):
+class GroupAdmin(extradmin.ModelAdmin, DjangoGroupAdmin):
 
     string_overrides = {
         'add_title': _(u'Add user group'),
@@ -98,7 +101,7 @@ class GroupExtrAdmin(extradmin.ModelAdmin, GroupAdmin):
             kwargs['form_class'] = PermissionMultipleChoiceField
             kwargs['widget'] = PermissionSelectMultiple
             kwargs['help_text'] = u''
-        return super(GroupExtrAdmin, self).formfield_for_manytomany(
+        return super(GroupAdmin, self).formfield_for_manytomany(
             db_field, request, **kwargs)
 
     def get_urls(self):
@@ -131,7 +134,7 @@ class GroupExtrAdmin(extradmin.ModelAdmin, GroupAdmin):
         )
 
 
-class SiteExtrAdmin(extradmin.ModelAdmin, SiteAdmin):
+class SiteAdmin(extradmin.ModelAdmin, DjangoSiteAdmin):
 
     string_overrides = {
         'add_title': _(u'Add site'),
@@ -145,8 +148,8 @@ class SiteExtrAdmin(extradmin.ModelAdmin, SiteAdmin):
 
 
 extradmin.site.register(MenuSection, MenuSectionAdmin)
-extradmin.site.register(User, UserExtrAdmin)
-extradmin.site.register(Group, GroupExtrAdmin)
-extradmin.site.register(Site, SiteExtrAdmin)
+extradmin.site.register(User, UserAdmin)
+extradmin.site.register(Group, GroupAdmin)
+extradmin.site.register(Site, SiteAdmin)
 extradmin.site.dashboard.register(AppsWidget)
 extradmin.site.dashboard.register(LogWidget)

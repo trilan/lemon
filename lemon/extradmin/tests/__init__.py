@@ -5,7 +5,7 @@ from django.test import TestCase
 
 from lemon import extradmin
 from lemon.extradmin import settings
-from lemon.extradmin.admin import GroupExtrAdmin
+from lemon.extradmin.admin import GroupAdmin
 from lemon.extradmin.forms import GroupPermissionsForm, PermissionMultipleChoiceField
 from lemon.extradmin.tests.admin import ArticleAdmin, CustomTextarea
 from lemon.extradmin.tests.models import Article
@@ -133,7 +133,7 @@ class GroupAdminTestCase(TestCase):
         self.permissions = Permission.objects.filter(content_type=content_type)
         self.managers.permissions.add(*self.permissions)
 
-        self.group_admin = GroupExtrAdmin(Group, extradmin.AdminSite())
+        self.group_admin = GroupAdmin(Group, extradmin.AdminSite())
 
     def tearDown(self):
         settings.CONFIG['EXCLUDE_FROM_PERMISSIONS'] = self.old_EXCLUDE_FROM_PERMISSIONS
