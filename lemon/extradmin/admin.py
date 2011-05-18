@@ -41,15 +41,6 @@ class MenuItemInline(extradmin.TabularInline):
 
 class MenuSectionAdmin(extradmin.ModelAdmin):
 
-    string_overrides = {
-        'add_title': _(u'Add menu section'),
-        'change_title': _(u'Change menu section'),
-        'changelist_title': _(u'Choose menu section to change'),
-        'changelist_popup_title': _(u'Choose menu section'),
-        'changelist_addlink_title': _(u'Add menu section'),
-        'changelist_paginator_description': lambda n: \
-            ungettext('%(count)d menu section', '%(count)d menu sections', n)
-    }
     tabs = True
     inlines = [MenuItemInline]
 
@@ -65,15 +56,6 @@ class UserAdmin(extradmin.ModelAdmin, DjangoUserAdmin):
                 u"Then, you'll be able to edit more user options.")}
         ),
     )
-    string_overrides = {
-        'add_title': _(u'Add user'),
-        'change_title': _(u'Change user'),
-        'changelist_title': _(u'Choose user to change'),
-        'changelist_popup_title': _(u'Choose user'),
-        'changelist_addlink_title': _(u'Add user'),
-        'changelist_paginator_description': lambda n: \
-            ungettext('%(count)d user', '%(count)d users', n)
-    }
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         if db_field.name == 'user_permissions':
@@ -85,16 +67,6 @@ class UserAdmin(extradmin.ModelAdmin, DjangoUserAdmin):
 
 
 class GroupAdmin(extradmin.ModelAdmin, DjangoGroupAdmin):
-
-    string_overrides = {
-        'add_title': _(u'Add user group'),
-        'change_title': _(u'Change user group'),
-        'changelist_title': _(u'Choose user group to change'),
-        'changelist_popup_title': _(u'Choose user group'),
-        'changelist_addlink_title': _(u'Add user group'),
-        'changelist_paginator_description': lambda n: \
-            ungettext('%(count)d user group', '%(count)d user groups', n)
-    }
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         if db_field.name == 'permissions':
@@ -135,16 +107,7 @@ class GroupAdmin(extradmin.ModelAdmin, DjangoGroupAdmin):
 
 
 class SiteAdmin(extradmin.ModelAdmin, DjangoSiteAdmin):
-
-    string_overrides = {
-        'add_title': _(u'Add site'),
-        'change_title': _(u'Change site'),
-        'changelist_title': _(u'Choose site to change'),
-        'changelist_popup_title': _(u'Choose site'),
-        'changelist_addlink_title': _(u'Add site'),
-        'changelist_paginator_description': lambda n: \
-            ungettext('%(count)d site', '%(count)d sites', n)
-    }
+    pass
 
 
 extradmin.site.register(MenuSection, MenuSectionAdmin)

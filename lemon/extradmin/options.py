@@ -98,7 +98,6 @@ class BaseModelAdmin(options.BaseModelAdmin):
 
 class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
 
-    string_overrides = {}
     tabs = False
     action_description_overrides = {}
 
@@ -212,39 +211,17 @@ class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
         return actions
 
     def add_view(self, request, form_url='', extra_context=None):
-        if extra_context is None:
-            extra_context = {'string_overrides': self.string_overrides}
-        elif 'string_overrides' not in extra_context:
-            extra_context['string_overrides'] = self.string_overrides
-        if 'add_title' in self.string_overrides and 'title' not in extra_context:
-            extra_context['title'] = self.string_overrides['add_title']
+        extra_context = extra_context or {}
         extra_context['model_name_plural'] = self.model._meta.verbose_name_plural
         return super(ModelAdmin, self).add_view(request, form_url, extra_context)
 
     def change_view(self, request, object_id, extra_context=None):
-        if extra_context is None:
-            extra_context = {'string_overrides': self.string_overrides}
-        elif 'string_overrides' not in extra_context:
-            extra_context['string_overrides'] = self.string_overrides
-        if 'change_title' in self.string_overrides and 'title' not in extra_context:
-            extra_context['title'] = self.string_overrides['change_title']
+        extra_context = extra_context or {}
         extra_context['model_name_plural'] = self.model._meta.verbose_name_plural
         return super(ModelAdmin, self).change_view(request, object_id, extra_context)
 
     def changelist_view(self, request, extra_context=None):
-        if extra_context is None:
-            extra_context = {'string_overrides': self.string_overrides}
-        elif 'string_overrides' not in extra_context:
-            extra_context['string_overrides'] = self.string_overrides
-        if 'changelist_title' in self.string_overrides and 'title' not in extra_context:
-            extra_context['title'] = self.string_overrides['changelist_title']
-        if 'changelist_paginator_description' in self.string_overrides and \
-           'changelist_paginator_description' not in extra_context:
-            extra_context['changelist_paginator_description'] = \
-                self.string_overrides['changelist_paginator_description']
-        else:
-            extra_context['changelist_paginator_description'] = lambda n: \
-                ungettext('%(count)d element', '%(count)d elements', n)
+        extra_context = extra_context or {}
         extra_context['model_name_plural'] = self.model._meta.verbose_name_plural
         return super(ModelAdmin, self).changelist_view(request, extra_context)
 

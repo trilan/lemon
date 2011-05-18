@@ -11,8 +11,8 @@
   <script src="{{ STATIC_URL }}extradmin/js/auth_permissions.js"></script>
 {% endblock %}
 
+{% block content_title %}<h1>{% trans "Groups permissions" %}</h1>{% endblock %}
 {% block content %}
-  <h1>{% trans "Groups permissions" %}</h1>
   <ul class="tools">
     <li><a href="{% url 'admin:auth_group_changelist' %}">{% trans 'Groups' %}</a></li>
     <li><a href="{% url 'admin:auth_group_add' %}">{% trans 'Add group' %}</a></li>

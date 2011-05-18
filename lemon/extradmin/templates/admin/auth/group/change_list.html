@@ -1,6 +1,11 @@
 {% extends "admin/change_list.html" %}
 {% load i18n %}
 
+{% block page_title %}{% if is_popup %}{% trans 'Select user group' %}{% else %}{% trans 'Select user group to change' %}{% endif %}{% endblock %}
+{% block content_title %}<h1>{% if is_popup %}{% trans 'Select group' %}{% else %}{% trans 'Select group to change' %}{% endif %}</h1>{% endblock %}
+{% block breadcrumbs_title %}{% trans 'User groups' %}{% endblock %}
+{% block paginator_description %}{% blocktrans count count=cl.result_count %}one group{% plural %}{{ count }} groups{% endblocktrans %}{% endblock %}
+
 {% block tools %}
   {% if perms.auth.change_permission or has_add_permission %}
     <ul class="tools">
@@ -8,7 +13,7 @@
         <li><a href="permissions/">{% trans 'Permissions' %}</a></li>
       {% endif %}
       {% if has_add_permission %}
-        <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">{% if string_overrides.changelist_addlink_title %}{{ string_overrides.changelist_addlink_title }}{% else %}{% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}{% endif %}</a></li>
+        <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">{% trans 'Add group' %}</a></li>
       {% endif %}
     </ul>
   {% endif %}

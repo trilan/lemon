@@ -10,8 +10,8 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-  <li>&rsaquo;<a href="../">{{ model_name_plural|capfirst }}</a></li>
-  <li>&rsaquo;<span>{{ title }}</span></li>
+<li>&rsaquo;<a href="../">{% block breadcrumbs_parent_title %}{{ model_name_plural|capfirst }}{% endblock %}</a></li>
+<li>&rsaquo;<span>{% block breadcrumbs_title %}{{ title }}{% endblock %}</span></li>
 {% endblock %}
 
 {% block content %}
@@ -21,7 +21,6 @@
       <ul class="errorlist">{% for error in adminform.form.non_field_errors %}<li>{{ error }}</li>{% endfor %}</ul>
     </div>
   {% endif %}
-  <h1>{{ title }}</h1>
   {% block tools %}
     {% if change %}{% if not is_popup %}{% if has_absolute_url %}
       <ul class="tools">
