@@ -207,7 +207,7 @@ td img {
 }
 #main ul.messagelist {
   display: block;
-  margin: 20px 30px 0;
+  margin: 5px 30px 0;
   padding: 10px 15px;
   color: #486a77;
   background: #f3f5f6;
@@ -220,7 +220,7 @@ td img {
   margin-left: 15px;
 }
 #main div.errornote {
-  margin: 20px 30px 0;
+  margin: 5px 30px 0;
   padding: 10px 15px;
   color: #a00;
   border: 1px solid #e67773;
