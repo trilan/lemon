@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lemon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-18 14:46+0400\n"
+"POT-Creation-Date: 2011-05-18 16:35+0400\n"
 "PO-Revision-Date: 2011-03-31 17:34+0400\n"
 "Last-Translator: Mike Yumatov <mike@yumatov.org>\n"
 "Language-Team: Russian <lemon@trilandev.com>\n"
@@ -27,7 +27,7 @@ msgstr ""
 msgid "Permissions was successfully saved."
 msgstr "Права успешно сохранены."
 
-#: admin.py:101 templates/admin/auth/group/permissions.html:14
+#: admin.py:101 templates/admin/auth/group/permissions.html:19
 msgid "Groups permissions"
 msgstr "Права групп"
 
@@ -203,7 +203,7 @@ msgid "Show all"
 msgstr "Показать все"
 
 #: templates/admin/change_list.html:96 templates/admin/submit_line.html:3
-#: templates/admin/auth/group/permissions.html:56
+#: templates/admin/auth/group/permissions.html:61
 msgid "Save"
 msgstr "Сохранить"
 
@@ -270,11 +270,11 @@ msgstr ""
 "Вы уверены, что хотите удалить %(objects_name)s? Все следующие объекты и "
 "связанные с ними элементы будут удалены:"
 
-#: templates/admin/index.html:7
+#: templates/admin/index.html:6
 msgid "Control Panel"
 msgstr "Панель управления"
 
-#: templates/admin/index.html:10
+#: templates/admin/index.html:9
 msgid "Available Widgets"
 msgstr "Доступные виджеты"
 
@@ -321,7 +321,7 @@ msgstr "Изменить группу пользователей"
 
 #: templates/admin/auth/group/change_form.html:5
 #: templates/admin/auth/group/change_list.html:16
-#: templates/admin/auth/group/permissions.html:18
+#: templates/admin/auth/group/permissions.html:23
 msgid "Add group"
 msgstr "Добавить группу"
 
@@ -359,10 +359,12 @@ msgstr[1] "%(count)s группа"
 msgstr[2] "%(count)s групп"
 
 #: templates/admin/auth/group/change_list.html:13
+#: templates/admin/auth/group/permissions.html:16
 msgid "Permissions"
 msgstr "Права"
 
-#: templates/admin/auth/group/permissions.html:17
+#: templates/admin/auth/group/permissions.html:15
+#: templates/admin/auth/group/permissions.html:22
 msgid "Groups"
 msgstr "Группы"
 
