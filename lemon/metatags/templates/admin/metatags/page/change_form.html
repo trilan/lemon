@@ -1,0 +1,7 @@
+{% extends "admin/change_form.html" %}
+{% load i18n %}
+
+{% block page_title %}{% if add %}{% trans 'Add meta tags for page' %}{% else %}{% trans 'Change meta tags for page' %}{% endif %}{% endblock %}
+{% block content_title %}<h1>{% if add %}{% trans 'Add meta tags for page' %}{% else %}{% trans 'Change meta tags for page' %}{% endif %}</h1>{% endblock %}
+{% block breadcrumbs_title %}{% if add %}{% trans 'Add meta tags for page' %}{% else %}{% trans 'Change meta tags for page' %}{% endif %}{% endblock %}
+{% block breadcrumbs_parent_title %}{% trans 'Meta tags' %}{% endblock %}

@@ -22,15 +22,6 @@ class PageAdmin(PublicationAdmin):
     list_display = ('url_path', 'title', 'author_name', 'language', 'enabled')
     list_display_links = ('title',)
     list_filter = ('enabled', 'language', 'sites')
-    string_overrides = {
-        'add_title': _(u'Add page'),
-        'change_title': _(u'Change page'),
-        'changelist_title': _(u'Choose page to change'),
-        'changelist_popup_title': _(u'Choose page'),
-        'changelist_addlink_title': _(u'Add page'),
-        'changelist_paginator_description': lambda n: \
-            ungettext(u'%(count)d page', u'%(count)d pages', n)
-    }
     tabs = True
 
 

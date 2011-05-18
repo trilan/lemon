@@ -10,8 +10,8 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-  <li>&rsaquo;<a href="../">{{ model_name_plural|capfirst }}</a></li>
-  <li>&rsaquo;<span>{{ title }}</span></li>
+<li>&rsaquo;<a href="../">{% block breadcrumbs_parent_title %}{{ model_name_plural|capfirst }}{% endblock %}</a></li>
+<li>&rsaquo;<span>{% block breadcrumbs_title %}{{ title }}{% endblock %}</span></li>
 {% endblock %}
 
 {% block content %}

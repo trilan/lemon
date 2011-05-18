@@ -25,16 +25,6 @@ class ItemInline(generic.GenericStackedInline):
 class ItemAdmin(extradmin.ModelAdmin):
 
     list_display = ('url_path', 'changefreq', 'language', 'enabled')
-    string_overrides = {
-        'add_title': _(u'Add sitemap.xml item'),
-        'change_title': _(u'Change sitemap.xml item'),
-        'changelist_title': _(u'Choose sitemap.xml item to change'),
-        'changelist_popup_title': _(u'Choose sitemap.xml item'),
-        'changelist_addlink_title': _(u'Add sitemap.xml item'),
-        'changelist_paginator_description':
-            lambda n: ungettext(u'%(count)d sitemap.xml item',
-                                u'%(count)d sitemap.xml items', n)
-    }
 
 
 extradmin.site.register(Item, ItemAdmin)

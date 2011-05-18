@@ -14,14 +14,14 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-  <li>&rsaquo;<span>{{ model_name_plural|capfirst }}</span></li>
+<li>&rsaquo;<span>{% block breadcrumbs_title %}{{ model_name_plural|capfirst }}{% endblock %}</span></li>
 {% endblock %}
 
 {% block content %}
 {% block tools %}
 	{% if has_add_permission %}
 		<ul class="tools">
-			<li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">{% if string_overrides.changelist_addlink_title %}{{ string_overrides.changelist_addlink_title }}{% else %}{% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}{% endif %}</a></li>
+      <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">{% block addlink_title %}{% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}{% endblock %}</a></li>
 		</ul>
 	{% endif %}
 {% endblock %}
@@ -71,7 +71,16 @@
 									{% endfor %}
 								{% endwith %}
 							{% endif %}
-							<span>{% lemon_paginator_description %}</span>
+              <span>
+                {% block paginator_description %}
+                  {{ cl.result_count }}
+                  {% if cl.result_count == 1 %}
+                    {{ cl.opts.verbose_name }}
+                  {% else %}
+                    {{ cl.opts.verbose_name_plural }}
+                  {% endif %}
+                {% endblock %}
+              </span>
 							{% with cl|show_all_url as show_all_url %}
 								{% if show_all_url %}
 									<span class="showall"><a href="{{ show_all_url }}">{% trans 'Show all' %}</a></span>

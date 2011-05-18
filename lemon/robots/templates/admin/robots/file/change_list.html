@@ -1,0 +1,8 @@
+{% extends "admin/change_list.html" %}
+{% load i18n %}
+
+{% block page_title %}{% if is_popup %}{% trans 'Select robots.txt file' %}{% else %}{% trans 'Select robots.txt file to edit' %}{% endif %}{% endblock %}
+{% block content_title %}<h1>{% if is_popup %}{% trans 'Select file' %}{% else %}{% trans 'Select file to change' %}{% endif %}</h1>{% endblock %}
+{% block addlink_title %}{% trans 'Create file' %}{% endblock %}
+{% block paginator_description %}{% blocktrans count count=cl.result_count %}one file{% plural %}{{ count }} files{% endblocktrans %}{% endblock %}
+{% block breadcrumbs_title %}{% trans 'robots.txt' %}{% endblock %}

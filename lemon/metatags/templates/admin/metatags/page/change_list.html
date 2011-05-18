@@ -1,0 +1,8 @@
+{% extends "admin/change_list.html" %}
+{% load i18n %}
+
+{% block page_title %}{% if is_popup %}{% trans 'Select page' %}{% else %}{% trans 'Select page to change' %}{% endif %}{% endblock %}
+{% block content_title %}<h1>{% if is_popup %}{% trans 'Select page' %}{% else %}{% trans 'Select page to change' %}{% endif %}</h1>{% endblock %}
+{% block addlink_title %}{% trans 'Add meta tags for page' %}{% endblock %}
+{% block breadcrumbs_title %}{% trans 'Meta tags' %}{% endblock %}
+{% block paginator_description %}{% blocktrans count count=cl.result_count %}one page{% plural %}{{ count }} pages{% endblocktrans %}{% endblock %}

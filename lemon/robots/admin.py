@@ -10,16 +10,6 @@ class FileAdmin(extradmin.ModelAdmin):
 
     ordering = ['site__domain']
     list_display = ['file_name', 'site_name']
-    string_overrides = {
-        'add_title': _(u'Add robots.txt file'),
-        'change_title': _(u'Change robots.txt file'),
-        'changelist_title': _(u'Choose robots.txt file to change'),
-        'changelist_popup_title': _(u'Choose robots.txt file'),
-        'changelist_addlink_title': _(u'Add robots.txt file'),
-        'changelist_paginator_description':
-            lambda n: ungettext('%(count)d robots.txt file',
-                                '%(count)d robots.txt files', n)
-    }
 
     def file_name(self, obj):
         return unicode(obj)

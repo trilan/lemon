@@ -27,15 +27,6 @@ class PageAdmin(extradmin.ModelAdmin):
     formfield_overrides = {
         models.TextField: {'widget': AdminSmallTextareaWidget},
     }
-    string_overrides = {
-        'add_title': _(u'Add page'),
-        'change_title': _(u'Change page'),
-        'changelist_title': _(u'Choose page to change'),
-        'changelist_popup_title': _(u'Choose page'),
-        'changelist_addlink_title': _(u'Add page'),
-        'changelist_paginator_description': lambda n: \
-            ungettext('%(count)d page', '%(count)d pages', n),
-    }
 
 
 extradmin.site.register(Page, PageAdmin)
