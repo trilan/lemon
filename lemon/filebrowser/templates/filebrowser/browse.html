@@ -1,5 +1,6 @@
 {% extends "admin/base_site.html" %}
 {% load i18n filebrowser_extras %}
+{% load url from future %}
 
 {% block extrastyle %}{{ block.super }}
   <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/changelist.css">
@@ -7,7 +8,7 @@
 {% endblock %}
 
 {% block extrahead %}{{ block.super }}
-  <script src="{% url admin:filebrowser:jsi18n %}"></script>
+  <script src="{% url 'admin:filebrowser:jsi18n' %}"></script>
   <script>
     var path_to_yes_icon = '{{ STATIC_URL }}extradmin/images/yes.gif';
     var path_to_no_icon = '{{ STATIC_URL }}extradmin/images/no.gif';
@@ -27,8 +28,8 @@
   <h1>{{ title }}</h1>
   {% block tools %}
     <ul class="tools">
-      <li><a href="{% url admin:filebrowser:mkdir %}{% query_string 'p' %}">{% trans "Create Folder" %}</a></li>
-      <li><a href="{% url admin:filebrowser:upload %}{% query_string 'p' %}">{% trans "Upload File" %}</a></li>
+      <li><a href="{% url 'admin:filebrowser:mkdir' %}{% query_string 'p' %}">{% trans "Create Folder" %}</a></li>
+      <li><a href="{% url 'admin:filebrowser:upload' %}{% query_string 'p' %}">{% trans "Upload File" %}</a></li>
     </ul>
   {% endblock %}
   <div class="changelist">

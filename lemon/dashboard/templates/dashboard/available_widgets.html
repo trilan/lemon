@@ -1,5 +1,6 @@
 {% extends "admin/base_site.html" %}
 {% load i18n %}
+{% load url from future %}
 
 {% block page_title %}{% trans "Available Widgets" %}{% endblock %}
 
@@ -37,7 +38,7 @@
         };
         console.log(JSON.stringify(name));
         $.ajax({
-          url: "{% url admin:dashboard:add_widget %}",
+          url: "{% url 'admin:dashboard:add_widget' %}",
           type: "POST",
           contentType: "application/json; charset=utf-8",
           data: JSON.stringify(name),
@@ -49,7 +50,7 @@
   </script>
   <h1>{% trans "Available Widgets" %}</h1>
   <ul class="tools">
-    <li><a href="{% url admin:index %}">{% trans "Control Panel" %}</a></li>
+    <li><a href="{% url 'admin:index' %}">{% trans "Control Panel" %}</a></li>
   </ul>
   {% if object_list %}
     {% for name, object in object_list.items %}

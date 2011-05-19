@@ -1,5 +1,6 @@
 {% extends "admin/base_site.html" %}
 {% load i18n filebrowser_extras %}
+{% load url from future %}
 
 {% block extrastyle %}{{ block.super }}
   <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/changeform.css">
@@ -7,8 +8,8 @@
 {% endblock %}
 
 {% block navigation %}
-  <li class="second"><a href="{% url admin:index %}">{% trans "Main Page" %}</a></li>
-  <li class="last"><a href="{% url admin:filebrowser:browse %}{% query_string 'p' %}">{% trans "Return To Folder" %}</a></li>
+  <li class="second"><a href="{% url 'admin:index' %}">{% trans "Main Page" %}</a></li>
+  <li class="last"><a href="{% url 'admin:filebrowser:browse' %}{% query_string 'p' %}">{% trans "Return To Folder" %}</a></li>
 {% endblock %}
 
 {% block content %}

@@ -1,4 +1,5 @@
 {% load i18n filebrowser_extras %}
+{% load url from future %}
 
 <ul id="filebrowser-breadcrumbs" class="clearfix">
   {% if breadcrumbs or breadcrumbs_title %}
@@ -8,10 +9,10 @@
   {% endif %}
   {% for item in breadcrumbs %}
     {% if not forloop.last %}
-      <li><a href="{% url admin:filebrowser:browse %}{% query_string 'dir,filename,p' %}&amp;dir={{ item.1 }}">{{ item.0 }}</a> &rsaquo;&nbsp;</li>
+      <li><a href="{% url 'admin:filebrowser:browse' %}{% query_string 'dir,filename,p' %}&amp;dir={{ item.1 }}">{{ item.0 }}</a> &rsaquo;&nbsp;</li>
     {% else %}
       {% if breadcrumbs_title %}
-        <li><a href="{% url admin:filebrowser:browse %}{% query_string 'dir,filename,p' %}&amp;dir={{ item.1 }}">{{ item.0 }}</a> &rsaquo;&nbsp;</li>
+        <li><a href="{% url 'admin:filebrowser:browse' %}{% query_string 'dir,filename,p' %}&amp;dir={{ item.1 }}">{{ item.0 }}</a> &rsaquo;&nbsp;</li>
       {% else %}
         <li>{{ item.0 }}</li>
       {% endif %}

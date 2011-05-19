@@ -1,3 +1,4 @@
+{% load url from future %}
 <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/dashboard.css">
 <script src="{{ STATIC_URL }}extradmin/js/libs/json2.js"></script>
 <script>
@@ -8,7 +9,7 @@
         }).get()];
     }).get();
     $.ajax({
-      url: "{% url admin:dashboard:store %}",
+      url: "{% url 'admin:dashboard:store' %}",
       type: "POST",
       contentType: "application/json; charset=utf-8",
       data: JSON.stringify({columns: columns})
@@ -27,7 +28,7 @@
       var container = $(this).parents(".widget_container");
       var widget = container.attr("widget");
       $.ajax({
-        url: "{% url admin:dashboard:delete_widget %}",
+        url: "{% url 'admin:dashboard:delete_widget' %}",
         type: "POST",
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(widget),
