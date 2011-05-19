@@ -9,4 +9,4 @@
     {% endifequal %}
   {% endfor %}
 {% endif %}
-<span>{% blocktrans count results_var.results_total as counter %}{{ counter }} item{% plural %}{{ counter }} items{% endblocktrans %}</span>
+<span>{% blocktrans count counter=results_var.results_total %}{{ counter }} item{% plural %}{{ counter }} items{% endblocktrans %}</span>

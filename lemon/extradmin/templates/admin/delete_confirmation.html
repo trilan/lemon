@@ -6,17 +6,17 @@
   {% if perms_lacking or protected %}
     <div id="delete-confirmation" class="delete-confirmation">
       {% if perms_lacking %}
-        <p>{% blocktrans with object as escaped_object %}Deleting the {{ object_name }} '{{ escaped_object }}' would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:{% endblocktrans %}</p>
+        <p>{% blocktrans with escaped_object=object %}Deleting the {{ object_name }} '{{ escaped_object }}' would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:{% endblocktrans %}</p>
         <ul>{% for obj in perms_lacking %}<li>{{ obj }}</li>{% endfor %}</ul>
       {% endif %}
       {% if protected %}
-        <p>{% blocktrans with object as escaped_object %}Deleting the {{ object_name }} '{{ escaped_object }}' would require deleting the following protected related objects:{% endblocktrans %}</p>
+        <p>{% blocktrans with escaped_object=object %}Deleting the {{ object_name }} '{{ escaped_object }}' would require deleting the following protected related objects:{% endblocktrans %}</p>
         <ul>{% for obj in protected %}<li>{{ obj }}</li>{% endfor %}</ul>
       {% endif %}
     </div>
   {% else %}
     <div id="delete-confirmation" class="delete-confirmation">
-      <p>{% blocktrans with object as escaped_object %}Are you sure you want to delete the {{ object_name }} "{{ escaped_object }}"? All of the following related items will be deleted:{% endblocktrans %}</p>
+      <p>{% blocktrans with escaped_object=object %}Are you sure you want to delete the {{ object_name }} "{{ escaped_object }}"? All of the following related items will be deleted:{% endblocktrans %}</p>
       <ul>{{ deleted_objects|unordered_list }}</ul>
     </div>
     <div id="main-buttons" class="main-buttons">
