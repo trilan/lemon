@@ -53,7 +53,7 @@
       <div id="changelist-pager" class="changelist-pager"><div>
         {% block pagination %}
           {% if cl|pagination_required %}
-            {% with cl.page_num|add:1 as number %}
+            {% with number=cl.page_num|add:1 %}
               {% for p in cl.paginator|intellipages:number %}
                 {% if p %}
                   {% if p == number %}
@@ -77,7 +77,7 @@
               {% endif %}
             {% endblock %}
           </span>
-          {% with cl|show_all_url as show_all_url %}
+          {% with show_all_url=cl|show_all_url %}
             {% if show_all_url %}
               <span class="showall"><a href="{{ show_all_url }}">{% trans 'Show all' %}</a></span>
             {% endif %}
