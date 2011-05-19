@@ -58,7 +58,7 @@ class ForeignKeyRawIdWidget(widgets.ForeignKeyRawIdWidget):
                 (related_url, url, name))
         output.append(
             '<img src="%simg/admin/selector-search.gif" width="16"' \
-            ' height="16" alt="%s" /></a>' % \
+            ' height="16" alt="%s"></a>' % \
                 (settings.ADMIN_MEDIA_PREFIX, _('Lookup')))
         if value:
             output.append(self.label_for_value(value))
@@ -85,7 +85,7 @@ class RelatedFieldWidgetWrapper(widgets.RelatedFieldWidgetWrapper):
                     (related_url, name))
             output.append(
                 u'<img src="%simg/admin/icon_addlink.gif" width="10" ' \
-                u' height="10" alt="%s"/></a>' % \
+                u' height="10" alt="%s"></a>' % \
                     (settings.ADMIN_MEDIA_PREFIX, _('Add Another')))
         return mark_safe(u''.join(output))
 

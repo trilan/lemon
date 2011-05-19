@@ -1,22 +1,24 @@
 {% load i18n %}
-<style type="text/css">
-	#{{ id }} .content { padding: 24px 24px 0; line-height: 1.4em; }
-	#{{ id }} .available_apps { width: 48%; }
-	#{{ id }} #available_apps_left { float: left; }
-	#{{ id }} #available_apps_right { float: right; }
-	#{{ id }} .app { padding-bottom: 24px; }
-	#{{ id }} h2 { font-size: 16px; border-bottom: dotted 1px #98ABB2; margin-bottom: 6px; }
+
+<style>
+  #{{ id }} .content { padding: 24px 24px 0; line-height: 1.4em; }
+  #{{ id }} .available_apps { width: 48%; }
+  #{{ id }} #available_apps_left { float: left; }
+  #{{ id }} #available_apps_right { float: right; }
+  #{{ id }} .app { padding-bottom: 24px; }
+  #{{ id }} h2 { font-size: 16px; border-bottom: dotted 1px #98ABB2; margin-bottom: 6px; }
 </style>
+
 <div class="content clearfix">
-	{% for app in app_list %}
-		{% if forloop.first %}<ul id="available_apps_left" class="available_apps">{% endif %}
-		<li class="app">
-			<h2>{% blocktrans with app.name as name %}{{ name }}{% endblocktrans %}</h2>
-			{% for model in app.models %}
-				{% if model.perms.change %}<a href="{{ model.admin_url }}">{{ model.name }}</a>{% else %}{{ model.name }}{% endif %}{% if not forloop.last %},{% endif %}
-			{% endfor %}
-		</li>
-		{% if forloop.counter == forloop.revcounter or forloop.counter == forloop.revcounter0 and not forloop.last %}</ul><ul id="available_apps_right" class="available_apps">{% endif %}
-		{% if forloop.last %}</ul>{% endif %}
-	{% endfor %}
+  {% for app in app_list %}
+    {% if forloop.first %}<ul id="available_apps_left" class="available_apps">{% endif %}
+    <li class="app">
+      <h2>{% blocktrans with app.name as name %}{{ name }}{% endblocktrans %}</h2>
+      {% for model in app.models %}
+        {% if model.perms.change %}<a href="{{ model.admin_url }}">{{ model.name }}</a>{% else %}{{ model.name }}{% endif %}{% if not forloop.last %},{% endif %}
+      {% endfor %}
+    </li>
+    {% if forloop.counter == forloop.revcounter or forloop.counter == forloop.revcounter0 and not forloop.last %}</ul><ul id="available_apps_right" class="available_apps">{% endif %}
+    {% if forloop.last %}</ul>{% endif %}
+  {% endfor %}
 </div>

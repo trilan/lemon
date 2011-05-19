@@ -2,19 +2,19 @@
   {% if fieldset.name %}<h3>{{ fieldset.name }}</h3>{% endif %}
   {% if fieldset.description %}<div class="description">{{ fieldset.description|safe }}</div>{% endif %}
   <div class="content">
-  {% for line in fieldset %}
-  <div class="field clearfix{% for field in line %} {{ field.field.name }}-field{% endfor %}{% if forloop.last %} last{% endif %}">
-		{% for field in line %}
-			{{ field.label_tag }}
-			{% if field.is_readonly %}
-				<p>{{ field.contents }}</p>
-			{% else %}
-				{{ field.field }}
-				{{ field.field.errors }}
-			{% endif %}		
-			{% if field.field.field.help_text %}<p class="help">{{ field.field.field.help_text|safe }}</p>{% endif %}
-      {% endfor %}
-  </div>
-  {% endfor %}
+    {% for line in fieldset %}
+      <div class="field clearfix{% for field in line %} {{ field.field.name }}-field{% endfor %}{% if forloop.last %} last{% endif %}">
+        {% for field in line %}
+          {{ field.label_tag }}
+          {% if field.is_readonly %}
+            <p>{{ field.contents }}</p>
+          {% else %}
+            {{ field.field }}
+            {{ field.field.errors }}
+          {% endif %}
+          {% if field.field.field.help_text %}<p class="help">{{ field.field.field.help_text|safe }}</p>{% endif %}
+        {% endfor %}
+      </div>
+    {% endfor %}
   </div>
 </fieldset>

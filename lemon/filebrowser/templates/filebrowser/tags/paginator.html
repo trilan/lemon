@@ -1,12 +1,12 @@
 {% load i18n filebrowser_extras %}
 
 {% if page_range %}
-{% for i in page_range %}
+  {% for i in page_range %}
     {% ifequal i "." %}
-	   <span>...</span>
-	{% else %}
-	   <a{% ifequal i page_num %} class="active"{% endifequal %} href="{% query_string 'p' %}&amp;p={{ i|add:"1" }}">{{ i|add:"1" }}</a>
+      <span>...</span>
+    {% else %}
+      <a{% ifequal i page_num %} class="active"{% endifequal %} href="{% query_string 'p' %}&amp;p={{ i|add:"1" }}">{{ i|add:"1" }}</a>
     {% endifequal %}
-{% endfor %}
+  {% endfor %}
 {% endif %}
 <span>{% blocktrans count results_var.results_total as counter %}{{ counter }} item{% plural %}{{ counter }} items{% endblocktrans %}</span>

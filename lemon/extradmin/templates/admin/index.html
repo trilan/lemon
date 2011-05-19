@@ -5,8 +5,8 @@
 
 {% block content_title %}<h1>{% trans "Control Panel" %}</h1>{% endblock %}
 {% block content %}
-	<ul class="tools">
-		<li><a href="{% url admin:dashboard:available_widgets %}">{% trans "Available Widgets" %}</a></li>
-	</ul>
-	{{ dashboard|safe }}
+  <ul class="tools">
+    <li><a href="{% url admin:dashboard:available_widgets %}">{% trans "Available Widgets" %}</a></li>
+  </ul>
+  {{ dashboard|safe }}
 {% endblock %}

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {% spaceless %}
-{% for object in object_list %}
-	<url>
-		<loc>http://{{ site.domain }}{{ object.url_path }}</loc>
-		{% if object.lastmod %}<lastmod>{{ object.lastmod|date:"Y-m-d" }}</lastmod>{% endif %}
-		{% if object.changefreq %}<changefreq>{{ object.changefreq }}</changefreq>{% endif %}
-		{% if object.priority %}<priority>{{ object.priority }}</priority>{% endif %}
-	</url>
-{% endfor %}
+    {% for object in object_list %}
+      <url>
+        <loc>http://{{ site.domain }}{{ object.url_path }}</loc>
+        {% if object.lastmod %}<lastmod>{{ object.lastmod|date:"Y-m-d" }}</lastmod>{% endif %}
+        {% if object.changefreq %}<changefreq>{{ object.changefreq }}</changefreq>{% endif %}
+        {% if object.priority %}<priority>{{ object.priority }}</priority>{% endif %}
+      </url>
+    {% endfor %}
 {% endspaceless %}
 </urlset>

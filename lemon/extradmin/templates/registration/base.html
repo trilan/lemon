@@ -1,30 +1,30 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}">
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
-	<title>{% block page_title %}{% endblock %}</title>
-	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/reset.css" />
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/default.css" />
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/base.css" />
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/jquery.ui.css" />
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/changeform.css" />
-	<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/ie.css" /><![endif]-->
-	<script src="{{ STATIC_URL }}extradmin/js/jquery.js" type="text/javascript" charset="utf-8"></script>
-	<script src="{{ STATIC_URL }}extradmin/js/jquery.ui.js" type="text/javascript" charset="utf-8"></script>
-	{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+  <title>{% block page_title %}{% endblock %}</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/reset.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/default.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/base.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/jquery.ui.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/changeform.css">
+  <!--[if lte IE 7]><link rel="stylesheet" href="{{ STATIC_URL }}extradmin/css/ie.css"><![endif]-->
+  <script src="{{ STATIC_URL }}extradmin/js/jquery.js"></script>
+  <script src="{{ STATIC_URL }}extradmin/js/jquery.ui.js"></script>
+  {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
 </head>
 <body>
-	<div id="container" class="{% block containerclass %}{% endblock %}">
-	{% block container %}
-		<div id="header"><a href="/" id="logo"></a></div>
-		<div id="main">{% block content %}{% endblock %}</div>
-		<div id="footer">
-			{% block footer %}
-				<a id="footer-logo" href="http://www.trilan.ru/" class="external"></a>
-				<div id="copyright">CMF <strong>Lemon</strong> разработана в компании <a href="http://www.trilan.ru/" class="external">«ТриЛан»</a> с использованием <a href="http://djangoproject.com/" class="external">Django</a>.</div>
-			{% endblock %}
-		</div>
-	{% endblock %}
-	</div>
+  <div id="container" class="{% block containerclass %}{% endblock %}">
+  {% block container %}
+    <div id="header"><a href="/" id="logo"></a></div>
+    <div id="main">{% block content %}{% endblock %}</div>
+    <div id="footer">
+      {% block footer %}
+        <a id="footer-logo" href="http://www.trilan.ru/" class="external"></a>
+        <div id="copyright">CMF <strong>Lemon</strong> разработана в компании <a href="http://www.trilan.ru/" class="external">«ТриЛан»</a> с использованием <a href="http://djangoproject.com/" class="external">Django</a>.</div>
+      {% endblock %}
+    </div>
+  {% endblock %}
+  </div>
 </body>
 </html>

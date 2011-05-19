@@ -3,15 +3,15 @@
 {% load url from future %}
 
 {% block extrahead %}{{ block.super }}
-  <script src="{{ STATIC_URL }}extradmin/js/jquery.changeform.js" type="text/javascript" charset="utf-8"></script>
+  <script src="{{ STATIC_URL }}extradmin/js/jquery.changeform.js"></script>
   {% url 'admin:jsi18n' as jsi18nurl %}
-  <script src="{{ jsi18nurl|default:'../../../jsi18n/' }}" type="text/javascript" charset="utf-8"></script>
+  <script src="{{ jsi18nurl|default:'../../../jsi18n/' }}"></script>
   {{ media }}
 {% endblock %}
 
 {% block breadcrumbs %}
-<li>&rsaquo;<a href="../">{% block breadcrumbs_parent_title %}{{ model_name_plural|capfirst }}{% endblock %}</a></li>
-<li>&rsaquo;<span>{% block breadcrumbs_title %}{{ title }}{% endblock %}</span></li>
+  <li>&rsaquo;<a href="../">{% block breadcrumbs_parent_title %}{{ model_name_plural|capfirst }}{% endblock %}</a></li>
+  <li>&rsaquo;<span>{% block breadcrumbs_title %}{{ title }}{% endblock %}</span></li>
 {% endblock %}
 
 {% block content %}
@@ -31,7 +31,7 @@
   <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}
     {% block form_top %}{% endblock %}
     <div>
-      {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
+      {% if is_popup %}<input type="hidden" name="_popup" value="1">{% endif %}
       <div id="tabs" class="tabs">
         {% if tabs %}
           <ul style="display:none;">
