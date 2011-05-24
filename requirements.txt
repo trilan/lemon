@@ -1,3 +1,6 @@
 Django
 South
+cssmin
+
+-e git+https://github.com/miracle2k/webassets#egg=webassets
 -e .
