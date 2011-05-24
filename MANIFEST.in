@@ -6,7 +6,14 @@ include setup.py
 recursive-include lemon/dashboard/locale *
 recursive-include lemon/dashboard/templates *
 recursive-include lemon/extradmin/locale *
-recursive-include lemon/extradmin/static *
+
+include lemon/extradmin/static/extradmin/css/auth_permissions.css
+include lemon/extradmin/static/extradmin/css/dashboard.css
+include lemon/extradmin/static/extradmin/css/style.css
+include lemon/extradmin/static/extradmin/favicon.ico
+recursive-include lemon/extradmin/static/extradmin/images *
+recursive-include lemon/extradmin/static/extradmin/js *
+
 recursive-include lemon/extradmin/templates *
 recursive-include lemon/filebrowser/locale *
 recursive-include lemon/filebrowser/static *
