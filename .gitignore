@@ -5,3 +5,4 @@ build/
 dist/
 test_project/public/
 test_project/sqlite.db
+lemon/extradmin/static/extradmin/.webassets-cache/
