@@ -9,12 +9,15 @@ from webassets.filter import Filter, register_filter
 from webassets.script import main
 
 
+DIRNAME = os.path.abspath(os.path.dirname(__file__))
+
+
 class StylusFilter(Filter):
 
     name = 'stylus'
 
     def setup(self):
-        self.stylus = os.path.abspath(os.path.join(os.path.dirname(__file__), 'stylus'))
+        self.stylus = os.path.join(DIRNAME, 'stylus')
 
     def input(self, _in, out, source_path, output_path):
         old_dir = os.getcwd()
@@ -56,6 +59,15 @@ environment.register('css_auth', Bundle(
     'css/auth_permissions.styl',
     filters=('stylus', 'cssmin'),
     output='css/auth_permissions.css'))
+
+environment.register('js_libs', Bundle(
+    'js/libs/jquery-1.4.4.js',
+    'js/libs/jquery-ui-1.8.6.js',
+    'js/libs/jquery.floatheader.js',
+    'js/libs/json2.js',
+    'js/libs/modernizr-1.7.js',
+    filters='jsmin',
+    output='js/libs.js'))
 
 
 if __name__ == '__main__':
