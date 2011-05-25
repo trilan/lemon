@@ -4,8 +4,9 @@ include README.rst
 include lemon/filebrowser/LICENSE
 include setup.py
 
+include lemon/dashboard/static/dashboard/css/style.css
 recursive-include lemon/dashboard/locale *
-recursive-include lemon/dashboard/static *
+recursive-include lemon/dashboard/static/dashboard/images *
 recursive-include lemon/dashboard/templates *
 
 include lemon/extradmin/static/extradmin/css/auth_permissions.css

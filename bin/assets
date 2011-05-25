@@ -46,9 +46,9 @@ class StylusFilter(Filter):
 register_filter(StylusFilter)
 
 
-environment = Environment('lemon/extradmin/static/extradmin', '/static/extradmin')
+extradmin = Environment('lemon/extradmin/static/extradmin', '/static/extradmin')
 
-environment.register('css', Bundle(
+extradmin.register('css', Bundle(
     'css/reset.css',
     Bundle('css/default.styl',
            'css/base.styl',
@@ -60,12 +60,12 @@ environment.register('css', Bundle(
     'css/jquery.datetimepicker.css',
     output='css/style.css'))
 
-environment.register('css_auth', Bundle(
+extradmin.register('css_auth', Bundle(
     'css/auth_permissions.styl',
     filters=('stylus', 'cssmin'),
     output='css/auth_permissions.css'))
 
-environment.register('js_libs', Bundle(
+extradmin.register('js_libs', Bundle(
     'js/libs/jquery.js',
     'js/libs/jquery-ui.js',
     'js/libs/jquery.floatheader.js',
@@ -75,6 +75,14 @@ environment.register('js_libs', Bundle(
     'js/libs/backbone.js',
     filters='jsmin',
     output='js/libs.js'))
+
+
+dashboard = Environment('lemon/dashboard/static/dashboard', '/static/dashboard')
+
+dashboard.register('css', Bundle(
+    'css/style.styl',
+    filters=('stylus', 'cssmin'),
+    output='css/style.css'))
 
 
 class CommandLine(CommandLineEnvironment):
@@ -178,5 +186,5 @@ def main(argv, envs):
 
 
 if __name__ == '__main__':
-    environments = (environment,)
+    environments = (extradmin, dashboard)
     sys.exit(main(sys.argv[1:], environments) or 0)
