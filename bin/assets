@@ -1,12 +1,16 @@
 #!/usr/bin/env python
 
+import logging
 import os
 import subprocess
 import sys
+import time
+from optparse import OptionParser
 
 from webassets import Bundle, Environment
+from webassets.bundle import BuildError
 from webassets.filter import Filter, register_filter
-from webassets.script import main
+from webassets.script import CommandLineEnvironment, CommandError
 
 
 DIRNAME = os.path.abspath(os.path.dirname(__file__))
@@ -41,6 +45,7 @@ class StylusFilter(Filter):
 
 register_filter(StylusFilter)
 
+
 environment = Environment('lemon/extradmin/static/extradmin', '/static/extradmin')
 
 environment.register('css', Bundle(
@@ -70,5 +75,106 @@ environment.register('js_libs', Bundle(
     output='js/libs.js'))
 
 
+class CommandLine(CommandLineEnvironment):
+
+    def __init__(self, environments, log):
+        self.environments = environments
+        self.log = log
+
+    def rebuild(self):
+        for environment in self.environments:
+            for bundle in environment:
+                for to_build in bundle.iterbuild():
+                    url = '%s/%s' % (to_build.env.url, to_build.output)
+                    self.log.info('Building asset: %s' % url)
+                    try:
+                        to_build.build(force=True)
+                    except BuildError, e:
+                        self.log.error('Failed, error was: %s' % e)
+
+    def watch(self):
+        _mtimes = {}
+        _win = (sys.platform == 'win32')
+        def check_for_changes():
+            changed_bundles = []
+            for environment in self.environments:
+                for possibly_container in environment:
+                    for bundle in possibly_container.iterbuild():
+                        for filename in bundle.get_files():
+                            filename = bundle.env.abspath(filename)
+                            stat = os.stat(filename)
+                            mtime = stat.st_mtime
+                            if _win:
+                                mtime -= stat.st_ctime
+                            if _mtimes.get(filename, mtime) != mtime:
+                                changed_bundles.append(bundle)
+                                _mtimes[filename] = mtime
+                                break
+                            _mtimes[filename] = mtime
+            return changed_bundles
+        try:
+            self.log.info('Watching bundles for changes...')
+            while True:
+                changed_bundles = check_for_changes()
+                for bundle in changed_bundles:
+                    url = '%s/%s' % (bundle.env.url, bundle.output)
+                    self.log.info('Rebuilding asset: %s' % url)
+                    bundle.build(force=True)
+                time.sleep(0.5)
+        except KeyboardInterrupt:
+            pass
+
+    def clean(self):
+        self.log.info('Cleaning generated assets...')
+        for environment in self.environments:
+            for bundle in environment:
+                if not bundle.output:
+                    continue
+                filepath = bundle.env.abspath(bundle.output)
+                if os.path.exists(filepath):
+                    os.unlink(filepath)
+                    self.log.info('Deleted asset: %s/%s' % (bundle.env.url, bundle.output))
+
+    Commands = {
+        'rebuild': rebuild,
+        'watch': watch,
+        'clean': clean,
+    }
+
+
+def main(argv, envs):
+    parser = OptionParser(usage='usage: %%prog [options] [%s]' % (
+        ' | '.join(CommandLine.Commands)))
+    parser.add_option('-v', dest='verbose', action='store_true',
+                      help='be verbose')
+    parser.add_option('-q', action='store_true', dest='quiet',
+                      help='be quiet')
+    options, args = parser.parse_args(argv)
+
+    if len(args) != 1:
+        parser.print_help()
+        return 1
+
+    # Setup logging
+    log = logging.getLogger('webassets')
+    if options.verbose:
+        level = logging.DEBUG
+    elif options.quiet:
+        level = logging.WARNING
+    else:
+        level = logging.INFO
+    log.setLevel(level)
+    log.addHandler(logging.StreamHandler())
+
+    # Run the selected command
+    cmd = CommandLine(envs, log)
+    try:
+        return cmd.invoke(args[0])
+    except CommandError, e:
+        print e
+        return 1
+
+
 if __name__ == '__main__':
-    sys.exit(main(sys.argv[1:], environment) or 0)
+    environments = (environment,)
+    sys.exit(main(sys.argv[1:], environments) or 0)
