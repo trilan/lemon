@@ -14,7 +14,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext
 
 from lemon import extradmin
-from lemon.extradmin.dashboard import AppsWidget, LogWidget
 from lemon.extradmin.forms import MenuItemForm, GroupPermissionsForm
 from lemon.extradmin.forms import PermissionMultipleChoiceField
 from lemon.extradmin.forms import contenttype_inlineformset_factory
@@ -114,5 +113,3 @@ extradmin.site.register(MenuSection, MenuSectionAdmin)
 extradmin.site.register(User, UserAdmin)
 extradmin.site.register(Group, GroupAdmin)
 extradmin.site.register(Site, SiteAdmin)
-extradmin.site.dashboard.register(AppsWidget)
-extradmin.site.dashboard.register(LogWidget)

@@ -13,7 +13,6 @@ from django.views.decorators.cache import never_cache
 from lemon.extradmin import widgets
 from lemon.extradmin.options import ModelAdmin, AppAdmin
 from lemon.extradmin.settings import CONFIG
-from lemon.dashboard import Dashboard
 from lemon.filebrowser.sites import FileBrowserSite
 
 
@@ -23,7 +22,6 @@ class AdminSite(sites.AdminSite):
         super(AdminSite, self).__init__(name, app_name)
         self._app_registry = {}
         self.file_browser_site = FileBrowserSite(self)
-        self.dashboard = Dashboard(self)
 
     def register(self, model_or_iterable, admin_class=None, **options):
         if not admin_class:
@@ -75,7 +73,6 @@ class AdminSite(sites.AdminSite):
             url(r'r/(?P<content_type_id>\d+)/(?P<object_id>.+)/$',
                 wrap(shortcut)),
             url(r'^filebrowser/', include(self.file_browser_site.urls)),
-            url(r'^dashboard/', include(self.dashboard.urls)),
         )
 
         for app_name, app_admin in self._app_registry.iteritems():
@@ -88,18 +85,6 @@ class AdminSite(sites.AdminSite):
                     include(model_admin.urls)),
             )
         return urlpatterns
-
-    @never_cache
-    def index(self, request, extra_context=None):
-        context = {
-            'dashboard': self.dashboard.render(request),
-            'root_path': self.root_path,
-            'title': _(u"Site administration"),
-        }
-        context.update(extra_context or {})
-        return render_to_response(
-            self.index_template or 'admin/index.html', context,
-            context_instance=RequestContext(request, current_app=self.name))
 
     @property
     def markup_widget(self):
