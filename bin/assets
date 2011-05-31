@@ -61,8 +61,8 @@ environment.register('css_auth', Bundle(
     output='css/auth_permissions.css'))
 
 environment.register('js_libs', Bundle(
-    'js/libs/jquery-1.4.4.js',
-    'js/libs/jquery-ui-1.8.6.js',
+    'js/libs/jquery.js',
+    'js/libs/jquery-ui.js',
     'js/libs/jquery.floatheader.js',
     'js/libs/json2.js',
     'js/libs/modernizr-1.7.js',
