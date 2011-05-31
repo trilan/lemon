@@ -290,17 +290,26 @@ p, h1, h2, h3, h4, td
     color #ccc
 
 #content-main
-  margin 1px 20px
+  margin 0 30px
+  width 500px
 
 #content-main div.module
-  margin 5px 0 0
-  width 50%
+  border 1px solid $border-color
+  border-top-radius 3px
+  margin 10px 0 20px
   table
-    width 100%
-    border 1px solid $border-color
     caption
-      display none
+      background $background-color
+      border-bottom 1px solid $border-color
+      border-top-radius 3px
+      padding 10px
+      text-align left
+      font-weight bold
+      text-shadow #fff 0 1px 1px
+      gradient $background-color #fff
+      color $text-color
     td, th
+      text-align left
       padding 10px
       border-bottom 1px solid $changelist-border-color
       background $changelist-background-color

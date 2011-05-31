@@ -120,6 +120,7 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    'lemon.dashboard',
     'lemon.extradmin',
 
     'django.contrib.auth',
@@ -130,7 +131,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
 
-    'lemon.dashboard',
     'lemon.filebrowser',
     'lemon.metatags',
     'lemon.pages',

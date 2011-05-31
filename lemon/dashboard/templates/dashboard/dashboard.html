@@ -1,54 +1,8 @@
-{% load url from future %}
-<link rel="stylesheet" href="{{ STATIC_URL }}dashboard/css/style.css">
 <script>
-  function storeState() {
-    var columns = $('ul.dashboard_column').map(function () {
-        return [$('li.widget_container', this).map(function () {
-          return $(this).attr('widget');
-        }).get()];
-    }).get();
-    $.ajax({
-      url: "{% url 'admin:dashboard:store' %}",
-      type: "POST",
-      contentType: "application/json; charset=utf-8",
-      data: JSON.stringify({columns: columns})
-    });
-  }
-  $(function () {
-    $('.dashboard_column').sortable({
-      forcePlaceholderSize: true,
-      dropOnEmpty: true,
-      placeholder: "widget_placeholder",
-      handle: ".widget_container_header",
-      connectWith: ".dashboard_column",
-      stop: function (event, ui) { storeState(); }
-    });
-    $('.widget_container_menu').click(function () {
-      var container = $(this).parents(".widget_container");
-      var widget = container.attr("widget");
-      $.ajax({
-        url: "{% url 'admin:dashboard:delete_widget' %}",
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        data: JSON.stringify(widget),
-        success: function () { container.detach(); }
-      });
-      return false;
-    });
+  var __dashboard_widgets_url__ = "{{ dashboard_widgets_url }}";
+  var __dashboard_widget_instances_url__ = "{{ dashboard_widget_instances_url }}";
+  $(function() {
+    dashboard.collections.widgets.refresh({{ widgets|safe }});
+    dashboard.collections.widgetInstances.refresh({{ widget_instances|safe }});
   });
 </script>
-<div id="dashboard" class="clearfix">
-  {% for column in data.columns %}
-    <ul id="dashboard_column_{{ forloop.counter }}" class="dashboard_column">
-      {% for item in column %}
-        <li id="{{ item.id }}" class="widget_container" widget="{{ item.name }}">
-          <div class="widget_container_header">
-            <span class="widget_container_title">{{ item.widget.title }}</span>
-            <span class="widget_container_menu"></span>
-          </div>
-          <div id="{{ item.id }}_content" class="widget_container_content"><div>{{ item.content|safe }}</div></div>
-        </li>
-      {% endfor %}
-    </ul>
-  {% endfor %}
-</div>

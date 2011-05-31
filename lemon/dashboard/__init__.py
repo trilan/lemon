@@ -1,1 +1,1 @@
-from lemon.dashboard.base import Dashboard, Widget
+from lemon.dashboard.base import Dashboard, Widget, dashboard

@@ -73,6 +73,7 @@ extradmin.register('js_libs', Bundle(
     'js/libs/modernizr-1.7.js',
     'js/libs/underscore.js',
     'js/libs/backbone.js',
+    'js/libs/handlebars.js',
     filters='jsmin',
     output='js/libs.js'))
 
@@ -83,6 +84,23 @@ dashboard.register('css', Bundle(
     'css/style.styl',
     filters=('stylus', 'cssmin'),
     output='css/style.css'))
+
+
+dashboard.register('js', Bundle(
+    'js/app/main.js',
+    'js/app/models/widget.js',
+    'js/app/models/widget_instance.js',
+    'js/app/collections/widgets.js',
+    'js/app/collections/widget_instances.js',
+    'js/app/views/template.js',
+    'js/app/views/widget_instance_container.js',
+    'js/app/views/column.js',
+    'js/app/views/widget.js',
+    'js/app/views/index.js',
+    'js/app/views/add.js',
+    'js/app/controllers/widgets.js',
+    filters='jsmin',
+    output='js/app.js'))
 
 
 class CommandLine(CommandLineEnvironment):

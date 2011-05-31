@@ -1,59 +1,70 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.query import QuerySet
 from django.utils import simplejson as json
 
-from lemon.dashboard.settings import CONFIG
+
+COLUMN_CHOICES = (
+    ('left', 'left'),
+    ('right', 'right'),
+)
 
 
-def _get_default_data():
-    columns = []
-    for column in CONFIG['STATE']:
-        cells = []
-        for cell in column:
-            cells.append({'name': cell, 'state': {}})
-        columns.append(cells)
-    return json.dumps({'columns': columns})
+class WidgetInstanceQuerySet(QuerySet):
+
+    def to_raw(self):
+        queryset = self._clone()
+        return [widget_instance.to_raw() for widget_instance in queryset]
+
+    def to_json(self):
+        return json.dumps(self.to_raw())
 
 
-class DashboardStateManager(models.Manager):
+class WidgetInstanceManager(models.Manager):
 
-    def get_for_user(self, user):
-        state, created = self.get_or_create(user=user)
-        return state
+    def adjust_column(self, user, dashboard, column, respect=None):
+        queryset = self.filter(user=user, dashboard=dashboard, column=column)
+        key = lambda o: (o.position, 1 if o == respect else 0)
+        for position, widget_instance in enumerate(sorted(queryset, key=key)):
+            widget_instance.position = position
+            widget_instance.save()
+
+    def adjust(self, user, dashboard, respect=None):
+        self.adjust_column(user, dashboard, "left", respect)
+        self.adjust_column(user, dashboard, "right", respect)
+
+    def to_raw(self):
+        return self.get_query_set().to_raw()
+
+    def to_json(self):
+        return self.get_query_set().to_json()
+
+    def get_query_set(self):
+        return WidgetInstanceQuerySet(self.model, using=self._db)
 
 
-class DashboardState(models.Model):
+class WidgetInstance(models.Model):
 
-    user = models.OneToOneField(User)
-    data = models.TextField(default=_get_default_data())
+    user = models.ForeignKey(User)
+    dashboard = models.CharField(max_length=50)
+    widget = models.CharField(max_length=50)
+    column = models.CharField(max_length=5, choices=COLUMN_CHOICES)
+    position = models.PositiveIntegerField()
 
-    objects = DashboardStateManager()
+    objects = WidgetInstanceManager()
 
-    def has_widget(self, name):
-        data = json.loads(self.data)
-        for column in data['columns']:
-            for cell in column:
-                if cell['name'] == name:
-                    return True
-        return False
+    def update_from(self, data):
+        self.column = data['column']
+        self.position = data['position']
+        self.save()
 
-    def add_widget(self, column, name, commit=True):
-        data = json.loads(self.data)
-        data['columns'][column].insert(0, {'name': name, 'state': {}})
-        self.data = json.dumps(data)
-        if commit:
-            self.save()
+    def to_raw(self):
+        return {
+            'id': self.pk,
+            'widget': self.widget,
+            'column': self.column,
+            'position': self.position,
+        }
 
-    def delete_widget(self, name, commit=True):
-        data = json.loads(self.data)
-        new_columns = []
-        for column in data['columns']:
-            new_column = []
-            for cell in column:
-                if cell['name'] != name:
-                    new_column.append(cell)
-            new_columns.append(new_column)
-        data['columns'] = new_columns
-        self.data = json.dumps(data)
-        if commit:
-            self.save()
+    def to_json(self):
+        return json.dumps(self.to_raw())

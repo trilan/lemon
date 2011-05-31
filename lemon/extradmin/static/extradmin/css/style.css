@@ -568,21 +568,41 @@ td img {
   color: #ccc;
 }
 #content-main {
-  margin: 1px 20px;
+  margin: 0 30px;
+  width: 500px;
 }
 #content-main div.module {
-  margin: 5px 0 0;
-  width: 50%;
-}
-#content-main div.module table {
-  width: 100%;
   border: 1px solid #97a9b1;
+  -webkit-border-top-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  border-top-right-radius: 3px;
+  margin: 10px 0 20px;
 }
 #content-main div.module table caption {
-  display: none;
+  background: #e4e9eb;
+  border-bottom: 1px solid #97a9b1;
+  -webkit-border-top-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  border-top-right-radius: 3px;
+  padding: 10px;
+  text-align: left;
+  font-weight: bold;
+  text-shadow: #fff 0 1px 1px;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0%, #e4e9eb), color-stop(100%, #fff));
+  background: -moz-linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
+  background: -o-linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
+  background: linear-gradient(center bottom, #e4e9eb 0%, #fff 100%);
+  color: #486a77;
 }
 #content-main div.module table td,
 #content-main div.module table th {
+  text-align: left;
   padding: 10px;
   border-bottom: 1px solid #ccd5d9;
   background: #f4f7f7;

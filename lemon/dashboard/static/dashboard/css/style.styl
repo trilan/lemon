@@ -1,71 +1,75 @@
-#dashboard
-  margin-top -10px
+.dashboard
   padding 0 30px
-  .widget_container
-    margin 20px 0
-    color #486A77
-    border 1px solid #98ABB2
-    background #E5EAEC url('../images/dashboard-widget-bg.png') repeat-x
-    -webkit-border-top-left-radius 2px
-    -webkit-border-top-right-radius 2px
-    -moz-border-radius-topleft 2px
-    -moz-border-radius-toplright 2px
-    border-top-left-radius 2px
-    border-top-right-radius 2px
-  .widget_container_header
-    position relative
-    padding 7px 10px 6px
-    span
-      font-weight bold
-      text-shadow #fff 0 1px 1px
-      cursor default
-  .widget_container_content
-    border 1px solid #98ABB2
-    margin 0 3px 3px
-    background #fff
-  .widget_placeholder
-    margin 20px 0
-    border 1px dashed #98ABB2
-    background #E5EAEC
 
-.dashboard_column
+.dashboard-title
+  #main h1&
+    margin 20px 0 0
+
+.dashboard-column-list
   list-style-type none
+  margin-top -10px
   margin-left 0
 
-#dashboard_column_1
+.dashboard-widget-instance-container
+  margin 20px 0
+  color #486A77
+  border 1px solid #98ABB2
+  background #E5EAEC url('../images/dashboard-widget-bg.png') repeat-x
+  -webkit-border-top-left-radius 2px
+  -webkit-border-top-right-radius 2px
+  -moz-border-radius-topleft 2px
+  -moz-border-radius-toplright 2px
+  border-top-left-radius 2px
+  border-top-right-radius 2px
+
+.dashboard-widget-instance-title
+  position relative
+  padding 7px 10px 6px
+  font-weight bold
+  text-shadow #fff 0 1px 1px
+  cursor default
+
+.dashboard-widget-instance-body
+  border 1px solid #98ABB2
+  margin 0 3px 3px
+  background #fff
+
+.dashboard-widget-instance-placeholder
+  margin 20px 0
+  border 1px dashed #98ABB2
+  background #E5EAEC
+
+.dashboard-widget-instance-list
+  list-style-type none
+  margin-left 0
+  min-height 300px
+
+.dashboard-left-column
   width 60%
   float left
   min-height 300px
 
-#dashboard_column_2
+.dashboard-right-column
   width 39%
   float right
   min-height 300px
 
-.available_widgets
-  margin-top 10px
+.dashboard-widget-list
+  list-style-type none
+  margin-left 0
   width 47%
-  li
+
+.dashboard-widget
     position relative
     padding 10px 0
     border-bottom 1px solid #dfdfdf
-  h2
-    font-size 16px
-    padding-right 60px
-  p
-    line-height 1.4em
-    margin-top 1em
-    padding-right 60px
 
-#available_widgets_left
-  float left
-  padding-left 20px
+.dashboard-widget-title
+  margin-top 0.5em
+  font-size 18px
+  font-weight normal
 
-#available_widgets_right
-  float right
-  padding-right 20px
-
-a.add_widget
+.dashboard-widget-add-link
   position absolute
   right 0
   bottom 10px
@@ -83,11 +87,19 @@ a.add_widget
   text-decoration none
   text-align center
 
-.widget_container_menu
+.dashboard-widget-instance-tools
+  position relative
+  z-index 10
   display block
-  position absolute
-  top 5px
-  right 5px
-  width 15px
-  height 15px
+  list-style-type none
+  margin 5px 5px 0 0
+  float right
+  li
+    display block
+    float left
+    width 15px
+    height 15px
+    cursor pointer
+
+.dashboard-widget-instance-tools-close
   background url('../images/dashboard-widget-menu.png') 0 -32px no-repeat

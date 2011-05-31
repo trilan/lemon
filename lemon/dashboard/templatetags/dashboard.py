@@ -1,25 +1,35 @@
 from django.template import Library, Node, TemplateSyntaxError
+from django.utils.safestring import mark_safe
+
+from lemon.dashboard import dashboard as default_instance
 
 
 register = Library()
 
 
-class DashboardNode(Node):
-
-    def __init__(self, admin_site, user):
-        self.admin_site = admin_site
-        self.user = user
-
-    def render(self, context):
-        user = self.user.resolve(context)
-        admin_site = self.admin_site.resolve(context)
-        return admin_site.dashboard.render(user, context)
+def dashboard_media(type, instance=None):
+    instance = instance or default_instance
+    media = getattr(instance.media, 'render_%s' % type)()
+    if media:
+        return mark_safe(u'\n'.join(media))
+    return u''
 
 
-@register.tag
-def dashboard(parser, token):
-    bits = token.split_contents()[1:]
-    if len(bits) != 2:
-        raise TemplateSyntaxError("'dashboard' tag requires two arguments")
-    return DashboardNode(parser.compile_filter(bits[0]),
-                         parser.compile_filter(bits[1]))
+@register.simple_tag
+def dashboard_css(instance=None):
+    return dashboard_media('css', instance)
+
+
+@register.simple_tag
+def dashboard_js(instance=None):
+    return dashboard_media('js', instance)
+
+
+@register.simple_tag
+def dashboard_templates(instance=None):
+    return dashboard_media('templates', instance)
+
+
+@register.simple_tag(takes_context=True)
+def dashboard(context, instance=None):
+    return (instance or default_instance).render_all(context)

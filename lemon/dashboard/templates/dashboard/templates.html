@@ -1,0 +1,32 @@
+<script id="dashboard-index-template" type="text/x-handlebars-template">
+  <h1 class="dashboard-title">Dashboard</h1>
+  <ul class="tools">
+    <li><a href="#add">Add widgets</a></li>
+  </ul>
+  <ul class="dashboard-column-list clearfix">
+    <li class="dashboard-column dashboard-left-column"></li>
+    <li class="dashboard-column dashboard-right-column"></li>
+  </ul>
+</script>
+
+<script id="dashboard-widget-instance-container-template" type="text/x-handlebars-template">
+  <ul class="dashboard-widget-instance-tools">
+    <li class="dashboard-widget-instance-tools-close"></li>
+  </ul>
+  <h2 class="dashboard-widget-instance-title">Widget</h2>
+  <div class="dashboard-widget-instance-body"></div>
+</script>
+
+<script id="dashboard-add-template" type="text/x-handlebars-template">
+  <h1 class="dashboard-title">Add widgets</h1>
+  <ul class="tools">
+    <li><a href="#">Dashboard</a></li>
+  </ul>
+  <ul id="dashboard-widget-list" class="dashboard-widget-list"></ul>
+</script>
+
+<script id="dashboard-widget-template" type="text/x-handlebars-template">
+  <h2 class="dashboard-widget-title">{{title}}</h2>
+  <div class="dashboard-widget-description">{{description}}</div>
+  <a href="#" class="dashboard-widget-add-link">Add</a>
+</script>

@@ -1,202 +1,118 @@
-import sys
-
-from django.conf.urls.defaults import patterns, url, handler404, handler500
-from django.core.urlresolvers import RegexURLResolver
-from django.http import HttpResponse, Http404
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.conf import settings
+from django.conf.urls.defaults import patterns, url, include
+from django.core.urlresolvers import reverse
 from django.template.loader import render_to_string
 from django.utils import simplejson as json
-from django.utils.decorators import method_decorator
-from django.utils.translation import ugettext_lazy as _
-from django.views.decorators.http import require_POST
+from django.utils.safestring import mark_safe
 
-from lemon.dashboard.models import DashboardState
-
-
-class _URLConfModule(object):
-
-    def __init__(self, urlpatterns):
-        self.urlpatterns = urlpatterns
-        self.handler404 = handler404
-        self.handler500 = handler500
+from lemon.dashboard.models import WidgetInstance
+from lemon.dashboard.utils import find_template_source, Media, MediaDefiningClass
 
 
-class Dashboard(object):
+class BaseDashboard(object):
 
-    def __init__(self, admin_site, name=None, app_name='dashboard'):
+    template_name = 'dashboard/dashboard.html'
+
+    def __init__(self):
         self._registry = {}
-        self.admin_site = admin_site
-        self.name = app_name if name is None else name
-        self.app_name = app_name
-
-    def register(self, widget_class):
-        name = '%s.%s' % (widget_class.app_label, widget_class.__name__.lower())
-        widget = widget_class(self)
-        self._registry[name] = widget
-
-    def unregister(self, widget_class):
-        name = '%s.%s' % (widget_class.app_label, widget_class.__name__.lower())
-        if name in self._registry:
-            del self._registry[name]
-
-    def get_urls(self):
-        return patterns('',
-            url(r'^$',
-                self.admin_site.admin_view(self.available_widgets_view),
-                name='available_widgets'),
-            url(r'^add$',
-                self.admin_site.admin_view(self.add_widget_view),
-                name='add_widget'),
-            url(r'^delete$',
-                self.admin_site.admin_view(self.delete_widget_view),
-                name='delete_widget'),
-            url(r'^store$',
-                self.admin_site.admin_view(self.store_view),
-                name='store'),
-            url(r'^(\w+)/(\w+)/(.*)$',
-                self.admin_site.admin_view(self.widget_view),
-                name='widget'),
-        )
 
     @property
-    def urls(self):
-        return self.get_urls(), self.app_name, self.name
+    def media(self):
+        media = Media()
+        for widget in self._registry.values():
+            media = media + widget.media
+        return media
 
-    def available_widgets_view(self, request):
-        state = DashboardState.objects.get_for_user(request.user)
-        data = json.loads(state.data)
-        available_widgets = self._registry.copy()
-        for column in data['columns']:
-            for cell in column:
-                if cell['name'] in available_widgets:
-                    del available_widgets[cell['name']]
-        return render_to_response(
-            'dashboard/available_widgets.html',
-            {'object_list': available_widgets},
-            context_instance=RequestContext(request))
+    def register(self, label, widget_class):
+        self._registry[label] = widget_class(label, self)
 
-    @method_decorator(require_POST)
-    def add_widget_view(self, request):
-        name = json.loads(request.raw_post_data)
-        if name not in self._registry:
-            raise Http404
-        state = DashboardState.objects.get_for_user(request.user)
-        if not state.has_widget(name):
-            state.add_widget(0, name)
-        return HttpResponse('[]', mimetype='application/json')
+    def unregister(self, label):
+        if label in self._registry:
+            del self._registry[label]
 
-    @method_decorator(require_POST)
-    def delete_widget_view(self, request):
-        name = json.loads(request.raw_post_data)
-        if name not in self._registry:
-            raise Http404
-        state = DashboardState.objects.get_for_user(request.user)
-        state.delete_widget(name)
-        return HttpResponse('[]', mimetype='application/json')
+    def get_urls(self, app_admin):
+        from lemon.dashboard import views
+        wrap = app_admin.admin_site.admin_view
+        urlpatterns = patterns('',
+            url(r'^widgets$',
+                wrap(views.WidgetsView.as_view()),
+                name='widget_list'),
+            url(r'^widget_instances$',
+                wrap(views.WidgetInstanceListView.as_view()),
+                name='widget_instance_list'),
+            url(r'^widget_instances/(\d+)$',
+                wrap(views.WidgetInstanceView.as_view()),
+                name='widget_instance'),
+        )
+        for widget in self._registry.values():
+            widget_urls = widget.get_urls(app_admin)
+            if not widget_urls:
+                continue
+            urlpatterns += patterns('',
+                url(r'^%s/' % widget.label, include(widget_urls)),
+            )
+        return urlpatterns
 
-    @method_decorator(require_POST)
-    def store_view(self, request):
-        new_data = json.loads(request.raw_post_data)
-        state = DashboardState.objects.get_for_user(request.user)
-        data = json.loads(state.data)
-        columns = []
-        for new_column in new_data['columns']:
-            column = []
-            for new_widget in new_column:
-                if new_widget in self._registry:
-                    column.append({'name': new_widget, 'state': {}})
-            columns.append(column)
-        data['columns'] = columns
-        state.data = json.dumps(data)
-        state.save()
-        return HttpResponse('[]', mimetype='application/json')
+    def render(self, context):
+        queryset = WidgetInstance.objects.filter(user=context.get('user'))
+        widget_instances = queryset.to_json()
+        widgets = json.dumps([w.to_raw() for w in self._registry.values()])
+        return render_to_string(self.template_name, {
+            'dashboard_widgets_url': reverse(
+                'admin:dashboard:widget_list',
+                current_app=context.current_app),
+            'dashboard_widget_instances_url': reverse(
+                'admin:dashboard:widget_instance_list',
+                current_app=context.current_app),
+            'widget_instances': widget_instances,
+            'widgets': widgets,
+        })
 
-    def widget_view(self, request, app_label, widget_name, path):
-        name = '%s.%s' % (app_label, widget_name)
-        if name not in self._registry:
-            raise Http404
-        state = DashboardState.objects.get_for_user(request.user)
-        data = json.loads(state.data)
-        names = []
-        for column in data['columns']:
-            for row in column:
-                names.append(row['name'])
-        if name not in names:
-            raise Http404
-        widget = self._registry[name]
-        urls = widget.urls
-        if urls is None:
-            raise Http404
-        resolver = RegexURLResolver(r'^', _URLConfModule(urls))
-        callback, args, kwargs = resolver.resolve(path)
-        return callback(request, *args, **kwargs)
-
-    def render(self, request):
-        state = DashboardState.objects.get_for_user(request.user)
-        data = json.loads(state.data)
-        new_columns = []
-        for column in data['columns']:
-            new_column = []
-            for row in column:
-                widget = self._registry.get(row['name'])
-                if widget:
-                    row = row.copy()
-                    row['id'] = 'widget_%s' % row['name'].replace('.', '_')
-                    row['widget'] = widget
-                    row['content'] = widget.render(request, row['state'])
-                    new_column.append(row)
-            new_columns.append(new_column)
-        data = {'columns': new_columns}
-        context = RequestContext(request, {'data': data})
-        return render_to_string('dashboard/dashboard.html', context)
+    def render_all(self, context):
+        output = [self.render(context)]
+        for widget in self._registry.values():
+            content = widget.render(context)
+            if content:
+                output.append(content)
+        return mark_safe(u'\n'.join(output))
 
 
-class WidgetMetaclass(type):
+class Dashboard(BaseDashboard):
 
-    def __new__(cls, name, bases, attrs):
-        new_class = super(WidgetMetaclass, cls).__new__(cls, name, bases, attrs)
-        if 'app_label' not in attrs:
-            widget_module = sys.modules[new_class.__module__]
-            new_class.app_label = widget_module.__name__.split('.')[-2]
-        return new_class
+    __metaclass__ = MediaDefiningClass
+
+    class Media:
+        templates = ('dashboard/templates.html',)
 
 
-class BaseWidget(object):
+class Widget(object):
+
+    __metaclass__ = MediaDefiningClass
 
     title = None
     description = None
-    template = None
+    backbone_view_name = 'WidgetInstance'
+    template_name = None
 
-    def __init__(self, dashboard):
+    def __init__(self, label, dashboard):
+        self.label = label
         self.dashboard = dashboard
 
-    def get_context_data(self, request):
-        return {}
+    def render(self, context):
+        if self.template_name:
+            return render_to_string(self.template_name, context)
+        return u''
 
-    def render(self, request, state):
-        if self.template is not None:
-            context = RequestContext(request, self.get_context_data(request))
-            context['state'] = state
-            context['id'] = 'widget_%s_%s_content' % (
-                self.app_label, self.__class__.__name__.lower())
-            return render_to_string(self.template, context)
-        return ''
-
-    def get_urls(self):
+    def get_urls(self, app_admin):
         return None
 
-    def _get_urls(self):
-        if not hasattr(self, '_urls'):
-            urls = self.get_urls()
-            if urls and isinstance(urls, (tuple, list)):
-                self._urls = patterns('', *urls)
-            else:
-                self._urls = None
-        return self._urls
-    urls = property(_get_urls)
+    def to_raw(self):
+        return {
+            'id': self.label,
+            'title': self.title,
+            'viewName': self.backbone_view_name,
+            'description': self.description
+        }
 
 
-class Widget(BaseWidget):
-
-    __metaclass__ = WidgetMetaclass
+dashboard = Dashboard()
