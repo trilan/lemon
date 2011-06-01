@@ -18,6 +18,13 @@ dashboard.views.Add = dashboard.views.Template.extend({
     return this;
   },
 
+  templateContext: function() {
+    return {
+      title: __dashboard_add_view_title__,
+      button: __dashboard_index_view_title__
+    };
+  },
+
   addOne: function(widget) {
     var view = new dashboard.views.Widget({model: widget});
     this.$("#dashboard-widget-list").append(view.render().el);

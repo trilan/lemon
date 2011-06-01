@@ -1,7 +1,7 @@
 <script id="dashboard-index-template" type="text/x-handlebars-template">
-  <h1 class="dashboard-title">Dashboard</h1>
+  <h1 class="dashboard-title">{{title}}</h1>
   <ul class="tools">
-    <li><a href="#add">Add widgets</a></li>
+    <li><a href="#add">{{button}}</a></li>
   </ul>
   <ul class="dashboard-column-list clearfix">
     <li class="dashboard-column dashboard-left-column"></li>
@@ -18,9 +18,9 @@
 </script>
 
 <script id="dashboard-add-template" type="text/x-handlebars-template">
-  <h1 class="dashboard-title">Add widgets</h1>
+  <h1 class="dashboard-title">{{title}}</h1>
   <ul class="tools">
-    <li><a href="#">Dashboard</a></li>
+    <li><a href="#">{{button}}</a></li>
   </ul>
   <ul id="dashboard-widget-list" class="dashboard-widget-list"></ul>
 </script>

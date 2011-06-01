@@ -1,6 +1,9 @@
+{% load i18n %}
 <script>
   var __dashboard_widgets_url__ = "{{ dashboard_widgets_url }}";
   var __dashboard_widget_instances_url__ = "{{ dashboard_widget_instances_url }}";
+  var __dashboard_index_view_title__ = "{% trans 'Dashboard' %}";
+  var __dashboard_add_view_title__ = "{% trans 'Add widgets' %}";
   $(function() {
     dashboard.collections.widgets.refresh({{ widgets|safe }});
     dashboard.collections.widgetInstances.refresh({{ widget_instances|safe }});

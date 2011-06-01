@@ -26,6 +26,13 @@ dashboard.views.Index = dashboard.views.Template.extend({
     return this;
   },
 
+  templateContext: function() {
+    return {
+      title: __dashboard_index_view_title__,
+      button: __dashboard_add_view_title__
+    };
+  },
+
   updateConnection: function() {
     $(this.rightColumn.el).sortable("option", "connectWith", $(this.leftColumn.el));
     $(this.leftColumn.el).sortable("option", "connectWith", $(this.rightColumn.el));
