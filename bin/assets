@@ -94,6 +94,7 @@ dashboard.register('js', Bundle(
     'js/app/collections/widget_instances.js',
     'js/app/views/template.js',
     'js/app/views/widget_instance_container.js',
+    'js/app/views/text_widget.js',
     'js/app/views/column.js',
     'js/app/views/widget.js',
     'js/app/views/index.js',

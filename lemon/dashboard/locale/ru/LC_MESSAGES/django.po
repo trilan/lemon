@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lemon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-01 16:13+0400\n"
+"POT-Creation-Date: 2011-06-01 18:14+0400\n"
 "PO-Revision-Date: 2011-03-31 17:20+0400\n"
 "Last-Translator: Mike Yumatov <mike@yumatov.org>\n"
 "Language-Team: Russian <lemon@trilandev.com>\n"
@@ -14,6 +14,18 @@ msgstr ""
 "Language: ru\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#: generic.py:7
+msgid "Text"
+msgstr "Текст"
+
+#: generic.py:8
+msgid "This is a generic description for text widget."
+msgstr "Это пример описания виджета с текстом."
+
+#: generic.py:11
+msgid "<p>This is a generic text for this widget. Replace it with yours.</p>"
+msgstr "<p>Это пример текста для этого виджета. Замените его вашим.</p>"
 
 #: templates/dashboard/dashboard.html:5
 msgid "Dashboard"
