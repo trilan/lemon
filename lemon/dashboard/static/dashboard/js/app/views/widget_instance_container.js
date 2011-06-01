@@ -21,6 +21,12 @@ dashboard.views.WidgetInstanceContainer = dashboard.views.Template.extend({
     return this;
   },
 
+  templateContext: function() {
+    var data = this.model.toJSON();
+    data["widget"] = this.model.widget().toJSON();
+    return data
+  },
+
   destroyModel: function() {
     this.model.destroy();
   }
