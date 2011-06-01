@@ -10,6 +10,8 @@ dashboard.controllers.Widgets = Backbone.Controller.extend({
 
     this.indexView = new dashboard.views.Index;
     this.addView   = new dashboard.views.Add;
+
+    $([this.indexView.el, this.addView.el]).hide().appendTo(this.el);
   },
 
   index: function() {
@@ -21,7 +23,11 @@ dashboard.controllers.Widgets = Backbone.Controller.extend({
   },
 
   switchTo: function(view) {
-    $(this.el).empty().append(view.el)
+    if (this.activeView) {
+      $(this.activeView.el).hide();
+    }
+    $(view.el).show();
+    this.activeView = view;
   }
 
 });
