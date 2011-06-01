@@ -5,7 +5,7 @@ dashboard.collections.WidgetInstances = Backbone.Collection.extend({
 
   initialize: function() {
     this.bind("add", this.fetch);
-  },
+  }
 
 });
 
