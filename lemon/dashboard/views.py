@@ -36,7 +36,7 @@ class WidgetInstanceListView(View):
         WidgetInstance.objects.adjust(widget_instance.user,
                                       widget_instance.dashboard,
                                       widget_instance)
-        return http.HttpResponse()
+        return http.HttpResponse(status=201, content_type='application/json')
 
 
 class WidgetInstanceView(View):
@@ -49,10 +49,10 @@ class WidgetInstanceView(View):
         queryset = WidgetInstance.objects.filter(user=request.user)
         widget_instance = get_object_or_404(queryset, pk=args[0])
         widget_instance.update_from(data)
-        return http.HttpResponse()
+        return http.HttpResponse(status=204, content_type='application/json')
 
     def delete(self, request, *args, **kwargs):
         queryset = WidgetInstance.objects.filter(user=request.user)
         widget_instance = get_object_or_404(queryset, pk=args[0])
         widget_instance.delete()
-        return http.HttpResponse()
+        return http.HttpResponse(status=204, content_type='application/json')
