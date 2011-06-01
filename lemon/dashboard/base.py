@@ -109,9 +109,9 @@ class Widget(object):
     def to_raw(self):
         return {
             'id': self.label,
-            'title': self.title,
+            'title': unicode(self.title),
             'viewName': self.backbone_view_name,
-            'description': self.description
+            'description': unicode(self.description)
         }
 
 
