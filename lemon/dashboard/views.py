@@ -1,23 +1,35 @@
 from django import http
+from django.core.exceptions import ImproperlyConfigured
 from django.db import IntegrityError
 from django.db.models import F
 from django.shortcuts import get_object_or_404
 from django.utils import simplejson as json
 from django.views.generic import View
 
-from lemon.dashboard import dashboard
 from lemon.dashboard.models import WidgetInstance
 
 
-class WidgetsView(View):
+class AppAdminMixin(object):
+
+    app_admin = None
+
+    def get_app_admin(self):
+        if self.app_admin is None:
+            raise ImproperlyConfigured(
+                "DashboardMixin requires either a definition of "
+                "'app_admin' or an implementation of 'get_app_admin'")
+        return self.app_admin
+
+
+class WidgetsView(AppAdminMixin, View):
 
     def get(self, request, *args, **kwargs):
-        widgets = dashboard._registry.values()
+        widgets = self.get_app_admin().dashboard._registry.values()
         content = json.dumps([w.to_raw() for w in widgets])
         return http.HttpResponse(content, content_type='application/json')
 
 
-class WidgetInstanceListView(View):
+class WidgetInstanceListView(AppAdminMixin, View):
 
     def get(self, request, *args, **kwargs):
         content = WidgetInstance.objects.filter(user=request.user).to_json()
@@ -39,7 +51,7 @@ class WidgetInstanceListView(View):
         return http.HttpResponse(status=201, content_type='application/json')
 
 
-class WidgetInstanceView(View):
+class WidgetInstanceView(AppAdminMixin, View):
 
     def put(self, request, *args, **kwargs):
         try:

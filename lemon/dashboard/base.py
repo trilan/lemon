@@ -5,6 +5,7 @@ from django.template.loader import render_to_string
 from django.utils import simplejson as json
 from django.utils.safestring import mark_safe
 
+from lemon.dashboard import views
 from lemon.dashboard.models import WidgetInstance
 from lemon.dashboard.utils import find_template_source, Media, MediaDefiningClass
 
@@ -31,17 +32,16 @@ class BaseDashboard(object):
             del self._registry[label]
 
     def get_urls(self, app_admin):
-        from lemon.dashboard import views
         wrap = app_admin.admin_site.admin_view
         urlpatterns = patterns('',
             url(r'^widgets$',
-                wrap(views.WidgetsView.as_view()),
+                wrap(views.WidgetsView.as_view(app_admin=app_admin)),
                 name='widget_list'),
             url(r'^widget_instances$',
-                wrap(views.WidgetInstanceListView.as_view()),
+                wrap(views.WidgetInstanceListView.as_view(app_admin=app_admin)),
                 name='widget_instance_list'),
             url(r'^widget_instances/(\d+)$',
-                wrap(views.WidgetInstanceView.as_view()),
+                wrap(views.WidgetInstanceView.as_view(app_admin=app_admin)),
                 name='widget_instance'),
         )
         for widget in self._registry.values():
