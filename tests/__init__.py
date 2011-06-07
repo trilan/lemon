@@ -1,3 +1,4 @@
+import os
 import sys
 from django.conf import settings
 
@@ -47,6 +48,9 @@ if not settings.configured:
         TEMPLATE_LOADERS = (
             'django.template.loaders.filesystem.Loader',
             'django.template.loaders.app_directories.Loader',
+        ),
+        TEMPLATE_DIRS = (
+            os.path.join(os.path.abspath(os.path.dirname(__file__)), 'templates'),
         ),
         SOUTH_TESTS_MIGRATE = False
     )
