@@ -10,6 +10,9 @@ if not settings.configured:
             }
         },
         INSTALLED_APPS = (
+            'lemon.dashboard',
+            'lemon.extradmin',
+
             'django.contrib.auth',
             'django.contrib.contenttypes',
             'django.contrib.sessions',
@@ -17,9 +20,11 @@ if not settings.configured:
             'django.contrib.messages',
             'django.contrib.admin',
 
-            'lemon.pages',
-            'lemon.metatags',
             'lemon.filebrowser',
+            'lemon.metatags',
+            'lemon.pages',
+            'lemon.robots',
+            'lemon.sitemaps',
 
             'south',
             'intellipages',
@@ -47,12 +52,11 @@ if not settings.configured:
     )
 
 TEST_APPS = (
+    'lemon.dashboard',
     'lemon.extradmin',
     'lemon.robots',
     'lemon.sitemaps',
 )
-
-settings.INSTALLED_APPS += TEST_APPS
 
 
 def main():
