@@ -45,10 +45,11 @@ class WidgetInstanceListView(AppAdminMixin, View):
             widget_instance = WidgetInstance.objects.create(**data)
         except IntegrityError:
             return http.HttpResponseBadRequest()
-        WidgetInstance.objects.adjust(widget_instance.user,
-                                      widget_instance.dashboard,
-                                      widget_instance)
-        return http.HttpResponse(status=201, content_type='application/json')
+        WidgetInstance.objects.adjust(
+            widget_instance.user, widget_instance.dashboard, widget_instance)
+        content = widget_instance.to_json()
+        return http.HttpResponse(
+            content, status=201, content_type='application/json')
 
 
 class WidgetInstanceView(AppAdminMixin, View):
