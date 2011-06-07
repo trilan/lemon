@@ -32,7 +32,9 @@ class WidgetsView(AppAdminMixin, View):
 class WidgetInstanceListView(AppAdminMixin, View):
 
     def get(self, request, *args, **kwargs):
-        content = WidgetInstance.objects.filter(user=request.user).to_json()
+        queryset = WidgetInstance.objects.filter(user=request.user)
+        queryset = queryset.filter(dashboard=self.app_admin.dashboard.label)
+        content = queryset.to_json()
         return http.HttpResponse(content, content_type='application/json')
 
     def post(self, request, *args, **kwargs):
@@ -41,6 +43,7 @@ class WidgetInstanceListView(AppAdminMixin, View):
         except ValueError:
             return http.HttpResponseBadRequest()
         data['user'] = request.user
+        data['dashboard'] = self.app_admin.dashboard.label
         try:
             widget_instance = WidgetInstance.objects.create(**data)
         except IntegrityError:
