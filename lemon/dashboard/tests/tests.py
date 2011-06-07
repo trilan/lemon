@@ -82,7 +82,6 @@ class DashboardAdminTest(TestCase):
         self.assertItemsEqual([o['id'] for o in data], [1, 2])
 
     def test_create_widget_instance(self):
-        data = json.dumps({'column': 'left', 'position': 0})
         response = self.client.post(
             path='/first_admin/dashboard/widget_instances',
             data=json.dumps({'column': 'left', 'position': 0}),
