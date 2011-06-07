@@ -21,6 +21,14 @@ class AppAdminMixin(object):
         return self.app_admin
 
 
+class WidgetInstanceMixin(object):
+
+    def get_queryset(self):
+        return WidgetInstance.objects.filter(
+            user=self.request.user,
+            dashboard=self.get_app_admin().dashboard.label)
+
+
 class WidgetsView(AppAdminMixin, View):
 
     def get(self, request, *args, **kwargs):
@@ -29,12 +37,10 @@ class WidgetsView(AppAdminMixin, View):
         return http.HttpResponse(content, content_type='application/json')
 
 
-class WidgetInstanceListView(AppAdminMixin, View):
+class WidgetInstanceListView(WidgetInstanceMixin, AppAdminMixin, View):
 
     def get(self, request, *args, **kwargs):
-        queryset = WidgetInstance.objects.filter(user=request.user)
-        queryset = queryset.filter(dashboard=self.app_admin.dashboard.label)
-        content = queryset.to_json()
+        content = self.get_queryset().to_json()
         return http.HttpResponse(content, content_type='application/json')
 
     def post(self, request, *args, **kwargs):
@@ -55,20 +61,18 @@ class WidgetInstanceListView(AppAdminMixin, View):
             content, status=201, content_type='application/json')
 
 
-class WidgetInstanceView(AppAdminMixin, View):
+class WidgetInstanceView(WidgetInstanceMixin, AppAdminMixin, View):
 
     def put(self, request, *args, **kwargs):
         try:
             data = json.loads(request.raw_post_data)
         except ValueError:
             return http.HttpResponseBadRequest()
-        queryset = WidgetInstance.objects.filter(user=request.user)
-        widget_instance = get_object_or_404(queryset, pk=args[0])
+        widget_instance = get_object_or_404(self.get_queryset(), pk=args[0])
         widget_instance.update_from(data)
         return http.HttpResponse(status=204, content_type='application/json')
 
     def delete(self, request, *args, **kwargs):
-        queryset = WidgetInstance.objects.filter(user=request.user)
-        widget_instance = get_object_or_404(queryset, pk=args[0])
+        widget_instance = get_object_or_404(self.get_queryset(), pk=args[0])
         widget_instance.delete()
         return http.HttpResponse(status=204, content_type='application/json')
