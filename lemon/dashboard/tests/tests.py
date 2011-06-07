@@ -96,3 +96,45 @@ class DashboardAdminTest(TestCase):
         widget_instance = WidgetInstance.objects.get(pk=data['id'])
         self.assertEqual(widget_instance.user, self.user)
         self.assertEqual(widget_instance.dashboard, u'first_dashboard')
+
+    def test_update_widget_instance(self):
+        response = self.client.put(
+            path='/first_admin/dashboard/widget_instances/1',
+            data=json.dumps({'column': 'right', 'position': 0}),
+            content_type='application/json')
+        self.assertEqual(response.status_code, 204)
+        self.assertEqual(response['Content-type'], 'application/json')
+
+        widget_instance = WidgetInstance.objects.get(pk=1)
+        self.assertEqual(widget_instance.column, 'right')
+        self.assertEqual(widget_instance.position, 0)
+
+    def test_update_widget_instance_with_wrong_dashboard(self):
+        response = self.client.put(
+            path='/second_admin/dashboard/widget_instances/1',
+            data=json.dumps({'column': 'right', 'position': 0}),
+            content_type='application/json')
+        self.assertEqual(response.status_code, 404)
+
+    def test_update_widget_instance_with_wrong_user(self):
+        response = self.client.put(
+            path='/second_admin/dashboard/widget_instances/4',
+            data=json.dumps({'column': 'right', 'position': 0}),
+            content_type='application/json')
+        self.assertEqual(response.status_code, 404)
+
+    def test_delete_widget_instance(self):
+        response = self.client.delete('/first_admin/dashboard/widget_instances/1')
+        self.assertEqual(response.status_code, 204)
+        self.assertEqual(response['Content-type'], 'application/json')
+
+        queryset = WidgetInstance.objects.filter(pk=1)
+        self.assertFalse(queryset.exists())
+
+    def test_delete_widget_instance_with_wrong_dashboard(self):
+        response = self.client.delete('/second_admin/dashboard/widget_instances/1')
+        self.assertEqual(response.status_code, 404)
+
+    def test_delete_widget_instance_with_wrong_user(self):
+        response = self.client.delete('/second_admin/dashboard/widget_instances/4')
+        self.assertEqual(response.status_code, 404)
