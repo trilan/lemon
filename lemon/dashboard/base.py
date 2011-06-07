@@ -14,7 +14,8 @@ class BaseDashboard(object):
 
     template_name = 'dashboard/dashboard.html'
 
-    def __init__(self):
+    def __init__(self, label='dashboard'):
+        self.label = label
         self._registry = {}
 
     @property
@@ -115,4 +116,4 @@ class Widget(object):
         }
 
 
-dashboard = Dashboard()
+dashboard = Dashboard('dashboard')
