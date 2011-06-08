@@ -12,6 +12,8 @@ from .views import AppAdminView
 
 class DashboardTest(TestCase):
 
+    fixtures = ['dashboard_admin_test.json']
+
     def test_registry(self):
         self.assertItemsEqual(
             first_dashboard._registry.keys(),
@@ -21,6 +23,11 @@ class DashboardTest(TestCase):
         widget_instance = first_dashboard._registry['first_help_widget']
         self.assertIsInstance(widget_instance, FirstHelpWidget)
         self.assertEqual(widget_instance.label, 'first_help_widget')
+
+    def test_queryset(self):
+        user = User.objects.get(pk=1)
+        queryset = first_dashboard.get_queryset({'user': user}).order_by('pk')
+        self.assertQuerysetEqual(queryset, [1, 2], lambda x: x.pk)
 
 
 class AppAdminMixinTest(TestCase):

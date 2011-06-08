@@ -55,7 +55,9 @@ class BaseDashboard(object):
         return urlpatterns
 
     def get_queryset(self, context):
-        return WidgetInstance.objects.filter(user=context.get('user'))
+        return WidgetInstance.objects.filter(
+            user=context.get('user'),
+            dashboard=self.label)
 
     def render(self, context):
         widget_instances = self.get_queryset(context).to_json()
