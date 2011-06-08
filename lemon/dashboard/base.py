@@ -21,7 +21,7 @@ class BaseDashboard(object):
     @property
     def media(self):
         media = Media()
-        for widget in self._registry.values():
+        for widget in self.get_registered_widgets():
             media = media + widget.media
         return media
 
@@ -45,7 +45,7 @@ class BaseDashboard(object):
                 wrap(views.WidgetInstanceView.as_view(app_admin=app_admin)),
                 name='widget_instance'),
         )
-        for widget in self._registry.values():
+        for widget in self.get_registered_widgets():
             widget_urls = widget.get_urls(app_admin)
             if not widget_urls:
                 continue
@@ -57,9 +57,12 @@ class BaseDashboard(object):
     def get_queryset(self, user):
         return WidgetInstance.objects.filter(user=user, dashboard=self.label)
 
+    def get_registered_widgets(self):
+        return self._registry.values()
+
     def get_context_data(self, context):
         widget_instances = self.get_queryset(context['user']).to_json()
-        widgets = json.dumps([w.to_raw() for w in self._registry.values()])
+        widgets = json.dumps([w.to_raw() for w in self.get_registered_widgets()])
         return {
             'dashboard_widgets_url': reverse(
                 'admin:dashboard:widget_list',
@@ -77,7 +80,7 @@ class BaseDashboard(object):
 
     def render_all(self, context):
         output = [self.render(context)]
-        for widget in self._registry.values():
+        for widget in self.get_registered_widgets():
             content = widget.render(context)
             if content:
                 output.append(content)

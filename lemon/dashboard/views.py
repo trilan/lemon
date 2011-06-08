@@ -32,7 +32,7 @@ class WidgetInstanceMixin(object):
 class WidgetListView(AppAdminMixin, View):
 
     def get(self, request, *args, **kwargs):
-        widgets = self.get_app_admin().dashboard._registry.values()
+        widgets = self.get_app_admin().dashboard.get_registered_widgets()
         content = json.dumps([w.to_raw() for w in widgets])
         return http.HttpResponse(content, content_type='application/json')
 

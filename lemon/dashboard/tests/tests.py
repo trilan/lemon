@@ -28,6 +28,15 @@ class DashboardTest(TestCase):
         queryset = first_dashboard.get_queryset(user=1).order_by('pk')
         self.assertQuerysetEqual(queryset, [1, 2], lambda x: x.pk)
 
+    def test_registered_widgets(self):
+        self.assertItemsEqual(first_dashboard.get_registered_widgets(), [
+            first_dashboard._registry['first_help_widget'],
+            first_dashboard._registry['second_help_widget'],
+        ])
+        self.assertItemsEqual(second_dashboard.get_registered_widgets(), [
+            second_dashboard._registry['third_help_widget'],
+        ])
+
 
 class AppAdminMixinTest(TestCase):
 
