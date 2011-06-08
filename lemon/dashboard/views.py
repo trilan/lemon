@@ -49,7 +49,7 @@ class WidgetInstanceListView(WidgetInstanceMixin, AppAdminMixin, View):
         except ValueError:
             return http.HttpResponseBadRequest()
         data['user'] = request.user
-        data['dashboard'] = self.app_admin.dashboard.label
+        data['dashboard'] = self.get_app_admin().dashboard.label
         try:
             widget_instance = WidgetInstance.objects.create(**data)
         except IntegrityError:
