@@ -54,13 +54,11 @@ class BaseDashboard(object):
             )
         return urlpatterns
 
-    def get_queryset(self, context):
-        return WidgetInstance.objects.filter(
-            user=context.get('user'),
-            dashboard=self.label)
+    def get_queryset(self, user):
+        return WidgetInstance.objects.filter(user=user, dashboard=self.label)
 
     def render(self, context):
-        widget_instances = self.get_queryset(context).to_json()
+        widget_instances = self.get_queryset(context['user']).to_json()
         widgets = json.dumps([w.to_raw() for w in self._registry.values()])
         return render_to_string(self.template_name, {
             'dashboard_widgets_url': reverse(

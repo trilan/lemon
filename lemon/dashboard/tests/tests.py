@@ -25,8 +25,7 @@ class DashboardTest(TestCase):
         self.assertEqual(widget_instance.label, 'first_help_widget')
 
     def test_queryset(self):
-        user = User.objects.get(pk=1)
-        queryset = first_dashboard.get_queryset({'user': user}).order_by('pk')
+        queryset = first_dashboard.get_queryset(user=1).order_by('pk')
         self.assertQuerysetEqual(queryset, [1, 2], lambda x: x.pk)
 
 
