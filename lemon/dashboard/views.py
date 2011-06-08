@@ -29,7 +29,7 @@ class WidgetInstanceMixin(object):
             dashboard=self.get_app_admin().dashboard.label)
 
 
-class WidgetsView(AppAdminMixin, View):
+class WidgetListView(AppAdminMixin, View):
 
     def get(self, request, *args, **kwargs):
         widgets = self.get_app_admin().dashboard._registry.values()

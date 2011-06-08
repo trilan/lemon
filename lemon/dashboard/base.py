@@ -36,7 +36,7 @@ class BaseDashboard(object):
         wrap = app_admin.admin_site.admin_view
         urlpatterns = patterns('',
             url(r'^widgets$',
-                wrap(views.WidgetsView.as_view(app_admin=app_admin)),
+                wrap(views.WidgetListView.as_view(app_admin=app_admin)),
                 name='widget_list'),
             url(r'^widget_instances$',
                 wrap(views.WidgetInstanceListView.as_view(app_admin=app_admin)),
