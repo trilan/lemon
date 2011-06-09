@@ -1,2 +1,3 @@
 from .tests import (
-    DashboardTest, AppAdminMixinTest, AdminSiteTest, DashboardAdminTest)
+    DashboardTest, CreateWidgetInstanceFormTest, AppAdminMixinTest,
+    AdminSiteTest, DashboardAdminTest)

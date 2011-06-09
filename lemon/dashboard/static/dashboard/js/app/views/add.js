@@ -5,11 +5,13 @@ dashboard.views.Add = dashboard.views.Template.extend({
   templateId: "dashboard-add-template",
 
   initialize: function() {
+    var render;
+
     dashboard.views.Template.prototype.initialize.call(this);
     _.bindAll(this, "addOne", "addAll");
 
-    this.widgets = dashboard.collections.widgets;
-    this.widgets.bind("refresh", this.render);
+    dashboard.collections.widgetInstances.bind("refresh", this.render);
+    dashboard.collections.widgetInstances.bind("remove", this.render);
   },
 
   render: function() {
@@ -31,7 +33,12 @@ dashboard.views.Add = dashboard.views.Template.extend({
   },
 
   addAll: function() {
-    this.widgets.each(this.addOne);
+    var usedWidgetIds, availableWidgets;
+    usedWidgetIds = dashboard.collections.widgetInstances.pluck("widget");
+    availableWidgets = dashboard.collections.widgets.select(function(widget) {
+      return _.indexOf(usedWidgetIds, widget.id) === -1;
+    });
+    _(availableWidgets).each(this.addOne);
   }
 
 });

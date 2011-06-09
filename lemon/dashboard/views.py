@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404
 from django.utils import simplejson as json
 from django.views.generic import View
 
+from lemon.dashboard.forms import CreateWidgetInstanceForm
 from lemon.dashboard.models import WidgetInstance
 
 
@@ -48,10 +49,12 @@ class WidgetInstanceListView(WidgetInstanceMixin, AppAdminMixin, View):
             data = json.loads(request.raw_post_data)
         except ValueError:
             return http.HttpResponseBadRequest()
-        data['user'] = request.user
-        data['dashboard'] = self.get_app_admin().dashboard.label
+        form = CreateWidgetInstanceForm(
+            self.get_app_admin().dashboard, request.user, data)
+        if not form.is_valid():
+            return http.HttpResponseBadRequest()
         try:
-            widget_instance = WidgetInstance.objects.create(**data)
+            widget_instance = form.save()
         except IntegrityError:
             return http.HttpResponseBadRequest()
         WidgetInstance.objects.adjust(

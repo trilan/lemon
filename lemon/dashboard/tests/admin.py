@@ -8,6 +8,7 @@ from .dashboard import FirstHelpWidget, SecondHelpWidget, ThirdHelpWidget
 first_dashboard = Dashboard('first_dashboard')
 first_dashboard.register('first_help_widget', FirstHelpWidget)
 first_dashboard.register('second_help_widget', SecondHelpWidget)
+first_dashboard.register('third_help_widget', ThirdHelpWidget)
 
 
 class FirstDashboardAdmin(DashboardAdmin):

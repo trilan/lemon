@@ -3,6 +3,7 @@ from django.core.exceptions import ImproperlyConfigured
 from django.test import TestCase, RequestFactory
 from django.utils import simplejson as json
 
+from lemon.dashboard.forms import CreateWidgetInstanceForm
 from lemon.dashboard.models import WidgetInstance
 
 from .admin import first_dashboard, second_dashboard
@@ -17,7 +18,7 @@ class DashboardTest(TestCase):
     def test_registry(self):
         self.assertItemsEqual(
             first_dashboard._registry.keys(),
-            ['first_help_widget', 'second_help_widget'])
+            ['first_help_widget', 'second_help_widget', 'third_help_widget'])
 
     def test_registered_widget(self):
         widget_instance = first_dashboard._registry['first_help_widget']
@@ -28,14 +29,73 @@ class DashboardTest(TestCase):
         queryset = first_dashboard.get_queryset(user=1).order_by('pk')
         self.assertQuerysetEqual(queryset, [1, 2], lambda x: x.pk)
 
+    def test_used_widget_labels(self):
+        self.assertItemsEqual(
+            first_dashboard.get_used_widget_labels(user=1),
+            ['first_help_widget', 'second_help_widget'])
+
     def test_registered_widgets(self):
         self.assertItemsEqual(first_dashboard.get_registered_widgets(), [
             first_dashboard._registry['first_help_widget'],
             first_dashboard._registry['second_help_widget'],
+            first_dashboard._registry['third_help_widget'],
         ])
         self.assertItemsEqual(second_dashboard.get_registered_widgets(), [
             second_dashboard._registry['third_help_widget'],
         ])
+
+    def test_available_widgets(self):
+        self.assertItemsEqual(
+            first_dashboard.get_available_widgets(user=1),
+            [first_dashboard._registry['third_help_widget']])
+
+
+class CreateWidgetInstanceFormTest(TestCase):
+
+    fixtures = ['dashboard_admin_test.json']
+
+    def setUp(self):
+        self.user = User.objects.get(pk=1)
+        self.data = {
+            'widget': 'third_help_widget',
+            'column': 'left',
+            'position': 0,
+        }
+
+    def test_instance(self):
+        form = CreateWidgetInstanceForm(first_dashboard, self.user)
+        self.assertIs(form.dashboard, first_dashboard)
+        self.assertIs(form.user, self.user)
+
+    def test_valid_data(self):
+        form = CreateWidgetInstanceForm(first_dashboard, self.user, self.data)
+        self.assertTrue(form.is_valid())
+
+    def test_widget_not_registered(self):
+        data = self.data.copy()
+        data.update(widget='not_registered')
+        form = CreateWidgetInstanceForm(first_dashboard, self.user, data)
+        self.assertFalse(form.is_valid())
+        self.assertIn('widget', form.errors)
+        self.assertEqual(len(form.errors['widget']), 1)
+        self.assertIn('is not registered', form.errors['widget'][0])
+
+    def test_widget_not_available(self):
+        data = self.data.copy()
+        data.update(widget='first_help_widget')
+        form = CreateWidgetInstanceForm(first_dashboard, self.user, data)
+        self.assertFalse(form.is_valid())
+        self.assertIn('widget', form.errors)
+        self.assertEqual(len(form.errors['widget']), 1)
+        self.assertIn('is not available', form.errors['widget'][0])
+
+    def test_save(self):
+        form = CreateWidgetInstanceForm(first_dashboard, self.user, self.data)
+        form.is_valid()
+        instance = form.save()
+        self.assertIsNotNone(instance)
+        self.assertEqual(instance.dashboard, first_dashboard.label)
+        self.assertEqual(instance.user, self.user)
 
 
 class AppAdminMixinTest(TestCase):
@@ -99,7 +159,10 @@ class DashboardAdminTest(TestCase):
     def test_create_widget_instance(self):
         response = self.client.post(
             path='/first_admin/dashboard/widget_instances',
-            data=json.dumps({'column': 'left', 'position': 0}),
+            data=json.dumps({
+                'widget': 'third_help_widget',
+                'column': 'left',
+                'position': 0}),
             content_type='application/json')
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response['Content-type'], 'application/json')

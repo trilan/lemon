@@ -57,8 +57,16 @@ class BaseDashboard(object):
     def get_queryset(self, user):
         return WidgetInstance.objects.filter(user=user, dashboard=self.label)
 
+    def get_used_widget_labels(self, user):
+        return self.get_queryset(user).values_list('widget', flat=True).distinct()
+
     def get_registered_widgets(self):
         return self._registry.values()
+
+    def get_available_widgets(self, user):
+        used = self.get_used_widget_labels(user)
+        registered = self.get_registered_widgets()
+        return [widget for widget in registered if widget.label not in used]
 
     def get_context_data(self, context):
         widget_instances = self.get_queryset(context['user']).to_json()
