@@ -34,3 +34,10 @@ class CreateWidgetInstanceForm(forms.ModelForm):
         if commit:
             instance.save()
         return instance
+
+
+class UpdateWidgetInstanceForm(forms.ModelForm):
+
+    class Meta:
+        model = WidgetInstance
+        fields = ('column', 'position')

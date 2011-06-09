@@ -201,6 +201,20 @@ class DashboardAdminTest(TestCase):
             content_type='application/json')
         self.assertEqual(response.status_code, 404)
 
+    def test_update_widget_instance_with_invalid_column(self):
+        response = self.client.put(
+            path='/first_admin/dashboard/widget_instances/1',
+            data=json.dumps({'column': 'center', 'position': 0}),
+            content_type='application/json')
+        self.assertEqual(response.status_code, 400)
+
+    def test_update_widget_instance_with_invalid_position(self):
+        response = self.client.put(
+            path='/first_admin/dashboard/widget_instances/1',
+            data=json.dumps({'column': 'left', 'position': 'abc'}),
+            content_type='application/json')
+        self.assertEqual(response.status_code, 400)
+
     def test_delete_widget_instance(self):
         response = self.client.delete('/first_admin/dashboard/widget_instances/1')
         self.assertEqual(response.status_code, 204)

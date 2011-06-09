@@ -6,7 +6,8 @@ from django.shortcuts import get_object_or_404
 from django.utils import simplejson as json
 from django.views.generic import View
 
-from lemon.dashboard.forms import CreateWidgetInstanceForm
+from lemon.dashboard.forms import (
+    CreateWidgetInstanceForm, UpdateWidgetInstanceForm)
 from lemon.dashboard.models import WidgetInstance
 
 
@@ -72,7 +73,10 @@ class WidgetInstanceView(WidgetInstanceMixin, AppAdminMixin, View):
         except ValueError:
             return http.HttpResponseBadRequest()
         widget_instance = get_object_or_404(self.get_queryset(), pk=args[0])
-        widget_instance.update_from(data)
+        form = UpdateWidgetInstanceForm(data, instance=widget_instance)
+        if not form.is_valid():
+            return http.HttpResponseBadRequest()
+        form.save()
         return http.HttpResponse(status=204, content_type='application/json')
 
     def delete(self, request, *args, **kwargs):

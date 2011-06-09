@@ -56,11 +56,6 @@ class WidgetInstance(models.Model):
     class Meta:
         unique_together = ('user', 'dashboard', 'widget')
 
-    def update_from(self, data):
-        self.column = data['column']
-        self.position = data['position']
-        self.save()
-
     def to_raw(self):
         return {
             'id': self.pk,
