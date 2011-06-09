@@ -17,7 +17,7 @@ dashboard.views.WidgetInstanceContainer = dashboard.views.Template.extend({
     dashboard.views.Template.prototype.render.call(this);
     $(this.el).data("widgetInstance", this.model);
 
-    this.$(".dashboard-widget-instance-body").append(this.model.view().render().el);
+    this.$(".dashboard-widget-instance-body").append(this.model.view().el);
     return this;
   },
 
