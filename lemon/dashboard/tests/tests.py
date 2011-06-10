@@ -126,6 +126,18 @@ class AdminSiteTest(TestCase):
         self.assertContains(
             response, '<div id="dashboard" class="dashboard"></div>')
 
+    def test_dashboard_urls(self):
+        widgets_url_code = (
+            u'var __dashboard_widgets_url__ = "/%s/dashboard/widgets";')
+        widget_instances_url_code = (
+            u'var __dashboard_widget_instances_url__ = '
+            u'"/%s/dashboard/widget_instances";')
+
+        for name in ('first_admin', 'second_admin'):
+            response = self.client.get('/%s/' % name)
+            self.assertContains(response, widgets_url_code % name)
+            self.assertContains(response, widget_instances_url_code % name)
+
 
 class DashboardAdminTest(TestCase):
 

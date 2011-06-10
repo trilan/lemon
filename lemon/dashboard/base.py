@@ -71,20 +71,11 @@ class BaseDashboard(object):
     def get_context_data(self, context):
         widget_instances = self.get_queryset(context['user']).to_json()
         widgets = json.dumps([w.to_raw() for w in self.get_registered_widgets()])
-        return {
-            'dashboard_widgets_url': reverse(
-                'admin:dashboard:widget_list',
-                current_app=context.current_app),
-            'dashboard_widget_instances_url': reverse(
-                'admin:dashboard:widget_instance_list',
-                current_app=context.current_app),
-            'widget_instances': widget_instances,
-            'widgets': widgets,
-        }
+        return {'widget_instances': widget_instances, 'widgets': widgets}
 
     def render(self, context):
         return render_to_string(
-            self.template_name, self.get_context_data(context))
+            self.template_name, self.get_context_data(context), context)
 
     def render_all(self, context):
         output = [self.render(context)]

@@ -1,7 +1,8 @@
 {% load i18n %}
+{% load url from future %}
 <script>
-  var __dashboard_widgets_url__ = "{{ dashboard_widgets_url }}";
-  var __dashboard_widget_instances_url__ = "{{ dashboard_widget_instances_url }}";
+  var __dashboard_widgets_url__ = "{% url 'admin:dashboard:widget_list' %}";
+  var __dashboard_widget_instances_url__ = "{% url 'admin:dashboard:widget_instance_list' %}";
   var __dashboard_index_view_title__ = "{% trans 'Dashboard' %}";
   var __dashboard_add_view_title__ = "{% trans 'Add widgets' %}";
   $(function() {
