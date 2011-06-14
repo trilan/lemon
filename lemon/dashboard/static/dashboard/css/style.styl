@@ -106,3 +106,37 @@
 
 .dashboard-text-widget-instance
   padding 10px
+
+.dashboard-admin-log-instance
+  table
+    width 100%
+  td
+    padding 5px
+    border-bottom 1px solid #ccd5d9
+    &.datetime
+      font-size 11px
+      color #ccd5d9
+      text-align right
+      white-space nowrap
+      .date, .time
+        display block
+    &.description
+      padding-left 26px
+      &.addition
+        background url('../images/admin_log_addition.png') 5px 4px no-repeat
+      &.deletion
+        background url('../images/admin_log_deletion.png') 5px 4px no-repeat
+      &.change
+        background url('../images/admin_log_change.png') 5px 4px no-repeat
+      a
+        text-decoration none
+        &:hover
+          text-decoration underline
+      .model
+        display block
+        font-size 11px
+        color #ccd5d9
+        &:first-letter
+          text-transform uppercase
+  tr.last td
+    border-bottom none

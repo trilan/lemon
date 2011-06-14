@@ -23,6 +23,18 @@ class AppAdminMixin(object):
         return self.app_admin
 
 
+class WidgetMixin(object):
+
+    widget = None
+
+    def get_widget(self):
+        if self.widget is None:
+            raise ImproperlyConfigured(
+                "WidgetMixin requires either a definition of "
+                "'widget' or an implementation of 'get_widget'")
+        return self.widget
+
+
 class WidgetInstanceMixin(object):
 
     def get_queryset(self):
@@ -83,3 +95,10 @@ class WidgetInstanceView(WidgetInstanceMixin, AppAdminMixin, View):
         widget_instance = get_object_or_404(self.get_queryset(), pk=args[0])
         widget_instance.delete()
         return http.HttpResponse(status=204, content_type='application/json')
+
+
+class LogEntryListView(AppAdminMixin, WidgetMixin, View):
+
+    def get(self, request, *args, **kwargs):
+        content = self.get_widget().get_json(request.user)
+        return http.HttpResponse(content, content_type='application/json')

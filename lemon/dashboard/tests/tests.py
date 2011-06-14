@@ -242,3 +242,23 @@ class DashboardAdminTest(TestCase):
     def test_delete_widget_instance_with_wrong_user(self):
         response = self.client.delete('/second_admin/dashboard/widget_instances/4')
         self.assertEqual(response.status_code, 404)
+
+
+class LogEntryListViewTests(TestCase):
+
+    urls = 'lemon.dashboard.tests.urls'
+    fixtures = ['dashboard_admin_test.json', 'dashboard_admin_log_test.json']
+
+    def setUp(self):
+        self.client.login(username='admin', password='qwerty')
+
+    def tearDown(self):
+        self.client.logout()
+
+    def test_response(self):
+        response = self.client.get('/third_admin/dashboard/admin_log/entries')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['Content-type'], 'application/json')
+
+        data = json.loads(response.content)
+        self.assertEqual(len(data), 3)
