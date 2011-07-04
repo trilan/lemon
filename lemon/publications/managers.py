@@ -24,4 +24,4 @@ class PublicationManager(models.Manager):
         return self.get_query_set().published()
     
     def get_query_set(self):
-        return PublicationQuerySet(self.model)
+        return PublicationQuerySet(self.model, using=self._db)
