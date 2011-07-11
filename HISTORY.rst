@@ -1,7 +1,7 @@
 History
 =======
 
-0.5.X
+0.5.2
 -----
 
 * Update logos
