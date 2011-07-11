@@ -1,6 +1,11 @@
 History
 =======
 
+0.5.X
+-----
+
+* Fix app titles in app dashboard widget
+
 0.5.1
 -----
 
