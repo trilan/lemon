@@ -4,6 +4,7 @@ History
 0.5.X
 -----
 
+* Update logos
 * Fix app titles in app dashboard widget
 
 0.5.1
