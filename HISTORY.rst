@@ -1,8 +1,8 @@
 History
 =======
 
-next release
-------------
+0.5.3
+-----
 
 * Make inline admin class used in MetatagsSite cutomizable
 
