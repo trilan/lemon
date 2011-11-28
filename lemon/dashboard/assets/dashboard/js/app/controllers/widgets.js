@@ -1,21 +1,21 @@
 dashboard.controllers.Widgets = Backbone.Controller.extend({
 
   routes: {
-    "":     "index",
+    "":     "main",
     "add":  "add",
   },
 
   initialize: function(options) {
     this.el = $("#" + options.id);
 
-    this.indexView = new dashboard.views.Index;
+    this.mainView = new dashboard.views.Main;
     this.addView   = new dashboard.views.Add;
 
-    $([this.indexView.el, this.addView.el]).hide().appendTo(this.el);
+    $([this.mainView.el, this.addView.el]).hide().appendTo(this.el);
   },
 
-  index: function() {
-    this.switchTo(this.indexView);
+  main: function() {
+    this.switchTo(this.mainView);
   },
 
   add: function() {

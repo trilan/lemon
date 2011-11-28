@@ -1,4 +1,4 @@
-dashboard.views.Index = dashboard.views.Template.extend({
+dashboard.views.Main = dashboard.views.Template.extend({
 
   tagName:    "div",
   className:  "dashboard-index",

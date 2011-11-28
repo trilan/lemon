@@ -1,3 +1,8 @@
+//= require models
+//= require collections
+//= require views
+//= require controllers
+
 (function() {
 
   this.dashboard = {
