@@ -11,6 +11,12 @@ History
 
 * Make inline admin class used in MetatagsSite cutomizable
 
+0.5.2
+-----
+
+* Update logos
+* Fix app titles in app dashboard widget
+
 0.5.1
 -----
 
