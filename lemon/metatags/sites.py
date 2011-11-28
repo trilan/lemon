@@ -22,6 +22,8 @@ class NotRegistered(Exception):
 
 class MetatagsSite(object):
 
+    inline_admin_class = PageInline
+
     def __init__(self):
         self._registry = {}
 
@@ -38,7 +40,7 @@ class MetatagsSite(object):
 
             admin_object = extradmin.site._registry.get(model)
             if admin_object:
-                inline_instance = PageInline(model, extradmin.site)
+                inline_instance = self.inline_admin_class(model, extradmin.site)
                 admin_object.inline_instances = \
                     admin_object.inline_instances + [inline_instance]
                 if isinstance(admin_object.tabs, (list, tuple)):

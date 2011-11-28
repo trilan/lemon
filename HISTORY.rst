@@ -6,6 +6,11 @@ History
 
 * Added AppAdmin for app-related admin pages
 
+0.5.3
+-----
+
+* Make inline admin class used in MetatagsSite cutomizable
+
 0.5.1
 -----
 
