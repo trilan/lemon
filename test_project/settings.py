@@ -1,6 +1,8 @@
 import os
+import lemon
 
 
+LEMON_ROOT = os.path.abspath(os.path.dirname(lemon.__file__))
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 DEBUG = True
@@ -141,6 +143,7 @@ INSTALLED_APPS = (
     'south',
     'intellipages',
     'articles',
+    'django_gears',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -177,3 +180,27 @@ EXTRADMIN_CONFIG = {
         ('south', 'migrationhistory'),
     ),
 }
+
+GEARS_ROOT = os.path.join(PROJECT_ROOT, 'static')
+
+GEARS_DIRS = (
+    os.path.join(LEMON_ROOT, 'extradmin', 'assets'),
+    os.path.join(LEMON_ROOT, 'dashboard', 'assets'),
+)
+
+GEARS_ENGINES = {
+    '.coffee': 'gears.engines.CoffeeScriptEngine',
+    '.handlebars': 'gears.engines.HandlebarsEngine',
+    '.styl': 'gears.engines.StylusEngine',
+}
+
+GEARS_PUBLIC_ASSETS = (
+    'extradmin/css/auth_permissions.css',
+    'extradmin/css/style.css',
+    'extradmin/js/script.js',
+    'dashboard/css/style.css',
+    'dashboard/js/script.js',
+)
+
+NODE_MODULES_PATH = os.path.join(PROJECT_ROOT, '..', 'node_modules')
+os.environ['NODE_PATH'] = os.path.normpath(NODE_MODULES_PATH)

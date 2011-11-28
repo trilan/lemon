@@ -2,5 +2,7 @@ Django
 South
 cssmin
 
+-e git+https://github.com/trilan/gears#egg=Gears
+-e git+https://github.com/trilan/django-gears#egg=django-gears
 -e git+https://github.com/miracle2k/webassets#egg=webassets
 -e .
