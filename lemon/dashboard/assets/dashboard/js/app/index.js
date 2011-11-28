@@ -1,3 +1,4 @@
+//= require_self
 //= require models
 //= require collections
 //= require views
