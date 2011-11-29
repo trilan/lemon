@@ -187,12 +187,6 @@ GEARS_DIRS = (
     os.path.join(LEMON_ROOT, 'dashboard', 'assets'),
 )
 
-GEARS_ENGINES = {
-    '.coffee': 'gears.engines.CoffeeScriptEngine',
-    '.handlebars': 'gears.engines.HandlebarsEngine',
-    '.styl': 'gears.engines.StylusEngine',
-}
-
 GEARS_PUBLIC_ASSETS = (
     'extradmin/css/auth_permissions.css',
     'extradmin/css/style.css',
