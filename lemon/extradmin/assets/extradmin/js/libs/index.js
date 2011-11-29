@@ -5,3 +5,4 @@
 //= require modernizr
 //= require underscore
 //= require backbone
+//= require handlebars
