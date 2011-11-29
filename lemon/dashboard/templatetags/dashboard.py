@@ -25,11 +25,6 @@ def dashboard_js(instance=None):
     return dashboard_media('js', instance)
 
 
-@register.simple_tag
-def dashboard_templates(instance=None):
-    return dashboard_media('templates', instance)
-
-
 @register.simple_tag(takes_context=True)
 def dashboard(context, instance=None):
     return (instance or default_instance).render_all(context)

@@ -10,12 +10,8 @@ dashboard.views.Template = Backbone.View.extend({
   },
 
   template: function(context) {
-    return this.compileTemplate(this.templateId)(context);
+    return Handlebars.templates[this.templateId](context);
   },
-
-  compileTemplate: _.memoize(function(templateId) {
-    return Handlebars.compile($("#" + templateId).html());
-  }),
 
   templateContext: function() {
     return {}

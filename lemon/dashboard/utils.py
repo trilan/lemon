@@ -4,7 +4,7 @@ from django.template import loader
 from django.template.base import TemplateDoesNotExist
 
 
-MEDIA_TYPES = ('css', 'js', 'templates')
+MEDIA_TYPES = ('css', 'js')
 
 
 def find_template_source_loaders():
@@ -35,7 +35,6 @@ class Media(DjangoMedia):
         media_attrs = media.__dict__ if media else kwargs
         self._css = []
         self._js = []
-        self._templates = []
         for name in MEDIA_TYPES:
             getattr(self, 'add_' + name)(media_attrs.get(name))
 
@@ -58,13 +57,6 @@ class Media(DjangoMedia):
             if path not in self._css:
                 self._css.append(path)
 
-    def add_templates(self, data):
-        if not data:
-            return
-        for path in data:
-            if path not in self._templates:
-                self._templates.append(path)
-
     def render_css(self):
         tag = lambda path: u'<link rel="stylesheet" href="%s">' % path
         return [tag(self.absolute_path(path)) for path in self._css]
@@ -72,12 +64,6 @@ class Media(DjangoMedia):
     def render_js(self):
         tag = lambda path: u'<script src="%s"></script>' % path
         return [tag(self.absolute_path(path)) for path in self._js]
-
-    def render_templates(self):
-        output = []
-        for template in self._templates:
-            output.append(find_template_source(template))
-        return output
 
 
 def media_property(cls):

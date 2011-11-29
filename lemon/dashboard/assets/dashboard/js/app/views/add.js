@@ -2,7 +2,7 @@ dashboard.views.Add = dashboard.views.Template.extend({
 
   tagName: "div",
   className: "dashboard-add",
-  templateId: "dashboard-add-template",
+  templateId: "dashboard/js/app/templates/add",
 
   initialize: function() {
     var render;

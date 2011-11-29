@@ -42,9 +42,6 @@ class AdminLog(Widget):
     backbone_view_name = u'AdminLog'
     limit = 10
 
-    class Media:
-        templates = ('dashboard/admin_log.handlebars',)
-
     def get_queryset(self, user):
         return LogEntry.objects.filter(user=user)[:self.limit]
 

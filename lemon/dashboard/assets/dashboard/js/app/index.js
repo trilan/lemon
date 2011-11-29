@@ -3,6 +3,7 @@
 //= require collections
 //= require views
 //= require controllers
+//= require templates
 
 (function() {
 

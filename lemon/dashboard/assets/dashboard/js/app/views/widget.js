@@ -2,7 +2,7 @@ dashboard.views.Widget = dashboard.views.Template.extend({
 
   tagName:    "li",
   className:  "dashboard-widget",
-  templateId: "dashboard-widget-template",
+  templateId: "dashboard/js/app/templates/widget",
 
   events: {
     "click .dashboard-widget-add-link": "add"

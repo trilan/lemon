@@ -2,7 +2,7 @@ dashboard.views.Main = dashboard.views.Template.extend({
 
   tagName:    "div",
   className:  "dashboard-index",
-  templateId: "dashboard-index-template",
+  templateId: "dashboard/js/app/templates/main",
 
   initialize: function() {
     _.bindAll(this, "updateConnection");
