@@ -90,9 +90,6 @@ class Dashboard(BaseDashboard):
 
     __metaclass__ = MediaDefiningClass
 
-    class Media:
-        templates = ('dashboard/templates.html',)
-
 
 class Widget(object):
 
