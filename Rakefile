@@ -9,3 +9,8 @@ task :node_modules do
   sh 'npm install coffee-script'
   sh 'npm install handlebars'
 end
+
+desc "collect apps assets"
+task :collectassets do
+  sh 'python bin/collectassets.py'
+end
