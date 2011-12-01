@@ -34,6 +34,14 @@ class AdminSite(admin.AdminSite):
         return super(AdminSite, self).index(request, context)
 
 
+class AdminApps(Widget):
+
+    title = _(u'Applications')
+    description = _(u'List of all registered applications')
+    template_name = 'dashboard/admin_apps.html'
+    backbone_view_name = u'AdminApps'
+
+
 class AdminLog(Widget):
 
     title = _(u'Recent Actions')
@@ -95,4 +103,5 @@ class AdminLog(Widget):
 
 
 admin.site.register_app('dashboard', DashboardAdmin)
+dashboard.register('admin_apps', AdminApps)
 dashboard.register('admin_log', AdminLog)

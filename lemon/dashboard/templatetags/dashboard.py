@@ -1,5 +1,6 @@
 from django.template import Library, Node, TemplateSyntaxError
 from django.utils.safestring import mark_safe
+from django.utils import simplejson as json
 
 from lemon.dashboard import dashboard as default_instance
 
@@ -28,3 +29,8 @@ def dashboard_js(instance=None):
 @register.simple_tag(takes_context=True)
 def dashboard(context, instance=None):
     return (instance or default_instance).render_all(context)
+
+
+@register.inclusion_tag('dashboard/tags/admin_app_list.html')
+def admin_app_list(app_list):
+    return {'app_list': json.dumps(app_list, default=lambda x: unicode(x))}
