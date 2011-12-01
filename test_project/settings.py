@@ -1,6 +1,8 @@
 import os
+import lemon
 
 
+LEMON_ROOT = os.path.abspath(os.path.dirname(lemon.__file__))
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 DEBUG = True
@@ -79,7 +81,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
-    'compressor.finders.CompressorFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -120,6 +121,7 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    'lemon.dashboard',
     'lemon.extradmin',
 
     'django.contrib.auth',
@@ -130,7 +132,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
 
-    'lemon.dashboard',
     'lemon.filebrowser',
     'lemon.metatags',
     'lemon.pages',
@@ -141,6 +142,7 @@ INSTALLED_APPS = (
     'south',
     'intellipages',
     'articles',
+    'django_gears',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -177,3 +179,21 @@ EXTRADMIN_CONFIG = {
         ('south', 'migrationhistory'),
     ),
 }
+
+GEARS_ROOT = os.path.join(PROJECT_ROOT, 'static')
+
+GEARS_DIRS = (
+    os.path.join(LEMON_ROOT, 'extradmin', 'assets'),
+    os.path.join(LEMON_ROOT, 'dashboard', 'assets'),
+)
+
+GEARS_PUBLIC_ASSETS = (
+    'extradmin/css/auth_permissions.css',
+    'extradmin/css/style.css',
+    'extradmin/js/script.js',
+    'dashboard/css/style.css',
+    'dashboard/js/script.js',
+)
+
+NODE_MODULES_PATH = os.path.join(PROJECT_ROOT, '..', 'node_modules')
+os.environ['NODE_PATH'] = os.path.normpath(NODE_MODULES_PATH)

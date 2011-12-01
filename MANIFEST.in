@@ -3,28 +3,35 @@ include LICENSE
 include README.rst
 include lemon/filebrowser/LICENSE
 include setup.py
+
+include lemon/dashboard/static/dashboard/css/style.css
 recursive-include lemon/dashboard/locale *
+recursive-include lemon/dashboard/static/dashboard/images *
 recursive-include lemon/dashboard/templates *
-recursive-include lemon/extradmin/locale *
 
 include lemon/extradmin/static/extradmin/css/auth_permissions.css
-include lemon/extradmin/static/extradmin/css/dashboard.css
 include lemon/extradmin/static/extradmin/css/style.css
 include lemon/extradmin/static/extradmin/favicon.ico
+recursive-include lemon/extradmin/locale *
 recursive-include lemon/extradmin/static/extradmin/images *
 recursive-include lemon/extradmin/static/extradmin/js *
-
 recursive-include lemon/extradmin/templates *
+
 recursive-include lemon/filebrowser/locale *
 recursive-include lemon/filebrowser/static *
 recursive-include lemon/filebrowser/templates *
+
 recursive-include lemon/metatags/locale *
+
 recursive-include lemon/pages/locale *
 recursive-include lemon/pages/templates *
+
 recursive-include lemon/publications/locale *
+
 recursive-include lemon/robots/fixtures *
 recursive-include lemon/robots/locale *
 recursive-include lemon/robots/templates *
+
 recursive-include lemon/sitemaps/fixtures *
 recursive-include lemon/sitemaps/locale *
 recursive-include lemon/sitemaps/templates *

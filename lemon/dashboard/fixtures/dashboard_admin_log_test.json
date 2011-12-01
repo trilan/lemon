@@ -1,0 +1,54 @@
+[
+  {
+    "pk": 1,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 1,
+      "action_time": "2011-06-14 10:00:00",
+      "object_repr": "User",
+      "object_id": "2",
+      "change_message": "",
+      "user": 1,
+      "content_type": [ "auth", "user" ]
+    }
+  },
+  {
+    "pk": 2,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 2,
+      "action_time": "2011-06-14 11:00:00",
+      "object_repr": "User",
+      "object_id": "2",
+      "change_message": "Something changed",
+      "user": 1,
+      "content_type": [ "auth", "user" ]
+    }
+  },
+  {
+    "pk": 3,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 3,
+      "action_time": "2011-06-14 12:00:00",
+      "object_repr": "User",
+      "object_id": "2",
+      "change_message": "",
+      "user": 1,
+      "content_type": [ "auth", "user" ]
+    }
+  },
+  {
+    "pk": 4,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 2,
+      "action_time": "2011-06-14 13:00:00",
+      "object_repr": "User",
+      "object_id": "2",
+      "change_message": "Something changed",
+      "user": 2,
+      "content_type": [ "auth", "user" ]
+    }
+  }
+]

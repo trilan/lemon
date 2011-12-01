@@ -1,0 +1,7 @@
+{% load url from future %}
+<script>
+  var __admin_log_entries_url__ = "{% url 'admin:dashboard:admin_log_entry_list' %}";
+  $(function() {
+    dashboard.collections.adminLogEntries.refresh({{ object_list|safe }});
+  });
+</script>

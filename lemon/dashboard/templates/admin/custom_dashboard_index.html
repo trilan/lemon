@@ -1,0 +1,21 @@
+{% extends "admin/base_site.html" %}
+{% load i18n dashboard %}
+{% load url from future %}
+
+{% block extrastyle %}{{ block.super }}
+  <link rel="stylesheet" href="{{ STATIC_URL }}dashboard/css/style.css">
+  {% dashboard_css dashboard %}
+{% endblock %}
+
+{% block extrahead %}{{ block.super }}
+  <script src="{{ STATIC_URL }}dashboard/js/app.js"></script>
+  {% dashboard_js dashboard %}
+{% endblock %}
+
+{% block breadcrumbs_block %}{% endblock %}
+
+{% block content_title %}{% endblock %}
+{% block content %}
+  <div id="dashboard" class="dashboard"></div>
+  {% dashboard dashboard %}
+{% endblock %}

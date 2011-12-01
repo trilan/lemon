@@ -1,0 +1,22 @@
+{{#if apps}}
+<ul class="apps">
+  {{#each apps}}
+    <li class="app">
+      <span class="app-name">{{name}}</span>
+      {{#if models}}
+        <ul class="models">
+          {{#each models}}
+            <li class="model">
+              <span class="model-name">{{#if perms.change}}<a href="{{admin_url}}">{{name}}</a>{{else}}{{name}}{{/if}}</span>
+              <ul class="links">
+                {{#if perms.add}}<li class="link"><a href="{{admin_url}}add/">Add</a></li>{{/if}}
+                {{#if perms.change}}<li class="link"><a href="{{admin_url}}">Change</a></li>{{/if}}
+              </ul>
+            </li>
+          {{/each}}
+        </ul>
+      {{/if}}
+    </li>
+  {{/each}}
+</ul>
+{{/if}}

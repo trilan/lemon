@@ -6,8 +6,24 @@
 
 {% block content_title %}<h1>{% trans "Control Panel" %}</h1>{% endblock %}
 {% block content %}
-  <ul class="tools">
-    <li><a href="{% url 'admin:dashboard:available_widgets' %}">{% trans "Available Widgets" %}</a></li>
-  </ul>
-  {{ dashboard|safe }}
+  <div id="content-main">
+    {% if app_list %}
+      {% for app in app_list %}
+        <div class="module">
+          <table>
+            <caption>{% blocktrans with app.name as name %}{{ name }}{% endblocktrans %}</caption>
+            {% for model in app.models %}
+              <tr{% if forloop.last %} class="last"{% endif %}>
+                <th scope="row">{% if model.perms.change %}<a href="{{ model.admin_url }}">{{ model.name }}</a>{% else %}{{ model.admin_url }}{% endif %}</th>
+                <td>{% if model.perms.add %}<a href="{{ model.admin_url }}add/" class="addlink">{% trans 'Add' %}</a>{% else %}&nbsp;{% endif %}</td>
+                <td>{% if model.perms.change %}<a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a>{% else %}&nbsp;{% endif %}</td>
+              </tr>
+            {% endfor %}
+          </table>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>{% trans "You don't have permission to edit anything." %}</p>
+    {% endif %}
+  </div>
 {% endblock %}
