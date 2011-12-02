@@ -1,4 +1,4 @@
-dashboard.controllers.Widgets = Backbone.Controller.extend({
+dashboard.routers.Widgets = Backbone.Router.extend({
 
   routes: {
     "":     "main",

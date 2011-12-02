@@ -9,7 +9,7 @@ dashboard.views.AdminApps = dashboard.views.Template.extend({
     if (dashboard.collections.adminApps.length != 0) {
       this.render();
     }
-    dashboard.collections.adminApps.bind("refresh", this.render);
+    dashboard.collections.adminApps.bind("reset", this.render);
   },
 
   render: function() {

@@ -9,7 +9,7 @@ dashboard.views.AdminLog = dashboard.views.Template.extend({
     if (dashboard.collections.adminLogEntries.length !== 0) {
       this.render();
     }
-    dashboard.collections.adminLogEntries.bind("refresh", this.render);
+    dashboard.collections.adminLogEntries.bind("reset", this.render);
   },
 
   render: function() {

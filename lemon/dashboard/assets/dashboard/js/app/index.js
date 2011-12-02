@@ -2,20 +2,20 @@
 //= require models
 //= require collections
 //= require views
-//= require controllers
+//= require routers
 //= require templates
 
 (function() {
 
   this.dashboard = {
     views: {},
-    controllers: {},
+    routers: {},
     models: {},
     collections: {}
   };
 
   $(function() {
-    new dashboard.controllers.Widgets({id: "dashboard"});
+    new dashboard.routers.Widgets({id: "dashboard"});
     Backbone.history.start();
   });
 

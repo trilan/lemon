@@ -10,7 +10,7 @@ dashboard.views.Add = dashboard.views.Template.extend({
     dashboard.views.Template.prototype.initialize.call(this);
     _.bindAll(this, "addOne", "addAll");
 
-    dashboard.collections.widgetInstances.bind("refresh", this.render);
+    dashboard.collections.widgetInstances.bind("reset", this.render);
     dashboard.collections.widgetInstances.bind("remove", this.render);
   },
 

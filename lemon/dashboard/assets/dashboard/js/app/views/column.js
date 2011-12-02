@@ -7,7 +7,7 @@ dashboard.views.Column = Backbone.View.extend({
     _.bindAll(this, "render", "addOne", "addAll", "isThisColumn");
 
     this.column = this.options.column;
-    dashboard.collections.widgetInstances.bind("refresh", this.render);
+    dashboard.collections.widgetInstances.bind("reset", this.render);
   },
 
   render: function() {

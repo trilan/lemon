@@ -6,7 +6,7 @@
   var __dashboard_index_view_title__ = "{% trans 'Dashboard' %}";
   var __dashboard_add_view_title__ = "{% trans 'Add widgets' %}";
   $(function() {
-    dashboard.collections.widgets.refresh({{ widgets|safe }});
-    dashboard.collections.widgetInstances.refresh({{ widget_instances|safe }});
+    dashboard.collections.widgets.reset({{ widgets|safe }});
+    dashboard.collections.widgetInstances.reset({{ widget_instances|safe }});
   });
 </script>

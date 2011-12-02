@@ -4,7 +4,11 @@ dashboard.collections.WidgetInstances = Backbone.Collection.extend({
   url:   function() { return __dashboard_widget_instances_url__; },
 
   initialize: function() {
-    this.bind("add", this.fetch);
+    this.bind("add", this.addWidgetInstance, this);
+  },
+
+  addWidgetInstance: function() {
+    this.fetch();
   }
 
 });
