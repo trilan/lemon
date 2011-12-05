@@ -19,7 +19,7 @@
   <div id="container" class="{% block containerclass %}{% endblock %}">
     {% block container %}
       {% if not is_popup %}{% block header %}{% endblock %}{% endif %}
-      <div id="main">
+      <div id="main" class="clearfix">
         {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
         {% if messages %}<ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>{% endif %}
         {% block content %}{% endblock %}
