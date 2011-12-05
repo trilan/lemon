@@ -4,6 +4,7 @@
  *= require base
  *= require jquery.ui
  *= require changelist
+ *= require changelist_search
  *= require changeform
  *= require jquery.datetimepicker
  */
