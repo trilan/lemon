@@ -14,11 +14,17 @@ box-shadow(horizontal = 0px, vertical = 1px, blur = 2px, color = #ccc)
   -moz-box-shadow horizontal vertical blur color
   box-shadow horizontal vertical blur color
 
+.changelist-wrapper
+  float left
+  width 100%
+
 .changelist
   background $background-color
   margin 10px 30px
   border-top-radius 3px
   box-shadow
+  &.filtered
+    margin-right 245px
 
 .changelist-header
   border 1px solid $border-color
@@ -127,17 +133,21 @@ box-shadow(horizontal = 0px, vertical = 1px, blur = 2px, color = #ccc)
     font-size 10px
     color #a00
 
-.filtered .changelist-main
-  margin-right 200px
-  padding-right 0
-  tbody td.last
-    border-right none
-
 .changelist-filters
-  float right
+  float left
   width 200px
+  background $background-color
+  margin 10px 30px 10px -230px
+  border-top-radius 3px
+  box-shadow
   h2
-    margin 5px 30px 2px
+    border 1px solid $border-color
+    border-bottom none
+    border-top-radius 3px
+    gradient $background-color #fff
+    height 35px
+    line-height 35px
+    padding 0 15px
     font-size 16px
     text-shadow #fff 0 1px 1px
   dl
@@ -157,6 +167,10 @@ box-shadow(horizontal = 0px, vertical = 1px, blur = 2px, color = #ccc)
     text-decoration none
     &:hover
       text-decoration underline
+
+.changelist-filters-body
+  padding-bottom 15px
+  border 1px solid $border-color
 
 .changelist-footer
   height 28px
