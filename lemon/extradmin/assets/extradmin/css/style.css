@@ -3,6 +3,7 @@
  *= require default
  *= require base
  *= require jquery.ui
+ *= require ui
  *= require changelist
  *= require changelist_search
  *= require changeform

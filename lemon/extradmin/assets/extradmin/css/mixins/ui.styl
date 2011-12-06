@@ -1,0 +1,25 @@
+@import "variables"
+@import "helpers"
+
+panel()
+  background $background-color
+  border-top-radius 3px
+  box-shadow()
+
+panel-header()
+  border 1px solid $border-color
+  border-bottom none
+  border-top-radius 3px
+  gradient $background-color #fff
+  height 35px
+  padding 0 15px
+
+panel-title()
+  line-height 35px
+  font-size 16px
+  font-weight normal
+  text-shadow #fff 0 1px 1px
+
+panel-body()
+  border 1px solid $border-color
+  -webkit-box-shadow 0 1px 2px #e5e5e5, #fff 0 0px 3px inset
