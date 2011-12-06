@@ -17,6 +17,9 @@ from django.utils.translation import ungettext
 from lemon.extradmin import widgets
 
 
+BLANK_ACTION_CHOICE = [('', _('Select action...'))]
+
+
 FORMFIELD_FOR_DBFIELD_DEFAULTS = {
     models.DateTimeField: {'form_class': forms.SplitDateTimeField,
                            'widget': widgets.AdminSplitDateTime},
@@ -209,6 +212,9 @@ class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
             for func, name, desc in new_actions
         ])
         return actions
+
+    def get_action_choices(self, request, default_choices=BLANK_ACTION_CHOICE):
+        return super(ModelAdmin, self).get_action_choices(request, default_choices)
 
     def add_view(self, request, form_url='', extra_context=None):
         extra_context = extra_context or {}
