@@ -40,7 +40,7 @@
 
 .changelist-main
   padding-left 3px
-  padding-right 3px
+  padding-right 4px
   input
     vertical-align baseline
   table
@@ -50,16 +50,18 @@
   thead
     th
       font-weight bold
+      text-align left
       text-shadow #fff 0 1px 1px
-      padding 7px 7px 4px
+      padding 11px 7px 4px
       border-left 1px solid $background-color
       border-bottom 1px solid $border-color
-      &.sorted
-        padding-right 23px
+      &.sortable
+        padding-left 21px
+        background url('../images/sortable.png') 7px 12px no-repeat
       &.ascending
-        background url('../images/asc.png') bottom right no-repeat
+        background url('../images/asc.png') 7px 9px no-repeat
       &.descending
-        background url('../images/desc.png') bottom right no-repeat
+        background url('../images/desc.png') 7px 15px no-repeat
       &.narrow
         width 1%
       a
@@ -68,7 +70,9 @@
           text-decoration underline
   tbody
     th, td
-      padding 5px 7px 7px
+      text-align left
+      line-height 15px
+      padding 7px 7px 7px
       background #fff
       border-left 1px solid $changelist-border-color
       border-bottom 1px solid $changelist-border-color

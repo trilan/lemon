@@ -1,5 +1,8 @@
+from django.contrib.admin.templatetags.admin_list import (
+    result_hidden_fields, result_headers, results)
 from django.contrib.admin.views.main import PAGE_VAR, ALL_VAR
 from django.utils.html import escape
+from django.utils.safestring import mark_safe
 from django.template import Library
 
 
@@ -29,3 +32,26 @@ def pagination_required(cl):
 def show_all_url(cl):
     return cl.can_show_all and not cl.show_all and cl.multi_page and \
         cl.get_query_string({ALL_VAR: ''})
+
+
+def extradmin_result_headers(cl):
+    """Ugly patch for ugly result_headers function"""
+    for item in result_headers(cl):
+        if not item.get('sortable'):
+            yield item
+            continue
+        if item.get('class_attrib'):
+            class_attrib = item['class_attrib']
+            class_attrib = class_attrib.replace('class="', 'class="sortable ')
+        else:
+            class_attrib = ' class="sortable"'
+        item['class_attrib'] = mark_safe(class_attrib)
+        yield item
+
+
+@register.inclusion_tag('admin/change_list_results.html')
+def result_list(cl):
+    return {'cl': cl,
+            'result_hidden_fields': list(result_hidden_fields(cl)),
+            'result_headers': list(extradmin_result_headers(cl)),
+            'results': list(results(cl))}
