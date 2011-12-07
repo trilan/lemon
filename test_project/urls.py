@@ -1,12 +1,14 @@
 from django.conf import settings
 from django.conf.urls.defaults import include, patterns, url
 from django.conf.urls.static import static
+from django.contrib import admin
 
 from lemon import extradmin
 from lemon.utils import urls
 
 
-extradmin.autodiscover()
+admin.autodiscover()
+
 urlpatterns = patterns('',
     url(r'^admin/', include(extradmin.site.urls)),
     url(r'^robots\.txt', include('lemon.robots.urls')),
