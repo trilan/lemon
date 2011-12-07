@@ -3,6 +3,7 @@ import inspect
 from django import forms
 from django import http
 from django.contrib.admin import options
+from django.contrib.admin.options import get_ul_class
 from django.contrib.admin.widgets import AdminRadioSelect
 from django.conf import settings
 from django.db import models
