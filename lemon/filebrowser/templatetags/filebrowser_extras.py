@@ -100,7 +100,7 @@ class IncludeEditorStuffNode(template.Node):
 def include_editor_stuff(parser, token):
     bits = token.split_contents()
     if len(bits) != 2:
-        raise TemplateSyntaxError('%r tag takes only one argument: the editor '
-                                  'identifier.' % bits[0])
+        raise template.TemplateSyntaxError(
+            '%r tag takes only one argument: the editor identifier.' % bits[0])
     editor = parser.compile_filter(bits[1])
     return IncludeEditorStuffNode(editor)
