@@ -143,7 +143,7 @@ class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
                 new_contents = []
                 for tab_item in contents:
                     new_contents.extend(self._get_tab_for_inline(tab_item)[1])
-                tabs.append({'title': tab['title'], 'contents': new_contents})
+                return {'title': tab['title'], 'contents': new_contents}
         raise IncorrectTabFormat(u'Incorrect tab format.')
 
     def _get_tab_for_inline(self, inline):
