@@ -2,7 +2,7 @@ dashboard.views.AdminApps = dashboard.views.Template.extend({
 
   tagName: "div",
   className: "dashboard-admin-apps-instance",
-  templateId: "dashboard/js/app/templates/admin_apps",
+  templateId: "dashboard/js/templates/admin_apps",
 
   initialize: function() {
     dashboard.views.Template.prototype.initialize.call(this);

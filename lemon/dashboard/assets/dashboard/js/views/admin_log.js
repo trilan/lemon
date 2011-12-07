@@ -2,7 +2,7 @@ dashboard.views.AdminLog = dashboard.views.Template.extend({
 
   tagName: "div",
   className: "dashboard-admin-log-instance",
-  templateId: "dashboard/js/app/templates/admin_log",
+  templateId: "dashboard/js/templates/admin_log",
 
   initialize: function() {
     dashboard.views.Template.prototype.initialize.call(this);
