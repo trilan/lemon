@@ -1,5 +1,4 @@
-from django.contrib.contenttypes.models import ContentType
-from django.db.models import ForeignKey, ManyToManyField
+from django.db.models import ManyToManyField
 from django.db.models.base import ModelBase
 from django.db.models.signals import post_save, pre_delete, m2m_changed
 

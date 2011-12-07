@@ -1,7 +1,5 @@
 from django.contrib.contenttypes import generic
-
-from lemon.extradmin.options import BaseModelAdmin, InlineModelAdmin, \
-    FORMFIELD_FOR_DBFIELD_DEFAULTS
+from lemon.extradmin.options import BaseModelAdmin, InlineModelAdmin
 
 
 class GenericInlineModelAdmin(generic.GenericInlineModelAdmin, InlineModelAdmin, BaseModelAdmin):

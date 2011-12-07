@@ -1,5 +1,3 @@
-import re
-
 from django.utils.functional import SimpleLazyObject
 from django.utils.safestring import mark_safe
 from django.utils.translation import get_language

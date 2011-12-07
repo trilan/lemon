@@ -1,13 +1,11 @@
-from django.conf import settings
 from django.conf.urls.defaults import patterns, url, include
-from django.core.urlresolvers import reverse
 from django.template.loader import render_to_string
 from django.utils import simplejson as json
 from django.utils.safestring import mark_safe
 
 from lemon.dashboard import views
 from lemon.dashboard.models import WidgetInstance
-from lemon.dashboard.utils import find_template_source, Media, MediaDefiningClass
+from lemon.dashboard.utils import Media, MediaDefiningClass
 
 
 class BaseDashboard(object):

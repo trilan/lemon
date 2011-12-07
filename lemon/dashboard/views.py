@@ -1,7 +1,6 @@
 from django import http
 from django.core.exceptions import ImproperlyConfigured
 from django.db import IntegrityError
-from django.db.models import F
 from django.shortcuts import get_object_or_404
 from django.utils import simplejson as json
 from django.views.generic import View

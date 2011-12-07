@@ -3,7 +3,6 @@ import inspect
 from django import forms
 from django import http
 from django.contrib.admin import options
-from django.contrib.admin.views.main import IS_POPUP_VAR
 from django.contrib.admin.widgets import AdminRadioSelect
 from django.conf import settings
 from django.db import models
@@ -12,7 +11,6 @@ from django.utils.datastructures import SortedDict
 from django.utils.functional import update_wrapper
 from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext
 
 from lemon.extradmin import widgets
 

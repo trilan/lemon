@@ -1,6 +1,4 @@
 from django.conf import settings
-from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext
 
 from lemon import extradmin
 from lemon.publications.admin import PublicationAdmin

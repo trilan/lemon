@@ -1,4 +1,4 @@
-from django.template import Node, Library, Variable
+from django.template import Library, Variable
 from django.template import TemplateSyntaxError, VariableDoesNotExist
 from django.template.defaulttags import URLNode
 

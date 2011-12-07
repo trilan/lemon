@@ -1,4 +1,4 @@
-from django.template import Library, Node, TemplateSyntaxError
+from django.template import Library
 from django.utils.safestring import mark_safe
 from django.utils import simplejson as json
 

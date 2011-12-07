@@ -3,14 +3,9 @@ from django.conf.urls.defaults import patterns, url, include
 from django.contrib.admin import sites
 from django.contrib.contenttypes.views import shortcut
 from django.core.exceptions import ImproperlyConfigured
-from django.shortcuts import render_to_response
-from django.template import RequestContext
 from django.utils.functional import update_wrapper
 from django.utils.importlib import import_module
-from django.utils.translation import ugettext as _
-from django.views.decorators.cache import never_cache
 
-from lemon.extradmin import widgets
 from lemon.extradmin.options import ModelAdmin, AppAdmin
 from lemon.extradmin.settings import CONFIG
 from lemon.filebrowser.sites import FileBrowserSite
@@ -44,8 +39,6 @@ class AdminSite(sites.AdminSite):
         del self._app_registry[app_name]
 
     def get_urls(self):
-        from django.conf.urls.defaults import patterns, url, include
-
         if settings.DEBUG:
             self.check_dependencies()
 

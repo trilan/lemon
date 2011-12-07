@@ -1,17 +1,13 @@
 from django.conf.urls.defaults import patterns, url
-from django.contrib import admin
 from django.contrib.auth.admin import (
     GroupAdmin as DjangoGroupAdmin, UserAdmin as DjangoUserAdmin)
 from django.contrib.auth.models import Group, User
-from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.admin import SiteAdmin as DjangoSiteAdmin
 from django.contrib.sites.models import Site
-from django.db import models
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from django.utils.functional import curry
 from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext
 
 from lemon import extradmin
 from lemon.extradmin.forms import MenuItemForm, GroupPermissionsForm

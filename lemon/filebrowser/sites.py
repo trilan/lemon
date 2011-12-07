@@ -4,7 +4,7 @@ import re
 from time import gmtime, strftime, localtime, time
 
 from django.core.exceptions import ImproperlyConfigured
-from django.core.paginator import Paginator, EmptyPage
+from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
 from django.forms.util import ErrorList
 from django.http import Http404, HttpResponseRedirect

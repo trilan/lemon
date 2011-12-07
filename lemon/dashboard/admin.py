@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.conf.urls.defaults import patterns, url
 from django.contrib.admin.models import LogEntry
 from django.utils import simplejson as json
@@ -69,7 +68,6 @@ class AdminLog(Widget):
         return unicode(model_class._meta.verbose_name)
 
     def get_raw(self, user, use_l10n=True):
-        queryset = self.get_queryset(user)
         entry_list = []
         for entry in self.get_queryset(user):
             date = entry.action_time.date()

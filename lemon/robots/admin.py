@@ -1,6 +1,5 @@
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext
 
 from lemon import extradmin
 from lemon.robots.models import File

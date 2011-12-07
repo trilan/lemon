@@ -1,7 +1,4 @@
-from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext
 
 from lemon import extradmin
 from lemon.extradmin import generic
