@@ -1,32 +1,7 @@
-from django.conf import settings
 from django.forms.widgets import Media as DjangoMedia
-from django.template import loader
-from django.template.base import TemplateDoesNotExist
 
 
 MEDIA_TYPES = ('css', 'js')
-
-
-def find_template_source_loaders():
-    loaders = []
-    for loader_name in settings.TEMPLATE_LOADERS:
-        l = loader.find_template_loader(loader_name)
-        if l is not None:
-            loaders.append(l)
-    return tuple(loaders)
-
-
-def find_template_source(name):
-    global loader
-    if loader.template_source_loaders is None:
-        loader.template_source_loaders = self.find_template_source_loaders()
-    for l in loader.template_source_loaders:
-        try:
-            source, display_name = l.load_template_source(name)
-            return source
-        except TemplateDoesNotExist:
-            pass
-    raise TemplateDoesNotExist(name)
 
 
 class Media(DjangoMedia):
