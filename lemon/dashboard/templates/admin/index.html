@@ -12,7 +12,12 @@
   {% dashboard_js %}
 {% endblock %}
 
-{% block breadcrumbs_block %}{% endblock %}
+{% block breadcrumbs_block %}
+  <ul id="breadcrumbs" class="breadcrumbs clearfix">
+    <li><a href="{% url 'admin:index' %}">{% trans "Home" %}</a></li>
+    {% block breadcrumbs %}{% endblock %}
+  </ul>
+{% endblock %}
 
 {% block content_title %}{% endblock %}
 {% block content %}
