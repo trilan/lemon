@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery.ui
 //= require jquery.floatheader
+//= require chosen.jquery
 //= require json2
 //= require modernizr
 //= require underscore

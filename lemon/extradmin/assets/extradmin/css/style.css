@@ -8,4 +8,5 @@
  *= require changelist_search
  *= require changeform
  *= require jquery.datetimepicker
+ *= require chosen
  */
