@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.admin import autodiscover
 from django.contrib.auth.models import Group, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.test import TestCase
@@ -12,7 +13,7 @@ from lemon.extradmin.tests.models import Article
 from lemon.extradmin.widgets import PermissionSelectMultiple
 
 
-extradmin.autodiscover()
+autodiscover()
 
 
 class DefaultMarkupWidgetTestCase(TestCase):
