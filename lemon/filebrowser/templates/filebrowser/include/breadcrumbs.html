@@ -3,7 +3,7 @@
 
 <ul id="filebrowser-breadcrumbs" class="clearfix">
   {% if breadcrumbs or breadcrumbs_title %}
-    <li><a href="{% url admin:filebrowser:browse %}{% query_string 'dir,filename,p' %}">{% trans 'Root Folder' %}</a> &rsaquo;&nbsp;</li>
+    <li><a href="{% url 'admin:filebrowser:browse' %}{% query_string 'dir,filename,p' %}">{% trans 'Root Folder' %}</a> &rsaquo;&nbsp;</li>
   {% else %}
     <li>{% trans 'Root Folder' %}</li>
   {% endif %}

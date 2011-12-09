@@ -24,32 +24,44 @@
   <div id="fb_folder_delete_dialog" title="{% trans 'Delete Folder' %}">
     <p>{% trans "Are you sure you want to delete this folder?" %}</p>
   </div>
-  <h1>{{ title }}</h1>
   {% block tools %}
     <ul class="tools">
       <li><a href="{% url 'admin:filebrowser:mkdir' %}{% query_string 'p' %}">{% trans "Create Folder" %}</a></li>
       <li><a href="{% url 'admin:filebrowser:upload' %}{% query_string 'p' %}">{% trans "Upload File" %}</a></li>
     </ul>
   {% endblock %}
-  <div class="changelist">
-    <div class="changelist-header">{% include "filebrowser/include/toolbar.html" %}</div>
-    {% include "filebrowser/include/breadcrumbs.html" %}
-    <div class="changelist-body filtered clearfix">
-      <div class="changelist-filters">{% include "filebrowser/include/filter.html" %}</div>
-      <div id="changelist-main" class="changelist-main">
-        {% if results_var.results_total %}
-          <div class="result-list">
-            <table cellspacing="0" class="filebrowser">
-              {% include "filebrowser/include/tableheader.html" %}
-              <tbody>{% include "filebrowser/include/filelisting.html" %}</tbody>
-            </table>
-          </div>
-        {% endif %}
+  <div class="changelist-wrapper">
+    <div id="changelist" class="panel changelist filtered">
+      <div id="changelist-header" class="panel-header changelist-header">
+        {% include "filebrowser/include/toolbar.html" %}
+      </div>
+      <div id="changelist-body" class="panel-body changelist-body filtered clearfix">
+        {% include "filebrowser/include/breadcrumbs.html" %}
+        <div id="changelist-main" class="changelist-main">
+          {% if results_var.results_total %}
+            <div class="result-list">
+              <table cellspacing="0" class="filebrowser">
+                {% include "filebrowser/include/tableheader.html" %}
+                <tbody>{% include "filebrowser/include/filelisting.html" %}</tbody>
+              </table>
+            </div>
+          {% endif %}
+        </div>
+        <div class="changelist-footer">
+          <div class="changelist-pager"><div>{% pagination %}</div></div>
+          <div class="changelist-links"></div>
+        </div>
       </div>
     </div>
-    <div class="changelist-footer">
-      <div class="changelist-pager"><div>{% pagination %}</div></div>
-      <div class="changelist-links"></div>
-    </div>
   </div>
+  {% block filters %}
+    <div id="changelist-filters" class="panel changelist-filters">
+      <div id="changelist-filters-header" class="panel-header changelist-filters-header">
+        <h2 id="changelist-filters-title" class="panel-title changelist-filters-title">{% trans 'Filters' %}</h2>
+      </div>
+      <div class="panel-body changelist-filters-body">
+        {% include "filebrowser/include/filter.html" %}
+      </div>
+    </div>
+  {% endblock %}
 {% endblock %}

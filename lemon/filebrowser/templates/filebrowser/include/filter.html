@@ -1,6 +1,5 @@
 {% load i18n filebrowser_extras %}
 
-<h2>{% trans "Filter" %}</h2>
 <dl>
   <dt>{% trans "Date" %}</dt>
   <dd{% if not query.filter_date %} class="active"{% endif %}><a href="{% query_string 'filter_date,p' %}">{% trans "Any Date" %}</a></dd>

@@ -6,7 +6,7 @@
     <div>
       <label for="searchbar">
         <input type="text" name="q" value="{{ query.q }}" class="searchbar">
-        <input type="submit" value="{% trans "Search" %}">
+        <input type="submit" value="{% trans "Search" %}" class="button submit">
       </label>
       {% if results_var.results_total %}{% if query.filter_type or query.filter_date or query.q %}
         <span class="small quiet">{% blocktrans count counter=results_var.results_total %}1 result{% plural %}{{ counter }} results{% endblocktrans %} (<a href="{% query_string 'filter_date,filter_type,q' %}">{% blocktrans with results_var.results_total as full_result_count %}{{ full_result_count }} total{% endblocktrans %}</a>)</span>

@@ -18,24 +18,27 @@
       <ul class="errorlist">{% for error in form.non_field_errors %}<li>{{ error }}</li>{% endfor %}</ul>
     </div>
   {% endif %}
-  <h1>{{ title }}</h1>
   <form action="{% query_string 'p' %}" method="post">
     {% csrf_token %}
     <div id="tabs" class="tabs">
-      <fieldset class="main">
-        <div class="content">
-          <div class="field clearfix last">
-            <label class="required" for="id_dir_name">{{ form.dir_name.label }}</label>
-            {{ form.dir_name }}
-            {{ form.dir_name.errors }}
-            <p class="help">
-              {{ form.dir_name.help_text|safe }}<br>
-              {% trans "The Name will be converted to lowercase. Spaces will be replaced with underscores." %}
-            </p>
+      <div class="main_group">
+        <fieldset class="main">
+          <div class="content">
+            <div class="field clearfix last">
+              <label class="required" for="id_dir_name">{{ form.dir_name.label }}</label>
+              {{ form.dir_name }}
+              {{ form.dir_name.errors }}
+              <p class="help">
+                {{ form.dir_name.help_text|safe }}<br>
+                {% trans "The Name will be converted to lowercase. Spaces will be replaced with underscores." %}
+              </p>
+            </div>
           </div>
-        </div>
-      </fieldset>
+        </fieldset>
+      </div>
     </div>
-    <div class="main-buttons"><input type="submit" value="{% trans 'Create' %}" class="default"></div>
+    <div id="main-buttons" class="main-buttons">
+      <input type="submit" value="{% trans 'Create' %}" class="button default">
+    </div>
   </form>
 {% endblock %}

@@ -13,12 +13,13 @@ from django.template.context import RequestContext
 from django.utils.translation import ugettext as _
 from django.views.i18n import javascript_catalog
 
+from lemon import extradmin
 from lemon.filebrowser import settings
 from lemon.filebrowser.base import FileObject
 from lemon.filebrowser.utils import query_helper
 
 
-class FileBrowserSite(object):
+class FileBrowserAdmin(extradmin.AppAdmin):
 
     upload_to = 'filebrowser'
     extensions = {'Folder': [''],
@@ -37,47 +38,27 @@ class FileBrowserSite(object):
     convert_filenames = True
     max_upload_size = 10 * 1024 * 1024
 
-    def __init__(self, admin_site, name='filebrowser',
-                 app_name='filebrowser'):
-        self.admin_site = admin_site
-        self.name = name
-        self.app_name = app_name
-        self.extension_list = []
-        for exts in self.extensions.values():
-            self.extension_list.extend(exts)
+    def __init__(self, *args, **kwargs):
+        super(FileBrowserAdmin, self).__init__(*args, **kwargs)
         self.sort_order = 'desc' if self.order_by.startswith('-') else 'asc'
         self.sort_by = self.order_by.strip('+-')
 
     def get_urls(self):
         from django.conf.urls.defaults import patterns, url
-
-        urlpatterns = patterns(
+        wrap = self.admin_site.admin_view
+        return patterns(
             '',
-            url(r'^$',
-                self.admin_site.admin_view(self.browse_view),
-                name='browse'),
-            url(r'^mkdir/$',
-                self.admin_site.admin_view(self.mkdir_view),
-                name='mkdir'),
-            url(r'^upload/$',
-                self.admin_site.admin_view(self.upload_view),
-                name='upload'),
-            url(r'^rename/$',
-                self.admin_site.admin_view(self.rename_view),
-                name='rename'),
-            url(r'^delete/$',
-                self.admin_site.admin_view(self.delete_view),
-                name='delete'),
-            url(r'^jsi18n/$',
-                self.admin_site.admin_view(self.i18n_javascript),
-                name='jsi18n'),
+            url(r'^$', wrap(self.browse_view), name='browse'),
+            url(r'^mkdir/$', wrap(self.mkdir_view), name='mkdir'),
+            url(r'^upload/$', wrap(self.upload_view), name='upload'),
+            url(r'^rename/$', wrap(self.rename_view), name='rename'),
+            url(r'^delete/$', wrap(self.delete_view), name='delete'),
+            url(r'^jsi18n/$', wrap(self.i18n_javascript), name='jsi18n'),
         )
 
-        return urlpatterns
-
+    @property
     def urls(self):
-        return self.get_urls(), self.app_name, self.name
-    urls = property(urls)
+        return self.get_urls(), self.app_name, self.app_name
 
     def get_path(self, path):
         fullpath = os.path.join(settings.MEDIA_ROOT, self.upload_to, path)
@@ -121,6 +102,7 @@ class FileBrowserSite(object):
         if filter_date == '':
             return 'true'
         return ''
+
 
     def sort_by_attr(self, seq, attr):
         intermed = map(None, map(getattr, seq, (attr,)*len(seq)),
@@ -209,7 +191,7 @@ class FileBrowserSite(object):
              'breadcrumbs_title': '',
              'is_popup': request.GET.get('pop', False),
              'editor': request.GET.get('editor', None)},
-            context_instance=RequestContext(request))
+            context_instance=RequestContext(request, current_app=self.admin_site.name))
 
     def mkdir_view(self, request):
         from lemon.filebrowser.forms import MakeDirForm
@@ -406,5 +388,7 @@ class FileBrowserSite(object):
         }, context_instance=RequestContext(request))
 
     def i18n_javascript(self, request):
-        return javascript_catalog(
-            request, packages='lemon.filebrowser')
+        return javascript_catalog(request, packages='lemon.filebrowser')
+
+
+extradmin.site.register_app('filebrowser', FileBrowserAdmin)

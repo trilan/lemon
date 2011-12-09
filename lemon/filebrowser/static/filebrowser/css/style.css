@@ -1,8 +1,9 @@
 #filebrowser-breadcrumbs {
     display: block;
     background: url('../../images/changelist-right.png') top right repeat-y;
-    border-top: #97A9B1 solid 1px;
+    border-bottom: #97A9B1 solid 1px;
     padding: 10px 20px;
+    margin: 0;
 }
 
 #filebrowser-breadcrumbs li {

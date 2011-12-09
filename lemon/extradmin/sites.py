@@ -8,7 +8,6 @@ from django.utils.importlib import import_module
 
 from lemon.extradmin.options import ModelAdmin, AppAdmin
 from lemon.extradmin.settings import CONFIG
-from lemon.filebrowser.sites import FileBrowserSite
 
 
 class AdminSite(sites.AdminSite):
@@ -16,7 +15,6 @@ class AdminSite(sites.AdminSite):
     def __init__(self, name=None, app_name='admin'):
         super(AdminSite, self).__init__(name, app_name)
         self._app_registry = {}
-        self.file_browser_site = FileBrowserSite(self)
 
     def register(self, model_or_iterable, admin_class=None, **options):
         if not admin_class:
@@ -65,7 +63,6 @@ class AdminSite(sites.AdminSite):
                 name='jsi18n'),
             url(r'r/(?P<content_type_id>\d+)/(?P<object_id>.+)/$',
                 wrap(shortcut)),
-            url(r'^filebrowser/', include(self.file_browser_site.urls)),
         )
 
         for app_name, app_admin in self._app_registry.iteritems():
