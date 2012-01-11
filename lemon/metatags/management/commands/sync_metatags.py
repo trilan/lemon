@@ -15,16 +15,16 @@ class Command(NoArgsCommand):
         admin.autodiscover()
 
         print 'Starting metatags synchronisation with all registered models.'
-        for model, model_metatags in metatags.site._registry.items():
+        for model in metatags.site._registry:
             print 'Syncing %s.%s model.' % (model._meta.app_label, model.__name__)
-            self.sync_metatags(model, model_metatags)
+            self.sync_metatags(model)
         print 'All objects with `get_absolute_url` method was synced.',
 
         print 'Removing orphaned metatags.'
         self.remove_orphaned()
         print 'Done.'
 
-    def sync_metatags(self, model, model_metatags):
+    def sync_metatags(self, model):
         for obj in model.objects.all():
             try:
                 page = Page.objects.get_for_content_object(obj)
