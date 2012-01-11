@@ -11,8 +11,10 @@ class Command(NoArgsCommand):
     help = 'Sync sitemap.xml with all registered models'
 
     def handle_noargs(self, **options):
+        from django.contrib import admin
+        admin.autodiscover()
+
         print 'Starting sitemap.xml synchronization with all registered models.'
-        sitemaps.autodiscover()
         for model, sitemap in sitemaps.site._registry.items():
             print 'Syncing %s.%s model.' % (model._meta.app_label, model.__name__)
             self.sync_sitemap(model, sitemap)
