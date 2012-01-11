@@ -38,7 +38,7 @@ class Command(NoArgsCommand):
 
     def remove_orphaned(self):
         for page in Page.objects.all():
-            if not (page.content_type and page.object_id) or page.content_object:
+            if not page.has_content_object() or page.content_object:
                 continue
             sites = ', '.join([s.domain for s in page.sites.all()])
             print '  Metatags for %s (%s) was deleted.' % (page.url_path, sites)
