@@ -16,7 +16,7 @@ class Command(NoArgsCommand):
 
         print 'Starting metatags synchronisation with all registered models.'
         for model in metatags.site._registry:
-            print 'Syncing %s.%s model.' % (model._meta.app_label, model.__name__)
+            print 'Syncing %s model.' % model._meta
             self.sync_metatags(model)
         print 'All objects with `get_absolute_url` method was synced.',
 
