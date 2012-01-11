@@ -50,6 +50,9 @@ class Page(models.Model):
     def __unicode__(self):
         return self.url_path
 
+    def has_content_object(self):
+        return self.content_type and self.object_id
+
     def save(self, *args, **kwargs):
         self.update_url_path(commit=False)
         self.update_language(commit=False)
