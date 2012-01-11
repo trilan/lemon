@@ -11,8 +11,10 @@ class Command(NoArgsCommand):
     help = 'Sync metatags with all registered models'
 
     def handle_noargs(self, **options):
+        from django.contrib import admin
+        admin.autodiscover()
+
         print 'Starting metatags synchronisation with all registered models.'
-        metatags.autodiscover()
         for model, metatags in metatags.site._registry.items():
             print 'Syncing %s.%s model.' % (model._meta.app_label, model.__name__)
             self.sync_metatags(model, metatags)
