@@ -29,18 +29,17 @@ class Command(NoArgsCommand):
             try:
                 page = Page.objects.get_for_content_object(obj)
             except Page.DoesNotExist:
-                pass
-            else:
-                page.update_url_path()
-                page.update_language()
-                page.update_sites()
-                sites = ', '.join([s.domain for s in page.sites.all()])
-                print '  Metatags for %s (%s) was updated.' % (page.url_path, sites)
+                continue
+            page.update_url_path()
+            page.update_language()
+            page.update_sites()
+            sites = ', '.join([s.domain for s in page.sites.all()])
+            print '  Metatags for %s (%s) was updated.' % (page.url_path, sites)
 
     def remove_orphaned(self):
         for page in Page.objects.all():
-            if page.content_type and page.object_id:
-                if not page.content_object:
-                    sites = ', '.join([s.domain for s in page.sites.all()])
-                    print '  Metatags for %s (%s) was deleted.' % (page.url_path, sites)
-                    page.delete()
+            if not (page.content_type and page.object_id) or page.content_object:
+                continue
+            sites = ', '.join([s.domain for s in page.sites.all()])
+            print '  Metatags for %s (%s) was deleted.' % (page.url_path, sites)
+            page.delete()
