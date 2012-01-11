@@ -54,10 +54,14 @@ input[type=text], input[type=password], input.text, input.title, textarea
     gradient darken($background-color, 5%), lighten($background-color, 5%)
 
 .delete_button
-  color #a01
-  gradient darken(#f3bcbe, 20%), #f3bcbe
-  text-shadow lighten(#f3bcbe, 10%) 0 1px 1px
-  border 1px solid #e4595d
+  color #fff
+  gradient darken(#f3bcbe, 40%), darken(#f3bcbe, 20%)
+  -webkit-box-shadow 0 1px 2px #f3bcbe, #f3bcbe 0 1px 1px inset
+  text-shadow darken(#f3bcbe, 60%) 0 -1px -1px
+  border 1px solid darken(#f3bcbe, 40%)
+  &:hover
+    background darken(#f3bcbe, 30%)
+    gradient darken(#f3bcbe, 40%), darken(#f3bcbe, 30%)
 
 div.datetime
   margin-left 160px
