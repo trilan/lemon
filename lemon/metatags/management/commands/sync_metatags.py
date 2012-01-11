@@ -40,6 +40,7 @@ class Command(NoArgsCommand):
         for page in Page.objects.all():
             if not page.has_content_object() or page.content_object:
                 continue
+            url_path = path.url_path
             sites = ', '.join([s.domain for s in page.sites.all()])
-            print '  Metatags for %s (%s) was deleted.' % (page.url_path, sites)
             page.delete()
+            print '  Metatags for %s (%s) was deleted.' % (url_path, sites)
