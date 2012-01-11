@@ -15,15 +15,15 @@ class Command(NoArgsCommand):
         admin.autodiscover()
 
         print 'Starting sitemap.xml synchronization with all registered models.'
-        for model, sitemap in sitemaps.site._registry.items():
+        for model in sitemaps.site._registry:
             print 'Syncing %s.%s model.' % (model._meta.app_label, model.__name__)
-            self.sync_sitemap(model, sitemap)
+            self.sync_sitemap(model)
         print 'All objects with `get_absolute_url` method was synced.',
         print 'Removing orphaned sitemap.xml items.'
         self.remove_orphaned()
         print 'Done.'
 
-    def sync_sitemap(self, model, sitemap):
+    def sync_sitemap(self, model):
         for obj in model.objects.all():
             try:
                 item = Item.objects.get_for_content_object(obj)
