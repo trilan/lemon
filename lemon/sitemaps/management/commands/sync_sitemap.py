@@ -16,9 +16,10 @@ class Command(NoArgsCommand):
 
         print 'Starting sitemap.xml synchronization with all registered models.'
         for model in sitemaps.site._registry:
-            print 'Syncing %s.%s model.' % (model._meta.app_label, model.__name__)
+            print 'Syncing %s model.' % model._meta
             self.sync_sitemap(model)
         print 'All objects with `get_absolute_url` method was synced.',
+
         print 'Removing orphaned sitemap.xml items.'
         self.remove_orphaned()
         print 'Done.'
