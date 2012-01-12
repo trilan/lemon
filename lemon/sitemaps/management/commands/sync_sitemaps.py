@@ -45,6 +45,7 @@ class Command(NoArgsCommand):
         for item in Item.objects.all():
             if not item.has_content_object() or item.content_object:
                 continue
+            url_path = item.url_path
             sites = ', '.join([s.domain for s in item.sites.all()])
-            print '  sitemap.xml item for %s (%s) deleted.' % (item.url_path, sites)
             item.delete()
+            print '  sitemap.xml item for %s (%s) deleted.' % (url_path, sites)
