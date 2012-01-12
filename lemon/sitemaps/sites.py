@@ -3,7 +3,6 @@ from django.db.models.base import ModelBase
 from django.db.models.signals import post_save, pre_delete, m2m_changed
 
 from lemon import extradmin
-from lemon.sitemaps.admin import ItemInline
 from lemon.sitemaps.models import Item
 from lemon.sitemaps.options import ModelSitemap
 
@@ -23,6 +22,11 @@ class SitemapSite(object):
     def __init__(self):
         self._registry = {}
 
+    @property
+    def inline_admin_class(self):
+        from lemon.sitemaps.admin import ItemInline
+        return ItemInline
+
     def register(self, model_or_iterable, model_sitemap_class=None, **options):
         if not model_sitemap_class:
             model_sitemap_class = ModelSitemap
@@ -36,7 +40,7 @@ class SitemapSite(object):
 
             model_admin = extradmin.site._registry.get(model)
             if model_admin:
-                inline_instance = ItemInline(model, extradmin.site)
+                inline_instance = self.inline_admin_class(model, extradmin.site)
                 model_admin.inline_instances = \
                     model_admin.inline_instances + [inline_instance]
                 if isinstance(model_admin.tabs, (list, tuple)):
