@@ -31,8 +31,7 @@ class Command(NoArgsCommand):
             except Item.DoesNotExist:
                 if not sitemap.url_path(obj):
                     continue
-                item = Item(content_object=obj)
-                item.save()
+                item = Item.objects.create(content_object=obj)
                 action = 'created'
             else:
                 item.update_url_path()
