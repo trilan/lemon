@@ -29,22 +29,23 @@ class Command(NoArgsCommand):
             try:
                 item = Item.objects.get_for_content_object(obj)
             except Item.DoesNotExist:
-                if sitemap.url_path(obj):
-                    item = Item(content_object=obj)
-                    item.save()
-                    sites = ', '.join([s.domain for s in item.sites.all()])
-                    print '  sitemap.xml item for %s (%s) was created.' % (item.url_path, sites)
+                if not sitemap.url_path(obj):
+                    continue
+                item = Item(content_object=obj)
+                item.save()
+                action = 'created'
             else:
                 item.update_url_path()
                 item.update_language()
                 item.update_sites()
-                sites = ', '.join([s.domain for s in item.sites.all()])
-                print '  sitemap.xml item for %s (%s) was updated.' % (item.url_path, sites)
+                action = 'updated'
+            sites = ', '.join([s.domain for s in item.sites.all()])
+            print '  sitemap.xml item for %s (%s) was %s.' % (item.url_path, sites, action)
 
     def remove_orphaned(self):
         for item in Item.objects.all():
-            if item.content_type and item.object_id:
-                if not item.content_object:
-                    sites = ', '.join([s.domain for s in item.sites.all()])
-                    print '  sitemap.xml item for %s (%s) deleted.' % (item.url_path, sites)
-                    item.delete()
+            if not item.has_content_object() or item.content_object:
+                continue
+            sites = ', '.join([s.domain for s in item.sites.all()])
+            print '  sitemap.xml item for %s (%s) deleted.' % (item.url_path, sites)
+            item.delete()
