@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 
 from lemon import extradmin
 from lemon.extradmin import generic
@@ -26,3 +27,7 @@ class ItemAdmin(extradmin.ModelAdmin):
 
 
 extradmin.site.register(Item, ItemAdmin)
+
+section = extradmin.site.menu.section('sites')
+section.add_item('sitemap.xml items', model=Item,
+                 title=_(u'Sitemap.xml files items'))

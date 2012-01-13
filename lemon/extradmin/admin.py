@@ -6,38 +6,12 @@ from django.contrib.sites.admin import SiteAdmin as DjangoSiteAdmin
 from django.contrib.sites.models import Site
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
-from django.utils.functional import curry
 from django.utils.translation import ugettext_lazy as _
 
 from lemon import extradmin
-from lemon.extradmin.forms import MenuItemForm, GroupPermissionsForm
+from lemon.extradmin.forms import GroupPermissionsForm
 from lemon.extradmin.forms import PermissionMultipleChoiceField
-from lemon.extradmin.forms import contenttype_inlineformset_factory
-from lemon.extradmin.models import MenuSection, MenuItem
 from lemon.extradmin.widgets import PermissionSelectMultiple
-
-
-class MenuItemInline(extradmin.TabularInline):
-
-    form = MenuItemForm
-    model = MenuItem
-
-    def get_formset(self, request, obj=None, **kwargs):
-        defaults = {
-            "formfield_callback": curry(self.formfield_for_dbfield,
-                                        request=request),
-            "extra": self.extra,
-            "max_num": self.max_num,
-        }
-        defaults.update(kwargs)
-        return contenttype_inlineformset_factory(self.parent_model, self.model,
-                                                 self.admin_site, **defaults)
-
-
-class MenuSectionAdmin(extradmin.ModelAdmin):
-
-    tabs = True
-    inlines = [MenuItemInline]
 
 
 class UserAdmin(extradmin.ModelAdmin, DjangoUserAdmin):
@@ -105,7 +79,13 @@ class SiteAdmin(extradmin.ModelAdmin, DjangoSiteAdmin):
     pass
 
 
-extradmin.site.register(MenuSection, MenuSectionAdmin)
 extradmin.site.register(User, UserAdmin)
 extradmin.site.register(Group, GroupAdmin)
 extradmin.site.register(Site, SiteAdmin)
+
+section = extradmin.site.menu.add_section('sites', title=_(u'Sites'))
+section.add_item('sites', model=Site, title=_(u'Sites'))
+section.add_item('users', model=User, title=_(u'Users'))
+section.add_item('user groups', model=Group, title=_(u'User groups'))
+
+extradmin.site.menu.add_section('content', title=_(u'Content'))

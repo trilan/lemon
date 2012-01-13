@@ -2,7 +2,7 @@ from django.template import Library, Variable
 from django.template import TemplateSyntaxError, VariableDoesNotExist
 from django.template.defaulttags import URLNode
 
-from lemon.extradmin.models import MenuItem
+from lemon.extradmin.menu import Menu
 
 
 register = Library()
@@ -31,10 +31,8 @@ class MainMenuItemURLNode(URLNode):
 
 
 @register.inclusion_tag('extradmin/main_menu.html')
-def main_menu():
-    queryset = MenuItem.objects.select_related('section','content_type')
-    queryset = queryset.order_by('section__position', 'position')
-    return {'menu_items': queryset}
+def main_menu(menu_name):
+    return {'menu': Menu.with_name(menu_name)}
 
 
 @register.tag

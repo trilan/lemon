@@ -6,14 +6,16 @@ from django.core.exceptions import ImproperlyConfigured
 from django.utils.functional import update_wrapper
 from django.utils.importlib import import_module
 
+from lemon.extradmin.menu import Menu
 from lemon.extradmin.options import ModelAdmin, AppAdmin
 from lemon.extradmin.settings import CONFIG
 
 
 class AdminSite(sites.AdminSite):
 
-    def __init__(self, name=None, app_name='admin'):
+    def __init__(self, name=None, app_name='admin', menu_name=None):
         super(AdminSite, self).__init__(name, app_name)
+        self.menu = Menu(menu_name or name or app_name)
         self._app_registry = {}
 
     def register(self, model_or_iterable, admin_class=None, **options):

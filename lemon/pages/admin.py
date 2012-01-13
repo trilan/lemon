@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
 
 from lemon import extradmin
 from lemon.publications.admin import PublicationAdmin
@@ -24,6 +25,9 @@ class PageAdmin(PublicationAdmin):
 
 
 extradmin.site.register(Page, PageAdmin)
+
+section = extradmin.site.menu.section('content')
+section.add_item('text pages', model=Page, title=_(u'Text pages'))
 
 if 'lemon.metatags' in settings.INSTALLED_APPS:
     from lemon import metatags

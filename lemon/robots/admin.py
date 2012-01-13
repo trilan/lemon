@@ -1,5 +1,5 @@
 from django.core.urlresolvers import reverse
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import pgettext_lazy, ugettext_lazy as _
 
 from lemon import extradmin
 from lemon.robots.models import File
@@ -25,3 +25,7 @@ class FileAdmin(extradmin.ModelAdmin):
 
 
 extradmin.site.register(File, FileAdmin)
+
+section = extradmin.site.menu.section('sites')
+section.add_item('robots.txt files', model=File,
+                 title=pgettext_lazy('admin menu', u'robots.txt files'))

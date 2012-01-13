@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 from lemon import extradmin
 from lemon.extradmin import generic
@@ -27,3 +28,6 @@ class PageAdmin(extradmin.ModelAdmin):
 
 
 extradmin.site.register(Page, PageAdmin)
+
+section = extradmin.site.menu.section('sites')
+section.add_item('metatags', model=Page, title=_(u'Meta tags'))
