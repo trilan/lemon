@@ -15,7 +15,7 @@ class AdminSite(sites.AdminSite):
 
     def __init__(self, name=None, app_name='admin', menu_name=None):
         super(AdminSite, self).__init__(name, app_name)
-        self.menu = Menu(menu_name or name or app_name)
+        self.menu = Menu(menu_name or name or app_name, self)
         self._app_registry = {}
 
     def register(self, model_or_iterable, admin_class=None, **options):

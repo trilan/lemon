@@ -7,7 +7,7 @@
       <span>{{ section.title }}</span>
       <ul>
         {% for item in section.items %}
-          <li><a href="{% main_menu_item_url item.get_content_type %}">{{ item.title }}</a></li>
+          <li><a href="{% main_menu_item_url item %}">{{ item.title }}</a></li>
         {% endfor %}
       </ul>
     </li>
