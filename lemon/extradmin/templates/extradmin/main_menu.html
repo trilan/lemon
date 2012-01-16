@@ -2,12 +2,12 @@
 {% load url from future %}
 
 <ul class="main-menu" id="main-menu">
-  {% for section in menu.non_empty_sections %}
+  {% for section in sections %}
     <li>
       <span>{{ section.title }}</span>
       <ul>
         {% for item in section.items %}
-          <li><a href="{% main_menu_item_url item %}">{{ item.title }}</a></li>
+          <li><a href="{{ item.url }}">{{ item.title }}</a></li>
         {% endfor %}
       </ul>
     </li>

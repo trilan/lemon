@@ -36,9 +36,6 @@ class Menu(SortedDict):
     def sections(self):
         return self.values()
 
-    def non_empty_sections(self):
-        return [section for section in self.sections() if section]
-
 
 class Section(SortedDict):
 
