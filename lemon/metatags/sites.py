@@ -4,7 +4,6 @@ from django.db.models.signals import post_save, pre_delete, m2m_changed
 from django.utils.translation import ugettext_lazy as _
 
 from lemon import extradmin
-from lemon.metatags.admin import PageInline
 from lemon.metatags.models import Page
 from lemon.metatags.options import ModelMetatags
 
@@ -21,10 +20,13 @@ class NotRegistered(Exception):
 
 class MetatagsSite(object):
 
-    inline_admin_class = PageInline
-
     def __init__(self):
         self._registry = {}
+
+    @property
+    def inline_admin_class(self):
+        from lemon.metatags.admin import PageInline
+        return PageInline
 
     def register(self, model_or_iterable, model_metatags_class=None, **options):
         if not model_metatags_class:

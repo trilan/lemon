@@ -4,16 +4,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lemon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-18 14:47+0400\n"
+"POT-Creation-Date: 2012-01-12 17:54+0400\n"
 "PO-Revision-Date: 2011-03-31 18:55+0400\n"
 "Last-Translator: Mike Yumatov <mike@yumatov.org>\n"
 "Language-Team: Russian <lemon@trilandev.com>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ru\n"
-"Plural-Forms: Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%"
-"10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2\n"
+"Plural-Forms: Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2\n"
+
+#: admin.py:33 sites.py:48 templates/admin/metatags/page/change_form.html:7
+#: templates/admin/metatags/page/change_list.html:7
+msgid "Meta tags"
+msgstr "Мета-теги"
 
 #: models.py:16
 msgid "URL path"
@@ -79,11 +84,6 @@ msgstr "страница"
 #: models.py:48
 msgid "pages"
 msgstr "страницы"
-
-#: sites.py:45 templates/admin/metatags/page/change_form.html:7
-#: templates/admin/metatags/page/change_list.html:7
-msgid "Meta tags"
-msgstr "Мета-теги"
 
 #: templates/admin/metatags/page/change_form.html:4
 #: templates/admin/metatags/page/change_form.html:5

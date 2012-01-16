@@ -4,18 +4,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lemon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-18 16:35+0400\n"
+"POT-Creation-Date: 2012-01-13 13:45+0400\n"
 "PO-Revision-Date: 2011-03-31 17:34+0400\n"
 "Last-Translator: Mike Yumatov <mike@yumatov.org>\n"
 "Language-Team: Russian <lemon@trilandev.com>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ru\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: admin.py:55
+#: admin.py:50
 msgid ""
 "First, enter a username and password. Then, you'll be able to edit more user "
 "options."
@@ -23,82 +23,83 @@ msgstr ""
 "Сначала введите имя пользователя и пароль. Затем вы сможете отредактировать "
 "больше информации о пользователе."
 
-#: admin.py:90
+#: admin.py:85
 msgid "Permissions was successfully saved."
 msgstr "Права успешно сохранены."
 
-#: admin.py:101 templates/admin/auth/group/permissions.html:19
+#: admin.py:96 templates/admin/auth/group/permissions.html:18
 msgid "Groups permissions"
 msgstr "Права групп"
 
-#: dashboard.py:12
-msgid "Admin log"
-msgstr "Лог действий"
+#: admin.py:113 admin.py:114
+msgid "Sites"
+msgstr "Сайты"
 
-#: dashboard.py:13
-msgid "Log of your last fifteen actions in admin."
-msgstr "Лог ваших последних действий в панели управления."
+#: admin.py:115
+msgid "Users"
+msgstr "Пользователи"
 
-#: dashboard.py:26
-msgid "Apps"
-msgstr "Приложения"
+#: admin.py:116 templates/admin/auth/group/change_form.html:6
+#: templates/admin/auth/group/change_list.html:6
+msgid "User groups"
+msgstr "Группы пользователей"
 
-#: dashboard.py:27
-msgid "Simple navigation in admin through apps' models."
-msgstr "Простая навигация в панели управления по моделям приложений."
+#: admin.py:118
+msgid "Content"
+msgstr "Контент"
 
-#: forms.py:28 models.py:25
+#: forms.py:25 models.py:24
 msgid "content type"
 msgstr "тип содержимого"
 
-#: models.py:9
+#: models.py:8
 msgid "section name"
 msgstr "название"
 
-#: models.py:10 models.py:28
+#: models.py:9 models.py:27
 msgid "position"
 msgstr "положение"
 
-#: models.py:14
+#: models.py:13
 msgid "menu section"
 msgstr "раздел меню"
 
-#: models.py:15
+#: models.py:14
 msgid "menu sections"
 msgstr "разделы меню"
 
-#: models.py:23
+#: models.py:22
 msgid "item name"
 msgstr "название"
 
-#: models.py:27
+#: models.py:26
 msgid "section"
 msgstr "раздел"
 
-#: models.py:32
+#: models.py:31
 msgid "menu item"
 msgstr "пункт меню"
 
-#: models.py:33
+#: models.py:32
 msgid "menu items"
 msgstr "пункты меню"
 
-#: options.py:94
+#: options.py:19
+msgid "Select action..."
+msgstr "Выберите действие..."
+
+#: options.py:96
 msgid "None"
 msgstr "Нет"
 
-#: options.py:187
+#: options.py:189
 msgid "General"
 msgstr "Основное"
 
-#: options.py:290
+#: options.py:295
 #, python-format
 msgid "%s administration"
 msgstr "%s администрирование"
-
-#: sites.py:97
-msgid "Site administration"
-msgstr "Администрирование сайта"
 
 #: widgets.py:35
 msgid "Date:"
@@ -128,11 +129,11 @@ msgstr "можно изменять"
 msgid "can delete"
 msgstr "можно удалять"
 
-#: templates/admin/404.html:4 templates/admin/404.html.py:8
+#: templates/admin/404.html:4 templates/admin/404.html.py:7
 msgid "Page not found"
 msgstr "Страница не найдена"
 
-#: templates/admin/404.html:10
+#: templates/admin/404.html:8
 msgid "We're sorry, but the requested page could not be found."
 msgstr "К сожалению, запрашиваемая вами страница не найдена."
 
@@ -160,15 +161,15 @@ msgstr "Выполнить выбранное действие"
 msgid "Go"
 msgstr "Выполнить"
 
-#: templates/admin/app_index.html:12
+#: templates/admin/app_index.html:12 templates/admin/index.html:18
 msgid "Add"
 msgstr "Добавить"
 
-#: templates/admin/app_index.html:13
+#: templates/admin/app_index.html:13 templates/admin/index.html:19
 msgid "Change"
 msgstr "Изменить"
 
-#: templates/admin/app_index.html:19
+#: templates/admin/app_index.html:19 templates/admin/index.html:26
 msgid "You don't have permission to edit anything."
 msgstr "У вас недостаточно прав для редактирования."
 
@@ -176,34 +177,34 @@ msgstr "У вас недостаточно прав для редактиров�
 msgid "Home"
 msgstr "Начало"
 
-#: templates/admin/change_form.html:20
-#: templates/admin/auth/user/change_password.html:17
+#: templates/admin/change_form.html:19
+#: templates/admin/auth/user/change_password.html:12
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
 msgstr[0] "Пожалуйста, исправьте ошибку ниже."
 msgstr[1] "Пожалуйста, исправьте ошибку ниже."
 msgstr[2] "Пожалуйста, исправьте ошибку ниже."
 
-#: templates/admin/change_form.html:27
+#: templates/admin/change_form.html:26
 #: templates/admin/edit_inline/stacked.html:16
 msgid "View on site"
 msgstr "Смотреть на сайте"
 
-#: templates/admin/change_list.html:24
+#: templates/admin/change_list.html:22
 #, python-format
 msgid "Add %(name)s"
 msgstr "Добавить %(name)s"
 
-#: templates/admin/change_list.html:42
-msgid "Filter"
-msgstr "Фильтр"
-
-#: templates/admin/change_list.html:86 templates/admin/pagination.html:8
+#: templates/admin/change_list.html:74 templates/admin/pagination.html:5
 msgid "Show all"
 msgstr "Показать все"
 
-#: templates/admin/change_list.html:96 templates/admin/submit_line.html:3
-#: templates/admin/auth/group/permissions.html:61
+#: templates/admin/change_list.html:88
+msgid "Filters"
+msgstr "Фильтр"
+
+#: templates/admin/change_list.html:98 templates/admin/submit_line.html:4
+#: templates/admin/auth/group/permissions.html:60
 msgid "Save"
 msgstr "Сохранить"
 
@@ -227,7 +228,7 @@ msgstr ""
 "Удаление %(object_name)s '%(escaped_object)s' потребует удаления следующих "
 "связанных защищенных объектов:"
 
-#: templates/admin/delete_confirmation.html:18
+#: templates/admin/delete_confirmation.html:19
 #, python-format
 msgid ""
 "Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
@@ -236,8 +237,8 @@ msgstr ""
 "Вы уверены, что хотите удалить %(object_name)s \"%(escaped_object)s\"? Все "
 "следующие связанные объекты также будут удалены:"
 
-#: templates/admin/delete_confirmation.html:25
-#: templates/admin/delete_selected_confirmation.html:31
+#: templates/admin/delete_confirmation.html:26
+#: templates/admin/delete_selected_confirmation.html:32
 msgid "Yes, I'm sure"
 msgstr "Да, я уверен"
 
@@ -261,7 +262,7 @@ msgstr ""
 "Удаление %(objects_name)s потребует удаления следующих связанных защищенных "
 "объектов:"
 
-#: templates/admin/delete_selected_confirmation.html:18
+#: templates/admin/delete_selected_confirmation.html:19
 #, python-format
 msgid ""
 "Are you sure you want to delete the selected %(objects_name)s? All of the "
@@ -270,19 +271,20 @@ msgstr ""
 "Вы уверены, что хотите удалить %(objects_name)s? Все следующие объекты и "
 "связанные с ними элементы будут удалены:"
 
-#: templates/admin/index.html:6
+#: templates/admin/index.html:7
 msgid "Control Panel"
 msgstr "Панель управления"
 
-#: templates/admin/index.html:9
-msgid "Available Widgets"
-msgstr "Доступные виджеты"
+#: templates/admin/index.html:14
+#, python-format
+msgid "%(name)s"
+msgstr "%(name)s"
 
-#: templates/admin/search_form.html:7
+#: templates/admin/search_form.html:8
 msgid "Search"
 msgstr "Найти"
 
-#: templates/admin/search_form.html:10
+#: templates/admin/search_form.html:11
 #, python-format
 msgid "1 result"
 msgid_plural "%(counter)s results"
@@ -290,24 +292,24 @@ msgstr[0] "%(counter)s результат"
 msgstr[1] "%(counter)s результата"
 msgstr[2] "%(counter)s результатов"
 
-#: templates/admin/search_form.html:10
+#: templates/admin/search_form.html:11
 #, python-format
 msgid "%(full_result_count)s total"
 msgstr "%(full_result_count)s всего"
 
-#: templates/admin/submit_line.html:4
+#: templates/admin/submit_line.html:5
 msgid "Save as new"
 msgstr "Сохранить как новый объект"
 
-#: templates/admin/submit_line.html:5
+#: templates/admin/submit_line.html:6
 msgid "Save and add another"
 msgstr "Сохранить и добавить другой объект"
 
-#: templates/admin/submit_line.html:6
+#: templates/admin/submit_line.html:7
 msgid "Save and continue editing"
 msgstr "Сохранить и продолжить редактирование"
 
-#: templates/admin/submit_line.html:8
+#: templates/admin/submit_line.html:9
 msgid "Delete"
 msgstr "Удалить"
 
@@ -321,18 +323,13 @@ msgstr "Изменить группу пользователей"
 
 #: templates/admin/auth/group/change_form.html:5
 #: templates/admin/auth/group/change_list.html:16
-#: templates/admin/auth/group/permissions.html:23
+#: templates/admin/auth/group/permissions.html:22
 msgid "Add group"
 msgstr "Добавить группу"
 
 #: templates/admin/auth/group/change_form.html:5
 msgid "Change group"
 msgstr "Изменить группу"
-
-#: templates/admin/auth/group/change_form.html:6
-#: templates/admin/auth/group/change_list.html:6
-msgid "User groups"
-msgstr "Группы пользователей"
 
 #: templates/admin/auth/group/change_list.html:4
 msgid "Select user group"
@@ -359,12 +356,12 @@ msgstr[1] "%(count)s группа"
 msgstr[2] "%(count)s групп"
 
 #: templates/admin/auth/group/change_list.html:13
-#: templates/admin/auth/group/permissions.html:16
+#: templates/admin/auth/group/permissions.html:15
 msgid "Permissions"
 msgstr "Права"
 
-#: templates/admin/auth/group/permissions.html:15
-#: templates/admin/auth/group/permissions.html:22
+#: templates/admin/auth/group/permissions.html:14
+#: templates/admin/auth/group/permissions.html:21
 msgid "Groups"
 msgstr "Группы"
 
@@ -397,24 +394,24 @@ msgstr[0] "один пользователь"
 msgstr[1] "%(count)s пользователя"
 msgstr[2] "%(count)s пользователей"
 
-#: templates/admin/auth/user/change_password.html:23
+#: templates/admin/auth/user/change_password.html:20
 #, python-format
 msgid "Enter a new password for the user <strong>%(username)s</strong>."
 msgstr "Введите новый пароль для пользователя <strong>%(username)s</strong>."
 
-#: templates/admin/auth/user/change_password.html:26
+#: templates/admin/auth/user/change_password.html:23
 msgid "Password"
 msgstr "Пароль"
 
-#: templates/admin/auth/user/change_password.html:31
+#: templates/admin/auth/user/change_password.html:28
 msgid "Password (again)"
 msgstr "Пароль (еще раз)"
 
-#: templates/admin/auth/user/change_password.html:34
+#: templates/admin/auth/user/change_password.html:31
 msgid "Enter the same password as above, for verification."
 msgstr "Введите тот же пароль, что и выше, для подтверждения."
 
-#: templates/admin/auth/user/change_password.html:40
+#: templates/admin/auth/user/change_password.html:37
 msgid "Change password"
 msgstr "Изменить пользователя"
 
@@ -505,16 +502,15 @@ msgstr[0] "один сайт"
 msgstr[1] "%(count)s сайта"
 msgstr[2] "%(count)s сайтов"
 
-#: templates/extradmin/dashboard/apps.html:14
-#, python-format
-msgid "%(name)s"
-msgstr "%(name)s"
+#: templates/extradmin/main_menu.html:16
+msgid "File Browser"
+msgstr "Обозреватель файлов"
 
 #: templates/registration/password_change_done.html:8
 msgid "Your password was changed."
 msgstr "Ваш пароль был изменен."
 
-#: templates/registration/password_change_form.html:19
+#: templates/registration/password_change_form.html:12
 msgid ""
 "Please enter your old password, for security's sake, and then enter your new "
 "password twice so we can verify you typed it in correctly."
@@ -522,21 +518,21 @@ msgstr ""
 "В целях безопасности, пожалуйста, введите свой старый пароль, затем введите "
 "новый пароль дважды, чтобы мы могли убедиться в правильности написания."
 
-#: templates/registration/password_change_form.html:23
+#: templates/registration/password_change_form.html:16
 msgid "Old password:"
 msgstr "Старый пароль:"
 
-#: templates/registration/password_change_form.html:28
+#: templates/registration/password_change_form.html:21
 #: templates/registration/password_reset_confirm.html:17
 msgid "New password:"
 msgstr "Новый пароль:"
 
-#: templates/registration/password_change_form.html:33
+#: templates/registration/password_change_form.html:26
 #: templates/registration/password_reset_confirm.html:21
 msgid "Confirm password:"
 msgstr "Подтвердите пароль:"
 
-#: templates/registration/password_change_form.html:40
+#: templates/registration/password_change_form.html:33
 #: templates/registration/password_reset_confirm.html:28
 msgid "Change my password"
 msgstr "Изменить мой пароль"

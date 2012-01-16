@@ -13,7 +13,7 @@
         <li><a href="{% url 'admin:logout' %}">Выйти</a></li>
       </ul>
     </div>
-    {% main_menu %}
+    {% block menu %}{% main_menu 'admin' %}{% endblock %}
   </div>
   {% block breadcrumbs_block %}
     <ul id="breadcrumbs" class="breadcrumbs clearfix">

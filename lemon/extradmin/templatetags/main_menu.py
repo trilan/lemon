@@ -1,47 +1,26 @@
-from django.template import Library, Variable
-from django.template import TemplateSyntaxError, VariableDoesNotExist
-from django.template.defaulttags import URLNode
-
-from lemon.extradmin.models import MenuItem
+from django.template import Library
+from lemon.extradmin.menu import Menu
 
 
 register = Library()
 
 
-class MainMenuItemURLNode(URLNode):
-
-    def __init__(self, content_type):
-        self.content_type = Variable(content_type)
-        self.args = ()
-        self.kwargs = {}
-        self.asvar = False
-        self.legacy_view_name = True
-
-    def render(self, context):
-        try:
-            content_type = self.content_type.resolve(context)
-            opts = content_type.model_class()._meta
-            app_label = opts.app_label
-            module_name = opts.module_name
-            self.view_name = 'admin:%s_%s_changelist' % \
-                (app_label, module_name)
-        except VariableDoesNotExist:
-            return ''
-        return super(MainMenuItemURLNode, self).render(context)
+@register.inclusion_tag('extradmin/main_menu.html', takes_context=True)
+def main_menu(context, menu_name):
+    user = context.get('user')
+    request = context.get('request')
+    sections = []
+    for section in Menu.with_name(menu_name).sections():
+        items = []
+        for item in section.items():
+            url = item.get_url(user, request)
+            if url:
+                items.append({'title': item.title, 'url': url})
+        if items:
+            sections.append({'title': section.title, 'items': items})
+    return {'sections': sections}
 
 
-@register.inclusion_tag('extradmin/main_menu.html')
-def main_menu():
-    queryset = MenuItem.objects.select_related('section','content_type')
-    queryset = queryset.order_by('section__position', 'position')
-    return {'menu_items': queryset}
-
-
-@register.tag
-def main_menu_item_url(parser, token):
-    try:
-        tag_name, content_type = token.split_contents()
-    except ValueError:
-        raise TemplateSyntaxError, '%r tag requiresa single argument' % \
-            token.contents.split()[0]
-    return MainMenuItemURLNode(content_type)
+@register.simple_tag(takes_context=True)
+def main_menu_item_url(context, menu_item):
+    return menu_item.get_url(context.get('user'), context.get('request')) or ''
