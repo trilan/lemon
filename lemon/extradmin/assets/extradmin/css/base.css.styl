@@ -30,6 +30,12 @@ p, h1, h2, h3, h4, td
 
 #container.login, #container.logout
   background #eee
+  #main
+    position absolute
+    top 50%
+    left 50%
+    display table-cell
+    vertical-align middle
 
 #header
   position relative
@@ -187,8 +193,8 @@ p, h1, h2, h3, h4, td
 
 #login, #logout
   position absolute
-  top 50%
-  left 50%
+  top 0
+  left 0
   background #ffd56d url('../images/login-bg.png') top left repeat-y
   width 336px
   height 250px
@@ -252,8 +258,8 @@ p, h1, h2, h3, h4, td
 #company-logo
   display block
   position absolute
-  bottom 32px
-  right 28px
+  bottom 37px
+  right 20px
 
 #logout-message p
   padding 50px 30px 0
@@ -344,3 +350,11 @@ p, h1, h2, h3, h4, td
     &:hover
       color #aaa
       text-decoration underline
+
+#login-form
+  padding 0 0 0 30px
+  label
+    padding 10px 0 5px
+    display block
+  .submit
+    padding-top 10px
