@@ -11,11 +11,11 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-  <li>&rsaquo;<a href="../">{% trans 'Groups' %}</a></li>
-  <li>&rsaquo;<span>{% trans 'Permissions' %}</span></li>
+  <li class="item">&rsaquo;<a class="item-link" href="../">{% trans 'Groups' %}</a></li>
+  <li class="item">&rsaquo;<span class="item-title">{% trans 'Permissions' %}</span></li>
 {% endblock %}
 
-{% block content_title %}<h1>{% trans "Groups permissions" %}</h1>{% endblock %}
+{% block content_title %}<h1 class="b-admin-title">{% trans "Groups permissions" %}</h1>{% endblock %}
 {% block content %}
   <ul class="tools">
     <li><a href="{% url 'admin:auth_group_changelist' %}">{% trans 'Groups' %}</a></li>

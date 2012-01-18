@@ -225,7 +225,7 @@ var DateTimePicker = {
           .css('top', '-5em')
           .css('display', 'block'); // show the clock box
         if ('\v' != 'v') {
-            $('#container').click(function() {
+            $('#b-admin-container').click(function() {
               $(this).click(function() {
                 DateTimePicker.dismissClock(num);
                 return true;
@@ -294,7 +294,7 @@ var DateTimePicker = {
   },
   dismissClock: function(num) {
     $('#'+DateTimePicker.clockDivName + num).css('display', 'none');
-    $('#container').unbind('click');
+    $('#b-admin-container').unbind('click');
   },
   handleClockQuicklink: function(num, val) {
     DateTimePicker.clockInputs[num].attr('value', val);
@@ -339,7 +339,7 @@ var DateTimePicker = {
           .css('top', '-7em')
           .css('display', 'block');
         if ('\v' != 'v') {
-            $('#container').click(function() {
+            $('#b-admin-container').click(function() {
               $(this).click(function() {
                 DateTimePicker.dismissCalendar(num);
                 return true;
@@ -413,7 +413,7 @@ var DateTimePicker = {
   },
   dismissCalendar: function(num) {
     $('#'+DateTimePicker.calendarDivName1+num).css('display', 'none');
-    $('#container').unbind('click');
+    $('#b-admin-container').unbind('click');
   },
   drawPrev: function(num) {
     DateTimePicker.calendars[num].drawPreviousMonth();

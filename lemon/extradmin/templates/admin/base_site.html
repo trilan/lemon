@@ -5,19 +5,23 @@
 {% block page_title %}{{ title }} | Lemon CMF{% endblock %}
 
 {% block header %}
-  <div id="header">
-    <a href="{% url 'admin:index' %}" class="logo"></a>
-    <div id="user-menu">
-      <ul>
-        <li>{% firstof user.first_name user.username %}</li>
-        <li><a href="{% url 'admin:logout' %}">Выйти</a></li>
-      </ul>
-    </div>
+  <div class="b-admin-header">
+    <a class="b-admin-header-logo" href="{% url 'admin:index' %}"></a>
+    <ul class="b-admin-usermenu">
+      <li class="section">
+        <span class="section-title">{% firstof user.first_name user.username %}</span>
+      </li>
+      <li class="section">
+        <span class="section-title">
+          <a class="section-link" href="{% url 'admin:logout' %}">Выйти</a>
+        </span>
+      </li>
+    </ul>
     {% block menu %}{% main_menu 'admin' %}{% endblock %}
   </div>
   {% block breadcrumbs_block %}
-    <ul id="breadcrumbs" class="breadcrumbs clearfix">
-      <li><a href="{% url 'admin:index' %}">{% trans "Home" %}</a></li>
+    <ul id="b-admin-breadcrumbs" class="b-admin-breadcrumbs clearfix">
+      <li class="item"><a class="item-link" href="{% url 'admin:index' %}">{% trans "Home" %}</a></li>
       {% block breadcrumbs %}{% endblock %}
     </ul>
   {% endblock %}

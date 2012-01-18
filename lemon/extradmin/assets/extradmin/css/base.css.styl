@@ -24,45 +24,44 @@ p, h1, h2, h3, h4, td
   img
     vertical-align middle
 
-#container
+.b-admin-container
   min-height 100%
   position relative
 
-#container.login, #container.logout
+.b-admin-container.login, .b-admin-container.logout
   background #eee
-  #main
+
+  .b-admin-body
     position absolute
     top 50%
     left 50%
     display table-cell
     vertical-align middle
 
-#header
+.b-admin-header
   position relative
   height 42px
   background url('../images/header-bg.png') bottom left repeat-x
   border-bottom 1px solid #e89e00
   box-shadow 0 1px 8px
 
-.logo
+.b-admin-header-logo
   display block
   float left
   width 150px
   height 42px
   background url('../images/logo.png') center center no-repeat
 
-#user-menu
+.b-admin-usermenu
   float right
   text-align right
-  padding 2px 0 0
+  padding-top 8px
   color #bf7900
   font-weight bold
   text-shadow #fff 0 1px 1px
-  ul
-    margin-top 0.5em
-    overflow hidden
-    float right
-  li
+  overflow hidden
+
+  .section
     display block
     float left
     padding 0 15px
@@ -70,14 +69,16 @@ p, h1, h2, h3, h4, td
     line-height 34px
     background url('../images/menu-sep.png') bottom right no-repeat
     margin-right -1px
-  a
+
+  .section-link
     color #587373
     text-decoration none
+
     &:hover, &:focus
       color #587373
       text-decoration underline
 
-.main-menu
+.b-admin-menu
   display block
   float left
   margin-top 8px
@@ -88,22 +89,27 @@ p, h1, h2, h3, h4, td
   text-shadow #fff 0 1px 1px
   list-style-type none
   background url('../images/menu-sep.png') bottom right no-repeat
-  li
+
+  .section
     display block
     float left
-    span
-      display block
-      padding 0 15px
-      line-height 34px
-      height 34px
-      background url('../images/menu-sep.png') bottom left no-repeat
-      cursor pointer
+
     &:hover
-      span
+      .section-title
         color #bf7900
-      ul
+
+      .section-menu
         display block
-  ul
+
+  .section-title
+    display block
+    padding 0 15px
+    line-height 34px
+    height 34px
+    background url('../images/menu-sep.png') bottom left no-repeat
+    cursor pointer
+
+  .section-menu
     display none
     position absolute
     margin-left 0
@@ -114,19 +120,23 @@ p, h1, h2, h3, h4, td
     border 1px solid #e89e00
     border-top none
     border-bottom-radius 3px
-    li
-      float none
-    a
-      padding 0 15px
-      line-height 32px
-  a
+
+  .item
+    float none
+
+  .item-link
+    padding 0 15px
+    line-height 32px
+
+  .section-link, .item-link
     display block
     text-decoration none
     color #587373
+
     &:hover
       color #bf7900
 
-.main-menu-helper
+.b-admin-menu-helper
   display none
   position absolute
   top 42px
@@ -134,13 +144,9 @@ p, h1, h2, h3, h4, td
   background #e89e00
   z-index 11
 
-#main
+.b-admin-body
   position relative
   padding-bottom 74px
-  h1
-    font-size 20px
-    font-weight normal
-    margin 20px 30px 0
   ul.tools
     position absolute
     display block
@@ -190,6 +196,11 @@ p, h1, h2, h3, h4, td
     border 1px solid darken(#f3bcbe, 20%)
     background #f3bcbe
     border-radius 3px
+
+.b-admin-title
+  font-size 20px
+  font-weight normal
+  margin 20px 30px 0
 
 #login, #logout
   position absolute
@@ -283,20 +294,20 @@ p, h1, h2, h3, h4, td
   float left
   margin-right 5px
 
-#footer
+.b-admin-footer
   position absolute
   bottom 0
   width 100%
   height 44px
 
-#copyright
-  margin 0 100px
-  border-top 1px solid #f0f0f0
-  font-style italic
-  text-align center
-  color #ccc
-  line-height 43px
-  a
+  .copyright
+    margin 0 100px
+    border-top 1px solid #f0f0f0
+    font-style italic
+    text-align center
+    color #ccc
+    line-height 43px
+  .copyright-link
     color #ccc
 
 #content-main
@@ -332,21 +343,25 @@ p, h1, h2, h3, h4, td
       td, th
         border-bottom none
 
-.breadcrumbs
+.b-admin-breadcrumbs
   display block
   margin 10px 30px -10px 20px
   list-style-type none
   color #aaa
   font-size 11px
-  li
+
+  .item
     margin-left 5px
     display block
     float left
-  span
+
+  .item-title
     margin-left 5px
-  a
+
+  .item-link
     margin-left 5px
     color #aaa
+
     &:hover
       color #aaa
       text-decoration underline

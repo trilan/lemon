@@ -2,6 +2,6 @@
 {% load i18n %}
 
 {% block page_title %}{% if add %}{% trans 'Add sitemap.xml item' %}{% else %}{% trans 'Change sitemap.xml item' %}{% endif %}{% endblock %}
-{% block content_title %}<h1>{% if add %}{% trans 'Add item' %}{% else %}{% trans 'Change item' %}{% endif %}</h1>{% endblock %}
+{% block content_title %}<h1 class="b-admin-title">{% if add %}{% trans 'Add item' %}{% else %}{% trans 'Change item' %}{% endif %}</h1>{% endblock %}
 {% block breadcrumbs_title %}{% if add %}{% trans 'Add item' %}{% else %}{% trans 'Change item' %}{% endif %}{% endblock %}
 {% block breadcrumbs_parent_title %}{% trans 'sitemap.xml' %}{% endblock %}

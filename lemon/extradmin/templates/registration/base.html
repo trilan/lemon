@@ -10,14 +10,15 @@
   {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
 </head>
 <body>
-  <div id="container" class="{% block containerclass %}{% endblock %}">
+  <div id="b-admin-container" class="b-admin-container {% block containerclass %}{% endblock %}">
   {% block container %}
-    <div id="header"><a href="/" id="logo"></a></div>
-    <div id="main">{% block content %}{% endblock %}</div>
-    <div id="footer">
+    <div class="b-admin-header">
+      <a class="b-admin-header-logo" href="/"></a>
+    </div>
+    <div class="b-admin-body">{% block content %}{% endblock %}</div>
+    <div class="b-admin-footer">
       {% block footer %}
-        <a id="footer-logo" href="http://www.trilan.ru/" class="external"></a>
-        <div id="copyright">CMF <strong>Lemon</strong> разработана в компании <a href="http://www.trilan.ru/" class="external">«ТриЛан»</a> с использованием <a href="http://djangoproject.com/" class="external">Django</a>.</div>
+        <div class="copyright">CMF <strong>Lemon</strong> разработана в компании <a class="copyright-link external" href="http://www.trilan.ru/">«ТриЛан»</a> с использованием <a class="copyright-link external" href="http://djangoproject.com/">Django</a>.</div>
       {% endblock %}
     </div>
   {% endblock %}

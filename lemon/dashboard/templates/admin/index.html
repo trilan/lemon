@@ -13,8 +13,8 @@
 {% endblock %}
 
 {% block breadcrumbs_block %}
-  <ul id="breadcrumbs" class="breadcrumbs clearfix">
-    <li><a href="{% url 'admin:index' %}">{% trans "Home" %}</a></li>
+  <ul id="b-admin-breadcrumbs" class="b-admin-breadcrumbs clearfix">
+    <li class="item"><a class="item-link" href="{% url 'admin:index' %}">{% trans "Home" %}</a></li>
     {% block breadcrumbs %}{% endblock %}
   </ul>
 {% endblock %}
