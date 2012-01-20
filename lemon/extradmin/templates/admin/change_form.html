@@ -15,29 +15,38 @@
 
 {% block content %}
   {% if errors %}
-    <div class="errornote">
-      <p>{% blocktrans count counter=errors|length %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}</p>
-      <ul class="errorlist">{% for error in adminform.form.non_field_errors %}<li>{{ error }}</li>{% endfor %}</ul>
+    <div class="b-admin-messages b-admin-errors">
+      <h2 class="description">{% blocktrans count counter=errors|length %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}</h2>
+      <ul class="list">
+        {% for error in adminform.form.non_field_errors %}<li class="item">{{ error }}</li>{% endfor %}
+      </ul>
     </div>
   {% endif %}
+
   {% block tools %}
     {% if change %}{% if not is_popup %}{% if has_absolute_url %}
-      <ul class="tools">
-        <li><a href="../../../r/{{ content_type_id }}/{{ object_id }}/" class="viewsitelink">{% trans "View on site" %}</a></li>
+      <ul class="b-admin-tools">
+        <li class="item"><a class="item-link" href="../../../r/{{ content_type_id }}/{{ object_id }}/" class="viewsitelink">{% trans "View on site" %}</a></li>
       </ul>
     {% endif %}{% endif %}{% endif %}
   {% endblock %}
-  <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}
-    {% block form_top %}{% endblock %}
-    <div>
+
+  <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">
+    <div class="b-admin-form">
+      {% csrf_token %}
+      {% block form_top %}{% endblock %}
       {% if is_popup %}<input type="hidden" name="_popup" value="1">{% endif %}
-      <div id="tabs" class="tabs">
-        {% if tabs %}
-          <ul style="display:none;">
-            {% for tab in tabs %}<li><a href="#tabs-{{ forloop.counter0 }}">{{ tab.title|title }}</a></li>{% endfor %}
+      {% if tabs %}
+        <div id="b-admin-form-tabs" class="b-admin-form-tabs">
+          <ul class="b-admin-form-tabs-nav">
+            {% for tab in tabs %}
+              <li class="item">
+                <a class="item-link" href="#b-admin-form-tabs-{{ forloop.counter0 }}">{{ tab.title|title }}</a>
+              </li>
+            {% endfor %}
           </ul>
           {% for tab in tabs %}
-            <div id="tabs-{{ forloop.counter0 }}">
+            <div id="b-admin-form-tabs-{{ forloop.counter0 }}" class="b-admin-form-tabs-panel">
               {% if forloop.first %}
                 <div class="main_group">
                   {% for fieldset in adminform %}{% include "admin/includes/fieldset.html" %}{% endfor %}
@@ -48,19 +57,19 @@
               {% endfor %}
             </div>
           {% endfor %}
-        {% else %}
-          <div class="main_group">
-            {% for fieldset in adminform %}{% include "admin/includes/fieldset.html" %}{% endfor %}
-          </div>
-          {% for inline_admin_formset in inline_admin_formsets %}
-            {% include inline_admin_formset.opts.template %}
-          {% endfor %}
-        {% endif %}
-        {% block after_field_sets %}{% endblock %}
-      </div>
+        </div>
+      {% else %}
+        <div class="main_group">
+          {% for fieldset in adminform %}{% include "admin/includes/fieldset.html" %}{% endfor %}
+        </div>
+        {% for inline_admin_formset in inline_admin_formsets %}
+          {% include inline_admin_formset.opts.template %}
+        {% endfor %}
+      {% endif %}
+      {% block after_field_sets %}{% endblock %}
       {% block after_related_objects %}{% endblock %}
-      {% submit_row %}
-      {% prepopulated_fields_js %}
     </div>
+    {% submit_row %}
+    {% prepopulated_fields_js %}
   </form>
 {% endblock %}

@@ -8,12 +8,12 @@
 
 {% block tools %}
   {% if perms.auth.change_permission or has_add_permission %}
-    <ul class="tools">
+    <ul class="b-admin-tools">
       {% if perms.auth.change_permission %}
-        <li><a href="permissions/">{% trans 'Permissions' %}</a></li>
+        <li class="item"><a class="item-link" href="permissions/">{% trans 'Permissions' %}</a></li>
       {% endif %}
       {% if has_add_permission %}
-        <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">{% trans 'Add group' %}</a></li>
+        <li class="item"><a class="item-link" href="add/{% if is_popup %}?_popup=1{% endif %}">{% trans 'Add group' %}</a></li>
       {% endif %}
     </ul>
   {% endif %}

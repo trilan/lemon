@@ -18,8 +18,8 @@
 {% block content %}
   {% block tools %}
     {% if has_add_permission %}
-      <ul class="tools">
-        <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">{% block addlink_title %}{% blocktrans with name=cl.opts.verbose_name %}Add {{ name }}{% endblocktrans %}{% endblock %}</a></li>
+      <ul class="b-admin-tools">
+        <li class="item"><a class="item-link" href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">{% block addlink_title %}{% blocktrans with name=cl.opts.verbose_name %}Add {{ name }}{% endblocktrans %}{% endblock %}</a></li>
       </ul>
     {% endif %}
   {% endblock %}

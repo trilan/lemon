@@ -17,9 +17,9 @@
 
 {% block content_title %}<h1 class="b-admin-title">{% trans "Groups permissions" %}</h1>{% endblock %}
 {% block content %}
-  <ul class="tools">
-    <li><a href="{% url 'admin:auth_group_changelist' %}">{% trans 'Groups' %}</a></li>
-    <li><a href="{% url 'admin:auth_group_add' %}">{% trans 'Add group' %}</a></li>
+  <ul class="b-admin-tools">
+    <li class="item"><a class="item-link" href="{% url 'admin:auth_group_changelist' %}">{% trans 'Groups' %}</a></li>
+    <li class="item"><a class="item-link" href="{% url 'admin:auth_group_add' %}">{% trans 'Add group' %}</a></li>
   </ul>
   <form action="" method="post">{% csrf_token %}
     <div id="auth_permissions" class="auth_permissions">

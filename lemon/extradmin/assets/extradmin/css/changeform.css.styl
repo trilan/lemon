@@ -172,37 +172,43 @@ fieldset
 .add-another
   text-decoration none
 
-#tabs
+.b-admin-form
   margin 10px 30px 0
   padding 0
+
+.b-admin-form-tabs
   &.ui-widget-content
     background none
     border none
-  ul.ui-tabs-nav
+
+.b-admin-form-tabs-nav
+  display none
+
+  &.ui-tabs-nav
+    display block
     gradient $background-color #fff
     box-shadow 0 1px 2px #e5e5e5
     border 1px solid $border-color
     border-radius 3px
     margin-bottom 20px
     padding 8px 20px
-    li
+
+    .item
       font-size 14px
       font-weight: normal
       margin -1px 8px 0 0
       color $text-color
       background none
       border none
-      a
-        color $text-color
-        padding 0 10px
-        line-height 28px
-        text-shadow #fff 0 1px 1px
+
       &.ui-state-hover
         border none
         border-radius 3px
         background darken($background-color, 5%)
-        a
+
+        .item-link
           color $text-color
+
       &.ui-state-active
         background lighten($text-color, 20%)
         border none
@@ -210,11 +216,19 @@ fieldset
         border-radius 3px
         margin-top -1px
         padding-bottom 0
-        a
+
+        .item-link
           color #fff
           text-shadow darken($text-color, 10%) 0 1px 1px
-  div.ui-tabs-panel
-    padding 0
+
+    .item-link
+      color $text-color
+      padding 0 10px
+      line-height 28px
+      text-shadow #fff 0 1px 1px
+
+.b-admin-form-tabs-panel.ui-tabs-panel
+  padding 0
 
 a.related-lookup
   text-decoration none

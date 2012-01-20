@@ -13,14 +13,16 @@
 
 {% block content %}
   {% if form.errors %}
-    <div class="errornote">
-      <p>{% trans 'Please correct the following errors.' %}</p>
-      <ul class="errorlist">{% for error in form.non_field_errors %}<li>{{ error }}</li>{% endfor %}</ul>
+    <div class="b-admin-messages b-admin-errors">
+      <h2 class="description">{% trans 'Please correct the following errors.' %}</h2>
+      <ul class="list">
+        {% for error in form.non_field_errors %}<li class="item">{{ error }}</li>{% endfor %}
+      </ul>
     </div>
   {% endif %}
   <form action="{% query_string 'p' %}" method="post">
-    {% csrf_token %}
-    <div id="tabs" class="tabs">
+    <div class="b-admin-form">
+      {% csrf_token %}
       <div class="main_group">
         <fieldset class="main">
           <div class="content">

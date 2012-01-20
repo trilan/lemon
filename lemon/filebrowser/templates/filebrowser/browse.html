@@ -25,9 +25,9 @@
     <p>{% trans "Are you sure you want to delete this folder?" %}</p>
   </div>
   {% block tools %}
-    <ul class="tools">
-      <li><a href="{% url 'admin:filebrowser:mkdir' %}{% query_string 'p' %}">{% trans "Create Folder" %}</a></li>
-      <li><a href="{% url 'admin:filebrowser:upload' %}{% query_string 'p' %}">{% trans "Upload File" %}</a></li>
+    <ul class="b-admin-tools">
+      <li class="item"><a class="item-link" href="{% url 'admin:filebrowser:mkdir' %}{% query_string 'p' %}">{% trans "Create Folder" %}</a></li>
+      <li class="item"><a class="item-link" href="{% url 'admin:filebrowser:upload' %}{% query_string 'p' %}">{% trans "Upload File" %}</a></li>
     </ul>
   {% endblock %}
   <div class="changelist-wrapper">
