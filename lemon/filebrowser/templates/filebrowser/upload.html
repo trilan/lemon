@@ -25,16 +25,14 @@
       {% csrf_token %}
       <div class="main_group">
         <fieldset class="main">
-          <div class="content">
-            <div class="field clearfix last">
-              <label class="required" for="id_dir_name">{{ form.file.label }}</label>
-              {{ form.file }}
-              {{ form.file.errors }}
-              <p class="help">
-                {{ form.file.help_text|safe }}<br>
-                {% trans "The Name will be converted to lowercase. Spaces will be replaced with underscores." %}
-              </p>
-            </div>
+          <div class="b-admin-form-field b-admin-form-last-field clearfix">
+            <label class="required" for="id_dir_name">{{ form.file.label }}</label>
+            {{ form.file }}
+            {{ form.file.errors }}
+            <p class="help">
+              {{ form.file.help_text|safe }}<br>
+              {% trans "The Name will be converted to lowercase. Spaces will be replaced with underscores." %}
+            </p>
           </div>
         </fieldset>
       </div>

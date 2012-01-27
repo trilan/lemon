@@ -3,46 +3,12 @@
 
 fieldset
   border none
-  label
-    font-weight normal
-    color #486A77
-    text-shadow #fff 0 1px 1px
-    display block
-    float left
-    padding-top 5px
-    width 160px
-    &.required
-      font-weight bold
-  .clearable-file-input
-    label
-      display inline
-      float none
-      padding none
-    input
-      vertical-align: baseline
   .description
     margin 0 60px
     padding 10px 0
     border-bottom 1px solid #becacf
     font-style italic
     text-shadow #fff 0 1px 1px
-  .content
-    p, ul
-      margin-left 165px
-    input, select, textarea
-      margin-left 5px
-    ul.errorlist, p.help
-      display block
-      font-weight bold
-      font-size 10px
-      padding-top 5px
-      color #a00
-    ul.errorlist
-      list-style-type none
-    p.help
-      color #007042
-      a
-        color #007042
   td
     ul.errorlist, p.help
       display block
@@ -55,24 +21,6 @@ fieldset
       color #007042
       a
         color #007042
-  .field
-    padding 20px 30px
-    border-bottom 1px solid #becacf
-    img
-      vertical-align middle
-  .last
-    border-bottom none
-  input[type=text], input[type=password]
-    width 400px
-  input.vDateField, input.vTimeField
-    width auto
-  textarea
-    &.vLargeTextField
-      width 400px
-      height 200px
-    &.vSmallTextField
-      width 400px
-      height 40px
   table
     input[type=text], input[type=password]
       width auto
@@ -124,16 +72,21 @@ fieldset
   margin 0 0 20px
   padding 0
 
-.b-admin-body .inline-group
-  h1
-    margin 0 0 20px
-    padding 0
-  .add-row
-    background $background-color
-    -webkit-box-shadow 0 1px 2px #e5e5e5, #fff 0 0px 3px inset
-    border 1px solid $border-color
-    border-radius 3px
-    margin-bottom 20px
+.b-admin-form-add-fieldset-group
+  background $background-color
+  -webkit-box-shadow 0 1px 2px #e5e5e5, #fff 0 0px 3px inset
+  border 1px solid $border-color
+  border-radius 3px
+  margin-bottom 20px
+  font-size 14px
+  line-height 35px
+  padding 0 15px
+  a
+    color $text-color
+    text-shadow #fff 0 1px 1px
+    text-decoration underline
+    &:hover
+      text-decoration none
 
 .inline-related
   background $background-color
@@ -141,19 +94,7 @@ fieldset
   border 1px solid $border-color
   border-radius 3px
   margin-bottom 20px
-  fieldset
-    .description
-      margin 0 60px 0 30px
-    h2
-      font-size 14px
-      font-weight normal
-      line-height 35px
-      text-shadow #fff 0 1px 1px
-      padding 0 15px
-      border-top 1px solid #becacf
-      border-bottom 1px solid #becacf
-      background $background-lighter-color
-  h3
+  .b-admin-form-fieldset-group-title
     font-size 16px
     line-height 35px
     font-weight normal
@@ -163,8 +104,92 @@ fieldset
     border-bottom 1px solid $border-color
     text-shadow #fff 0 1px 1px
 
-.inline-related
-  border-bottom 1px solid $border-color
+.b-admin-form-fieldset-description
+  padding 10px 30px
+  border-bottom 1px solid #becacf
+  font-style italic
+  text-shadow #fff 0 1px 1px
+
+.b-admin-form-fieldset-title
+  width 100%
+  border-top 1px solid #becacf
+  border-bottom 1px solid #becacf
+  background $background-lighter-color
+
+  .title
+    font-size 14px
+    font-weight normal
+    line-height 35px
+    text-shadow #fff 0 1px 1px
+    padding 0 15px
+
+.b-admin-form-field
+  padding 20px 30px
+  border-bottom 1px solid #becacf
+
+  label
+    font-weight normal
+    color #486A77
+    text-shadow #fff 0 1px 1px
+    display block
+    float left
+    padding-top 5px
+    width 160px
+
+    &.required
+      font-weight bold
+
+  .clearable-file-input
+    label
+      display inline
+      float none
+      padding none
+
+    input
+      vertical-align: baseline
+
+  input[type=text], input[type=password]
+    width 400px
+
+  input.vDateField, input.vTimeField
+    width auto
+
+  textarea
+    &.vLargeTextField
+      width 400px
+      height 200px
+
+    &.vSmallTextField
+      width 400px
+      height 40px
+
+  p, ul
+    margin-left 165px
+
+  input, select, textarea
+    margin-left 5px
+
+  ul.errorlist, p.help
+    display block
+    font-weight bold
+    font-size 10px
+    padding-top 5px
+    color #a00
+
+  ul.errorlist
+    list-style-type none
+
+  p.help
+    color #007042
+
+    a
+      color #007042
+
+  img
+    vertical-align middle
+
+.b-admin-form-last-field
+  border-bottom none
 
 .empty-form
   display none

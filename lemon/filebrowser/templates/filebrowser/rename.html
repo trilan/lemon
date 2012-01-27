@@ -25,13 +25,11 @@
       {% csrf_token %}
       <div class="main_group">
         <fieldset class="main">
-          <div class="content">
-            <div class="field clearfix last">
-              <label class="required" for="id_dir_name">{{ form.name.label }}</label>
-              {{ form.name }}{% if file_extension %}<b>{{ file_extension }}</b>{% endif %}
-              {{ form.name.errors }}
-              {% if form.name.help_text %}<p class="help">{{ form.name.help_text|safe }}</p>{% endif %}
-            </div>
+          <div class="b-admin-form-field b-admin-form-last-field clearfix">
+            <label class="required" for="id_dir_name">{{ form.name.label }}</label>
+            {{ form.name }}{% if file_extension %}<b>{{ file_extension }}</b>{% endif %}
+            {{ form.name.errors }}
+            {% if form.name.help_text %}<p class="help">{{ form.name.help_text|safe }}</p>{% endif %}
           </div>
         </fieldset>
       </div>

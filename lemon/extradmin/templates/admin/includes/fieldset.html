@@ -1,23 +1,21 @@
 <fieldset class="{{ fieldset.classes }}">
   {% if fieldset.name %}<h2>{{ fieldset.name }}</h2>{% endif %}
   {% if fieldset.description %}<div class="description">{{ fieldset.description|safe }}</div>{% endif %}
-  <div class="content">
-    {% for line in fieldset %}
-      <div class="field clearfix{% for field in line %} {{ field.field.name }}-field{% endfor %}{% if forloop.last %} last{% endif %}">
-        {% for field in line %}
-          {% if field.is_checkbox %}
-            {{ field.field }}{{ field.label_tag }}
+  {% for line in fieldset %}
+    <div class="b-admin-form-field{% if forloop.last %} b-admin-form-last-field{% endif %}{% for field in line %} {{ field.field.name }}-field{% endfor %} clearfix">
+      {% for field in line %}
+        {% if field.is_checkbox %}
+          {{ field.field }}{{ field.label_tag }}
+        {% else %}
+          {{ field.label_tag }}
+          {% if field.is_readonly %}
+            <p>{{ field.contents }}</p>
           {% else %}
-            {{ field.label_tag }}
-            {% if field.is_readonly %}
-              <p>{{ field.contents }}</p>
-            {% else %}
-              {{ field.field }}{{ field.field.errors }}
-            {% endif %}
+            {{ field.field }}{{ field.field.errors }}
           {% endif %}
+        {% endif %}
         {% if field.field.field.help_text %}<p class="help">{{ field.field.field.help_text|safe }}</p>{% endif %}
       {% endfor %}
     </div>
-    {% endfor %}
-  </div>
+  {% endfor %}
 </fieldset>

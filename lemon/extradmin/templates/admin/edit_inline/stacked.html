@@ -1,31 +1,33 @@
 {% load i18n %}
 
+{{ inline_admin_formset.formset.management_form }}
+{{ inline_admin_formset.formset.non_form_errors }}
+
+{% if not tabs or not tab.contents|length_is:"1" or forloop.parentloop.first %}
+  <h1 class="b-admin-title">{{ inline_admin_formset.opts.verbose_name_plural|title }}</h1>
+{% endif %}
+
 <div class="inline-group" id="{{ inline_admin_formset.formset.prefix }}-group">
-  {% if not tabs or not tab.contents|length_is:"1" or forloop.parentloop.first %}<h1>{{ inline_admin_formset.opts.verbose_name_plural|title }}</h1>{% endif %}
-  <div class="inline-content">
-    {{ inline_admin_formset.formset.management_form }}
-    {{ inline_admin_formset.formset.non_form_errors }}
-    {% for inline_admin_form in inline_admin_formset %}
-      <div id="{{ inline_admin_formset.formset.prefix }}-{% if not forloop.last %}{{ forloop.counter0 }}{% else %}empty{% endif %}" class="inline-related{% if forloop.last %} empty-form{% endif %}">
-        <h3>
-          <b>{{ inline_admin_formset.opts.verbose_name|title }}:</b>
-          <span class="inline_label">
-            {% if inline_admin_form.original %}{{ inline_admin_form.original }}{% else %}#{{ forloop.counter }}{% endif %}
-          </span>
-          {% if inline_admin_form.show_url %}
-            <a href="../../../r/{{ inline_admin_form.original_content_type_id }}/{{ inline_admin_form.original.id }}/">{% trans "View on site" %}</a>
-          {% endif %}
-          {% if inline_admin_formset.formset.can_delete and inline_admin_form.original %}
-            <span class="delete">{{ inline_admin_form.deletion_field.field }} {{ inline_admin_form.deletion_field.label_tag }}</span>
-          {% endif %}
-        </h3>
-        {% if inline_admin_form.form.non_field_errors %}{{ inline_admin_form.form.non_field_errors }}{% endif %}
-        {% for fieldset in inline_admin_form %}{% include "admin/includes/fieldset.html" %}{% endfor %}
-        {% if inline_admin_form.has_auto_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
-        {{ inline_admin_form.fk_field.field }}
-      </div>
-    {% endfor %}
-  </div>
+  {% for inline_admin_form in inline_admin_formset %}
+    <div id="{{ inline_admin_formset.formset.prefix }}-{% if not forloop.last %}{{ forloop.counter0 }}{% else %}empty{% endif %}" class="inline-related{% if forloop.last %} empty-form{% endif %}">
+      <h3 class="b-admin-form-fieldset-group-title">
+        <b>{{ inline_admin_formset.opts.verbose_name|title }}:</b>
+        <span class="inline_label">
+          {% if inline_admin_form.original %}{{ inline_admin_form.original }}{% else %}#{{ forloop.counter }}{% endif %}
+        </span>
+        {% if inline_admin_form.show_url %}
+          <a href="../../../r/{{ inline_admin_form.original_content_type_id }}/{{ inline_admin_form.original.id }}/">{% trans "View on site" %}</a>
+        {% endif %}
+        {% if inline_admin_formset.formset.can_delete and inline_admin_form.original %}
+          <span class="delete">{{ inline_admin_form.deletion_field.field }} {{ inline_admin_form.deletion_field.label_tag }}</span>
+        {% endif %}
+      </h3>
+      {% if inline_admin_form.form.non_field_errors %}{{ inline_admin_form.form.non_field_errors }}{% endif %}
+      {% for fieldset in inline_admin_form %}{% include "admin/includes/inline_fieldset.html" %}{% endfor %}
+      {% if inline_admin_form.has_auto_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
+      {{ inline_admin_form.fk_field.field }}
+    </div>
+  {% endfor %}
 </div>
 
 <script>
@@ -53,6 +55,7 @@
       $(rows).formset({
         prefix: "{{ inline_admin_formset.formset.prefix }}",
         addText: "{% blocktrans with verbose_name=inline_admin_formset.opts.verbose_name|title %}Add another {{ verbose_name }}{% endblocktrans %}",
+        addCssClass: "b-admin-form-add-fieldset-group",
         formCssClass: "dynamic-{{ inline_admin_formset.formset.prefix }}",
         deleteCssClass: "inline-deletelink",
         deleteText: "{% trans "Remove" %}",
