@@ -7,9 +7,9 @@
   <h1 class="b-admin-title">{{ inline_admin_formset.opts.verbose_name_plural|title }}</h1>
 {% endif %}
 
-<div class="inline-group" id="{{ inline_admin_formset.formset.prefix }}-group">
+<div id="{{ inline_admin_formset.formset.prefix }}-group">
   {% for inline_admin_form in inline_admin_formset %}
-    <div id="{{ inline_admin_formset.formset.prefix }}-{% if not forloop.last %}{{ forloop.counter0 }}{% else %}empty{% endif %}" class="inline-related{% if forloop.last %} empty-form{% endif %}">
+    <div id="{{ inline_admin_formset.formset.prefix }}-{% if not forloop.last %}{{ forloop.counter0 }}{% else %}empty{% endif %}" class="b-admin-form-fieldset-group{% if forloop.last %} empty-form{% endif %}">
       <h3 class="b-admin-form-fieldset-group-title">
         <b>{{ inline_admin_formset.opts.verbose_name|title }}:</b>
         <span class="inline_label">
@@ -23,7 +23,9 @@
         {% endif %}
       </h3>
       {% if inline_admin_form.form.non_field_errors %}{{ inline_admin_form.form.non_field_errors }}{% endif %}
-      {% for fieldset in inline_admin_form %}{% include "admin/includes/inline_fieldset.html" %}{% endfor %}
+      {% for fieldset in inline_admin_form %}
+        {% include "admin/includes/inline_fieldset.html" with name=fieldset.name description=fieldset.description classes=fieldset.classes lines=fieldset %}
+      {% endfor %}
       {% if inline_admin_form.has_auto_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
       {{ inline_admin_form.fk_field.field }}
     </div>
@@ -33,7 +35,7 @@
 <script>
   (function($) {
     $(document).ready(function() {
-      var rows = "#{{ inline_admin_formset.formset.prefix }}-group .inline-related";
+      var rows = "#{{ inline_admin_formset.formset.prefix }}-group .b-admin-form-fieldset-group";
       var reinitDateTimeShortCuts = function() {
         // Reinitialize the calendar and clock widgets by force, yuck.
         if (typeof DateTimeShortcuts != "undefined") {

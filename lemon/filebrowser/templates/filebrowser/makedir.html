@@ -23,8 +23,8 @@
   <form action="{% query_string 'p' %}" method="post">
     <div class="b-admin-form">
       {% csrf_token %}
-      <div class="main_group">
-        <fieldset class="main">
+      <div class="b-admin-form-fieldset-group">
+        <fieldset class="b-admin-form-fieldset">
           <div class="b-admin-form-field b-admin-form-last-field clearfix">
             <label class="required" for="id_dir_name">{{ form.dir_name.label }}</label>
             {{ form.dir_name }}

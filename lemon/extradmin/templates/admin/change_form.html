@@ -48,9 +48,7 @@
           {% for tab in tabs %}
             <div id="b-admin-form-tabs-{{ forloop.counter0 }}" class="b-admin-form-tabs-panel">
               {% if forloop.first %}
-                <div class="main_group">
-                  {% for fieldset in adminform %}{% include "admin/includes/fieldset.html" %}{% endfor %}
-                </div>
+                {% for fieldset in adminform %}{% include "admin/includes/fieldset.html" %}{% endfor %}
               {% endif %}
               {% for inline_admin_formset in tab.contents %}
                 {% include inline_admin_formset.opts.template %}
@@ -59,9 +57,7 @@
           {% endfor %}
         </div>
       {% else %}
-        <div class="main_group">
-          {% for fieldset in adminform %}{% include "admin/includes/fieldset.html" %}{% endfor %}
-        </div>
+        {% for fieldset in adminform %}{% include "admin/includes/fieldset.html" %}{% endfor %}
         {% for inline_admin_formset in inline_admin_formsets %}
           {% include inline_admin_formset.opts.template %}
         {% endfor %}

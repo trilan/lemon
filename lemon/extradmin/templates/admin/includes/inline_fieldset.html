@@ -1,7 +1,7 @@
-<fieldset class="b-admin-form-fieldset {{ fieldset.classes }}">
-  {% if fieldset.name %}<legend class="b-admin-form-fieldset-title"><span class="title">{{ fieldset.name }}</span></legend>{% endif %}
-  {% if fieldset.description %}<div class="b-admin-form-fieldset-description">{{ fieldset.description|safe }}</div>{% endif %}
-  {% for line in fieldset %}
+<fieldset class="b-admin-form-fieldset {{ classes }}">
+  {% if name %}<legend class="b-admin-form-fieldset-title"><span class="title">{{ name }}</span></legend>{% endif %}
+  {% if description %}<div class="b-admin-form-fieldset-description">{{ description|safe }}</div>{% endif %}
+  {% for line in lines %}
     <div class="b-admin-form-field{% if forloop.last %} b-admin-form-last-field{% endif %}{% for field in line %} {{ field.field.name }}-field{% endfor %} clearfix">
       {% for field in line %}
         {% if field.is_checkbox %}

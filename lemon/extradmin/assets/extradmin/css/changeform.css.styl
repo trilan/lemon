@@ -3,12 +3,6 @@
 
 fieldset
   border none
-  .description
-    margin 0 60px
-    padding 10px 0
-    border-bottom 1px solid #becacf
-    font-style italic
-    text-shadow #fff 0 1px 1px
   td
     ul.errorlist, p.help
       display block
@@ -51,22 +45,30 @@ fieldset
       td
         border-bottom none
 
-.main_group, .tabular_group
+.tabular_group
   fieldset
     background $background-color
     -webkit-box-shadow 0 1px 2px #e5e5e5, #fff 0 0px 3px inset
     border 1px solid $border-color
     border-radius 3px
     margin-bottom 20px
-    h2
-      font-size 16px
-      line-height 35px
-      font-weight normal
-      padding 0 15px
-      gradient $background-color #fff
-      border-top-radius 3px
-      border-bottom 1px solid $border-color
-      text-shadow #fff 0 1px 1px
+
+.b-admin-form-fieldset-group
+  background $background-color
+  -webkit-box-shadow 0 1px 2px #e5e5e5, #fff 0 0px 3px inset
+  border 1px solid $border-color
+  border-radius 3px
+  margin-bottom 20px
+
+.b-admin-form-fieldset-group-title
+  gradient $background-color #fff
+  border-top-radius 3px
+  border-bottom 1px solid $border-color
+  padding 0 15px
+  font-size 16px
+  line-height 35px
+  font-weight normal
+  text-shadow #fff 0 1px 1px
 
 .b-admin-body .tabular_group h1
   margin 0 0 20px
@@ -87,22 +89,6 @@ fieldset
     text-decoration underline
     &:hover
       text-decoration none
-
-.inline-related
-  background $background-color
-  -webkit-box-shadow 0 1px 2px #e5e5e5, #fff 0 0px 3px inset
-  border 1px solid $border-color
-  border-radius 3px
-  margin-bottom 20px
-  .b-admin-form-fieldset-group-title
-    font-size 16px
-    line-height 35px
-    font-weight normal
-    padding 0 15px
-    gradient $background-color #fff
-    border-top-radius 3px
-    border-bottom 1px solid $border-color
-    text-shadow #fff 0 1px 1px
 
 .b-admin-form-fieldset-description
   padding 10px 30px
