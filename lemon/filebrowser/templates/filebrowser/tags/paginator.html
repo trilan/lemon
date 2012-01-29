@@ -3,10 +3,14 @@
 {% if page_range %}
   {% for i in page_range %}
     {% ifequal i "." %}
-      <span>...</span>
+      <span class="item">...</span>
     {% else %}
-      <a{% ifequal i page_num %} class="active"{% endifequal %} href="{% query_string 'p' %}&amp;p={{ i|add:"1" }}">{{ i|add:"1" }}</a>
+      {% ifequal i page_num %}
+        <span class="item">{{ i|add:"1" }}</span>
+      {% else %}
+        <a class="item link" href="{% query_string 'p' %}&amp;p={{ i|add:"1" }}">{{ i|add:"1" }}</a>
+      {% endifequal %}
     {% endifequal %}
   {% endfor %}
 {% endif %}
-<span>{% blocktrans count counter=results_var.results_total %}{{ counter }} item{% plural %}{{ counter }} items{% endblocktrans %}</span>
+<span class="item">{% blocktrans count counter=results_var.results_total %}{{ counter }} item{% plural %}{{ counter }} items{% endblocktrans %}</span>

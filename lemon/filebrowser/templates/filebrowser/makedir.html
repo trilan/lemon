@@ -13,26 +13,26 @@
 
 {% block content %}
   {% if form.errors %}
-    <div class="errornote">
-      <p>{% trans 'Please correct the following errors.' %}</p>
-      <ul class="errorlist">{% for error in form.non_field_errors %}<li>{{ error }}</li>{% endfor %}</ul>
+    <div class="b-admin-messages b-admin-errors">
+      <h2 class="description">{% trans 'Please correct the following errors.' %}</h2>
+      <ul class="list">
+        {% for error in form.non_field_errors %}<li class="item">{{ error }}</li>{% endfor %}
+      </ul>
     </div>
   {% endif %}
   <form action="{% query_string 'p' %}" method="post">
-    {% csrf_token %}
-    <div id="tabs" class="tabs">
-      <div class="main_group">
-        <fieldset class="main">
-          <div class="content">
-            <div class="field clearfix last">
-              <label class="required" for="id_dir_name">{{ form.dir_name.label }}</label>
-              {{ form.dir_name }}
-              {{ form.dir_name.errors }}
-              <p class="help">
-                {{ form.dir_name.help_text|safe }}<br>
-                {% trans "The Name will be converted to lowercase. Spaces will be replaced with underscores." %}
-              </p>
-            </div>
+    <div class="b-admin-form">
+      {% csrf_token %}
+      <div class="b-admin-form-fieldset-group">
+        <fieldset class="b-admin-form-fieldset">
+          <div class="b-admin-form-field b-admin-form-last-field clearfix">
+            <label class="required" for="id_dir_name">{{ form.dir_name.label }}</label>
+            {{ form.dir_name }}
+            {{ form.dir_name.errors }}
+            <p class="help">
+              {{ form.dir_name.help_text|safe }}<br>
+              {% trans "The Name will be converted to lowercase. Spaces will be replaced with underscores." %}
+            </p>
           </div>
         </fieldset>
       </div>

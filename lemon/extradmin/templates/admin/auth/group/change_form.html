@@ -2,5 +2,5 @@
 {% load i18n %}
 
 {% block page_title %}{% if add %}{% trans 'Add user group' %}{% else %}{% trans 'Change user group' %}{% endif %}{% endblock %}
-{% block content_title %}<h1>{% if add %}{% trans 'Add group' %}{% else %}{% trans 'Change group' %}{% endif %}</h1>{% endblock %}
+{% block content_title %}<h1 class="b-admin-title">{% if add %}{% trans 'Add group' %}{% else %}{% trans 'Change group' %}{% endif %}</h1>{% endblock %}
 {% block breadcrumbs_parent_title %}{% trans 'User groups' %}{% endblock %}

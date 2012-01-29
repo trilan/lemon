@@ -1,19 +1,16 @@
 $(document).ready(function() {
-  var $main_menu = $('#main-menu'),
-      $main_menu_helper = $('<div class="main-menu-helper"></div>').insertAfter($main_menu);
-  $main_menu.children().hover(
+  var $menu = $('#b-admin-menu'),
+      $menuHelper = $('<div class="b-admin-menu-helper"></div>').insertAfter($menu);
+  $menu.children().hover(
     function() {
       var $span = $(this).children('span'),
-          ul_width = $(this).children('ul').outerWidth(),
-          span_width = $span.outerWidth(),
-          span_left  = $span.offset().left;
-      $main_menu_helper.css({
-        left: span_left + span_width,
-        width: ul_width - span_width
-      }).show();
+          ulWidth = $(this).children('ul').outerWidth(),
+          spanWidth = $span.outerWidth(),
+          spanLeft  = $span.offset().left;
+      $menuHelper.css({left: spanLeft + spanWidth, width: ulWidth - spanWidth}).show();
     },
     function() {
-      $main_menu_helper.hide();
+      $menuHelper.hide();
     }
   );
 });

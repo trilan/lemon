@@ -12,21 +12,21 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-  <li>&rsaquo;<span>{% block breadcrumbs_title %}{{ model_name_plural|capfirst }}{% endblock %}</span></li>
+  <li class="item">&rsaquo;<span class="item-title">{% block breadcrumbs_title %}{{ model_name_plural|capfirst }}{% endblock %}</span></li>
 {% endblock %}
 
 {% block content %}
   {% block tools %}
     {% if has_add_permission %}
-      <ul class="tools">
-        <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">{% block addlink_title %}{% blocktrans with name=cl.opts.verbose_name %}Add {{ name }}{% endblocktrans %}{% endblock %}</a></li>
+      <ul class="b-admin-tools">
+        <li class="item"><a class="item-link" href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">{% block addlink_title %}{% blocktrans with name=cl.opts.verbose_name %}Add {{ name }}{% endblocktrans %}{% endblock %}</a></li>
       </ul>
     {% endif %}
   {% endblock %}
   <div class="changelist-wrapper">
-    <div id="changelist" class="panel changelist{% if cl.has_filters %} filtered{% endif %}">
+    <div id="b-admin-changelist" class="panel b-admin-changelist{% if cl.has_filters %} filtered{% endif %}">
       <div id="changelist-header" class="panel-header changelist-header">
-        <div id="changelist-actions" class="changelist-actions">
+        <div id="b-admin-changelist-actions" class="b-admin-changelist-actions">
           {% if action_form and actions_on_top and cl.full_result_count %}{% admin_actions %}{% endif %}
         </div>
         <div id="changelist-search" class="changelist-search">
@@ -35,31 +35,31 @@
       </div>
       {% block date_hierarchy %}{% date_hierarchy cl %}{% endblock %}
       <div id="changelist-body" class="panel-body changelist-body{% if cl.has_filters %} filtered{% endif %} clearfix">
-        <div id="changelist-main" class="changelist-main">
+        <div id="b-admin-changelist-main" class="b-admin-changelist-main">
           <form action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
             <div><input type="hidden" name="action" value="">{% if cl.formset %}{{ cl.formset.management_form }}{% endif %}</div>
             {% block result_list %}{% result_list cl %}{% endblock %}
           </form>
         </div>
-        <div id="changelist-footer" class="changelist-footer">
-          <div id="changelist-pager" class="changelist-pager"><div>
+        <div class="b-admin-changelist-footer">
+          <div class="b-admin-pager"><div class="inner">
             {% block pagination %}
               {% if cl|pagination_required %}
                 {% with number=cl.page_num|add:1 %}
                   {% for p in cl.paginator|intellipages:number %}
                     {% if p %}
                       {% if p == number %}
-                        <a class="active">{{ p }}</a>
+                        <span class="item">{{ p }}</span>
                       {% else %}
-                        <a href="{% lemon_paginator_href cl p %}">{{ p }}</a>
+                        <a class="item link" href="{% lemon_paginator_href cl p %}">{{ p }}</a>
                       {% endif %}
                     {% else %}
-                      <span>...</span>
+                      <span class="item">...</span>
                     {% endif %}
                   {% endfor %}
                 {% endwith %}
               {% endif %}
-              <span>
+              <span class="item">
                 {% block paginator_description %}
                   {{ cl.result_count }}
                   {% if cl.result_count == 1 %}
@@ -71,23 +71,20 @@
               </span>
               {% with show_all_url=cl|show_all_url %}
                 {% if show_all_url %}
-                  <span class="showall"><a href="{{ show_all_url }}">{% trans 'Show all' %}</a></span>
+                  <a class="item link" href="{{ show_all_url }}">{% trans 'Show all' %}</a>
                 {% endif %}
               {% endwith %}
             {% endblock %}
           </div></div>
-          <div id="changelist-links" class="changelist-links"></div>
         </div>
       </div>
     </div>
   </div>
   {% block filters %}
     {% if cl.has_filters %}
-      <div id="changelist-filters" class="panel changelist-filters">
-        <div id="changelist-filters-header" class="panel-header changelist-filters-header">
-          <h2 id="changelist-filters-title" class="panel-title changelist-filters-title">{% trans 'Filters' %}</h2>
-        </div>
-        <div class="panel-body changelist-filters-body">
+      <div class="panel b-admin-filters">
+        <div class="panel-header"><h2 class="panel-title">{% trans 'Filters' %}</h2></div>
+        <div class="panel-body b-admin-filters-body">
           {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
         </div>
       </div>

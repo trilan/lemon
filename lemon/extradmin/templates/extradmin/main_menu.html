@@ -1,18 +1,20 @@
 {% load i18n main_menu %}
 {% load url from future %}
 
-<ul class="main-menu" id="main-menu">
+<ul id="b-admin-menu" class="b-admin-menu">
   {% for section in sections %}
-    <li>
-      <span>{{ section.title }}</span>
-      <ul>
+    <li class="section">
+      <span class="section-title">{{ section.title }}</span>
+      <ul class="section-menu">
         {% for item in section.items %}
-          <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+          <li class="item"><a class="item-link" href="{{ item.url }}">{{ item.title }}</a></li>
         {% endfor %}
       </ul>
     </li>
   {% endfor %}
-  <li>
-    <span><a href="{% url 'admin:filebrowser:browse' %}">{% trans 'File Browser' %}</a></span>
+  <li class="section">
+    <span class="section-title">
+      <a class="section-link" href="{% url 'admin:filebrowser:browse' %}">{% trans 'File Browser' %}</a>
+    </span>
   </li>
 </ul>

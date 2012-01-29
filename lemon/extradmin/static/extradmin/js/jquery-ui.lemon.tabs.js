@@ -1,3 +1,3 @@
 $("document").ready(function() {
-  $("#tabs").tabs().find("ul").show();
+  $("#b-admin-form-tabs").tabs();
 });

@@ -5,12 +5,12 @@
   float left
   width 100%
 
-.changelist
+.b-admin-changelist
   margin 10px 30px
   &.filtered
     margin-right 245px
 
-.changelist-actions
+.b-admin-changelist-actions
   float left
   width 45%
   height 35px
@@ -24,7 +24,7 @@
     width 170px
     height 25px
 
-.changelist-dates
+.b-admin-changelist-dates
   display block
   border 1px solid $border-color
   border-bottom none
@@ -40,7 +40,7 @@
     &:hover
       text-decoration underline
 
-.changelist-main
+.b-admin-changelist-main
   padding-left 3px
   padding-right 4px
   input
@@ -96,7 +96,7 @@
     font-size 10px
     color #a00
 
-.changelist-filters
+.b-admin-filters
   float left
   width 200px
   margin 10px 30px 10px -230px
@@ -122,43 +122,32 @@
     &:hover
       text-decoration underline
 
-.changelist-filters-body
+.b-admin-filters-body
   padding-bottom 15px
 
-.changelist-footer
+.b-admin-changelist-footer
   height 28px
 
-.changelist-pager
-  float left
-  width 40%
+.b-admin-pager
   height 28px
-  div
+
+  .inner
     padding-left 4px
     padding-top 3px
-  a, span
+
+  .item
     display block
     float left
-    border 1px solid #8a9ea7
-    background url('../images/pager-bg.png') bottom left repeat-x
     line-height 18px
     padding 1px 5px 0
-    margin-right -1px
-    text-decoration none
-  a.active, span
     margin-left 1px
+    margin-right -1px
     border 1px solid $background-color
     border-left none
     background $background-color
-  span.showall
-    border none
-    padding-top 0
 
-.changelist-links
-  float right
-  width: 40%
-  height 28px
-  line-height 27px
-  text-align right
-  a
-    margin-right 10px
-    font-weight bold
+  .link
+    border 1px solid #8a9ea7
+    background url('../images/pager-bg.png') bottom left repeat-x
+    margin-left 0
+    text-decoration none

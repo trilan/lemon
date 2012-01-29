@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]> <html class="no-js ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]>    <html class="no-js ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]>    <html class="no-js ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" lang="{{ LANGUAGE_CODE }}"> <!--<![endif]-->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="{{ LANGUAGE_CODE }}"> <!--<![endif]-->
 <head>
   <title>{% block page_title %}{% endblock %}</title>
   <meta charset="utf-8">
@@ -15,17 +15,23 @@
   {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
 </head>
 <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
-  <div id="container" class="{% block containerclass %}{% endblock %}">
+  <div id="b-admin-container" class="b-admin-container {% block containerclass %}{% endblock %}">
     {% block container %}
       {% if not is_popup %}{% block header %}{% endblock %}{% endif %}
-      <div id="main" class="clearfix">
-        {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
-        {% if messages %}<ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>{% endif %}
+      <div class="b-admin-body clearfix">
+        {% block content_title %}{% if title %}<h1 class="b-admin-title">{{ title }}</h1>{% endif %}{% endblock %}
+        {% if messages %}
+          <div class="b-admin-messages">
+            <ul class="list">
+              {% for message in messages %}<li class="item">{{ message }}</li>{% endfor %}
+            </ul>
+          </div>
+        {% endif %}
         {% block content %}{% endblock %}
       </div>
-      {% if not is_popup %}<div id="footer">
+      {% if not is_popup %}<div class="b-admin-footer">
         {% block footer %}
-          <div id="copyright">CMF Lemon разработана в компании <a href="http://www.trilan.ru/" class="external">«ТриЛан»</a> с использованием <a href="http://djangoproject.com/" class="external">Django</a></div>
+          <div class="copyright">CMF Lemon разработана в компании <a class="copyright-link external" href="http://www.trilan.ru/">«ТриЛан»</a> с использованием <a class="copyright-link external" href="http://djangoproject.com/">Django</a></div>
         {% endblock %}
       </div>{% endif %}
     {% endblock %}
