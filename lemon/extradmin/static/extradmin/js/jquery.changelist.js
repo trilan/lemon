@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var table = $('#changelist-main table');
+  var table = $('#b-admin-changelist-main table');
   table.find('thead input[type=checkbox]').parent().addClass('narrow');
   table.find('tbody tr:last-child').addClass('last');
   table.find('tbody tr').find('td:first-child, th:first-child').addClass('first');
@@ -15,7 +15,7 @@ $(document).ready(function() {
       type: 'hidden',
       name: $(this).attr('name'),
       value: $(this).attr('value')
-    }).appendTo($('#changelist-main form'));
-    $('#changelist-main form').submit();
+    }).appendTo($('#b-admin-changelist-main form'));
+    $('#b-admin-changelist-main form').submit();
   });
 });

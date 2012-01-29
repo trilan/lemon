@@ -16,7 +16,7 @@ $(document).ready(function() {
   $('select[name=action]').change(function() {
     $('input[name=action]').val($(this).val());
   });
-  $('#changelist-actions button[type=submit]').click(function() {
-    $('#changelist-main form').submit();
+  $('#b-admin-changelist-actions button[type=submit]').click(function() {
+    $('#b-admin-changelist-main form').submit();
   });
 });

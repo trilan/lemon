@@ -31,13 +31,13 @@
     </ul>
   {% endblock %}
   <div class="changelist-wrapper">
-    <div id="changelist" class="panel changelist filtered">
+    <div id="b-admin-changelist" class="panel b-admin-changelist filtered">
       <div id="changelist-header" class="panel-header changelist-header">
         {% include "filebrowser/include/toolbar.html" %}
       </div>
       <div id="changelist-body" class="panel-body changelist-body filtered clearfix">
         {% include "filebrowser/include/breadcrumbs.html" %}
-        <div id="changelist-main" class="changelist-main">
+        <div id="b-admin-changelist-main" class="b-admin-changelist-main">
           {% if results_var.results_total %}
             <div class="result-list">
               <table cellspacing="0" class="filebrowser">
@@ -47,19 +47,16 @@
             </div>
           {% endif %}
         </div>
-        <div class="changelist-footer">
-          <div class="changelist-pager"><div>{% pagination %}</div></div>
-          <div class="changelist-links"></div>
+        <div class="b-admin-changelist-footer">
+          <div class="b-admin-pager"><div class="inner">{% pagination %}</div></div>
         </div>
       </div>
     </div>
   </div>
   {% block filters %}
-    <div id="changelist-filters" class="panel changelist-filters">
-      <div id="changelist-filters-header" class="panel-header changelist-filters-header">
-        <h2 id="changelist-filters-title" class="panel-title changelist-filters-title">{% trans 'Filters' %}</h2>
-      </div>
-      <div class="panel-body changelist-filters-body">
+    <div class="panel b-admin-filters">
+      <div class="panel-header"><h2 class="panel-title">{% trans 'Filters' %}</h2></div>
+      <div class="panel-body b-admin-filters-body">
         {% include "filebrowser/include/filter.html" %}
       </div>
     </div>
