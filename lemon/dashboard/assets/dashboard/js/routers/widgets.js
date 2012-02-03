@@ -2,7 +2,7 @@ dashboard.routers.Widgets = Backbone.Router.extend({
 
   routes: {
     "":     "main",
-    "add":  "add",
+    "add":  "add"
   },
 
   initialize: function(options) {

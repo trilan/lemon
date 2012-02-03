@@ -5,7 +5,7 @@ dashboard.views.WidgetInstanceContainer = dashboard.views.Template.extend({
   templateId: "dashboard/js/templates/widget_instance_container",
 
   events: {
-    "click .dashboard-widget-instance-tools-close": "destroyModel",
+    "click .dashboard-widget-instance-tools-close": "destroyModel"
   },
 
   initialize: function() {
