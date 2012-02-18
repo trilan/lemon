@@ -19,3 +19,7 @@ def site(request):
         else:
             return RequestSite(request)
     return {'site': ContextLazyObject(get_site)}
+
+
+def request_path(request):
+    return {'path': request.path}
