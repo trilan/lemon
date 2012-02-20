@@ -1,6 +1,11 @@
 History
 =======
 
+0.5.4
+-----
+
+* Add SearchIndex for pages.Page
+
 0.5.3
 -----
 
