@@ -1,6 +1,11 @@
 History
 =======
 
+0.5.5
+-----
+
+* Fix sync_sitemap and sync_metatags commands
+
 0.5.4
 -----
 
