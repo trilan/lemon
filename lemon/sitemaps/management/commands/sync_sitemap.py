@@ -5,6 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.management.base import NoArgsCommand
 
 from lemon import extradmin
+from lemon import sitemaps
 from lemon.sitemaps.models import Item
 
 
