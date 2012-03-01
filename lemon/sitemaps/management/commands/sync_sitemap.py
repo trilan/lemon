@@ -4,7 +4,7 @@ from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.core.management.base import NoArgsCommand
 
-from lemon import sitemaps
+from lemon import extradmin
 from lemon.sitemaps.models import Item
 
 
@@ -14,7 +14,7 @@ class Command(NoArgsCommand):
 
     def handle_noargs(self, **options):
         print 'Starting sitemap.xml synchronization with all registered models.'
-        sitemaps.autodiscover()
+        extradmin.autodiscover()
         for model, sitemap in sitemaps.site._registry.items():
             print 'Syncing %s.%s model.' % (model._meta.app_label, model.__name__)
             self.sync_sitemap(model, sitemap)
