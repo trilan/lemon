@@ -2,9 +2,8 @@ import datetime
 import os
 import re
 
-from django.utils import dateformat
+from django.utils import formats
 from django.utils.text import capfirst
-from django.utils.translation  import get_date_formats
 
 from lemon.filebrowser.settings import MEDIA_ROOT, MEDIA_URL
 
@@ -48,8 +47,7 @@ class FileObject(object):
     datetime = property(_datetime)
 
     def _formatted_datetime(self):
-        (date_format, datetime_format,  time_format) = get_date_formats()
-        return capfirst(dateformat.format(self.datetime, datetime_format))
+        return capfirst(formats.date_format(self.datetime, 'DATETIME_FORMAT'))
     formatted_datetime = property(_formatted_datetime)
 
     def _extension(self):
