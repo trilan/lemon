@@ -8,3 +8,21 @@ class Article(models.Model):
 
     class Meta:
         app_label = 'extradmin'
+
+
+class Author(models.Model):
+
+    article = models.ForeignKey(Article)
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        app_label = 'extradmin'
+
+
+class Link(models.Model):
+
+    article = models.ForeignKey(Article)
+    url = models.URLField()
+
+    class Meta:
+        app_label = 'extradmin'
