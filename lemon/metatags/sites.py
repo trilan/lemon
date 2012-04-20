@@ -27,6 +27,17 @@ class MetatagsSite(object):
     def __init__(self):
         self._registry = {}
 
+    def _append_inline_instance(self, model):
+        model_admin = extradmin.site._registry.get(model)
+        if not model_admin:
+            return
+        metatags_inline_instance = self.inline_admin_class(model, extradmin.site)
+        original_get_inline_instances = model_admin.get_inline_instances
+        def get_inline_instances(request):
+            inline_instances = original_get_inline_instances(request)
+            return inline_instances + [metatags_inline_instance]
+        model_admin.get_inline_instances = get_inline_instances
+
     def register(self, model_or_iterable, model_metatags_class=None, **options):
         if not model_metatags_class:
             model_metatags_class = ModelMetatags
@@ -38,15 +49,7 @@ class MetatagsSite(object):
                 raise AlreadyRegistered(
                     u'The model %s already registered' % model.__name__)
 
-            admin_object = extradmin.site._registry.get(model)
-            if admin_object:
-                inline_instance = self.inline_admin_class(model, extradmin.site)
-                admin_object.inline_instances = \
-                    admin_object.inline_instances + [inline_instance]
-                if isinstance(admin_object.tabs, (list, tuple)):
-                    tab = {'title': _(u'Meta tags'),
-                           'contents': [inline_instance]}
-                    admin_object.tabs = admin_object.tabs + [tab]
+            self._append_inline_instance(model)
 
             if options:
                 options['__module__'] = __name__
