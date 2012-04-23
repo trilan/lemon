@@ -1,10 +1,9 @@
-from datetime import datetime
-
 from django.conf import settings
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import get_language, ugettext_lazy as _
 
 from lemon.sitemaps.managers import ItemManager
@@ -51,7 +50,7 @@ class Item(models.Model):
                     u'target="_blank">Sitemap protocol description</a>.'))
     lastmod = models.DateTimeField(
         _(u'last modification date'), blank=True, null=True,
-        default=datetime.now)
+        default=timezone.now)
     enabled = models.BooleanField(
         _(u'enabled'), default=True,
         help_text=_(u'If disabled, this item will not shown in sitemap.xml.'))

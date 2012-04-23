@@ -1,7 +1,6 @@
-from datetime import datetime
-
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 from lemon.publications.managers import PublicationManager
@@ -20,7 +19,7 @@ class Publication(models.Model):
         _('enabled'), default=True, db_index=True,
         help_text=_("If not set, publication is hidden from visitors anyway."))
     publication_start_date = models.DateTimeField(
-        _('publication start date'), default=datetime.now, db_index=True,
+        _('publication start date'), default=timezone.now, db_index=True,
         help_text=_("Publication will be visible to visitors starting from "
                     "this date."))
     publication_end_date = models.DateTimeField(
