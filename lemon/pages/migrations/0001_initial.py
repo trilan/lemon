@@ -1,13 +1,13 @@
-# encoding: utf-8
+# -*- coding: utf-8 -*-
 import datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
 
+
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        
         # Adding model 'Page'
         db.create_table('pages_page', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -16,7 +16,7 @@ class Migration(SchemaMigration):
             ('publication_start_date', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, db_index=True)),
             ('publication_end_date', self.gf('django.db.models.fields.DateTimeField')(db_index=True, null=True, blank=True)),
             ('language', self.gf('django.db.models.fields.CharField')(default='en-us', max_length=10, db_index=True)),
-            ('url_path', self.gf('django.db.models.fields.SlugField')(max_length=255, db_index=True)),
+            ('url_path', self.gf('django.db.models.fields.SlugField')(max_length=255)),
             ('title', self.gf('django.db.models.fields.CharField')(max_length=255)),
             ('content', self.gf('django.db.models.fields.TextField')()),
             ('template', self.gf('django.db.models.fields.CharField')(max_length=255)),
@@ -31,15 +31,12 @@ class Migration(SchemaMigration):
         ))
         db.create_unique('pages_page_sites', ['page_id', 'site_id'])
 
-
     def backwards(self, orm):
-        
         # Deleting model 'Page'
         db.delete_table('pages_page')
 
         # Removing M2M table for field sites on 'Page'
         db.delete_table('pages_page_sites')
-
 
     models = {
         'auth.group': {
@@ -90,7 +87,7 @@ class Migration(SchemaMigration):
             'sites': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['sites.Site']", 'symmetrical': 'False'}),
             'template': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'url_path': ('django.db.models.fields.SlugField', [], {'max_length': '255', 'db_index': 'True'})
+            'url_path': ('django.db.models.fields.SlugField', [], {'max_length': '255'})
         },
         'sites.site': {
             'Meta': {'ordering': "('domain',)", 'object_name': 'Site', 'db_table': "'django_site'"},

@@ -1,13 +1,13 @@
-# encoding: utf-8
+# -*- coding: utf-8 -*-
 import datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
 
+
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        
         # Adding model 'File'
         db.create_table('robots_file', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -16,12 +16,9 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal('robots', ['File'])
 
-
     def backwards(self, orm):
-        
         # Deleting model 'File'
         db.delete_table('robots_file')
-
 
     models = {
         'robots.file': {
