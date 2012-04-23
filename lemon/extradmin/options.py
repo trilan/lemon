@@ -2,6 +2,7 @@ import inspect
 
 from django import forms
 from django.contrib.admin import options
+from django.contrib.admin.templatetags.admin_static import static
 from django.contrib.admin.views.main import IS_POPUP_VAR
 from django.contrib.admin.widgets import AdminRadioSelect
 from django.conf import settings
@@ -123,16 +124,16 @@ class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
         inline_instance = self._get_inline_instance(request, inline)
         return inline_instance.verbose_name_plural, [inline_instance]
 
-    def _media(self):
-        js = [settings.ADMIN_MEDIA_PREFIX + 'js/SelectBox.js',
-              settings.STATIC_URL + 'extradmin/js/jquery.relatedobjectlookup.js']
+    @property
+    def media(self):
+        js = [static('admin/js/SelectBox.js'),
+              static('extradmin/js/jquery.relatedobjectlookup.js')]
         if self.prepopulated_fields:
-            js.extend([settings.ADMIN_MEDIA_PREFIX + 'js/urlify.js',
-                       settings.STATIC_URL + 'extradmin/js/jquery.prepopulate.js'])
+            js.extend(static('admin/js/urlify.js'),
+                      static('extradmin/js/jquery.prepopulate.js'))
         if self.tabs:
-            js.extend([settings.STATIC_URL + 'extradmin/js/jquery-ui.lemon.tabs.js'])
+            js.extend(static('/extradmin/js/jquery-ui.lemon.tabs.js'))
         return forms.Media(js=js)
-    media = property(_media)
 
     def get_tabs(self, request):
         if not self.tabs:
@@ -234,13 +235,13 @@ class InlineModelAdmin(options.InlineModelAdmin, BaseModelAdmin):
     def __init__(self, parent_model, admin_site):
         super(InlineModelAdmin, self).__init__(parent_model, admin_site)
 
-    def _media(self):
-        js = [settings.STATIC_URL + 'extradmin/js/jquery.inlines.js']
+    @property
+    def media(self):
+        js = [static('extradmin/js/jquery.inlines.js')]
         if self.prepopulated_fields:
-            js.append(settings.ADMIN_MEDIA_PREFIX + 'js/urlify.js')
-            js.append(settings.STATIC_URL + 'extradmin/js/jquery.prepopulate.js')
+            js.append(static('admin/js/urlify.js'))
+            js.append(static('extradmin/js/jquery.prepopulate.js'))
         return forms.Media(js=js)
-    media = property(_media)
 
     @property
     def markup_widget(self):
