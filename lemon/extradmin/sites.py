@@ -37,7 +37,6 @@ class AdminSite(sites.AdminSite):
     def index(self, request, extra_context=None):
         context = {
             'dashboard': self.dashboard.render(request),
-            'root_path': self.root_path,
             'title': _(u"Site administration"),
         }
         context.update(extra_context or {})
