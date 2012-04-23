@@ -132,7 +132,7 @@ class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
             js.extend(static('admin/js/urlify.js'),
                       static('extradmin/js/jquery.prepopulate.js'))
         if self.tabs:
-            js.extend(static('/extradmin/js/jquery-ui.lemon.tabs.js'))
+            js.append(static('extradmin/js/jquery-ui.lemon.tabs.js'))
         return forms.Media(js=js)
 
     def get_tabs(self, request):
