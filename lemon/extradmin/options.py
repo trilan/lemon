@@ -156,10 +156,10 @@ class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
         if tabs:
             formsets = {}
             for formset in context.get('inline_admin_formsets'):
-                formsets[formset.opts] = formset
+                formsets[formset.opts.__class__] = formset
             new_tabs = []
             for tab in tabs:
-                contents = [formsets[inline] for inline in tab['contents']]
+                contents = [formsets[inline.__class__] for inline in tab['contents']]
                 new_tabs.append({'title': tab['title'], 'contents': contents})
                 tabulated_formsets.extend(contents)
             contents = [formset for formset in inline_admin_formsets
