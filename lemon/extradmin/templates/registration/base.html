@@ -1,16 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">{% load admin_static %}
 <html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}">
 <head>
 	<title>{% block title %}{% endblock %}</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/reset.css" />
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/default.css" />
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/base.css" />
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/jquery.ui.css" />
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/changeform.css" />
-	<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/ie.css" /><![endif]-->
-	<script src="{{ STATIC_URL }}extradmin/js/jquery.js" type="text/javascript" charset="utf-8"></script>
-	<script src="{{ STATIC_URL }}extradmin/js/jquery.ui.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'extradmin/css/reset.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'extradmin/css/default.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'extradmin/css/base.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'extradmin/css/jquery.ui.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'extradmin/css/changeform.css' %}" />
+	<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="{% static 'extradmin/css/ie.css' %}" /><![endif]-->
+	<script src="{% static 'extradmin/js/jquery.js' %}" type="text/javascript" charset="utf-8"></script>
+	<script src="{% static 'extradmin/js/jquery.ui.js' %}" type="text/javascript" charset="utf-8"></script>
 	{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
 </head>
 <body>
