@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import patterns, url, include
+from django.conf.urls import patterns, url, include
 from django.contrib.admin import sites
 from django.core.exceptions import ImproperlyConfigured
 from django.shortcuts import render_to_response
