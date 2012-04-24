@@ -1,19 +1,19 @@
 {% extends "admin/base_site.html" %}
-{% load intellipages lemon_list admin_list i18n %}
+{% load intellipages lemon_list admin_list admin_static i18n %}
 
 
-{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/changelist.css" />{% endblock %}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static 'extradmin/css/changelist.css' %}" />{% endblock %}
 
 
 {% block extrahead %}{{ block.super }}
-<script src="{{ STATIC_URL }}extradmin/js/jquery.actions.js" type="text/javascript" charset="utf-8"></script>
+<script src="{% static 'extradmin/js/jquery.actions.js' %}" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
 // <![CDATA[
-    var path_to_yes_icon = '{{ STATIC_URL }}extradmin/images/yes.gif';
-    var path_to_no_icon = '{{ STATIC_URL }}extradmin/images/no.gif';
+    var path_to_yes_icon = '{% static "extradmin/images/yes.gif" %}';
+    var path_to_no_icon = '{% static "extradmin/images/no.gif" %}';
 // ]]>
 </script>
-<script src="{{ STATIC_URL }}extradmin/js/jquery.changelist.js" type="text/javascript" charset="utf-8"></script>
+<script src="{% static 'extradmin/js/jquery.changelist.js' %}" type="text/javascript" charset="utf-8"></script>
 {{ media }}
 {% endblock %}
 

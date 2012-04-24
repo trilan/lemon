@@ -45,7 +45,7 @@ class AppsWidget(dashboard.Widget):
                         app_dict[app_label]['models'].append(model_dict)
                     else:
                         app_dict[app_label] = {
-                            'name': app_label.title(),
+                            'name': _(app_label).capitalize(),
                             'app_url': app_label + '/',
                             'has_module_perms': has_module_perms,
                             'models': [model_dict]}

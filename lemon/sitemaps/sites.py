@@ -21,8 +21,21 @@ class NotRegistered(Exception):
 
 class SitemapSite(object):
 
+    inline_admin_class = ItemInline
+
     def __init__(self):
         self._registry = {}
+
+    def _append_inline_instance(self, model):
+        model_admin = extradmin.site._registry.get(model)
+        if not model_admin:
+            return
+        sitemaps_inline_instance = self.inline_admin_class(model, extradmin.site)
+        original_get_inline_instances = model_admin.get_inline_instances
+        def get_inline_instances(request):
+            inline_instances = original_get_inline_instances(request)
+            return inline_instances + [sitemaps_inline_instance]
+        model_admin.get_inline_instances = get_inline_instances
 
     def register(self, model_or_iterable, model_sitemap_class=None, **options):
         if not model_sitemap_class:
@@ -35,15 +48,7 @@ class SitemapSite(object):
                 raise AlreadyRegistered(
                     u'The model %s already registered' % model.__name__)
 
-            model_admin = extradmin.site._registry.get(model)
-            if model_admin:
-                inline_instance = ItemInline(model, extradmin.site)
-                model_admin.inline_instances = \
-                    model_admin.inline_instances + [inline_instance]
-                if isinstance(model_admin.tabs, (list, tuple)):
-                    tab = {'title': inline_instance.verbose_name,
-                           'contents': [inline_instance]}
-                    model_admin.tabs = model_admin.tabs + [tab]
+            self._append_inline_instance(model)
 
             if options:
                 options['__module__'] = __name__

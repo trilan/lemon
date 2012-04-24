@@ -1,6 +1,6 @@
 import sys
 
-from django.conf.urls.defaults import patterns, url, handler404, handler500
+from django.conf.urls import patterns, url, handler404, handler500
 from django.core.urlresolvers import RegexURLResolver
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response

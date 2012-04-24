@@ -1,10 +1,10 @@
 {% extends "admin/base.html" %}
-{% load main_menu %}
+{% load main_menu admin_static %}
 
 {% block title %}{{ title }} | Lemon CMF{% endblock %}
 
 {% block extrahead %}
-<script src="{{ STATIC_URL }}extradmin/js/jquery.mainmenu.js" type="text/javascript" charset="utf-8"></script>
+<script src="{% static 'extradmin/js/jquery.mainmenu.js' %}" type="text/javascript" charset="utf-8"></script>
 {% endblock %}
 
 {% block header %}

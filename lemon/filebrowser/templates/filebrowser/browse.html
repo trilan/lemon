@@ -1,21 +1,21 @@
 {% extends "admin/base_site.html" %}
-{% load i18n filebrowser_extras %}
+{% load i18n admin_static filebrowser_extras %}
 
 {% block extrastyle %}{{ block.super }}
-<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}extradmin/css/changelist.css" />
-<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}filebrowser/css/style.css" />
+<link rel="stylesheet" type="text/css" href="{% static 'extradmin/css/changelist.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'filebrowser/css/style.css' %}" />
 {% endblock %}
 
 {% block extrahead %}{{ block.super }}
 <script src="{% url admin:filebrowser:jsi18n %}" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
 // <![CDATA[
-    var path_to_yes_icon = '{{ STATIC_URL }}extradmin/images/yes.gif';
-    var path_to_no_icon = '{{ STATIC_URL }}extradmin/images/no.gif';
+    var path_to_yes_icon = '{% static "extradmin/images/yes.gif" %}';
+    var path_to_no_icon = '{% static "extradmin/images/no.gif" %}';
 // ]]>
 </script>
-<script src="{{ STATIC_URL }}extradmin/js/jquery.changelist.js" type="text/javascript" charset="utf-8"></script>
-<script src="{{ STATIC_URL }}filebrowser/js/jquery.browse.js" type="text/javascript" charset="utf-8"></script>
+<script src="{% static 'extradmin/js/jquery.changelist.js' %}" type="text/javascript" charset="utf-8"></script>
+<script src="{% static 'filebrowser/js/jquery.browse.js' %}" type="text/javascript" charset="utf-8"></script>
 {% if is_popup %}{% include_editor_stuff editor %}{% endif %}
 {% endblock %}
 

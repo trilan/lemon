@@ -3,5 +3,5 @@
 *.pyo
 build/
 dist/
-test_project/public/
-test_project/sqlite.db
+test_project/project/public/
+test_project/project/sqlite.db

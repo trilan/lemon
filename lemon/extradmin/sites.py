@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import patterns, url, include
+from django.conf.urls import patterns, url, include
 from django.contrib.admin import sites
 from django.core.exceptions import ImproperlyConfigured
 from django.shortcuts import render_to_response
@@ -15,7 +15,7 @@ from lemon.filebrowser.sites import FileBrowserSite
 
 class AdminSite(sites.AdminSite):
 
-    def __init__(self, name=None, app_name='admin'):
+    def __init__(self, name='admin', app_name='admin'):
         super(AdminSite, self).__init__(name, app_name)
         self.file_browser_site = FileBrowserSite(self)
         self.dashboard = Dashboard(self)
@@ -28,8 +28,7 @@ class AdminSite(sites.AdminSite):
 
     def get_urls(self):
         urls = super(AdminSite, self).get_urls()
-        return patterns(
-            '',
+        return patterns('',
             url(r'^filebrowser/', include(self.file_browser_site.urls)),
             url(r'^dashboard/', include(self.dashboard.urls)),
         ) + urls
@@ -38,7 +37,6 @@ class AdminSite(sites.AdminSite):
     def index(self, request, extra_context=None):
         context = {
             'dashboard': self.dashboard.render(request),
-            'root_path': self.root_path,
             'title': _(u"Site administration"),
         }
         context.update(extra_context or {})

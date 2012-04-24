@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.core.management.base import NoArgsCommand
 
+from lemon import extradmin
 from lemon import metatags
 from lemon.metatags.models import Page
 
@@ -14,7 +15,7 @@ class Command(NoArgsCommand):
 
     def handle_noargs(self, **options):
         print 'Starting metatags synchronisation with all registered models.'
-        metatags.autodiscover()
+        extradmin.autodiscover()
         for model, metatags in metatags.site._registry.items():
             print 'Syncing %s.%s model.' % (model._meta.app_label, model.__name__)
             self.sync_metatags(model, metatags)

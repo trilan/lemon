@@ -11,7 +11,7 @@
 	{% for app in app_list %}
 		{% if forloop.first %}<ul id="available_apps_left" class="available_apps">{% endif %}
 		<li class="app">
-			<h2>{% blocktrans with app.name as name %}{{ name }}{% endblocktrans %}</h2>
+			<h2>{{ app.name }}</h2>
 			{% for model in app.models %}
 				{% if model.perms.change %}<a href="{{ model.admin_url }}">{{ model.name }}</a>{% else %}{{ model.name }}{% endif %}{% if not forloop.last %},{% endif %}
 			{% endfor %}
