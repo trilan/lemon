@@ -56,34 +56,43 @@ class BaseModelAdmin(options.BaseModelAdmin):
 
     def formfield_for_dbfield(self, db_field, **kwargs):
         request = kwargs.pop('request', None)
+
         if db_field.choices:
-            return self.formfield_for_choice_field(
-                db_field, request, **kwargs)
+            return self.formfield_for_choice_field(db_field, request, **kwargs)
+
         if isinstance(db_field, (models.ForeignKey, models.ManyToManyField)):
             if db_field.__class__ in self.formfield_overrides:
-                kwargs = dict(
-                    self.formfield_overrides[db_field.__class__], **kwargs)
+                kwargs = dict(self.formfield_overrides[db_field.__class__], **kwargs)
+
             if isinstance(db_field, models.ForeignKey):
-                formfield = self.formfield_for_foreignkey(
-                    db_field, request, **kwargs)
+                formfield = self.formfield_for_foreignkey(db_field, request, **kwargs)
             elif isinstance(db_field, models.ManyToManyField):
-                formfield = self.formfield_for_manytomany(
-                    db_field, request, **kwargs)
+                formfield = self.formfield_for_manytomany(db_field, request, **kwargs)
+
             if formfield and db_field.name not in self.raw_id_fields:
+                related_modeladmin = self.admin_site._registry.get(db_field.rel.to)
+                can_add_related = bool(related_modeladmin and
+                                       related_modeladmin.has_add_permission(request))
                 formfield.widget = widgets.RelatedFieldWidgetWrapper(
-                    formfield.widget, db_field.rel, self.admin_site)
+                    formfield.widget, db_field.rel, self.admin_site,
+                    can_add_related=can_add_related)
             return formfield
+
         if self.markup_widget and db_field.name in self.markup_fields:
             return db_field.formfield(widget=self.markup_widget)
+
         for klass in db_field.__class__.mro():
             if klass in self.formfield_overrides:
                 kwargs = dict(self.formfield_overrides[klass], **kwargs)
                 return db_field.formfield(**kwargs)
+
         return db_field.formfield(**kwargs)
 
     def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
+        db = kwargs.get('using')
         if db_field.name in self.raw_id_fields:
-            kwargs['widget'] = widgets.ForeignKeyRawIdWidget(db_field.rel)
+            kwargs['widget'] = widgets.ForeignKeyRawIdWidget(
+                db_field.rel, self.admin_site, using=db)
         elif db_field.name in self.radio_fields:
             kwargs['widget'] = AdminRadioSelect(attrs={
                 'class': get_ul_class(self.radio_fields[db_field.name]),
