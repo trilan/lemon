@@ -1,6 +1,11 @@
 History
 =======
 
+0.6.0
+-----
+
+* Update required Django version to 1.4
+
 0.5.5
 -----
 
