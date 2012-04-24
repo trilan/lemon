@@ -68,5 +68,8 @@ class AdminSite(sites.AdminSite):
                                  'the form widget')
         return self._markup_widget
 
+    def get_markup_widget(self, request):
+        return self.markup_widget
+
 
 site = AdminSite()

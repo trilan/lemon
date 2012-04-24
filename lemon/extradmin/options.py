@@ -78,8 +78,10 @@ class BaseModelAdmin(options.BaseModelAdmin):
                     can_add_related=can_add_related)
             return formfield
 
-        if self.markup_widget and db_field.name in self.markup_fields:
-            return db_field.formfield(widget=self.markup_widget)
+        markup_widget = self.get_markup_widget(request)
+        markup_fields = self.get_markup_fields(request)
+        if markup_widget and db_field.name in markup_fields:
+            return db_field.formfield(widget=markup_widget)
 
         for klass in db_field.__class__.mro():
             if klass in self.formfield_overrides:
@@ -100,6 +102,12 @@ class BaseModelAdmin(options.BaseModelAdmin):
             kwargs['empty_label'] = db_field.blank and _('None') or None
 
         return db_field.formfield(**kwargs)
+
+    def get_markup_widget(self, request):
+        return self.markup_widget
+
+    def get_markup_fields(self, request):
+        return self.markup_fields
 
 
 class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
@@ -234,9 +242,8 @@ class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
                 ungettext('%(count)d element', '%(count)d elements', n)
         return super(ModelAdmin, self).changelist_view(request, extra_context)
 
-    @property
-    def markup_widget(self):
-        return self.admin_site.markup_widget
+    def get_markup_widget(self, request):
+        return self.markup_widget or self.admin_site.get_markup_widget(request)
 
 
 class InlineModelAdmin(options.InlineModelAdmin, BaseModelAdmin):
@@ -252,9 +259,8 @@ class InlineModelAdmin(options.InlineModelAdmin, BaseModelAdmin):
             js.append(static('extradmin/js/jquery.prepopulate.js'))
         return forms.Media(js=js)
 
-    @property
-    def markup_widget(self):
-        return self.admin_site.markup_widget
+    def get_markup_widget(self, request):
+        return self.markup_widget or self.admin_site.get_markup_widget(request)
 
 
 class StackedInline(InlineModelAdmin):
