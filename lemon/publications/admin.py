@@ -20,7 +20,7 @@ class PublicationAdmin(extradmin.ModelAdmin):
         }),
     )
     date_hierarchy = 'publication_start_date'
-    list_display = ('author_name', 'enabled', 'publication_start_date')
+    extend_list_display = True
     list_filter = ('enabled', 'publication_start_date')
     list_per_page = 25
 
@@ -40,16 +40,14 @@ class PublicationAdmin(extradmin.ModelAdmin):
         Action which set enabled field to True.
         """
         queryset.update(enabled=True)
-    make_enabled.short_description = _('Enable selected '
-                                         '%(verbose_name_plural)s')
+    make_enabled.short_description = _('Enable selected %(verbose_name_plural)s')
 
     def make_disabled(self, request, queryset):
         """
         Action which set enabled field to False.
         """
         queryset.update(enabled=False)
-    make_disabled.short_description = _('Disable selected '
-                                            '%(verbose_name_plural)s')
+    make_disabled.short_description = _('Disable selected %(verbose_name_plural)s')
 
     def queryset(self, request):
         """
@@ -66,3 +64,12 @@ class PublicationAdmin(extradmin.ModelAdmin):
         if not change:
             obj.author = request.user
         super(PublicationAdmin, self).save_model(request, obj, form, change)
+
+    def get_list_display(self, request, extend=None):
+        if extend is None:
+            extend = self.extend_list_display
+        list_display = super(PublicationAdmin, self).get_list_display(request)
+        if extend:
+            list_display = tuple(list_display)
+            list_display += ('author_name', 'publication_start_date', 'enabled')
+        return list_display
