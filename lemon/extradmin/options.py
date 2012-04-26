@@ -215,16 +215,18 @@ class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
             extra_context['string_overrides'] = self.string_overrides
         if 'add_title' in self.string_overrides and 'title' not in extra_context:
             extra_context['title'] = self.string_overrides['add_title']
-        return super(ModelAdmin, self).add_view(request, form_url, extra_context)
+        return super(ModelAdmin, self).add_view(
+            request, form_url=form_url, extra_context=extra_context)
 
-    def change_view(self, request, object_id, extra_context=None):
+    def change_view(self, request, object_id, form_url='', extra_context=None):
         if extra_context is None:
             extra_context = {'string_overrides': self.string_overrides}
         elif 'string_overrides' not in extra_context:
             extra_context['string_overrides'] = self.string_overrides
         if 'change_title' in self.string_overrides and 'title' not in extra_context:
             extra_context['title'] = self.string_overrides['change_title']
-        return super(ModelAdmin, self).change_view(request, object_id, extra_context)
+        return super(ModelAdmin, self).change_view(
+            request, object_id, form_url=form_url, extra_context=extra_context)
 
     def changelist_view(self, request, extra_context=None):
         if extra_context is None:
@@ -240,7 +242,7 @@ class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
         else:
             extra_context['changelist_paginator_description'] = lambda n: \
                 ungettext('%(count)d element', '%(count)d elements', n)
-        return super(ModelAdmin, self).changelist_view(request, extra_context)
+        return super(ModelAdmin, self).changelist_view(request, extra_context=extra_context)
 
     def get_markup_widget(self, request):
         return self.markup_widget or self.admin_site.get_markup_widget(request)
