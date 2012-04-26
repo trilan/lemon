@@ -19,7 +19,7 @@ class PageAdmin(PublicationAdmin):
             'fields': ('url_path', 'title', 'content', 'template', 'language', 'sites')
         }),
     ) + PublicationAdmin.fieldsets
-    list_display = ('url_path', 'title', 'author_name', 'language', 'enabled')
+    list_display = ('url_path', 'title', 'language')
     list_display_links = ('title',)
     list_filter = ('enabled', 'language', 'sites')
     string_overrides = {
