@@ -50,6 +50,7 @@ TEST_APPS = (
     'lemon.extradmin',
     'lemon.robots',
     'lemon.sitemaps',
+    'lemon.publications',
 )
 
 settings.INSTALLED_APPS += TEST_APPS

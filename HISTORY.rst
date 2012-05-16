@@ -1,6 +1,18 @@
 History
 =======
 
+0.6.1
+-----
+
+* Update jQuery and jQuery UI in extradmin app
+* Update doctype in admin templates
+* Fix form tabs in extradmin app
+* Fix change form view in ModelAdmin from extradmin app
+* Fields from Publication models are added to admin change list through
+  ``get_list_display`` method now
+* Admin markup widget and fields can be changed for request now
+* Update ModelAdmin code in extradmin app from Django 1.4
+
 0.6.0
 -----
 

@@ -1,3 +1,3 @@
 $("document").ready(function(){
-    $("#tabs").tabs().find("ul").show();     
+  $("#tabs:not(.tabs-disabled)").tabs().find("ul").show();
 });

@@ -15,16 +15,17 @@ class DefaultMarkupWidgetTestCase(TestCase):
     def setUp(self):
         self.old_CONFIG = settings.CONFIG
         settings.CONFIG = {'MARKUP_WIDGET': None}
+        self.request = RequestFactory().get('/')
 
     def tearDown(self):
         settings.CONFIG = self.old_CONFIG
 
     def test_admin_site_markup_widget(self):
-        self.assertIsNone(extradmin.AdminSite().markup_widget)
+        self.assertIsNone(extradmin.AdminSite().get_markup_widget(self.request))
 
     def test_model_admin_markup_widget(self):
         model_admin = extradmin.ModelAdmin(Article, extradmin.AdminSite())
-        self.assertIsNone(model_admin.markup_widget)
+        self.assertIsNone(model_admin.get_markup_widget(self.request))
 
 
 class CustomMarkupWidgetTestCase(TestCase):
@@ -32,16 +33,18 @@ class CustomMarkupWidgetTestCase(TestCase):
     def setUp(self):
         self.old_CONFIG = settings.CONFIG
         settings.CONFIG = {'MARKUP_WIDGET': 'django.forms.Textarea'}
+        self.request = RequestFactory().get('/')
 
     def tearDown(self):
         settings.CONFIG = self.old_CONFIG
 
     def test_admin_site_markup_widget(self):
-        self.assertIs(extradmin.AdminSite().markup_widget, forms.Textarea)
+        admin = extradmin.AdminSite()
+        self.assertIs(admin.get_markup_widget(self.request), forms.Textarea)
 
     def test_model_admin_markup_widget(self):
         model_admin = extradmin.ModelAdmin(Article, extradmin.AdminSite())
-        self.assertIs(model_admin.markup_widget, forms.Textarea)
+        self.assertIs(model_admin.get_markup_widget(self.request), forms.Textarea)
 
 
 class MarkupFieldsTestCase(TestCase):

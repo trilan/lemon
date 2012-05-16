@@ -56,34 +56,45 @@ class BaseModelAdmin(options.BaseModelAdmin):
 
     def formfield_for_dbfield(self, db_field, **kwargs):
         request = kwargs.pop('request', None)
+
         if db_field.choices:
-            return self.formfield_for_choice_field(
-                db_field, request, **kwargs)
+            return self.formfield_for_choice_field(db_field, request, **kwargs)
+
         if isinstance(db_field, (models.ForeignKey, models.ManyToManyField)):
             if db_field.__class__ in self.formfield_overrides:
-                kwargs = dict(
-                    self.formfield_overrides[db_field.__class__], **kwargs)
+                kwargs = dict(self.formfield_overrides[db_field.__class__], **kwargs)
+
             if isinstance(db_field, models.ForeignKey):
-                formfield = self.formfield_for_foreignkey(
-                    db_field, request, **kwargs)
+                formfield = self.formfield_for_foreignkey(db_field, request, **kwargs)
             elif isinstance(db_field, models.ManyToManyField):
-                formfield = self.formfield_for_manytomany(
-                    db_field, request, **kwargs)
+                formfield = self.formfield_for_manytomany(db_field, request, **kwargs)
+
             if formfield and db_field.name not in self.raw_id_fields:
+                related_modeladmin = self.admin_site._registry.get(db_field.rel.to)
+                can_add_related = bool(related_modeladmin and
+                                       related_modeladmin.has_add_permission(request))
                 formfield.widget = widgets.RelatedFieldWidgetWrapper(
-                    formfield.widget, db_field.rel, self.admin_site)
+                    formfield.widget, db_field.rel, self.admin_site,
+                    can_add_related=can_add_related)
             return formfield
-        if self.markup_widget and db_field.name in self.markup_fields:
-            return db_field.formfield(widget=self.markup_widget)
+
+        markup_widget = self.get_markup_widget(request)
+        markup_fields = self.get_markup_fields(request)
+        if markup_widget and db_field.name in markup_fields:
+            return db_field.formfield(widget=markup_widget)
+
         for klass in db_field.__class__.mro():
             if klass in self.formfield_overrides:
                 kwargs = dict(self.formfield_overrides[klass], **kwargs)
                 return db_field.formfield(**kwargs)
+
         return db_field.formfield(**kwargs)
 
     def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
+        db = kwargs.get('using')
         if db_field.name in self.raw_id_fields:
-            kwargs['widget'] = widgets.ForeignKeyRawIdWidget(db_field.rel)
+            kwargs['widget'] = widgets.ForeignKeyRawIdWidget(
+                db_field.rel, self.admin_site, using=db)
         elif db_field.name in self.radio_fields:
             kwargs['widget'] = AdminRadioSelect(attrs={
                 'class': get_ul_class(self.radio_fields[db_field.name]),
@@ -91,6 +102,12 @@ class BaseModelAdmin(options.BaseModelAdmin):
             kwargs['empty_label'] = db_field.blank and _('None') or None
 
         return db_field.formfield(**kwargs)
+
+    def get_markup_widget(self, request):
+        return self.markup_widget
+
+    def get_markup_fields(self, request):
+        return self.markup_fields
 
 
 class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
@@ -198,16 +215,18 @@ class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
             extra_context['string_overrides'] = self.string_overrides
         if 'add_title' in self.string_overrides and 'title' not in extra_context:
             extra_context['title'] = self.string_overrides['add_title']
-        return super(ModelAdmin, self).add_view(request, form_url, extra_context)
+        return super(ModelAdmin, self).add_view(
+            request, form_url=form_url, extra_context=extra_context)
 
-    def change_view(self, request, object_id, extra_context=None):
+    def change_view(self, request, object_id, form_url='', extra_context=None):
         if extra_context is None:
             extra_context = {'string_overrides': self.string_overrides}
         elif 'string_overrides' not in extra_context:
             extra_context['string_overrides'] = self.string_overrides
         if 'change_title' in self.string_overrides and 'title' not in extra_context:
             extra_context['title'] = self.string_overrides['change_title']
-        return super(ModelAdmin, self).change_view(request, object_id, extra_context)
+        return super(ModelAdmin, self).change_view(
+            request, object_id, form_url=form_url, extra_context=extra_context)
 
     def changelist_view(self, request, extra_context=None):
         if extra_context is None:
@@ -223,11 +242,10 @@ class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
         else:
             extra_context['changelist_paginator_description'] = lambda n: \
                 ungettext('%(count)d element', '%(count)d elements', n)
-        return super(ModelAdmin, self).changelist_view(request, extra_context)
+        return super(ModelAdmin, self).changelist_view(request, extra_context=extra_context)
 
-    @property
-    def markup_widget(self):
-        return self.admin_site.markup_widget
+    def get_markup_widget(self, request):
+        return self.markup_widget or self.admin_site.get_markup_widget(request)
 
 
 class InlineModelAdmin(options.InlineModelAdmin, BaseModelAdmin):
@@ -243,9 +261,8 @@ class InlineModelAdmin(options.InlineModelAdmin, BaseModelAdmin):
             js.append(static('extradmin/js/jquery.prepopulate.js'))
         return forms.Media(js=js)
 
-    @property
-    def markup_widget(self):
-        return self.admin_site.markup_widget
+    def get_markup_widget(self, request):
+        return self.markup_widget or self.admin_site.get_markup_widget(request)
 
 
 class StackedInline(InlineModelAdmin):
