@@ -32,7 +32,7 @@
   <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}
     {% block form_top %}{% endblock %}
     <div>{% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
-      <div id="tabs" class="tabs">
+      <div id="tabs" class="tabs{% if not tabs %} tabs-disabled{%endif %}">
         {% if tabs %}
           <ul style="display:none;">
             {% for tab in tabs %}<li><a href="#tabs-{{ forloop.counter0 }}">{{ tab.title|title }}</a></li>{% endfor %}
