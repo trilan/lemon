@@ -1,6 +1,11 @@
 History
 =======
 
+0.6.2
+-----
+
+* Fix sitemap.xml data format
+
 0.6.1
 -----
 
