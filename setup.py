@@ -8,7 +8,7 @@ def read(filename):
 
 setup(
     name = 'Lemon',
-    version = '0.5.5',
+    version = '0.5.6',
     url = 'https://github.com/trilan/lemon',
     description = 'A collection of some must have Django apps',
     long_description = read('README.rst') + '\n\n' + read('HISTORY.rst'),
