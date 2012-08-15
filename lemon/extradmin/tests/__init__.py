@@ -21,7 +21,8 @@ class DefaultMarkupWidgetTestCase(TestCase):
         settings.CONFIG = self.old_CONFIG
 
     def test_admin_site_markup_widget(self):
-        self.assertIsNone(extradmin.AdminSite().get_markup_widget(self.request))
+        admin_site = extradmin.AdminSite()
+        self.assertIsNone(admin_site.get_markup_widget(self.request))
 
     def test_model_admin_markup_widget(self):
         model_admin = extradmin.ModelAdmin(Article, extradmin.AdminSite())
@@ -44,7 +45,8 @@ class CustomMarkupWidgetTestCase(TestCase):
 
     def test_model_admin_markup_widget(self):
         model_admin = extradmin.ModelAdmin(Article, extradmin.AdminSite())
-        self.assertIs(model_admin.get_markup_widget(self.request), forms.Textarea)
+        markup_widget = model_admin.get_markup_widget(self.request)
+        self.assertIs(markup_widget, forms.Textarea)
 
 
 class MarkupFieldsTestCase(TestCase):
@@ -108,7 +110,10 @@ class AdminTabsTestCase(TestCase):
 
     def test_returns_list_if_tabs_are_list_of_dicts(self):
         class Admin(ArticleAdmin):
-            tabs = [{'title': 'Additional', 'contents': [AuthorInline, LinkInline]}]
+            tabs = [{
+                'title': 'Additional',
+                'contents': [AuthorInline, LinkInline],
+            }]
 
         tabs = self.get_tabs(Admin)
         self.assertEqual(len(tabs), 1)

@@ -7,7 +7,7 @@ from django.utils.importlib import import_module
 from django.utils.translation import ugettext as _
 from django.views.decorators.cache import never_cache
 
-from lemon.extradmin import widgets, ModelAdmin
+from lemon.extradmin import ModelAdmin
 from lemon.extradmin import settings
 from lemon.dashboard import Dashboard
 from lemon.filebrowser.sites import FileBrowserSite
@@ -64,8 +64,9 @@ class AdminSite(sites.AdminSite):
                 raise ImproperlyConfigured('Error importing widget %s: %s'
                                            % (markup_widget, e))
         else:
-            ImproperlyConfigured('MARKUP_WIDGET should be a string with path to '
-                                 'the form widget')
+            raise ImproperlyConfigured(
+                'MARKUP_WIDGET should be a string with path to the form widget'
+            )
         return self._markup_widget
 
     def get_markup_widget(self, request):

@@ -1,5 +1,4 @@
 from django.contrib.admin.models import LogEntry
-from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 from django.utils.text import capfirst
 from django.utils.safestring import mark_safe
@@ -39,8 +38,11 @@ class AppsWidget(dashboard.Widget):
                 if any(perms.values()):
                     model_dict = {
                         'name': capfirst(model._meta.verbose_name_plural),
-                        'admin_url': mark_safe('%s/%s/' % (app_label, model.__name__.lower())),
-                        'perms': perms}
+                        'admin_url': mark_safe(
+                            '%s/%s/' % (app_label, model.__name__.lower())
+                        ),
+                        'perms': perms,
+                    }
                     if app_label in app_dict:
                         app_dict[app_label]['models'].append(model_dict)
                     else:

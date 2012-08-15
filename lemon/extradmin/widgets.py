@@ -1,8 +1,7 @@
 from django import forms
-from django.conf import settings
 from django.contrib.admin import widgets
 from django.contrib.admin.templatetags.admin_static import static
-from django.core.urlresolvers import reverse, NoReverseMatch
+from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 from django.utils.safestring import mark_safe
 
@@ -11,14 +10,18 @@ class AdminDateWidget(widgets.AdminDateWidget):
 
     @property
     def media(self):
-        return forms.Media(js=[static('extradmin/js/jquery.datetimepicker.js')])
+        return forms.Media(js=[
+            static('extradmin/js/jquery.datetimepicker.js'),
+        ])
 
 
 class AdminTimeWidget(widgets.AdminTimeWidget):
 
     @property
     def media(self):
-        return forms.Media(js=[static('extradmin/js/jquery.datetimepicker.js')])
+        return forms.Media(js=[
+            static('extradmin/js/jquery.datetimepicker.js'),
+        ])
 
 
 class AdminSplitDateTime(widgets.AdminSplitDateTime):
@@ -73,7 +76,10 @@ class RelatedFieldWidgetWrapper(widgets.RelatedFieldWidgetWrapper):
         self.widget.choices = self.choices
         output = [self.widget.render(name, value, *args, **kwargs)]
         if self.can_add_related:
-            related_url = reverse('admin:%s_%s_add' % info, current_app=self.admin_site.name)
+            related_url = reverse(
+                'admin:%s_%s_add' % info,
+                current_app=self.admin_site.name,
+            )
             output.append(
                 u'<a href="%s" class="add-another" id="add_id_%s"> ' %
                     (related_url, name))

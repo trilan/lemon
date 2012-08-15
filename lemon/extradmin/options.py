@@ -1,11 +1,8 @@
-import inspect
-
 from django import forms
 from django.contrib.admin import options
+from django.contrib.admin.options import get_ul_class
 from django.contrib.admin.templatetags.admin_static import static
-from django.contrib.admin.views.main import IS_POPUP_VAR
 from django.contrib.admin.widgets import AdminRadioSelect
-from django.conf import settings
 from django.db import models
 from django.utils.datastructures import SortedDict
 from django.utils.translation import ugettext_lazy as _
@@ -62,17 +59,27 @@ class BaseModelAdmin(options.BaseModelAdmin):
 
         if isinstance(db_field, (models.ForeignKey, models.ManyToManyField)):
             if db_field.__class__ in self.formfield_overrides:
-                kwargs = dict(self.formfield_overrides[db_field.__class__], **kwargs)
+                kwargs = dict(
+                    self.formfield_overrides[db_field.__class__], **kwargs
+                )
 
             if isinstance(db_field, models.ForeignKey):
-                formfield = self.formfield_for_foreignkey(db_field, request, **kwargs)
+                formfield = self.formfield_for_foreignkey(
+                    db_field, request, **kwargs
+                )
             elif isinstance(db_field, models.ManyToManyField):
-                formfield = self.formfield_for_manytomany(db_field, request, **kwargs)
+                formfield = self.formfield_for_manytomany(
+                    db_field, request, **kwargs
+                )
 
             if formfield and db_field.name not in self.raw_id_fields:
-                related_modeladmin = self.admin_site._registry.get(db_field.rel.to)
-                can_add_related = bool(related_modeladmin and
-                                       related_modeladmin.has_add_permission(request))
+                related_modeladmin = self.admin_site._registry.get(
+                    db_field.rel.to,
+                )
+                can_add_related = bool(
+                    related_modeladmin and
+                    related_modeladmin.has_add_permission(request)
+                )
                 formfield.widget = widgets.RelatedFieldWidgetWrapper(
                     formfield.widget, db_field.rel, self.admin_site,
                     can_add_related=can_add_related)
@@ -176,7 +183,9 @@ class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
                 formsets[formset.opts.__class__] = formset
             new_tabs = []
             for tab in tabs:
-                contents = [formsets[inline.__class__] for inline in tab['contents']]
+                contents = [
+                    formsets[inline.__class__] for inline in tab['contents']
+                ]
                 new_tabs.append({'title': tab['title'], 'contents': contents})
                 tabulated_formsets.extend(contents)
             contents = [formset for formset in inline_admin_formsets
@@ -201,7 +210,7 @@ class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
                 value[1],
                 self.action_description_overrides.get(key, value[2])
             ))
-        new_actions.sort(lambda a,b: cmp(a[2].lower(), b[2].lower()))
+        new_actions.sort(lambda a, b: cmp(a[2].lower(), b[2].lower()))
         actions = SortedDict([
             (name, (func, name, desc))
             for func, name, desc in new_actions
@@ -213,7 +222,8 @@ class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
             extra_context = {'string_overrides': self.string_overrides}
         elif 'string_overrides' not in extra_context:
             extra_context['string_overrides'] = self.string_overrides
-        if 'add_title' in self.string_overrides and 'title' not in extra_context:
+        if 'add_title' in self.string_overrides and \
+           'title' not in extra_context:
             extra_context['title'] = self.string_overrides['add_title']
         return super(ModelAdmin, self).add_view(
             request, form_url=form_url, extra_context=extra_context)
@@ -223,7 +233,8 @@ class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
             extra_context = {'string_overrides': self.string_overrides}
         elif 'string_overrides' not in extra_context:
             extra_context['string_overrides'] = self.string_overrides
-        if 'change_title' in self.string_overrides and 'title' not in extra_context:
+        if 'change_title' in self.string_overrides and \
+           'title' not in extra_context:
             extra_context['title'] = self.string_overrides['change_title']
         return super(ModelAdmin, self).change_view(
             request, object_id, form_url=form_url, extra_context=extra_context)
@@ -233,7 +244,8 @@ class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
             extra_context = {'string_overrides': self.string_overrides}
         elif 'string_overrides' not in extra_context:
             extra_context['string_overrides'] = self.string_overrides
-        if 'changelist_title' in self.string_overrides and 'title' not in extra_context:
+        if 'changelist_title' in self.string_overrides and \
+           'title' not in extra_context:
             extra_context['title'] = self.string_overrides['changelist_title']
         if 'changelist_paginator_description' in self.string_overrides and \
            'changelist_paginator_description' not in extra_context:
@@ -242,7 +254,10 @@ class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
         else:
             extra_context['changelist_paginator_description'] = lambda n: \
                 ungettext('%(count)d element', '%(count)d elements', n)
-        return super(ModelAdmin, self).changelist_view(request, extra_context=extra_context)
+        return super(ModelAdmin, self).changelist_view(
+            request,
+            extra_context=extra_context,
+        )
 
     def get_markup_widget(self, request):
         return self.markup_widget or self.admin_site.get_markup_widget(request)

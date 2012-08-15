@@ -8,7 +8,7 @@ register = Library()
 
 @register.simple_tag
 def lemon_paginator_href(cl, i):
-    return escape(cl.get_query_string({PAGE_VAR: i-1}))
+    return escape(cl.get_query_string({PAGE_VAR: i - 1}))
 
 
 @register.simple_tag(takes_context=True)

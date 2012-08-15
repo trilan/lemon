@@ -1,4 +1,4 @@
-from django.template import Node, Library, Variable
+from django.template import Library, Variable
 from django.template import TemplateSyntaxError, VariableDoesNotExist
 from django.template.defaulttags import URLNode
 
@@ -32,7 +32,7 @@ class MainMenuItemURLNode(URLNode):
 
 @register.inclusion_tag('extradmin/main_menu.html')
 def main_menu():
-    queryset = MenuItem.objects.select_related('section','content_type')
+    queryset = MenuItem.objects.select_related('section', 'content_type')
     queryset = queryset.order_by('section__position', 'position')
     return {'menu_items': queryset}
 
@@ -42,6 +42,7 @@ def main_menu_item_url(parser, token):
     try:
         tag_name, content_type = token.split_contents()
     except ValueError:
-        raise TemplateSyntaxError, '%r tag requiresa single argument' % \
-            token.contents.split()[0]
+        raise TemplateSyntaxError(
+            '%r tag requiresa single argument' % token.contents.split()[0]
+        )
     return MainMenuItemURLNode(content_type)

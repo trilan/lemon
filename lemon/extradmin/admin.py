@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.contrib.auth.admin import User, UserAdmin, Group, GroupAdmin
 from django.contrib.sites.admin import Site, SiteAdmin
 from django.utils.functional import curry
@@ -37,8 +36,11 @@ class MenuSectionAdmin(extradmin.ModelAdmin):
         'changelist_title': _(u'Choose menu section to change'),
         'changelist_popup_title': _(u'Choose menu section'),
         'changelist_addlink_title': _(u'Add menu section'),
-        'changelist_paginator_description': lambda n: \
-            ungettext('%(count)d menu section', '%(count)d menu sections', n)
+        'changelist_paginator_description': lambda n: ungettext(
+            '%(count)d menu section',
+            '%(count)d menu sections',
+            n,
+        ),
     }
     tabs = True
     inlines = [MenuItemInline]
@@ -68,8 +70,11 @@ class UserExtrAdmin(extradmin.ModelAdmin, UserAdmin):
         'changelist_title': _(u'Choose user to change'),
         'changelist_popup_title': _(u'Choose user'),
         'changelist_addlink_title': _(u'Add user'),
-        'changelist_paginator_description': lambda n: \
-            ungettext('%(count)d user', '%(count)d users', n)
+        'changelist_paginator_description': lambda n: ungettext(
+            '%(count)d user',
+            '%(count)d users',
+            n,
+        ),
     }
 
 
@@ -81,8 +86,11 @@ class GroupExtrAdmin(extradmin.ModelAdmin, GroupAdmin):
         'changelist_title': _(u'Choose user group to change'),
         'changelist_popup_title': _(u'Choose user group'),
         'changelist_addlink_title': _(u'Add user group'),
-        'changelist_paginator_description': lambda n: \
-            ungettext('%(count)d user group', '%(count)d user groups', n)
+        'changelist_paginator_description': lambda n: ungettext(
+            '%(count)d user group',
+            '%(count)d user groups',
+            n,
+        ),
     }
 
 
@@ -94,8 +102,11 @@ class SiteExtrAdmin(extradmin.ModelAdmin, SiteAdmin):
         'changelist_title': _(u'Choose site to change'),
         'changelist_popup_title': _(u'Choose site'),
         'changelist_addlink_title': _(u'Add site'),
-        'changelist_paginator_description': lambda n: \
-            ungettext('%(count)d site', '%(count)d sites', n)
+        'changelist_paginator_description': lambda n: ungettext(
+            '%(count)d site',
+            '%(count)d sites',
+            n,
+        ),
     }
 
 

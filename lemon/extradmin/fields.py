@@ -6,7 +6,7 @@ class ContentTypeChoiceIterator(ModelChoiceIterator):
     def __init__(self, admin_site, *args, **kwargs):
         self.admin_site = admin_site
         super(ContentTypeChoiceIterator, self).__init__(*args, **kwargs)
-    
+
     def __iter__(self):
         if self.field.empty_label is not None:
             yield (u'', self.field.empty_label)
@@ -23,11 +23,11 @@ class ContentTypeChoiceIterator(ModelChoiceIterator):
 
 
 class ContentTypeChoiceField(ModelChoiceField):
-    
+
     def __init__(self, admin_site, *args, **kwargs):
         self.admin_site = admin_site
         super(ContentTypeChoiceField, self).__init__(*args, **kwargs)
-    
+
     def _get_choices(self):
         if hasattr(self, '_choices'):
             return self._choices

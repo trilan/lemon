@@ -1,12 +1,11 @@
 from django import forms
 from django.contrib.contenttypes.models import ContentType
 from django.forms.formsets import formset_factory
-from django.forms.models import ModelForm, BaseInlineFormSet
+from django.forms.models import BaseInlineFormSet
 from django.forms.models import ModelFormMetaclass, _get_foreign_key
 from django.utils.translation import ugettext_lazy as _
 
 from lemon.extradmin.fields import ContentTypeChoiceField
-from lemon.extradmin.models import MenuItem
 
 
 class MenuItemForm(forms.ModelForm):
@@ -17,12 +16,10 @@ class MenuItemForm(forms.ModelForm):
         fields = ['content_type', 'name', 'position']
 
     def __init__(self, *args, **kwargs):
-        model = self._meta.model
-        
         qs = ContentType.objects.all()
-        
-        content_type = ContentTypeChoiceField(self.admin_site, qs,
-                                              label=_('content type'))
+        content_type = ContentTypeChoiceField(
+            self.admin_site, qs, label=_('content type')
+        )
         self.base_fields['content_type'] = content_type
         super(MenuItemForm, self).__init__(*args, **kwargs)
 

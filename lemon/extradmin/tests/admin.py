@@ -1,7 +1,7 @@
 from django import forms
 
 from lemon import extradmin
-from lemon.extradmin.tests.models import Article, Author, Link
+from lemon.extradmin.tests.models import Author, Link
 
 
 class CustomTextarea(forms.Textarea):
