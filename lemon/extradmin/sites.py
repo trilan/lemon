@@ -14,7 +14,6 @@ from lemon.extradmin import ModelAdmin
 from lemon.extradmin.settings import CONFIG
 from lemon.extradmin.options import AppAdmin
 from lemon.dashboard import Dashboard
-from lemon.filebrowser.sites import FileBrowserSite
 
 
 class AdminSite(sites.AdminSite):
@@ -22,7 +21,6 @@ class AdminSite(sites.AdminSite):
     def __init__(self, name='admin', app_name='admin'):
         super(AdminSite, self).__init__(name, app_name)
         self._app_registry = {}
-        self.file_browser_site = FileBrowserSite(self)
         self.dashboard = Dashboard(self)
 
     def register(self, model_or_iterable, admin_class=None, **options):
@@ -93,7 +91,6 @@ class AdminSite(sites.AdminSite):
                     include(model_admin.urls)),
             )
         urlpatterns += patterns('',
-            url(r'^filebrowser/', include(self.file_browser_site.urls)),
             url(r'^dashboard/', include(self.dashboard.urls)),
         )
 
