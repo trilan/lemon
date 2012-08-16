@@ -16,8 +16,8 @@ class LogWidget(dashboard.Widget):
         qs = LogEntry.objects.select_related('content_type', 'user')
         return qs.filter(user=user)[:limit]
 
-    def get_context_data(self, request):
-        return {'log': self.get_log(request.user)}
+    def get_context_data(self, context):
+        return {'log': self.get_log(context['user'])}
 
 
 class AppsWidget(dashboard.Widget):

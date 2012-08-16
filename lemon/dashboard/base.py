@@ -133,7 +133,8 @@ class Dashboard(object):
         return callback(request, *args, **kwargs)
 
     def render(self, request):
-        state = DashboardState.objects.get_for_user(request.user)
+        context = RequestContext(request)
+        state = DashboardState.objects.get_for_user(context['user'])
         data = json.loads(state.data)
         new_columns = []
         for column in data['columns']:
@@ -144,7 +145,7 @@ class Dashboard(object):
                     row = row.copy()
                     row['id'] = 'widget_%s' % row['name'].replace('.', '_')
                     row['widget'] = widget
-                    row['content'] = widget.render(request, row['state'])
+                    row['content'] = widget.render(context, row['state'])
                     new_column.append(row)
             new_columns.append(new_column)
         data = {'columns': new_columns}
@@ -171,16 +172,18 @@ class BaseWidget(object):
     def __init__(self, dashboard):
         self.dashboard = dashboard
 
-    def get_context_data(self, request):
+    def get_context_data(self, context):
         return {}
 
-    def render(self, request, state):
+    def render(self, context, state):
         if self.template is not None:
-            context = RequestContext(request, self.get_context_data(request))
-            context['state'] = state
-            context['id'] = 'widget_%s_%s_content' % (
-                self.app_label, self.__class__.__name__.lower())
-            return render_to_string(self.template, context)
+            data = self.get_context_data(context)
+            data['state'] = state
+            data['id'] = 'widget_%s_%s_content' % (
+                self.app_label,
+                self.__class__.__name__.lower(),
+            )
+            return render_to_string(self.template, data, context)
         return ''
 
     def get_urls(self):
