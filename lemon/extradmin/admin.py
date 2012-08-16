@@ -5,11 +5,9 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext
 
 from lemon import extradmin
-from lemon.extradmin.dashboard import AppsWidget, LogWidget
 from lemon.extradmin.forms import MenuItemForm
 from lemon.extradmin.forms import contenttype_inlineformset_factory
 from lemon.extradmin.models import MenuSection, MenuItem
-from lemon.dashboard.base import dashboard
 
 
 class MenuItemInline(extradmin.TabularInline):
@@ -115,5 +113,3 @@ extradmin.site.register(MenuSection, MenuSectionAdmin)
 extradmin.site.register(User, UserExtrAdmin)
 extradmin.site.register(Group, GroupExtrAdmin)
 extradmin.site.register(Site, SiteExtrAdmin)
-dashboard.register(AppsWidget)
-dashboard.register(LogWidget)
