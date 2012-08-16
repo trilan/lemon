@@ -1,12 +1,13 @@
 {% extends "admin/base_site.html" %}
-{% load i18n %}
+{% load i18n dashboard %}
 
 {% block main-menu-status %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Control Panel" %}</h1>
-	<ul class="tools">
-		<li><a href="{% url admin:dashboard:available_widgets %}">{% trans "Available Widgets" %}</a></li>
-	</ul>
-	{{ dashboard|safe }}
+  <h1>{% trans "Control Panel" %}</h1>
+  <ul class="tools">
+    <li><a href="{% url admin:dashboard:available_widgets %}">{% trans "Available Widgets" %}</a></li>
+  </ul>
+  {{ dashboard|safe }}
+  {% admin_app_list app_list %}
 {% endblock %}

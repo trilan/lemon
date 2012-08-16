@@ -7,16 +7,32 @@
 	#{{ id }} .app { padding-bottom: 24px; }
 	#{{ id }} h2 { font-size: 16px; border-bottom: dotted 1px #98ABB2; margin-bottom: 6px; }
 </style>
-<div class="content clearfix">
-	{% for app in app_list %}
-		{% if forloop.first %}<ul id="available_apps_left" class="available_apps">{% endif %}
-		<li class="app">
-			<h2>{{ app.name }}</h2>
-			{% for model in app.models %}
-				{% if model.perms.change %}<a href="{{ model.admin_url }}">{{ model.name }}</a>{% else %}{{ model.name }}{% endif %}{% if not forloop.last %},{% endif %}
-			{% endfor %}
-		</li>
-		{% if forloop.counter == forloop.revcounter or forloop.counter == forloop.revcounter0 and not forloop.last %}</ul><ul id="available_apps_right" class="available_apps">{% endif %}
-		{% if forloop.last %}</ul>{% endif %}
-	{% endfor %}
-</div>
+<script>
+$(function() {
+  $('#{{ id }} .content').empty();
+  var length = __admin_app_list__.length;
+  var $apps = $('<ul id="available_apps_left" class="available_apps">');
+  for (var i = 0; i < length; i++) {
+    var app = __admin_app_list__[i];
+    var $app = $('<li class="app"><h2>' + app.name + '</h2></li>');
+    for (var j = 0; j < app.models.length; j++) {
+      var model = app.models[j];
+      if (model.perms.change) {
+        $app.append('<a href="' + model.admin_url + '">' + model.name + '</a>');
+        if (j !== app.models.length - 1) {
+          $app.append(', ');
+        }
+      }
+    }
+    var isInCenter = ((i + 1 === length - i) || (i + 1 === length - i - 1));
+    var isLast = (i + 1 === length);
+    $apps.append($app);
+    if (isInCenter && !isLast) {
+      $('#{{ id }} .content').append($apps);
+      $apps = $('<ul id="available_apps_right" class="available_apps">');
+    }
+  }
+  $('#{{ id }} .content').append($apps);
+});
+</script>
+<div class="content clearfix"></div>

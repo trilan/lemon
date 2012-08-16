@@ -8,7 +8,6 @@ from django.template import RequestContext
 from django.utils.functional import update_wrapper
 from django.utils.importlib import import_module
 from django.utils.translation import ugettext as _
-from django.views.decorators.cache import never_cache
 
 from lemon.extradmin import ModelAdmin
 from lemon.extradmin.settings import CONFIG
@@ -77,11 +76,20 @@ class AdminSite(sites.AdminSite):
                 wrap(contenttype_views.shortcut),
                 name='view_on_site'),
         )
+        urlpatterns += patterns('',
+            url(r'^dashboard/', include(self.dashboard.urls)),
+        )
 
         for app_name, app_admin in self._app_registry.iteritems():
             urlpatterns += patterns('',
                 url(r'^%s/' % app_name, include(app_admin.urls)),
             )
+        urlpatterns += patterns('',
+            url(r'^(?P<app_label>\w+)/$',
+                wrap(self.app_index),
+                name='app_list'),
+        )
+
         for model, model_admin in self._registry.iteritems():
             urlpatterns += patterns('',
                 url(r'^%s/%s/' % (
@@ -90,22 +98,13 @@ class AdminSite(sites.AdminSite):
                     ),
                     include(model_admin.urls)),
             )
-        urlpatterns += patterns('',
-            url(r'^dashboard/', include(self.dashboard.urls)),
-        )
 
         return urlpatterns
 
-    @never_cache
     def index(self, request, extra_context=None):
-        context = {
-            'dashboard': self.dashboard.render(request),
-            'title': _(u"Site administration"),
-        }
+        context = {'dashboard': self.dashboard.render(request)}
         context.update(extra_context or {})
-        return render_to_response(
-            self.index_template or 'admin/index.html', context,
-            context_instance=RequestContext(request, current_app=self.name))
+        return super(AdminSite, self).index(request, context)
 
     @property
     def markup_widget(self):
