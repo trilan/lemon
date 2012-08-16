@@ -8,6 +8,6 @@
   <ul class="tools">
     <li><a href="{% url admin:dashboard:available_widgets %}">{% trans "Available Widgets" %}</a></li>
   </ul>
-  {{ dashboard|safe }}
+  {% dashboard %}
   {% admin_app_list app_list %}
 {% endblock %}

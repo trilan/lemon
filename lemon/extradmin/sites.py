@@ -12,7 +12,6 @@ from django.utils.translation import ugettext as _
 from lemon.extradmin import ModelAdmin
 from lemon.extradmin.settings import CONFIG
 from lemon.extradmin.options import AppAdmin
-from lemon.dashboard import Dashboard
 
 
 class AdminSite(sites.AdminSite):
@@ -20,7 +19,6 @@ class AdminSite(sites.AdminSite):
     def __init__(self, name='admin', app_name='admin'):
         super(AdminSite, self).__init__(name, app_name)
         self._app_registry = {}
-        self.dashboard = Dashboard(self)
 
     def register(self, model_or_iterable, admin_class=None, **options):
         if not admin_class:
@@ -76,9 +74,6 @@ class AdminSite(sites.AdminSite):
                 wrap(contenttype_views.shortcut),
                 name='view_on_site'),
         )
-        urlpatterns += patterns('',
-            url(r'^dashboard/', include(self.dashboard.urls)),
-        )
 
         for app_name, app_admin in self._app_registry.iteritems():
             urlpatterns += patterns('',
@@ -100,11 +95,6 @@ class AdminSite(sites.AdminSite):
             )
 
         return urlpatterns
-
-    def index(self, request, extra_context=None):
-        context = {'dashboard': self.dashboard.render(request)}
-        context.update(extra_context or {})
-        return super(AdminSite, self).index(request, context)
 
     @property
     def markup_widget(self):

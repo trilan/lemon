@@ -24,11 +24,8 @@ class _URLConfModule(object):
 
 class Dashboard(object):
 
-    def __init__(self, admin_site, name=None, app_name='dashboard'):
+    def __init__(self):
         self._registry = {}
-        self.admin_site = admin_site
-        self.name = app_name if name is None else name
-        self.app_name = app_name
 
     def register(self, widget_class):
         name = '%s.%s' % (widget_class.app_label, widget_class.__name__.lower())
@@ -40,28 +37,25 @@ class Dashboard(object):
         if name in self._registry:
             del self._registry[name]
 
-    def get_urls(self):
+    def get_urls(self, app_admin):
+        wrap = app_admin.admin_site.admin_view
         return patterns('',
             url(r'^$',
-                self.admin_site.admin_view(self.available_widgets_view),
+                wrap(self.available_widgets_view),
                 name='available_widgets'),
             url(r'^add$',
-                self.admin_site.admin_view(self.add_widget_view),
+                wrap(self.add_widget_view),
                 name='add_widget'),
             url(r'^delete$',
-                self.admin_site.admin_view(self.delete_widget_view),
+                wrap(self.delete_widget_view),
                 name='delete_widget'),
             url(r'^store$',
-                self.admin_site.admin_view(self.store_view),
+                wrap(self.store_view),
                 name='store'),
             url(r'^(\w+)/(\w+)/(.*)$',
-                self.admin_site.admin_view(self.widget_view),
+                wrap(self.widget_view),
                 name='widget'),
         )
-
-    @property
-    def urls(self):
-        return self.get_urls(), self.app_name, self.name
 
     def available_widgets_view(self, request):
         state = DashboardState.objects.get_for_user(request.user)
@@ -132,9 +126,8 @@ class Dashboard(object):
         callback, args, kwargs = resolver.resolve(path)
         return callback(request, *args, **kwargs)
 
-    def render(self, request):
-        context = RequestContext(request)
-        state = DashboardState.objects.get_for_user(context['user'])
+    def render(self, user, context):
+        state = DashboardState.objects.get_for_user(user)
         data = json.loads(state.data)
         new_columns = []
         for column in data['columns']:
@@ -149,8 +142,9 @@ class Dashboard(object):
                     new_column.append(row)
             new_columns.append(new_column)
         data = {'columns': new_columns}
-        context = RequestContext(request, {'data': data})
-        return render_to_string('dashboard/dashboard.html', context)
+        return render_to_string('dashboard/dashboard.html', {
+            'data': data,
+        }, context_instance=context)
 
 
 class WidgetMetaclass(type):
@@ -203,3 +197,6 @@ class BaseWidget(object):
 class Widget(BaseWidget):
 
     __metaclass__ = WidgetMetaclass
+
+
+dashboard = Dashboard()
