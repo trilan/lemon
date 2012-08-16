@@ -1,6 +1,11 @@
 History
 =======
 
+next release
+------------
+
+* Add ability to register custom admin sections per app using AppAdmin
+
 0.6.2
 -----
 
