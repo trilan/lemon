@@ -2,8 +2,8 @@ from django import forms
 from django.contrib.auth.models import User
 from django.test import TestCase, RequestFactory
 
-from .. import settings
 from ..options import ModelAdmin
+from ..settings import CONFIG
 from ..sites import AdminSite
 from .admin import ArticleAdmin, AuthorInline, LinkInline, CustomTextarea
 from .models import Article
@@ -12,12 +12,12 @@ from .models import Article
 class DefaultMarkupWidgetTestCase(TestCase):
 
     def setUp(self):
-        self.old_CONFIG = settings.CONFIG
-        settings.CONFIG = {'MARKUP_WIDGET': None}
+        self.old_MARKUP_WIDGET = CONFIG['MARKUP_WIDGET']
+        CONFIG['MARKUP_WIDGET'] = None
         self.request = RequestFactory().get('/')
 
     def tearDown(self):
-        settings.CONFIG = self.old_CONFIG
+        CONFIG['MARKUP_WIDGET'] = self.old_MARKUP_WIDGET
 
     def test_admin_site_markup_widget(self):
         admin_site = AdminSite()
@@ -31,12 +31,12 @@ class DefaultMarkupWidgetTestCase(TestCase):
 class CustomMarkupWidgetTestCase(TestCase):
 
     def setUp(self):
-        self.old_CONFIG = settings.CONFIG
-        settings.CONFIG = {'MARKUP_WIDGET': 'django.forms.Textarea'}
+        self.old_MARKUP_WIDGET = CONFIG['MARKUP_WIDGET']
+        CONFIG['MARKUP_WIDGET'] = 'django.forms.Textarea'
         self.request = RequestFactory().get('/')
 
     def tearDown(self):
-        settings.CONFIG = self.old_CONFIG
+        CONFIG['MARKUP_WIDGET'] = self.old_MARKUP_WIDGET
 
     def test_admin_site_markup_widget(self):
         admin = AdminSite()
