@@ -14,7 +14,7 @@ setup(
     long_description=read('README.rst') + '\n\n' + read('HISTORY.rst'),
     author='Mike Yumatov',
     author_email='mike@yumatov.org',
-    packages=find_packages(exclude=['test_project', 'test_project.*']),
+    packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
     install_requires=[
