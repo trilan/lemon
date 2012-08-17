@@ -17,8 +17,6 @@ if not settings.configured:
             'django.contrib.sites',
             'django.contrib.messages',
             'django.contrib.admin',
-
-            'south',
             'intellipages',
         ),
         SITE_ID = 1,
@@ -38,15 +36,12 @@ if not settings.configured:
             'django.template.loaders.filesystem.Loader',
             'django.template.loaders.app_directories.Loader',
         ),
-        SOUTH_TESTS_MIGRATE = False
     )
 
 
 def main():
     from django.test.utils import get_runner
-    from south.management.commands import patch_for_test_db_setup
 
-    patch_for_test_db_setup()
     test_runner = get_runner(settings)(interactive=False)
     failures = test_runner.run_tests(['lemon'])
     sys.exit(failures)
