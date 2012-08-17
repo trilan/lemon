@@ -21,7 +21,6 @@ if not settings.configured:
         ),
         SITE_ID = 1,
         STATIC_URL = '',
-        LEMON_MEDIA_PREFIX = '/lemonmedia/',
         UPLOAD_TO = 'uploads',
         ROOT_URLCONF = '',
         DEBUG = False,
