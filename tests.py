@@ -10,6 +10,7 @@ if not settings.configured:
             }
         },
         INSTALLED_APPS = (
+            'lemon',
             'django.contrib.auth',
             'django.contrib.contenttypes',
             'django.contrib.sessions',
@@ -17,7 +18,6 @@ if not settings.configured:
             'django.contrib.messages',
             'django.contrib.admin',
 
-            'lemon',
             'south',
             'intellipages',
         ),
@@ -41,12 +41,6 @@ if not settings.configured:
         SOUTH_TESTS_MIGRATE = False
     )
 
-TEST_APPS = (
-    'lemon',
-)
-
-settings.INSTALLED_APPS += TEST_APPS
-
 
 def main():
     from django.test.utils import get_runner
@@ -54,7 +48,7 @@ def main():
 
     patch_for_test_db_setup()
     test_runner = get_runner(settings)(interactive=False)
-    failures = test_runner.run_tests([app.split('.')[-1] for app in TEST_APPS])
+    failures = test_runner.run_tests(['lemon'])
     sys.exit(failures)
 
 
