@@ -10,7 +10,7 @@ setup(
     name = 'Lemon',
     version = '0.7.dev',
     url = 'https://github.com/trilan/lemon',
-    description = 'A collection of some must have Django apps',
+    description = 'An extension for django.contrib.admin app',
     long_description = read('README.rst') + '\n\n' + read('HISTORY.rst'),
     author = 'TriLan Co.',
     author_email = 'lemon@trilandev.com',
