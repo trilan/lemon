@@ -21,7 +21,6 @@ if not settings.configured:
         ),
         SITE_ID = 1,
         STATIC_URL = '',
-        UPLOAD_TO = 'uploads',
         ROOT_URLCONF = '',
         DEBUG = False,
         MIDDLEWARE_CLASSES = (
