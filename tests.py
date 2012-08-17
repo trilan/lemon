@@ -4,12 +4,12 @@ from django.conf import settings
 
 if not settings.configured:
     settings.configure(
-        DATABASES = {
+        DATABASES={
             'default': {
                 'ENGINE': 'django.db.backends.sqlite3',
             }
         },
-        INSTALLED_APPS = (
+        INSTALLED_APPS=(
             'lemon',
             'django.contrib.auth',
             'django.contrib.contenttypes',
@@ -19,9 +19,9 @@ if not settings.configured:
             'django.contrib.admin',
             'intellipages',
         ),
-        SITE_ID = 1,
-        STATIC_URL = '',
-        ROOT_URLCONF = '',
+        SITE_ID=1,
+        STATIC_URL='',
+        ROOT_URLCONF='',
     )
 
 
