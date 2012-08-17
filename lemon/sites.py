@@ -3,11 +3,8 @@ from django.conf.urls import patterns, url, include
 from django.contrib.admin import sites
 from django.contrib.contenttypes import views as contenttype_views
 from django.core.exceptions import ImproperlyConfigured
-from django.shortcuts import render_to_response
-from django.template import RequestContext
 from django.utils.functional import update_wrapper
 from django.utils.importlib import import_module
-from django.utils.translation import ugettext as _
 
 from .settings import CONFIG
 from .options import ModelAdmin, AppAdmin
