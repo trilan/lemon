@@ -12,7 +12,7 @@ from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext
 
-from lemon.extradmin import widgets
+from . import widgets
 
 
 FORMFIELD_FOR_DBFIELD_DEFAULTS = {
@@ -155,12 +155,12 @@ class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
     @property
     def media(self):
         js = [static('admin/js/SelectBox.js'),
-              static('extradmin/js/jquery.relatedobjectlookup.js')]
+              static('lemon/js/jquery.relatedobjectlookup.js')]
         if self.prepopulated_fields:
             js.extend(static('admin/js/urlify.js'),
-                      static('extradmin/js/jquery.prepopulate.js'))
+                      static('lemon/js/jquery.prepopulate.js'))
         if self.tabs:
-            js.append(static('extradmin/js/jquery-ui.lemon.tabs.js'))
+            js.append(static('lemon/js/jquery-ui.lemon.tabs.js'))
         return forms.Media(js=js)
 
     def get_tabs(self, request):
@@ -274,10 +274,10 @@ class InlineModelAdmin(options.InlineModelAdmin, BaseModelAdmin):
 
     @property
     def media(self):
-        js = [static('extradmin/js/jquery.inlines.js')]
+        js = [static('lemon/js/jquery.inlines.js')]
         if self.prepopulated_fields:
             js.append(static('admin/js/urlify.js'))
-            js.append(static('extradmin/js/jquery.prepopulate.js'))
+            js.append(static('lemon/js/jquery.prepopulate.js'))
         return forms.Media(js=js)
 
     def get_markup_widget(self, request):

@@ -11,7 +11,7 @@ class AdminDateWidget(widgets.AdminDateWidget):
     @property
     def media(self):
         return forms.Media(js=[
-            static('extradmin/js/jquery.datetimepicker.js'),
+            static('lemon/js/jquery.datetimepicker.js'),
         ])
 
 
@@ -20,7 +20,7 @@ class AdminTimeWidget(widgets.AdminTimeWidget):
     @property
     def media(self):
         return forms.Media(js=[
-            static('extradmin/js/jquery.datetimepicker.js'),
+            static('lemon/js/jquery.datetimepicker.js'),
         ])
 
 

@@ -1,5 +1,5 @@
 from django.contrib.contenttypes import generic
-from lemon.extradmin.options import BaseModelAdmin, InlineModelAdmin
+from .options import BaseModelAdmin, InlineModelAdmin
 
 
 class GenericInlineModelAdmin(generic.GenericInlineModelAdmin,

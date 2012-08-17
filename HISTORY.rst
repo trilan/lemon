@@ -4,6 +4,8 @@ History
 next release
 ------------
 
+* Rename lemon.extradmin app to lemon
+* Move all apps except extradmin to their own separate distributions
 * Add ability to register custom admin sections per app using AppAdmin
 
 0.6.2

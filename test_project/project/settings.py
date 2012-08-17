@@ -104,8 +104,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.tz',
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
-    'lemon.metatags.context_processors.metatags',
-    'lemon.utils.context_processors.site',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -114,8 +112,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'lemon.utils.middleware.sites.RequestSiteMiddleware',
-    'lemon.pages.middleware.PageMiddleware'
 )
 
 ROOT_URLCONF = 'project.urls'
@@ -128,8 +124,7 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-    'lemon.dashboard',
-    'lemon.extradmin',
+    'lemon',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -138,14 +133,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-
-    'lemon.filebrowser',
-    'lemon.metatags',
-    'lemon.pages',
-    'lemon.publications',
-    'lemon.robots',
-    'lemon.sitemaps',
-
     'south',
     'intellipages',
 )

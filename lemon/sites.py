@@ -9,9 +9,8 @@ from django.utils.functional import update_wrapper
 from django.utils.importlib import import_module
 from django.utils.translation import ugettext as _
 
-from lemon.extradmin import ModelAdmin
-from lemon.extradmin.settings import CONFIG
-from lemon.extradmin.options import AppAdmin
+from .settings import CONFIG
+from .options import ModelAdmin, AppAdmin
 
 
 class AdminSite(sites.AdminSite):

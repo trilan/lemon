@@ -7,7 +7,7 @@ class Article(models.Model):
     content = models.TextField()
 
     class Meta:
-        app_label = 'extradmin'
+        app_label = 'lemon'
 
 
 class Author(models.Model):
@@ -16,7 +16,7 @@ class Author(models.Model):
     name = models.CharField(max_length=100)
 
     class Meta:
-        app_label = 'extradmin'
+        app_label = 'lemon'
 
 
 class Link(models.Model):
@@ -25,4 +25,4 @@ class Link(models.Model):
     url = models.URLField()
 
     class Meta:
-        app_label = 'extradmin'
+        app_label = 'lemon'

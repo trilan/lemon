@@ -2,12 +2,12 @@
 {% load i18n admin_modify admin_static %}
 
 {% block extrastyle %}
-  <link rel="stylesheet" type="text/css" href="{% static 'extradmin/css/changeform.css' %}" />
-  <link rel="stylesheet" type="text/css" href="{% static 'extradmin/css/jquery.datetimepicker.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'lemon/css/changeform.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'lemon/css/jquery.datetimepicker.css' %}" />
 {% endblock %}
 
 {% block extrahead %}{{ block.super }}
-  <script src="{% static 'extradmin/js/jquery.changeform.js' %}" type="text/javascript" charset="utf-8"></script>
+  <script src="{% static 'lemon/js/jquery.changeform.js' %}" type="text/javascript" charset="utf-8"></script>
   <script src="{% url admin:jsi18n %}" type="text/javascript" charset="utf-8"></script>
   {{ media }}
 {% endblock %}

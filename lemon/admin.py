@@ -4,13 +4,14 @@ from django.utils.functional import curry
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext
 
-from lemon import extradmin
-from lemon.extradmin.forms import MenuItemForm
-from lemon.extradmin.forms import contenttype_inlineformset_factory
-from lemon.extradmin.models import MenuSection, MenuItem
+from .options import TabularInline, ModelAdmin
+from .sites import site
+from .forms import MenuItemForm
+from .forms import contenttype_inlineformset_factory
+from .models import MenuSection, MenuItem
 
 
-class MenuItemInline(extradmin.TabularInline):
+class MenuItemInline(TabularInline):
 
     form = MenuItemForm
     model = MenuItem
@@ -27,7 +28,7 @@ class MenuItemInline(extradmin.TabularInline):
                                                  self.admin_site, **defaults)
 
 
-class MenuSectionAdmin(extradmin.ModelAdmin):
+class MenuSectionAdmin(ModelAdmin):
 
     string_overrides = {
         'add_title': _(u'Add menu section'),
@@ -45,7 +46,7 @@ class MenuSectionAdmin(extradmin.ModelAdmin):
     inlines = [MenuItemInline]
 
 
-class UserExtrAdmin(extradmin.ModelAdmin, UserAdmin):
+class UserExtrAdmin(ModelAdmin, UserAdmin):
 
     fieldsets = (
         (None, {'fields': ('username',)}),
@@ -77,7 +78,7 @@ class UserExtrAdmin(extradmin.ModelAdmin, UserAdmin):
     }
 
 
-class GroupExtrAdmin(extradmin.ModelAdmin, GroupAdmin):
+class GroupExtrAdmin(ModelAdmin, GroupAdmin):
 
     string_overrides = {
         'add_title': _(u'Add user group'),
@@ -93,7 +94,7 @@ class GroupExtrAdmin(extradmin.ModelAdmin, GroupAdmin):
     }
 
 
-class SiteExtrAdmin(extradmin.ModelAdmin, SiteAdmin):
+class SiteExtrAdmin(ModelAdmin, SiteAdmin):
 
     string_overrides = {
         'add_title': _(u'Add site'),
@@ -109,7 +110,7 @@ class SiteExtrAdmin(extradmin.ModelAdmin, SiteAdmin):
     }
 
 
-extradmin.site.register(MenuSection, MenuSectionAdmin)
-extradmin.site.register(User, UserExtrAdmin)
-extradmin.site.register(Group, GroupExtrAdmin)
-extradmin.site.register(Site, SiteExtrAdmin)
+site.register(MenuSection, MenuSectionAdmin)
+site.register(User, UserExtrAdmin)
+site.register(Group, GroupExtrAdmin)
+site.register(Site, SiteExtrAdmin)

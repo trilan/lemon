@@ -2,12 +2,11 @@ from django import forms
 from django.contrib.auth.models import User
 from django.test import TestCase, RequestFactory
 
-from lemon import extradmin
-from lemon.extradmin import settings
-from lemon.extradmin.tests.admin import (
-    ArticleAdmin, AuthorInline, LinkInline, CustomTextarea,
-)
-from lemon.extradmin.tests.models import Article
+from .. import settings
+from ..options import ModelAdmin
+from ..sites import AdminSite
+from .admin import ArticleAdmin, AuthorInline, LinkInline, CustomTextarea
+from .models import Article
 
 
 class DefaultMarkupWidgetTestCase(TestCase):
@@ -21,11 +20,11 @@ class DefaultMarkupWidgetTestCase(TestCase):
         settings.CONFIG = self.old_CONFIG
 
     def test_admin_site_markup_widget(self):
-        admin_site = extradmin.AdminSite()
+        admin_site = AdminSite()
         self.assertIsNone(admin_site.get_markup_widget(self.request))
 
     def test_model_admin_markup_widget(self):
-        model_admin = extradmin.ModelAdmin(Article, extradmin.AdminSite())
+        model_admin = ModelAdmin(Article, AdminSite())
         self.assertIsNone(model_admin.get_markup_widget(self.request))
 
 
@@ -40,11 +39,11 @@ class CustomMarkupWidgetTestCase(TestCase):
         settings.CONFIG = self.old_CONFIG
 
     def test_admin_site_markup_widget(self):
-        admin = extradmin.AdminSite()
+        admin = AdminSite()
         self.assertIs(admin.get_markup_widget(self.request), forms.Textarea)
 
     def test_model_admin_markup_widget(self):
-        model_admin = extradmin.ModelAdmin(Article, extradmin.AdminSite())
+        model_admin = ModelAdmin(Article, AdminSite())
         markup_widget = model_admin.get_markup_widget(self.request)
         self.assertIs(markup_widget, forms.Textarea)
 
@@ -52,7 +51,7 @@ class CustomMarkupWidgetTestCase(TestCase):
 class MarkupFieldsTestCase(TestCase):
 
     def test_markup_fields(self):
-        model_admin = ArticleAdmin(Article, extradmin.AdminSite())
+        model_admin = ArticleAdmin(Article, AdminSite())
 
         title_field = Article._meta.get_field('title')
         title_form_field = model_admin.formfield_for_dbfield(title_field)
@@ -71,7 +70,7 @@ class AdminTabsTestCase(TestCase):
         return request
 
     def get_tabs(self, admin_class):
-        admin = admin_class(Article, extradmin.AdminSite())
+        admin = admin_class(Article, AdminSite())
         return admin.get_tabs(self.get_request())
 
     def test_returns_false_if_tabs_are_disabled(self):

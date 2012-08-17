@@ -17,10 +17,7 @@ if not settings.configured:
             'django.contrib.messages',
             'django.contrib.admin',
 
-            'lemon.pages',
-            'lemon.metatags',
-            'lemon.filebrowser',
-
+            'lemon',
             'south',
             'intellipages',
         ),
@@ -36,8 +33,6 @@ if not settings.configured:
             'django.middleware.csrf.CsrfViewMiddleware',
             'django.contrib.auth.middleware.AuthenticationMiddleware',
             'django.contrib.messages.middleware.MessageMiddleware',
-            'lemon.utils.middleware.sites.RequestSiteMiddleware',
-            'lemon.pages.middleware.PageMiddleware'
         ),
         TEMPLATE_LOADERS = (
             'django.template.loaders.filesystem.Loader',
@@ -47,10 +42,7 @@ if not settings.configured:
     )
 
 TEST_APPS = (
-    'lemon.extradmin',
-    'lemon.robots',
-    'lemon.sitemaps',
-    'lemon.publications',
+    'lemon',
 )
 
 settings.INSTALLED_APPS += TEST_APPS

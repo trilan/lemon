@@ -5,7 +5,7 @@ from django.forms.models import BaseInlineFormSet
 from django.forms.models import ModelFormMetaclass, _get_foreign_key
 from django.utils.translation import ugettext_lazy as _
 
-from lemon.extradmin.fields import ContentTypeChoiceField
+from .fields import ContentTypeChoiceField
 
 
 class MenuItemForm(forms.ModelForm):

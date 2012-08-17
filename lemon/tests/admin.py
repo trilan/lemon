@@ -1,7 +1,7 @@
 from django import forms
 
-from lemon import extradmin
-from lemon.extradmin.tests.models import Author, Link
+from ..options import ModelAdmin, StackedInline
+from .models import Author, Link
 
 
 class CustomTextarea(forms.Textarea):
@@ -9,17 +9,17 @@ class CustomTextarea(forms.Textarea):
     pass
 
 
-class AuthorInline(extradmin.StackedInline):
+class AuthorInline(StackedInline):
 
     model = Author
 
 
-class LinkInline(extradmin.StackedInline):
+class LinkInline(StackedInline):
 
     model = Link
 
 
-class ArticleAdmin(extradmin.ModelAdmin):
+class ArticleAdmin(ModelAdmin):
 
     markup_fields = ['content']
     markup_widget = CustomTextarea
