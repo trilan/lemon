@@ -1,8 +1,8 @@
 History
 =======
 
-next release
-------------
+0.7
+---
 
 * Rename lemon.extradmin app to lemon
 * Move all apps except extradmin to their own separate distributions
