@@ -1,0 +1,38 @@
+<!DOCTYPE html>{% load admin_static %}
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	<meta charset="utf-8">
+	<meta name="generator" content="Lemon CMF">
+	<link rel="shortcut icon" href="{% static 'lemon/favicon.ico' %}" type="image/x-icon" />
+	<link rel="icon" href="{% static 'lemon/favicon.ico' %}" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="{% static 'lemon/css/reset.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'lemon/css/default.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'lemon/css/base.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'lemon/css/jquery.ui.css' %}" />
+	{% block extrastyle %}{% endblock %}
+	<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="{% static 'lemon/css/ie.css' %}" /><![endif]-->
+	<script src="{% static 'lemon/js/jquery.js' %}" type="text/javascript" charset="utf-8"></script>
+	<script src="{% static 'lemon/js/jquery.ui.js' %}" type="text/javascript" charset="utf-8"></script>
+	<script src="{% static 'lemon/js/script.js' %}" type="text/javascript" charset="utf-8"></script>
+	{% block extrahead %}{% endblock %}
+	{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+</head>
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
+	<div id="container" class="{% block containerclass %}{% endblock %}">
+		{% block container %}
+			{% if not is_popup %}{% block header %}{% endblock %}{% endif %}
+			<div id="main">
+				{% if messages %}<ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>{% endif %}
+				{% block content %}{% endblock %}
+			</div>
+			{% if not is_popup %}<div id="footer">
+				{% block footer %}
+					<a id="footer-logo" href="http://www.trilan.ru/" class="external"></a>
+					<div id="copyright">CMF <strong>Lemon</strong> разработана в компании <a href="http://www.trilan.ru/" class="external">«ТриЛан»</a> с использованием <a href="http://djangoproject.com/" class="external">Django</a>.</div>
+				{% endblock %}
+			</div>{% endif %}
+		{% endblock %}
+	</div>
+</body>
+</html>

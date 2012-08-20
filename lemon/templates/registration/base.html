@@ -1,0 +1,30 @@
+<!DOCTYPE html>{% load admin_static %}
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{% static 'lemon/css/reset.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'lemon/css/default.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'lemon/css/base.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'lemon/css/jquery.ui.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'lemon/css/changeform.css' %}" />
+	<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="{% static 'lemon/css/ie.css' %}" /><![endif]-->
+	<script src="{% static 'lemon/js/jquery.js' %}" type="text/javascript" charset="utf-8"></script>
+	<script src="{% static 'lemon/js/jquery.ui.js' %}" type="text/javascript" charset="utf-8"></script>
+	{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+</head>
+<body>
+	<div id="container" class="{% block containerclass %}{% endblock %}">
+	{% block container %}
+		<div id="header"><a href="/" id="logo"></a></div>
+		<div id="main">{% block content %}{% endblock %}</div>
+		<div id="footer">
+			{% block footer %}
+				<a id="footer-logo" href="http://www.trilan.ru/" class="external"></a>
+				<div id="copyright">CMF <strong>Lemon</strong> разработана в компании <a href="http://www.trilan.ru/" class="external">«ТриЛан»</a> с использованием <a href="http://djangoproject.com/" class="external">Django</a>.</div>
+			{% endblock %}
+		</div>
+	{% endblock %}
+	</div>
+</body>
+</html>
