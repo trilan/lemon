@@ -1,6 +1,11 @@
 History
 =======
 
+0.7.1
+-----
+
+* Add missing initial schemamigration
+
 0.7
 ---
 
