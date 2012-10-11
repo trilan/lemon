@@ -157,8 +157,10 @@ class ModelAdmin(options.ModelAdmin, BaseModelAdmin):
         js = [static('admin/js/SelectBox.js'),
               static('lemon/js/jquery.relatedobjectlookup.js')]
         if self.prepopulated_fields:
-            js.extend(static('admin/js/urlify.js'),
-                      static('lemon/js/jquery.prepopulate.js'))
+            js.extend([
+                static('admin/js/urlify.js'),
+                static('lemon/js/jquery.prepopulate.js'),
+            ])
         if self.tabs:
             js.append(static('lemon/js/jquery-ui.lemon.tabs.js'))
         return forms.Media(js=js)
