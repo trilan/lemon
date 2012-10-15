@@ -277,3 +277,7 @@
     margin-right: 10px;
     font-weight: bold;
 }
+
+.action-checkbox {
+  width: 1%;
+}
