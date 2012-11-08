@@ -21,12 +21,13 @@
     </div>
   {% endif %}
   <h1>{{ title }}</h1>
-  {% block tools %}
+  {% block object-tools %}
     <ul class="tools">
-      {% block tools-items %}{% endblock %}
-      {% if change %}{% if not is_popup %}{% if has_absolute_url %}
-        <li><a href="../../../r/{{ content_type_id }}/{{ object_id }}/" class="viewsitelink">{% trans "View on site" %}</a></li>
-      {% endif %}{% endif %}{% endif %}
+      {% block object-tools-items %}
+        {% if change %}{% if not is_popup %}{% if has_absolute_url %}
+          <li><a href="../../../r/{{ content_type_id }}/{{ object_id }}/" class="viewsitelink">{% trans "View on site" %}</a></li>
+        {% endif %}{% endif %}{% endif %}
+      {% endblock %}
     </ul>
   {% endblock %}
   <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}

@@ -20,7 +20,7 @@
 
 {% block content %}
 {% if title %}<h1>{{ title }}</h1>{% endif %}
-{% block tools %}
+{% block object-tools %}
 	{% if has_add_permission %}
 		<ul class="tools">
 			<li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">{% if string_overrides.changelist_addlink_title %}{{ string_overrides.changelist_addlink_title }}{% else %}{% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}{% endif %}</a></li>
