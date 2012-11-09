@@ -6,7 +6,7 @@ from django.utils.translation import ungettext
 
 from .options import TabularInline, ModelAdmin
 from .sites import site
-from .forms import MenuItemForm
+from .forms import UserChangeForm, MenuItemForm
 from .forms import contenttype_inlineformset_factory
 from .models import MenuSection, MenuItem
 
@@ -49,7 +49,7 @@ class MenuSectionAdmin(ModelAdmin):
 class UserExtrAdmin(ModelAdmin, UserAdmin):
 
     fieldsets = (
-        (None, {'fields': ('username', 'password')}),
+        (None, {'fields': ('username',)}),
         (_('Personal info'), {'fields': ('first_name', 'last_name', 'email')}),
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions')}),
@@ -64,6 +64,7 @@ class UserExtrAdmin(ModelAdmin, UserAdmin):
                 u"Then, you'll be able to edit more user options.")}
         ),
     )
+    form = UserChangeForm
     string_overrides = {
         'add_title': _(u'Add user'),
         'change_title': _(u'Change user'),

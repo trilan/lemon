@@ -3,6 +3,7 @@ from django.template import TemplateSyntaxError, VariableDoesNotExist
 from django.template.defaulttags import URLNode
 
 from ..models import MenuItem
+from ..settings import CONFIG
 
 
 register = Library()
@@ -34,7 +35,7 @@ class MainMenuItemURLNode(URLNode):
 def main_menu():
     queryset = MenuItem.objects.select_related('section', 'content_type')
     queryset = queryset.order_by('section__position', 'position')
-    return {'menu_items': queryset}
+    return {'menu_items': queryset, 'menu_links': CONFIG['MENU_LINKS']}
 
 
 @register.tag

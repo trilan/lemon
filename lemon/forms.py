@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.forms.formsets import formset_factory
 from django.forms.models import BaseInlineFormSet
@@ -6,6 +7,28 @@ from django.forms.models import ModelFormMetaclass, _get_foreign_key
 from django.utils.translation import ugettext_lazy as _
 
 from .fields import ContentTypeChoiceField
+
+
+class UserChangeForm(forms.ModelForm):
+
+    username = forms.RegexField(
+        label=_('Username'),
+        max_length=30,
+        regex=r'^[\w.@+-]+$',
+        help_text=_(
+            'Required. 30 characters or fewer. Letters, digits and '
+            '@/./+/-/_ only.'
+        ),
+        error_messages={
+            'invalid': _(
+                'This value may contain only letters, numbers and @/./+/-/_ '
+                'characters.'
+            )
+        }
+    )
+
+    class Meta:
+        model = User
 
 
 class MenuItemForm(forms.ModelForm):
