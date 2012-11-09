@@ -4,6 +4,7 @@ History
 next release
 ------------
 
+* Hide confusing password field from user change form
 * Custom admin menu items can be added now using project settings
 
 0.7.2
