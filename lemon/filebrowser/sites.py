@@ -3,6 +3,7 @@ import operator
 import re
 from time import gmtime, strftime, localtime, time
 
+from django.contrib import messages
 from django.core.exceptions import ImproperlyConfigured
 from django.core.paginator import Paginator, EmptyPage
 from django.core.urlresolvers import reverse
@@ -145,8 +146,7 @@ class FileBrowserSite(object):
 
         path = self.get_path(query.get('dir', ''))
         if path is None:
-            msg = _('The requested folder does not exist.')
-            request.user.message_set.create(message=msg)
+            messages.error(request, _('The requested folder does not exist.'))
             redirect_url = reverse('admin:filebrowser:browse')
             redirect_url += query_helper(query, 'dir')
             return HttpResponseRedirect(redirect_url)
@@ -217,8 +217,7 @@ class FileBrowserSite(object):
         query = request.GET.copy()
         path = self.get_path(query.get('dir', ''))
         if path is None:
-            msg = _('The requested folder does not exist.')
-            request.user.message_set.create(message=msg)
+            messages.error(request, _('The requested folder does not exist.'))
             return HttpResponseRedirect(reverse('admin:filebrowser:browse'))
         abs_path = os.path.join(settings.MEDIA_ROOT, self.upload_to, path)
 
@@ -242,7 +241,7 @@ class FileBrowserSite(object):
                 else:
                     msg = _('The folder "%s" was successfully created.')
                     msg %= form.cleaned_data['dir_name']
-                    request.user.message_set.create(message=msg)
+                    messages.success(request, msg)
                     # on redirect, sort by date desc to see the new directory
                     # on top of the list
                     # remove filter in order to actually _see_ the new folder
@@ -271,8 +270,7 @@ class FileBrowserSite(object):
         query = request.GET.copy()
         path = self.get_path(query.get('dir', ''))
         if path is None:
-            msg = _('The requested folder does not exist.')
-            request.user.message_set.create(message=msg)
+            messages.error(request, _('The requested folder does not exist.'))
             return HttpResponseRedirect(reverse('admin:filebrowser:browse'))
         abs_path = os.path.join(settings.MEDIA_ROOT, self.upload_to, path)
 
@@ -312,7 +310,7 @@ class FileBrowserSite(object):
                 msg = _('The requested folder does not exist.')
             else:
                 msg = _('The requested file does not exist.')
-            request.user.message_set.create(message=msg)
+            messages.error(request, msg)
             return HttpResponseRedirect(reverse('admin:filebrowser:browse'))
         abs_path = os.path.join(settings.MEDIA_ROOT, self.upload_to, path)
         file_extension = os.path.splitext(filename)[1].lower()
@@ -332,9 +330,9 @@ class FileBrowserSite(object):
                     else:
                         msg = _('The file was successfully renamed.')
                 except OSError, (errno, strerror):
-                    msg = _(u'OS error while delete.')
+                    messages.error(request, _(u'OS error while delete.'))
                 else:
-                    request.user.message_set.create(message=msg)
+                    messages.error(request, msg)
                     redirect_url = reverse("admin:filebrowser:browse")
                     redirect_url += query_helper(query, 'filename')
                     return HttpResponseRedirect(redirect_url)
@@ -361,7 +359,7 @@ class FileBrowserSite(object):
                 msg = _('The requested folder does not exist.')
             else:
                 msg = _('The requested file does not exist.')
-            request.user.message_set.create(message=msg)
+            messages.error(request, msg)
             return HttpResponseRedirect(reverse('admin:filebrowser:browse'))
         abs_path = os.path.join(settings.MEDIA_ROOT, self.upload_to, path)
 
@@ -371,11 +369,11 @@ class FileBrowserSite(object):
                 try:
                     os.unlink(os.path.join(abs_path, filename))
                 except OSError:
-                    msg = _(u'OS error while delete.')
+                    messages.error(request, _(u'OS error while delete.'))
                 else:
                     msg = _('The file "%s" was successfully deleted.')
                     msg %= filename.lower()
-                    request.user.message_set.create(message=msg)
+                    messages.success(request, msg)
                     redirect_url = reverse('admin:filebrowser:browse')
                     redirect_url += query_helper(
                         query, 'filename', 'filetype')
@@ -384,17 +382,15 @@ class FileBrowserSite(object):
                 try:
                     os.rmdir(os.path.join(abs_path, filename))
                 except OSError:
-                    msg = _(u'OS error while delete.')
+                    messages.error(request, _(u'OS error while delete.'))
                 else:
                     msg = _('The folder "%s" was successfully deleted.')
                     msg %= filename.lower()
-                    request.user.message_set.create(message=msg)
+                    messages.success(request, msg)
                     redirect_url = reverse('admin:filebrowser:browse')
                     redirect_url += query_helper(
                         query, 'filename',  'filetype')
                     return HttpResponseRedirect(redirect_url)
-        if msg:
-            request.user.message_set.create(message=msg)
 
         return render_to_response('filebrowser/browse.html', {
             'dir': dir_name,
