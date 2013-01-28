@@ -1,6 +1,11 @@
 History
 =======
 
+0.6.3
+-----
+
+* Fix user messages in filebrowser
+
 0.6.2
 -----
 
