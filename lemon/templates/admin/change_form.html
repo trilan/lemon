@@ -8,7 +8,7 @@
 
 {% block extrahead %}{{ block.super }}
   <script src="{% static 'lemon/js/jquery.changeform.js' %}" type="text/javascript" charset="utf-8"></script>
-  <script src="{% url admin:jsi18n %}" type="text/javascript" charset="utf-8"></script>
+  <script src="{% url 'admin:jsi18n' %}" type="text/javascript" charset="utf-8"></script>
   {{ media }}
 {% endblock %}
 

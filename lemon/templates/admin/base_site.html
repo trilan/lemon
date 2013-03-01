@@ -9,12 +9,12 @@
 
 {% block header %}
     <div id="header">
-        <a href="{% url admin:index %}" id="logo"></a>
+        <a href="{% url 'admin:index' %}" id="logo"></a>
         <div id="user-menu">
             Добро пожаловать, <strong>{% firstof user.first_name user.username %}</strong>.
             <ul>
-                <li><a href="{% url admin:password_change %}">Изменить пароль</a></li>
-                <li><a href="{% url admin:logout %}">Выйти</a></li>
+                <li><a href="{% url 'admin:password_change' %}">Изменить пароль</a></li>
+                <li><a href="{% url 'admin:logout' %}">Выйти</a></li>
             </ul>
         </div>
         <ul id="main-menu">
