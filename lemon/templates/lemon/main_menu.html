@@ -1,4 +1,4 @@
-{% load i18n main_menu %}
+{% load i18n main_menu %}{% load url from future %}
 
 {% regroup menu_items by section as sections %}
 {% for section in sections %}

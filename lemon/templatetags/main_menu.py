@@ -1,4 +1,5 @@
-from django.template import Library, Variable
+from django.core.urlresolvers import reverse, NoReverseMatch
+from django.template import Library, Variable, Node
 from django.template import TemplateSyntaxError, VariableDoesNotExist
 from django.template.defaulttags import URLNode
 
@@ -9,26 +10,25 @@ from ..settings import CONFIG
 register = Library()
 
 
-class MainMenuItemURLNode(URLNode):
+class MainMenuItemURLNode(Node):
 
     def __init__(self, content_type):
         self.content_type = Variable(content_type)
-        self.args = ()
-        self.kwargs = {}
-        self.asvar = False
-        self.legacy_view_name = True
 
     def render(self, context):
         try:
             content_type = self.content_type.resolve(context)
-            opts = content_type.model_class()._meta
-            app_label = opts.app_label
-            module_name = opts.module_name
-            self.view_name = 'admin:%s_%s_changelist' % \
-                (app_label, module_name)
         except VariableDoesNotExist:
             return ''
-        return super(MainMenuItemURLNode, self).render(context)
+        opts = content_type.model_class()._meta
+        app_label = opts.app_label
+        module_name = opts.module_name
+        view_name = 'admin:%s_%s_changelist' % \
+            (app_label, module_name)
+        try:
+            return reverse(view_name)
+        except NoReverseMatch:
+            return ''
 
 
 @register.inclusion_tag('lemon/main_menu.html')
@@ -44,6 +44,6 @@ def main_menu_item_url(parser, token):
         tag_name, content_type = token.split_contents()
     except ValueError:
         raise TemplateSyntaxError(
-            '%r tag requiresa single argument' % token.contents.split()[0]
+            '%r tag requires a single argument' % token.contents.split()[0]
         )
     return MainMenuItemURLNode(content_type)
