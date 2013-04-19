@@ -1,6 +1,12 @@
 History
 =======
 
+0.8.1
+-----
+
+* Fix admin menu url resolving
+* Add `load url from future` for Django 1.4 compatibility
+
 0.8.0
 -----
 
