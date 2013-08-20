@@ -1,6 +1,11 @@
 History
 =======
 
+0.8.2
+-----
+
+* Fix: markup fields doesn't respect defaults
+
 0.8.1
 -----
 
