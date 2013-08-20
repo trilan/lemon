@@ -92,7 +92,8 @@ class BaseModelAdmin(options.BaseModelAdmin):
         markup_widget = self.get_markup_widget(request)
         markup_fields = self.get_markup_fields(request)
         if markup_widget and db_field.name in markup_fields:
-            return db_field.formfield(widget=markup_widget)
+            kwargs = dict({'widget': markup_widget}, **kwargs)
+            return db_field.formfield(**kwargs)
 
         for klass in db_field.__class__.mro():
             if klass in self.formfield_overrides:

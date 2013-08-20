@@ -61,6 +61,12 @@ class MarkupFieldsTestCase(TestCase):
         content_form_field = model_admin.formfield_for_dbfield(content_field)
         self.assertIsInstance(content_form_field.widget, CustomTextarea)
 
+    def test_markup_field_respects_kwargs(self):
+        model_admin = ArticleAdmin(Article, AdminSite())
+        content_field = Article._meta.get_field('content')
+        content_form_field = model_admin.formfield_for_dbfield(content_field, required=False)
+        self.assertFalse(content_form_field.required)
+
 
 class AdminTabsTestCase(TestCase):
 
