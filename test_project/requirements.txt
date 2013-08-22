@@ -1,0 +1,3 @@
+Pillow==1.7.5
+
+-e git://github.com/trilan/lemon-tinymce.git@e2c2f5488ecc50fe927e02334c017ff61e75b11f#egg=lemon-tinymce
